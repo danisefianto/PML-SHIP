@@ -1,6 +1,6 @@
 {
-    "name": "pmlship",
-    "short_name": "pmlship",
+    "name": "pml_ship",
+    "short_name": "pml_ship",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
