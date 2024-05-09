@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
+import 'package:pml_ship/presentation/auth/sign_in_page.dart';
+import 'package:pml_ship/presentation/main_page/home/home_page.dart';
 
 import '../core/styles.dart';
 
@@ -14,11 +17,11 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
     Timer(
       Duration(seconds: 1),
       () => Navigator.pushNamed(context, '/sign-in'),
     );
+
     super.initState();
   }
 

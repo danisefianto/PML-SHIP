@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
+import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
 import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
 
 import '../../core/styles.dart';
@@ -225,7 +226,7 @@ class _SignInPageState extends State<SignInPage> {
                 state.maybeWhen(
                   orElse: () {},
                   success: (authResponseModel) {
-                    // AuthRemoteDatasource().saveAuthData(authResponseModel);
+                    AuthLocalDataSource().saveAuthData(authResponseModel);
                     Navigator.pushNamed(context, '/home');
                     // Navigator.pushReplacement(
                     //   context,
@@ -247,6 +248,11 @@ class _SignInPageState extends State<SignInPage> {
               child: BlocBuilder<LoginBloc, LoginState>(
                 builder: (context, state) {
                   return state.maybeWhen(
+                    loading: () {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
                     orElse: () {
                       return Container(
                         height: 50.0,
@@ -268,7 +274,6 @@ class _SignInPageState extends State<SignInPage> {
                                     password: passwordController.text,
                                   ),
                                 );
-                            // Navigator.pushNamed(context, '/home');
                           },
                           style: FilledButton.styleFrom(
                             backgroundColor: secondaryColor,

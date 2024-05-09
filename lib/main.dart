@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
 import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
 import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
+import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
+import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
+import 'package:pml_ship/presentation/main_page/home/home_page.dart';
 
 import 'presentation/auth/new_password_set_page.dart';
 import 'presentation/auth/otp_input_reset_password_page.dart';
@@ -42,11 +46,46 @@ class MainApp extends StatelessWidget {
     //   home: TrackingOneScreen(),
     // );
 
-    return BlocProvider(
-      create: (context) => LoginBloc(AuthRemoteDatasource()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => RegisterBloc(),
+        ),
+      ],
       child: MaterialApp(
+        home: FutureBuilder<bool>(
+          future: AuthLocalDataSource().isAuthDataExists(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+            if (snapshot.hasData) {
+              if (snapshot.data!) {
+                return const MainPage();
+              } else {
+                // Navigator.pushNamed(context, '/splash');
+                return const SplashPage();
+              }
+            }
+            return const Scaffold(
+              body: Center(
+                child: Text('Error'),
+              ),
+            );
+          },
+        ),
         routes: {
-          '/': (context) => const SplashPage(),
+          '/splash': (context) => const SplashPage(),
           '/sign-in': (context) => SignInPage(),
           '/sign-up': (context) => Registerpage(),
           '/home': (context) => const MainPage(),

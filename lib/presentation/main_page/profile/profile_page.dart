@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
+import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
 
 import '../../../core/styles.dart';
 
@@ -61,33 +64,6 @@ class ProfilePage extends StatelessWidget {
               ),
               // ),
             ],
-          ),
-        ),
-      );
-    }
-
-    Widget signOutButton() {
-      return Container(
-        height: 50.0,
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
-        child: FilledButton(
-          child: Text(
-            'Logout',
-            style: primaryTextStyle.copyWith(
-              fontWeight: semiBold,
-              fontSize: 16.0,
-            ),
-          ),
-          onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/sign-in', (route) => false);
-          },
-          style: FilledButton.styleFrom(
-            backgroundColor: Color(0xffff0000),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
           ),
         ),
       );
@@ -211,7 +187,55 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 30.0,
             ),
-            signOutButton(),
+            BlocListener<LogoutBloc, LogoutState>(
+              listener: (context, state) {
+                state.maybeMap(
+                  orElse: () {},
+                  error: (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(e.message),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  },
+                  success: (value) {
+                    AuthLocalDataSource().removeAuthData();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Logout success'),
+                        backgroundColor: Color(0xff4682B4),
+                      ),
+                    );
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/sign-in', (route) => false);
+                  },
+                );
+              },
+              child: Container(
+                height: 50.0,
+                width: double.infinity,
+                margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
+                child: FilledButton(
+                  child: Text(
+                    'Logout',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: semiBold,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    context.read<LogoutBloc>().add(const LogoutEvent.logout());
+                  },
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Color(0xffff0000),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
         // ),
