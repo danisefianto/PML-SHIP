@@ -1,14 +1,13 @@
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class AuthResponseModel {
-  final String? message;
-  final String? accessToken;
-  final String? tokenType;
+  final User data;
+  final String token;
 
   AuthResponseModel({
-    this.message,
-    this.accessToken,
-    this.tokenType,
+    required this.data,
+    required this.token,
   });
 
   factory AuthResponseModel.fromJson(String str) =>
@@ -18,14 +17,44 @@ class AuthResponseModel {
 
   factory AuthResponseModel.fromMap(Map<String, dynamic> json) =>
       AuthResponseModel(
-        message: json["message"],
-        accessToken: json["access_token"],
-        tokenType: json["token_type"],
+        data: User.fromMap(json["data"]),
+        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => {
-        "message": message,
-        "access_token": accessToken,
-        "token_type": tokenType,
+        "data": data.toMap(),
+        "token": token,
+      };
+}
+
+class User {
+  final int id;
+  final String role;
+  final String name;
+  final String email;
+
+  User({
+    required this.id,
+    required this.role,
+    required this.name,
+    required this.email,
+  });
+
+  factory User.fromJson(String str) => User.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory User.fromMap(Map<String, dynamic> json) => User(
+        id: json["id"],
+        role: json["role"],
+        name: json["name"],
+        email: json["email"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "role": role,
+        "name": name,
+        "email": email,
       };
 }

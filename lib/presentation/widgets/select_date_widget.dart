@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import '../../core/styles.dart';
 
 class SelectDateWidget extends StatefulWidget {
+  final TextEditingController dateController;
   final String labelText;
-  const SelectDateWidget({super.key, required this.labelText});
+  const SelectDateWidget({
+    super.key,
+    required this.labelText,
+    required this.dateController,
+  });
 
   @override
   State<SelectDateWidget> createState() => _SelectDateWidgetState();
 }
 
 class _SelectDateWidgetState extends State<SelectDateWidget> {
-  TextEditingController _dateController = TextEditingController();
+  // TextEditingController _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ class _SelectDateWidgetState extends State<SelectDateWidget> {
             height: 5.0,
           ),
           TextField(
-            controller: _dateController,
+            controller: widget.dateController,
             decoration: const InputDecoration(
               hintText: 'Select date',
               filled: true,
@@ -58,7 +63,7 @@ class _SelectDateWidgetState extends State<SelectDateWidget> {
 
     if (_picked != null) {
       setState(() {
-        _dateController.text = _picked.toString().split(" ")[0];
+        widget.dateController.text = _picked.toString().split(" ")[0];
       });
     }
   }

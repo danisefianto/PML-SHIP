@@ -1,37 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/data/datasource/add_shipper_consignee_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
 import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
+import 'package:pml_ship/data/datasource/order_port_remote_datasource.dart';
+import 'package:pml_ship/data/datasource/port_remote_datasource.dart';
+import 'package:pml_ship/data/datasource/user_remote_datasource.dart';
+
 import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
-import 'package:pml_ship/presentation/main_page/home/home_page.dart';
+import 'package:pml_ship/presentation/home/home_page.dart';
+import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
+import 'package:pml_ship/presentation/order/bloc/orderPort/order_port_bloc.dart';
+import 'package:pml_ship/presentation/port/bloc/port/port_bloc.dart';
+import 'package:pml_ship/presentation/port/page/test_port.dart';
+import 'package:pml_ship/presentation/profile/bloc/profile/profile_bloc.dart';
+import 'package:pml_ship/presentation/tracking_order_screen.dart';
 
-import 'presentation/auth/new_password_set_page.dart';
-import 'presentation/auth/otp_input_reset_password_page.dart';
-import 'presentation/auth/recover_password_page.dart';
-import 'presentation/auth/registerpage.dart';
-import 'presentation/auth/registration_process_waiting.dart';
-import 'presentation/auth/set_new_password.dart';
-import 'presentation/auth/sign_in_page.dart';
-import 'presentation/input_shipper_consignee_data_page.dart';
-import 'presentation/main_page/home/document_list/document_list_page.dart';
-import 'presentation/main_page/home/order/planning_order_mitigasi_screen.dart';
-import 'presentation/main_page/home/order/request_order_page.dart';
-import 'presentation/main_page/home/risk_mitigation/risk_mitigation_page.dart';
-import 'presentation/main_page/home/track_vessel/track_vessel_page.dart';
+import 'presentation/auth/pages/new_password_set_page.dart';
+import 'presentation/auth/pages/otp_input_reset_password_page.dart';
+import 'presentation/auth/pages/recover_password_page.dart';
+import 'presentation/auth/pages/register_page.dart';
+import 'presentation/auth/pages/registration_process_waiting.dart';
+import 'presentation/auth/pages/set_new_password.dart';
+import 'presentation/auth/pages/sign_in_page.dart';
+import 'presentation/order/input_shipper_consignee_data_page.dart';
+import 'presentation/document_list/document_list_page.dart';
+import 'presentation/order/planning_order_mitigasi_screen.dart';
+import 'presentation/order/order_port_page.dart';
+import 'presentation/risk_mitigation/risk_mitigation_page.dart';
+import 'presentation/track_vessel/track_vessel_page.dart';
 import 'presentation/main_page/main_page.dart';
-import 'presentation/main_page/profile/account/edit_company_profile_page.dart';
-import 'presentation/main_page/profile/account/edit_personal_profile_page.dart';
-import 'presentation/main_page/profile/general/alamat_pelabuhan_screen.dart';
-import 'presentation/main_page/profile/general/contact_us_page.dart';
-import 'presentation/main_page/profile/general/frequently_asked_question_page.dart';
-import 'presentation/main_page/profile/general/how_to_pay_page.dart';
-import 'presentation/main_page/profile/settings/notification_settings_page.dart';
-import 'presentation/main_page/profile/settings/security_page.dart';
-import 'presentation/main_page/profile/settings/where_you_are_logged_in_page.dart';
-import 'presentation/order_summary_page.dart';
-import 'presentation/splash_page.dart';
+
+import 'presentation/profile/edit_profile_page.dart';
+import 'presentation/general/alamat_pelabuhan_screen.dart';
+import 'presentation/general/contact_us_page.dart';
+import 'presentation/general/frequently_asked_question_page.dart';
+import 'presentation/general/how_to_pay_page.dart';
+import 'presentation/settings/notification_settings_page.dart';
+import 'presentation/settings/security_page.dart';
+import 'presentation/settings/where_you_are_logged_in_page.dart';
+import 'presentation/order/order_summary_page.dart';
+import 'presentation/onboarding/splash_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -43,7 +54,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return MaterialApp(
-    //   home: TrackingOneScreen(),
+    //   home: ShowPortPage(),
     // );
 
     return MultiBlocProvider(
@@ -56,6 +67,19 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => RegisterBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(UserRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => PortBloc(PortRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => OrderPortBloc(OrderPortRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              AddShipperConsigneeBloc(AddShipperConsigneeRemoteDataSource()),
         ),
       ],
       child: MaterialApp(
@@ -84,6 +108,8 @@ class MainApp extends StatelessWidget {
             );
           },
         ),
+        // TODO: Change routes from namedRoutes to onGenerateRoute
+        // https://docs.flutter.dev/ui/navigation#limitations
         routes: {
           '/splash': (context) => const SplashPage(),
           '/sign-in': (context) => SignInPage(),
@@ -91,7 +117,6 @@ class MainApp extends StatelessWidget {
           '/home': (context) => const MainPage(),
           '/edit-personal-profile': (context) =>
               const EditPersonalProfilePage(),
-          '/edit-company-profile': (context) => const EditCompanyProfilePage(),
           '/how-to-pay': (context) => const HowToPayPage(),
           '/security': (context) => const SecurityPage(),
           '/faq': (context) => const FAQPage(),
@@ -106,12 +131,8 @@ class MainApp extends StatelessWidget {
           '/notification-settings': (context) => const NotificationSetting(),
           '/contact-us': (context) => ContactUsPage(),
           '/list-document': (context) => const DocumentListPage(),
-          '/request-order': (context) => const RequestOrderPage(),
-          '/track-vessel': (context) => const TrackVesselPage(),
+          '/track-vessel': (context) => TrackingOneScreen(),
           '/plan-order': (context) => PlanningOrderMitigasiScreen(),
-          '/input-shipper-consignee-data': (context) =>
-              InputShipperConsigneeDataPage(),
-          '/order-summary': (context) => const OrderSummaryPage(),
           '/registration-process-waiting': (context) =>
               RegistrationProcessWaitingPage(),
         },

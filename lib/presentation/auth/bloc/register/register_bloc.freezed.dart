@@ -315,7 +315,8 @@ mixin _$RegisterState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel authResponseModel) success,
+    required TResult Function(RegisterResponseModel registerResponseModel)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -323,7 +324,7 @@ mixin _$RegisterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel authResponseModel)? success,
+    TResult? Function(RegisterResponseModel registerResponseModel)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -331,7 +332,7 @@ mixin _$RegisterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel authResponseModel)? success,
+    TResult Function(RegisterResponseModel registerResponseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -421,7 +422,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel authResponseModel) success,
+    required TResult Function(RegisterResponseModel registerResponseModel)
+        success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -432,7 +434,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel authResponseModel)? success,
+    TResult? Function(RegisterResponseModel registerResponseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -443,7 +445,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel authResponseModel)? success,
+    TResult Function(RegisterResponseModel registerResponseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -535,7 +537,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel authResponseModel) success,
+    required TResult Function(RegisterResponseModel registerResponseModel)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -546,7 +549,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel authResponseModel)? success,
+    TResult? Function(RegisterResponseModel registerResponseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -557,7 +560,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel authResponseModel)? success,
+    TResult Function(RegisterResponseModel registerResponseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -615,7 +618,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AuthResponseModel authResponseModel});
+  $Res call({RegisterResponseModel registerResponseModel});
 }
 
 /// @nodoc
@@ -629,13 +632,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authResponseModel = freezed,
+    Object? registerResponseModel = null,
   }) {
     return _then(_$SuccessImpl(
-      freezed == authResponseModel
-          ? _value.authResponseModel
-          : authResponseModel // ignore: cast_nullable_to_non_nullable
-              as AuthResponseModel,
+      null == registerResponseModel
+          ? _value.registerResponseModel
+          : registerResponseModel // ignore: cast_nullable_to_non_nullable
+              as RegisterResponseModel,
     ));
   }
 }
@@ -643,14 +646,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.authResponseModel);
+  const _$SuccessImpl(this.registerResponseModel);
 
   @override
-  final AuthResponseModel authResponseModel;
+  final RegisterResponseModel registerResponseModel;
 
   @override
   String toString() {
-    return 'RegisterState.success(authResponseModel: $authResponseModel)';
+    return 'RegisterState.success(registerResponseModel: $registerResponseModel)';
   }
 
   @override
@@ -658,13 +661,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality()
-                .equals(other.authResponseModel, authResponseModel));
+            (identical(other.registerResponseModel, registerResponseModel) ||
+                other.registerResponseModel == registerResponseModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(authResponseModel));
+  int get hashCode => Object.hash(runtimeType, registerResponseModel);
 
   @JsonKey(ignore: true)
   @override
@@ -677,10 +679,11 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel authResponseModel) success,
+    required TResult Function(RegisterResponseModel registerResponseModel)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(authResponseModel);
+    return success(registerResponseModel);
   }
 
   @override
@@ -688,10 +691,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel authResponseModel)? success,
+    TResult? Function(RegisterResponseModel registerResponseModel)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(authResponseModel);
+    return success?.call(registerResponseModel);
   }
 
   @override
@@ -699,12 +702,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel authResponseModel)? success,
+    TResult Function(RegisterResponseModel registerResponseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(authResponseModel);
+      return success(registerResponseModel);
     }
     return orElse();
   }
@@ -748,10 +751,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements RegisterState {
-  const factory _Success(final AuthResponseModel authResponseModel) =
+  const factory _Success(final RegisterResponseModel registerResponseModel) =
       _$SuccessImpl;
 
-  AuthResponseModel get authResponseModel;
+  RegisterResponseModel get registerResponseModel;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -823,7 +826,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel authResponseModel) success,
+    required TResult Function(RegisterResponseModel registerResponseModel)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -834,7 +838,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel authResponseModel)? success,
+    TResult? Function(RegisterResponseModel registerResponseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -845,7 +849,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel authResponseModel)? success,
+    TResult Function(RegisterResponseModel registerResponseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

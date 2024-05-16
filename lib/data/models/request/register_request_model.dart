@@ -6,24 +6,24 @@ class RegisterRequestModel {
   final String phone;
   final String email;
   final String password;
-  final String namePerusahaan;
-  final String addressPerusahaan;
-  final String npwpPerusahaan;
-  final String phonePerusahaan;
-  final String emailPerusahaan;
-  final String aktaPerusahaan;
+  final String companyName;
+  final String companyAddress;
+  final String companyPhone;
+  final String companyEmail;
+  final String companyNpwp;
+  final String companyAktaUrl;
 
   RegisterRequestModel({
     required this.name,
     required this.phone,
     required this.email,
     required this.password,
-    required this.namePerusahaan,
-    required this.addressPerusahaan,
-    required this.npwpPerusahaan,
-    required this.phonePerusahaan,
-    required this.emailPerusahaan,
-    required this.aktaPerusahaan,
+    required this.companyName,
+    required this.companyAddress,
+    required this.companyPhone,
+    required this.companyEmail,
+    required this.companyNpwp,
+    required this.companyAktaUrl,
   });
 
   factory RegisterRequestModel.fromJson(String str) =>
@@ -37,12 +37,12 @@ class RegisterRequestModel {
         phone: json["phone"],
         email: json["email"],
         password: json["password"],
-        namePerusahaan: json["name_perusahaan"],
-        addressPerusahaan: json["address_perusahaan"],
-        npwpPerusahaan: json["NPWP_perusahaan"],
-        phonePerusahaan: json["phone_perusahaan"],
-        emailPerusahaan: json["email_perusahaan"],
-        aktaPerusahaan: json["akta_perusahaan"],
+        companyName: json["company_name"],
+        companyAddress: json["company_address"],
+        companyPhone: json["company_phone"],
+        companyEmail: json["company_email"],
+        companyNpwp: json["company_NPWP"],
+        companyAktaUrl: json["company_akta_url"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -50,11 +50,11 @@ class RegisterRequestModel {
         "phone": phone,
         "email": email,
         "password": password,
-        "name_perusahaan": namePerusahaan,
-        "address_perusahaan": addressPerusahaan,
-        "NPWP_perusahaan": npwpPerusahaan,
-        "phone_perusahaan": phonePerusahaan,
-        "email_perusahaan": emailPerusahaan,
-        "akta_perusahaan": aktaPerusahaan,
+        "company_name": companyName,
+        "company_address": companyAddress,
+        "company_phone": companyPhone,
+        "company_email": companyEmail,
+        "company_NPWP": companyNpwp,
+        "company_akta_url": companyAktaUrl,
       };
 }

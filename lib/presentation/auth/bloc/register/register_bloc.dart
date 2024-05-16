@@ -3,7 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
 import 'package:pml_ship/data/models/request/register_request_model.dart';
-import 'package:pml_ship/data/models/response/auth_response_model.dart';
+
+import 'package:pml_ship/data/models/response/register_response_model.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';

@@ -2,14 +2,10 @@ import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class RegisterResponseModel {
-  final bool status;
-  final String message;
-  final String token;
+  final Data data;
 
   RegisterResponseModel({
-    required this.status,
-    required this.message,
-    required this.token,
+    required this.data,
   });
 
   factory RegisterResponseModel.fromJson(String str) =>
@@ -19,14 +15,42 @@ class RegisterResponseModel {
 
   factory RegisterResponseModel.fromMap(Map<String, dynamic> json) =>
       RegisterResponseModel(
-        status: json["status"],
-        message: json["message"],
-        token: json["token"],
+        data: Data.fromMap(json["data"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "status": status,
-        "message": message,
-        "token": token,
+        "data": data.toMap(),
+      };
+}
+
+class Data {
+  final int? id;
+  final String? role;
+  final String? name;
+  final String? email;
+
+  Data({
+    required this.id,
+    required this.role,
+    required this.name,
+    required this.email,
+  });
+
+  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Data.fromMap(Map<String, dynamic> json) => Data(
+        id: json["id"],
+        role: json["role"],
+        name: json["name"],
+        email: json["email"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "role": role,
+        "name": name,
+        "email": email,
       };
 }
