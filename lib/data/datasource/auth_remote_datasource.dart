@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:pml_ship/core/constants/variables.dart';
@@ -47,7 +46,7 @@ class AuthRemoteDatasource {
     if (response.statusCode == 200) {
       return Right(AuthResponseModel.fromJson(response.body));
     } else {
-      return Left('Login failed. Check again your email and password.');
+      return const Left('Login failed. Check again your email and password.');
     }
   }
 

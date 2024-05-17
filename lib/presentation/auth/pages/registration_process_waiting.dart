@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../core/styles.dart';
-import 'package:pml_ship/presentation/auth/registration_process_finished.txt'; // Import halaman prosespage2
+
 
 class RegistrationProcessWaitingPage extends StatelessWidget {
+  const RegistrationProcessWaitingPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +26,14 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 150,
                 ),
-                Icon(
+                const Icon(
                   Icons.schedule,
                   size: 100,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -44,7 +46,7 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
                   'Data Anda sedang diverifikasi oleh kami',
                   style: primaryTextStyle,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Text(
@@ -52,20 +54,11 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
                   style: primaryTextStyle.copyWith(fontSize: 14),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 50), // Tambahkan jarak sekitar 50
-                Container(
+                const SizedBox(height: 50), // Tambahkan jarak sekitar 50
+                SizedBox(
                   height: 50.0,
-                  // width: double.infinity,
-                  // margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
+                  
                   child: FilledButton(
-                    child: Text(
-                      'Back to sign in',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semiBold,
-                        fontSize: 16.0,
-                        color: primaryColor,
-                      ),
-                    ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/sign-in');
                     },
@@ -73,6 +66,14 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
                       backgroundColor: secondaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                    child: Text(
+                      'Back to sign in',
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: semiBold,
+                        fontSize: 16.0,
+                        color: primaryColor,
                       ),
                     ),
                   ),

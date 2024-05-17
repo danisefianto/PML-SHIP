@@ -9,16 +9,16 @@ class RejectedHistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-        padding: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black),
             borderRadius: BorderRadius.circular(5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -33,9 +33,9 @@ class RejectedHistoryCard extends StatelessWidget {
                 border: Border.all(),
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(10),
-              child: Column(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Anugrah Lautan Luas, PT'),
@@ -51,7 +51,7 @@ class RejectedHistoryCard extends StatelessWidget {
                 children: [
                   TextButton(
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 24.0,
                         vertical: 10.0,
                       ),

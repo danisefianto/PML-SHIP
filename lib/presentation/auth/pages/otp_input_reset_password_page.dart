@@ -5,7 +5,7 @@ import 'package:pml_ship/core/components/buttons.dart';
 import '../../../core/styles.dart';
 
 class OtpInputPasswordResetPage extends StatelessWidget {
-  const OtpInputPasswordResetPage({Key? key});
+  const OtpInputPasswordResetPage({super.key});
   @override
   Widget build(BuildContext context) {
     Widget footer() {
@@ -37,8 +37,8 @@ class OtpInputPasswordResetPage extends StatelessWidget {
       );
     }
 
-    Widget TextOTP(int code) {
-      return Container(
+    Widget textOTP(int code) {
+      return SizedBox(
         height: 64.0,
         width: 40.0,
         child: TextField(
@@ -50,7 +50,7 @@ class OtpInputPasswordResetPage extends StatelessWidget {
             decoration: InputDecoration(
                 hintText: code.toString(),
                 counterText: '',
-                hintStyle: TextStyle(color: Colors.black, fontSize: 20.0))),
+                hintStyle: const TextStyle(color: Colors.black, fontSize: 20.0))),
       );
     }
 
@@ -71,7 +71,7 @@ class OtpInputPasswordResetPage extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.drafts,
                     size: 50,
                   ),
@@ -82,7 +82,7 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                       fontWeight: bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(
@@ -99,16 +99,16 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextOTP(9),
-                        TextOTP(3),
-                        TextOTP(2),
-                        TextOTP(4),
-                        TextOTP(1),
-                        TextOTP(8),
+                        textOTP(9),
+                        textOTP(3),
+                        textOTP(2),
+                        textOTP(4),
+                        textOTP(1),
+                        textOTP(8),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Center(
@@ -130,7 +130,7 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
+                                  const SnackBar(
                                     content: Text('Kode dikirim ulang'),
                                   ),
                                 );
@@ -150,7 +150,7 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                   ),
 
                   Container(
-                    margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
+                    margin: const EdgeInsets.only(top: 30.0, bottom: 30.0),
                     child: Button.filled(
                       onPressed: () {
                         Navigator.pushNamed(context, '/set-new-password');

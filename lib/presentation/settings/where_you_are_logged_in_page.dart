@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../core/styles.dart';
 
 class WhereYouAreLoggedIn extends StatelessWidget {
-  const WhereYouAreLoggedIn({Key? key}) : super(key: key);
+  const WhereYouAreLoggedIn({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+
 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Where you\'re logged in'),
+          title: const Text('Where you\'re logged in'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -25,29 +25,29 @@ class WhereYouAreLoggedIn extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 17,
                 vertical: 16,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Padding(
-                    padding: EdgeInsets.only(left: 11),
+                    padding: const EdgeInsets.only(left: 11),
                     child: Text(
                       "Laporkan jika ada yang tidak dikenal",
                       style: primaryTextStyle,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Center(
                     child: Container(
                       width: 285,
-                      margin: EdgeInsets.only(left: 3),
+                      margin: const EdgeInsets.only(left: 3),
                       child: Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 28, vertical: 5),
+                            const EdgeInsets.symmetric(horizontal: 28, vertical: 5),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: const Color(0xFF4682B4), // Warna garis
@@ -80,14 +80,14 @@ class WhereYouAreLoggedIn extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 27),
+                  const SizedBox(height: 27),
                   Center(
                     child: Container(
                       width: 285,
-                      margin: EdgeInsets.only(left: 3),
+                      margin: const EdgeInsets.only(left: 3),
                       child: Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 28, vertical: 5),
+                            const EdgeInsets.symmetric(horizontal: 28, vertical: 5),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: const Color(0xFF4682B4), // Warna garis

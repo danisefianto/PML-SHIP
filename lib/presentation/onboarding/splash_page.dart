@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
-import 'package:pml_ship/presentation/home/home_page.dart';
 
 import '../../core/styles.dart';
 
@@ -18,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Timer(
-      Duration(seconds: 5),
+      const Duration(seconds: 5),
       () => Navigator.pushNamed(context, '/sign-in'),
     );
 
@@ -50,7 +47,7 @@ class _SplashPageState extends State<SplashPage> {
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.only(top: 60.0),
+              padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Column(
                   children: [

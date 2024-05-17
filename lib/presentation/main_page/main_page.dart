@@ -19,9 +19,9 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         body: <Widget>[
           // Home Page
-          HomePage(),
-          HistoryPage(),
-          ProfilePage(),
+          const HomePage(),
+          const HistoryPage(),
+          const ProfilePage(),
         ][currentPageIndex],
         bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
             });
           },
           selectedIndex: currentPageIndex,
-          destinations: [
+          destinations: const [
             NavigationDestination(
               icon: Icon(Icons.home_outlined),
               label: 'Home',

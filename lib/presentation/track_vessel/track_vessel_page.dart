@@ -8,15 +8,15 @@ class TrackVesselPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Track Vessel'),
+          title: const Text('Track Vessel'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
-        body: Center(
+        body: const Center(
           child: Text('Track Vessel'),
         ),
       ),

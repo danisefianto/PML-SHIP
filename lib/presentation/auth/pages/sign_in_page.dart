@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pml_ship/core/components/buttons.dart';
-import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
+
 import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
 import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
 
@@ -57,7 +57,7 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 30.0),
+        margin: const EdgeInsets.only(bottom: 30.0),
         child: Center(
           child: Text.rich(
             TextSpan(
@@ -92,43 +92,36 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: primaryColor,
         resizeToAvoidBottomInset: true,
         body: ListView(
-          // child: Container(
-          //   margin: EdgeInsets.symmetric(
-          //     horizontal: defaultMargin,
-          //   ),
-          //   child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
+   
           children: [
             // header(),
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Container(
-                      // padding: EdgeInsets.only(top: 300.0),
-                      margin: EdgeInsets.only(top: 20.0),
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image_logo.png'),
-                        ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                    // padding: EdgeInsets.only(top: 300.0),
+                    margin: const EdgeInsets.only(top: 20.0),
+                    width: 300,
+                    height: 300,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/image_logo.png'),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
-                  //title PML SHIP (Admin)
-                  Text(
-                    'PML SHIP',
-                    // textAlign: TextAlign.center,
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: bold,
-                      fontSize: 24.0,
-                    ),
+                ),
+                const SizedBox(height: 20.0),
+                //title PML SHIP (Admin)
+                Text(
+                  'PML SHIP',
+                  // textAlign: TextAlign.center,
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: bold,
+                    fontSize: 24.0,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Container(
               margin: EdgeInsets.only(
@@ -146,12 +139,12 @@ class _SignInPageState extends State<SignInPage> {
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12.0,
                   ),
                   Container(
                     height: 50.0,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                     ),
                     decoration: BoxDecoration(
@@ -163,8 +156,8 @@ class _SignInPageState extends State<SignInPage> {
                     child: Center(
                       child: Row(
                         children: [
-                          Icon(Icons.email),
-                          SizedBox(
+                          const Icon(Icons.email),
+                          const SizedBox(
                             width: 16.0,
                           ),
                           Expanded(
@@ -201,12 +194,12 @@ class _SignInPageState extends State<SignInPage> {
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12.0,
                   ),
                   Container(
                     height: 50.0,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                     ),
                     decoration: BoxDecoration(
@@ -218,8 +211,8 @@ class _SignInPageState extends State<SignInPage> {
                     child: Center(
                       child: Row(
                         children: [
-                          Icon(Icons.lock),
-                          SizedBox(
+                          const Icon(Icons.lock),
+                          const SizedBox(
                             width: 16.0,
                           ),
                           Expanded(

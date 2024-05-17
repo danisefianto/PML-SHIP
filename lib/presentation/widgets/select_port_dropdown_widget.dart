@@ -214,11 +214,11 @@ class _SelectPortDropdownWidgetState extends State<SelectPortDropdownWidget> {
           'Where is the ${widget.cargoState} port?',
           style: primaryTextStyle,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
         DropdownMenu<Port>(
-          leadingIcon: Icon(Icons.near_me),
+          leadingIcon: const Icon(Icons.near_me),
           width: width,
           menuHeight: 350,
           hintText: 'Select ${widget.cargoState} port',

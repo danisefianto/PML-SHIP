@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/core/components/buttons.dart';
 import 'widgets/search_bar.dart';
 import 'tracking_order_result_screen.dart';
 import '../core/styles.dart';
@@ -11,7 +12,7 @@ class BorderRadiusStyle {
 
 // ignore: must_be_immutable
 class TrackingOneScreen extends StatelessWidget {
-  TrackingOneScreen({Key? key}) : super(key: key);
+  TrackingOneScreen({super.key});
 
   TextEditingController searchController = TextEditingController();
 
@@ -19,9 +20,9 @@ class TrackingOneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Track your order'),
+        title: const Text('Track your order'),
         leading: IconButton(
-          icon: Icon(Icons.chevron_left),
+          icon: const Icon(Icons.chevron_left),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -61,7 +62,19 @@ class TrackingOneScreen extends StatelessWidget {
             _buildHeader(),
             _buildTrackingOne(context),
             const SizedBox(height: 100),
-            _buildNext(context),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Button.filled(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TrackingTwoScreen()),
+                  );
+                },
+                label: 'Next',
+              ),
+            ),
             const SizedBox(height: 20), // Memindahkan _buildNext ke sini
           ],
         ),
@@ -71,8 +84,8 @@ class TrackingOneScreen extends StatelessWidget {
 
   Widget _buildHeader() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Row(
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
@@ -102,11 +115,11 @@ class TrackingOneScreen extends StatelessWidget {
 
   Widget _buildTrackingOne(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Text(
           //   "Track your Order",
           //   style: TextStyle(
@@ -118,9 +131,9 @@ class TrackingOneScreen extends StatelessWidget {
           // SizedBox(height: 10),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Color(
+              color: const Color(
                   0xFF4682B4), // Mengubah warna menjadi 0xFF4682B4 (warna biru)
               borderRadius: BorderRadius.circular(10),
             ),
@@ -135,7 +148,7 @@ class TrackingOneScreen extends StatelessWidget {
                   ),
                 ),
                 // SizedBox(height: 10),
-                SearchBarWidget(
+                const SearchBarWidget(
                   customHintText: 'ID 2024.211.190278',
                 )
                 // Row(
@@ -157,21 +170,18 @@ class TrackingOneScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNext(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 40),
-      child: Align(
-        alignment: Alignment.center,
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TrackingTwoScreen()),
-            );
-          },
-          child: Text('Next'),
-        ),
-      ),
-    );
-  }
+  // Widget _buildNext(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(bottom: 40),
+  //     child: Align(
+  //       alignment: Alignment.center,
+  //       child: ElevatedButton(
+  //         onPressed: () {
+
+  //         },
+  //         child: const Text('Next'),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

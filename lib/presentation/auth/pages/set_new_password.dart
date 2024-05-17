@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 import '../../../core/styles.dart';
 
 class SetNewPasswordPage extends StatelessWidget {
-  const SetNewPasswordPage({Key? key});
+  const SetNewPasswordPage({super.key});
   @override
   Widget build(BuildContext context) {
     Widget passwordInput(String customLabelText) {
       return Container(
-        margin: EdgeInsets.only(top: 20.0),
+        margin: const EdgeInsets.only(top: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -20,12 +19,12 @@ class SetNewPasswordPage extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
             Container(
               height: 50.0,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
@@ -35,8 +34,8 @@ class SetNewPasswordPage extends StatelessWidget {
               child: Center(
                 child: Row(
                   children: [
-                    Icon(Icons.lock),
-                    SizedBox(
+                    const Icon(Icons.lock),
+                    const SizedBox(
                       width: 16.0,
                     ),
                     Expanded(
@@ -64,7 +63,7 @@ class SetNewPasswordPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -86,7 +85,7 @@ class SetNewPasswordPage extends StatelessWidget {
                     fontSize: 24,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -108,7 +107,7 @@ class SetNewPasswordPage extends StatelessWidget {
                     label: 'Set new password',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
               ],

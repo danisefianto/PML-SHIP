@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/core/components/buttons.dart';
 import '../auth/pages/sign_in_page.dart';
 import '../../core/styles.dart';
 
 class MetodePembayaranPage extends StatelessWidget {
-  const MetodePembayaranPage({Key? key}) : super(key: key);
+  const MetodePembayaranPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +16,18 @@ class MetodePembayaranPage extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 17),
+              padding: const EdgeInsets.symmetric(horizontal: 17),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       "Opsi Pembayaran",
                       style: TextStyle(
@@ -36,7 +37,7 @@ class MetodePembayaranPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Row(
@@ -55,7 +56,7 @@ class MetodePembayaranPage extends StatelessWidget {
                                 width: 120,
                                 height: 75, // Atur tinggi container menjadi 5
                                 color: const Color(0xFF4682B4),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     "Pembayaran 1",
                                     style: TextStyle(color: Colors.black),
@@ -73,7 +74,7 @@ class MetodePembayaranPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 // builder: (context) => MetodePembayaranDuaPage(),
-                                builder: (context) => SignInPage(),
+                                builder: (context) => const SignInPage(),
                               ),
                             );
                           },
@@ -85,7 +86,7 @@ class MetodePembayaranPage extends StatelessWidget {
                                 width: 120,
                                 height: 75, // Atur tinggi container menjadi 5
                                 color: const Color(0xFF9DB6D4),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     "Pembayaran 2",
                                     style: TextStyle(color: Colors.white),
@@ -102,7 +103,7 @@ class MetodePembayaranPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignInPage(),
+                                builder: (context) => const SignInPage(),
                                 // MetodePembayaranEmpatPage(),
                               ),
                             );
@@ -115,7 +116,7 @@ class MetodePembayaranPage extends StatelessWidget {
                                 width: 120,
                                 height: 75, // Atur tinggi container menjadi 5
                                 color: const Color(0xFF4682B4),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     "Pembayaran 3",
                                     style: TextStyle(color: Colors.white),
@@ -131,33 +132,48 @@ class MetodePembayaranPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 17),
+                  padding: const EdgeInsets.symmetric(horizontal: 17),
                   child: _buildCardOrder(context),
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.only(bottom: 40),
-              child: Align(
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignInPage(),
-                            // builder: (context) => MetodePembayaranSatuPage(),
-                          ),
-                        );
-                      },
-                      child: Text('Konfirmasi'))),
+              padding: const EdgeInsets.all(30.0),
+              child: Button.filled(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignInPage(),
+                      // builder: (context) => MetodePembayaranSatuPage(),
+                    ),
+                  );
+                },
+                label: 'Konfirmasi',
+              ),
             ),
-            SizedBox(height: 16),
+            // Padding(
+            //   padding: const EdgeInsets.only(bottom: 40),
+            //   child: Align(
+            //       alignment: Alignment.center,
+            //       child: ElevatedButton(
+            //           onPressed: () {
+            //             Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => const SignInPage(),
+            //                 // builder: (context) => MetodePembayaranSatuPage(),
+            //               ),
+            //             );
+            //           },
+            //           child: const Text('Konfirmasi'))),
+            // ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
@@ -173,14 +189,14 @@ class MetodePembayaranPage extends StatelessWidget {
           fontSize: 14.0,
         ),
       ),
-      leading: Icon(Icons.chevron_left),
+      leading: const Icon(Icons.chevron_left),
     );
   }
 
   Widget _buildCardOrder(BuildContext context) {
     return Container(
       width: 336,
-      padding: EdgeInsets.symmetric(horizontal: 11, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
       ),
@@ -192,15 +208,15 @@ class MetodePembayaranPage extends StatelessWidget {
             "2024-02-29T07:25:05+08:00",
             style: primaryTextStyle,
           ),
-          SizedBox(height: 9),
+          const SizedBox(height: 9),
           Text(
             "Pembayaran langsung lunas",
             style: primaryTextStyle,
           ),
-          SizedBox(height: 16), // Tambahkan jarak antara teks dan tombol
-          ElevatedButton(onPressed: () {}, child: Text('Bayar')),
+          const SizedBox(height: 16), // Tambahkan jarak antara teks dan tombol
+          ElevatedButton(onPressed: () {}, child: const Text('Bayar')),
 
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
         ],
       ),
     );
@@ -211,7 +227,7 @@ class MetodePembayaranPage extends StatelessWidget {
       context,
       MaterialPageRoute(
         // builder: (context) => MetodePembayaranSatuPage(),
-        builder: (context) => SignInPage(),
+        builder: (context) => const SignInPage(),
       ),
     );
   }

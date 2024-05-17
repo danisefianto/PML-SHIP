@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'document_list_item_widget.dart';
-import '../../core/styles.dart';
+
 import '../auth/pages/sign_in_page.dart';
 
 class DocumentListPage extends StatelessWidget {
-  const DocumentListPage({Key? key}) : super(key: key);
+  const DocumentListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Document List'),
+          title: const Text('Document List'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -21,7 +21,7 @@ class DocumentListPage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: _buildHalamanlistdokumenLoadingDate(context),
           ),
         ),
@@ -33,7 +33,7 @@ class DocumentListPage extends StatelessWidget {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      separatorBuilder: (context, index) => SizedBox(height: 13),
+      separatorBuilder: (context, index) => const SizedBox(height: 13),
       itemCount: 5,
       itemBuilder: (context, index) {
         String documentName;
@@ -65,21 +65,21 @@ class DocumentListPage extends StatelessWidget {
             if (documentName == "Bill of Lading") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignInPage()
+                MaterialPageRoute(builder: (context) => const SignInPage()
                     // BillOfLadingPage(),
                     ),
               );
             } else if (documentName == "Cargo Manifest") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignInPage()
+                MaterialPageRoute(builder: (context) => const SignInPage()
                     // CargoManifestPage(), // Mengarahkan ke CargoManifestPage
                     ),
               );
             } else if (documentName == "Time Sheet") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignInPage()
+                MaterialPageRoute(builder: (context) => const SignInPage()
                     // TimeSheetPage(), // Mengarahkan ke TimeSheetPage
                     ),
               );

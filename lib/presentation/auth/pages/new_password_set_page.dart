@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 
 import '../../../core/styles.dart';
@@ -16,18 +15,16 @@ class NewPasswordSetPage extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 200,
                 ),
                 Column(
                   children: [
-                    Container(
-                      child: Icon(
-                        Icons.task_alt,
-                        size: 50,
-                      ),
+                    const Icon(
+                      Icons.task_alt,
+                      size: 50,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(

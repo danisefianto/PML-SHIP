@@ -213,11 +213,11 @@ class _SelectVesselDropdownWidgetState
           'Vessel recommendation',
           style: primaryTextStyle,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
         DropdownMenu<Vessel>(
-          leadingIcon: Icon(Icons.near_me),
+          leadingIcon: const Icon(Icons.near_me),
           menuHeight: 350,
           width: width,
           hintText: 'Select vessel',

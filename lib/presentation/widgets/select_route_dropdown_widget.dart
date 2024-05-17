@@ -16,7 +16,7 @@ class SelectRouteDropdownWidget extends StatefulWidget {
 }
 
 class _SelectRouteDropdownWidgetState extends State<SelectRouteDropdownWidget> {
-  final TextEditingController RouteController = TextEditingController();
+  final TextEditingController routeController = TextEditingController();
   Route? selectedRoute;
 
   @override
@@ -29,11 +29,11 @@ class _SelectRouteDropdownWidgetState extends State<SelectRouteDropdownWidget> {
           'Route recommendation',
           style: primaryTextStyle,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
         DropdownMenu<Route>(
-          leadingIcon: Icon(Icons.near_me),
+          leadingIcon: const Icon(Icons.near_me),
           width: width,
           hintText: 'Select Route',
           textStyle: primaryTextStyle,

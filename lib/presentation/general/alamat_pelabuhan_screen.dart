@@ -6,7 +6,7 @@ import 'alamatpelabuhan_item_widget.dart';
 // import 'package:pml_ship/widgets/app_bar/custom_app_bar.dart';
 
 class AlamatPelabuhanScreen extends StatelessWidget {
-  const AlamatPelabuhanScreen({Key? key}) : super(key: key);
+  const AlamatPelabuhanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +15,19 @@ class AlamatPelabuhanScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Port Location'),
+          title: const Text('Port Location'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
         body: Container(
-          color: Color(0xFFD9D9D9), // Warna latar belakang layar
+          color: const Color(0xFFD9D9D9), // Warna latar belakang layar
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 17,
                 vertical: 16,
               ),
@@ -45,7 +45,7 @@ class AlamatPelabuhanScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 19),
+                  const SizedBox(height: 19),
                   _buildAlamatPelabuhan(context),
                 ],
               ),
@@ -59,16 +59,16 @@ class AlamatPelabuhanScreen extends StatelessWidget {
 
 Widget _buildAlamatPelabuhan(BuildContext context) {
   return ListView.separated(
-    physics: BouncingScrollPhysics(),
+    physics: const BouncingScrollPhysics(),
     shrinkWrap: true,
     separatorBuilder: (context, index) {
-      return SizedBox(
+      return const SizedBox(
         height: 20,
       );
     },
     itemCount: 3,
     itemBuilder: (context, index) {
-      return AlamatPelabuhanItemWidget();
+      return const AlamatPelabuhanItemWidget();
     },
   );
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/risk_mitigation_item_widget.dart';
 
 class RiskMitigationScreen extends StatelessWidget {
-  const RiskMitigationScreen({Key? key}) : super(key: key);
+  const RiskMitigationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +10,9 @@ class RiskMitigationScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Risk Mitigation'),
+          title: const Text('Risk Mitigation'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -23,16 +23,16 @@ class RiskMitigationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                 child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) {
-                    return SizedBox(height: 20);
+                    return const SizedBox(height: 20);
                   },
                   itemCount: 3,
                   itemBuilder: (context, index) {
-                    return RiskmitigationItemwidget();
+                    return const RiskmitigationItemwidget();
                   },
                 ),
               ),

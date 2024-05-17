@@ -25,7 +25,7 @@ class OrderPortRemoteDataSource {
     if (response.statusCode == 201) {
       return Right(OrderPortResponseModel.fromJson(response.body));
     } else {
-      return Left('Order error');
+      return const Left('Order error');
     }
   }
 }

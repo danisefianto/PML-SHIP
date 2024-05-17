@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'metode_pembayaran_page.dart';
+import 'package:pml_ship/core/components/buttons.dart';
 import 'metode_pembayaran_satu_widget.dart';
 import '../../core/styles.dart';
 
 class MetodePembayaranSatuPage extends StatefulWidget {
-  const MetodePembayaranSatuPage({Key? key}) : super(key: key);
+  const MetodePembayaranSatuPage({super.key});
 
   @override
   _MetodePembayaranSatuPageState createState() =>
@@ -23,7 +23,7 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
         appBar: _buildAppBar(context),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 17, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -34,12 +34,12 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                         "Metode Pembayaran",
                         style: theme.textTheme.bodyLarge,
                       ),
-                      SizedBox(height: 4),
-                      Divider(
-                        color: const Color(0xFF4682B4), // Warna garis
+                      const SizedBox(height: 4),
+                      const Divider(
+                        color: Color(0xFF4682B4), // Warna garis
                         thickness: 2, // Ketebalan garis
                       ),
-                      SizedBox(height: 35),
+                      const SizedBox(height: 35),
                       Text(
                         "Pembayaran I",
                         style: theme.textTheme.bodyLarge,
@@ -47,11 +47,11 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 _buildWaktuPembayaran(context),
-                SizedBox(height: 31),
+                const SizedBox(height: 31),
                 _buildCaraPembayaran(context),
-                SizedBox(height: 29),
+                const SizedBox(height: 29),
                 Center(
                   child: Column(
                     children: [
@@ -71,8 +71,14 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 31),
-                _buildNext(context),
+                const SizedBox(height: 31),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Button.filled(
+                    onPressed: () {},
+                    label: 'Next',
+                  ),
+                ),
               ],
             ),
           ),
@@ -90,14 +96,14 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
           fontSize: 14.0,
         ),
       ),
-      leading: Icon(Icons.chevron_left),
+      leading: const Icon(Icons.chevron_left),
     );
   }
 
   /// Section Widget
   Widget _buildWaktuPembayaran(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 7, right: 11),
+      padding: const EdgeInsets.only(left: 7, right: 11),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -110,13 +116,13 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                   .ellipsis, // Mengatasi overflow teks jika terlalu panjang
             ),
           ),
-          SizedBox(
+          const SizedBox(
               width: 10), // Memberikan jarak horizontal antara teks dan waktu
           Flexible(
             // Menggunakan Flexible untuk mengatasi overflow pada waktu
             flex: 2,
             child: Padding(
-              padding: EdgeInsets.only(bottom: 2),
+              padding: const EdgeInsets.only(bottom: 2),
               child: Text(
                 "23 Hours: 59 Minutes",
                 style: primaryTextStyle,
@@ -133,14 +139,14 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       separatorBuilder: (context, index) {
-        return Padding(
+        return const Padding(
           padding: EdgeInsets.symmetric(vertical: 7.0),
           child: SizedBox(
             width: double.maxFinite,
             child: Divider(
               height: 2,
               thickness: 2,
-              color: const Color(0xFF4682B4),
+              color: Color(0xFF4682B4),
             ),
           ),
         );
@@ -215,39 +221,9 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
               },
             );
           default:
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
         }
       },
-    );
-  }
-
-  Widget _buildNext(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 40),
-      child: Align(
-        alignment: Alignment.center,
-        child: ElevatedButton(onPressed: () {}, child: Text('Next')),
-        // child: CustomElevatedButton(
-        //   height: 19,
-        //   width: 76,
-        //   text: "Next",
-        //   color: const Color(0xFF4682B4),
-        //   buttonTextStyle: const TextStyle(
-        //     color: Colors.white,
-        //     fontSize: 12,
-        //   ),
-        //   onPressed: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //         builder: (context) => const HalamanBerhasilScreenDua(),
-        //       ),
-        //     );
-        //   },
-        //   onTap: () {},
-        //   buttonTextstyle: null,
-        // ),
-      ),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/styles.dart';
 
 class NotificationSetting extends StatefulWidget {
-  const NotificationSetting({Key? key}) : super(key: key);
+  const NotificationSetting({super.key});
 
   @override
   _NotificationSettingState createState() => _NotificationSettingState();
@@ -17,9 +17,9 @@ class _NotificationSettingState extends State<NotificationSetting> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Notifikasi'),
+          title: const Text('Notifikasi'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -30,12 +30,12 @@ class _NotificationSettingState extends State<NotificationSetting> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 17, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 33),
+                    padding: const EdgeInsets.only(left: 33),
                     child: Text(
                       "Update Penting",
                       style: primaryTextStyle.copyWith(
@@ -44,25 +44,25 @@ class _NotificationSettingState extends State<NotificationSetting> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 9),
+                  const SizedBox(height: 9),
                   Container(
                     width: 230,
-                    margin: EdgeInsets.only(left: 33),
+                    margin: const EdgeInsets.only(left: 33),
                     child: Text(
                         "Berisi update perihal pesanan, trip dan info akun. \nJadi harus diaktifin",
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                         style: primaryTextStyle),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   const Divider(),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 33),
+                          padding: const EdgeInsets.only(left: 33),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -73,7 +73,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                                   fontWeight: bold,
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               Text(
                                 "Nonaktifkan notifikasi perihal promo dan rekomendasi.",
                                 maxLines: 2,
@@ -87,7 +87,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                       Container(
                         height: 37,
                         width: 54,
-                        margin: EdgeInsets.only(left: 15, bottom: 2),
+                        margin: const EdgeInsets.only(left: 15, bottom: 2),
                         child: Stack(
                           alignment: Alignment.bottomCenter,
                           children: [
@@ -98,7 +98,7 @@ class _NotificationSettingState extends State<NotificationSetting> {
                               ),
                               padding: const EdgeInsets.all(8),
                               child: Transform.scale(
-                                  scale: 0.7, child: Text('Switch')
+                                  scale: 0.7, child: const Text('Switch')
                                   // CustomSwitch(
                                   //   alignment: Alignment.center,
                                   //   value: isSelectedSwitch,

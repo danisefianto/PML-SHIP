@@ -36,7 +36,7 @@ class _ShowPortPageState extends State<ShowPortPage> {
                   },
                   loading: () {
                     // return circular progress indicator
-                    return Center(child: const CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   },
                   success: (ports) {
                     return ListView.separated(

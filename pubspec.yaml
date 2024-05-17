@@ -20,6 +20,7 @@ dependencies:
   flutter_svg: ^2.0.9
   flutter_svg_provider: ^1.0.7
   freezed: ^2.5.2
+  freezed_annotation: ^2.4.1
   google_fonts: ^6.2.1
   http: ^1.2.1
   intl: ^0.19.0
@@ -39,3 +40,6 @@ flutter:
   assets:
     - assets/
     - assets/weather-icons/
+    - assets/weather_icons/wave.png
+    - assets/weather_icons/wind.png
+    - assets/weather_icons/

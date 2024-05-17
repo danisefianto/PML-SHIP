@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/styles.dart';
 
 class HalamanInvoiceScreen extends StatelessWidget {
-  const HalamanInvoiceScreen({Key? key}) : super(key: key);
+  const HalamanInvoiceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,48 +14,48 @@ class HalamanInvoiceScreen extends StatelessWidget {
         appBar: _buildAppBar(context),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 17, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 22, right: 29),
+                  padding: const EdgeInsets.only(left: 22, right: 29),
                   child: _buildNomorInvoice(
                     context,
                     nomorInvoice: "Status:",
                     INVPML: "Menunggu Pembayaran",
                   ),
                 ),
-                SizedBox(height: 11),
+                const SizedBox(height: 11),
                 const Divider(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.only(left: 22, right: 29),
+                  padding: const EdgeInsets.only(left: 22, right: 29),
                   child: _buildNomorInvoice(
                     context,
                     nomorInvoice: "Nomor Invoice",
                     INVPML: "INV/2024202/PML/31918",
                   ),
                 ),
-                SizedBox(height: 13),
+                const SizedBox(height: 13),
                 const Divider(),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 _buildVessel(context),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 const Divider(),
-                SizedBox(height: 14),
+                const SizedBox(height: 14),
                 _buildRute(context),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 const Divider(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildEstimasiDate(context),
-                SizedBox(height: 13),
+                const SizedBox(height: 13),
                 const Divider(),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 22, right: 57),
+                    padding: const EdgeInsets.only(left: 22, right: 57),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -71,22 +71,22 @@ class HalamanInvoiceScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 9),
+                const SizedBox(height: 9),
                 const Divider(),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 22),
+                    padding: const EdgeInsets.only(left: 22),
                     child: Text(
                       "Ringkasan Pembayaran",
                       style: primaryTextStyle,
                     ),
                   ),
                 ),
-                SizedBox(height: 9),
+                const SizedBox(height: 9),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 22,
                     right: 6,
                   ),
@@ -96,31 +96,31 @@ class HalamanInvoiceScreen extends StatelessWidget {
                     rpCounter: "Rp 35.890.000,00",
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Padding(
-                  padding: EdgeInsets.only(left: 22, right: 6),
+                  padding: const EdgeInsets.only(left: 22, right: 6),
                   child: _buildBiayaPengiriman(
                     context,
                     biayaPengiriman: "Biaya Pengiriman",
                     rpCounter: "Rp 23.000.000,00",
                   ),
                 ),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 Padding(
-                  padding: EdgeInsets.only(left: 22, right: 6),
+                  padding: const EdgeInsets.only(left: 22, right: 6),
                   child: _buildBiayaPengiriman(
                     context,
                     biayaPengiriman: "Biaya Penanganan",
                     rpCounter: "Rp 7.400.000,00",
                   ),
                 ),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 _buildBiayaParkirPelabuhan(context),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 _buildBiayaPajak(context),
-                SizedBox(height: 9),
+                const SizedBox(height: 9),
                 _buildBayar(context),
-                SizedBox(height: 54),
+                const SizedBox(height: 54),
                 _buildNext(context),
               ],
             ),
@@ -139,7 +139,7 @@ class HalamanInvoiceScreen extends StatelessWidget {
           fontSize: 14.0,
         ),
       ),
-      leading: Icon(Icons.chevron_left),
+      leading: const Icon(Icons.chevron_left),
     );
   }
 
@@ -147,7 +147,7 @@ class HalamanInvoiceScreen extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: EdgeInsets.only(left: 22, right: 48),
+        padding: const EdgeInsets.only(left: 22, right: 48),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -167,7 +167,7 @@ class HalamanInvoiceScreen extends StatelessWidget {
 
   Widget _buildRute(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 22, right: 32),
+      padding: const EdgeInsets.only(left: 22, right: 32),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -176,7 +176,7 @@ class HalamanInvoiceScreen extends StatelessWidget {
             style: primaryTextStyle,
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 2),
+            padding: const EdgeInsets.only(bottom: 2),
             child: Text(
               "Kalimantan-Taboneo",
               style: primaryTextStyle,
@@ -191,7 +191,7 @@ class HalamanInvoiceScreen extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Padding(
-        padding: EdgeInsets.only(left: 22),
+        padding: const EdgeInsets.only(left: 22),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -211,19 +211,19 @@ class HalamanInvoiceScreen extends StatelessWidget {
 
   Widget _buildBiayaParkirPelabuhan(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 22, right: 4),
+      padding: const EdgeInsets.only(left: 22, right: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 2),
+            padding: const EdgeInsets.only(top: 2),
             child: Text(
               "Biaya Parkir Pelabuhan",
               style: primaryTextStyle,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 2),
+            padding: const EdgeInsets.only(bottom: 2),
             child: Text(
               "Rp 3.300.000,00",
               style: primaryTextStyle,
@@ -236,19 +236,19 @@ class HalamanInvoiceScreen extends StatelessWidget {
 
   Widget _buildBiayaPajak(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 22, right: 7),
+      padding: const EdgeInsets.only(left: 22, right: 7),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 2),
+            padding: const EdgeInsets.only(top: 2),
             child: Text(
               "Biaya Pajak",
               style: primaryTextStyle,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 2),
+            padding: const EdgeInsets.only(bottom: 2),
             child: Text(
               "Rp 2.190.000,00",
               style: primaryTextStyle,
@@ -261,19 +261,19 @@ class HalamanInvoiceScreen extends StatelessWidget {
 
   Widget _buildBayar(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 22, right: 4),
+      padding: const EdgeInsets.only(left: 22, right: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 1, bottom: 8),
+            padding: const EdgeInsets.only(top: 1, bottom: 8),
             child: Text(
               "Bayar",
               style: primaryTextStyle,
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: Text('Rp 35.890.000,00'))
+          ElevatedButton(onPressed: () {}, child: const Text('Rp 35.890.000,00'))
         ],
       ),
     );
@@ -305,14 +305,14 @@ class HalamanInvoiceScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 2),
+          padding: const EdgeInsets.only(top: 2),
           child: Text(
             biayaPengiriman,
             style: primaryTextStyle,
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 2),
+          padding: const EdgeInsets.only(bottom: 2),
           child: Text(
             rpCounter,
             style: primaryTextStyle,
@@ -328,7 +328,7 @@ class HalamanInvoiceScreen extends StatelessWidget {
       child: Align(
           alignment: Alignment.center,
           child: ElevatedButton(
-            child: Text('Next'),
+            child: const Text('Next'),
             onPressed: () {},
           )),
     );

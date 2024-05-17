@@ -11,7 +11,7 @@ class ViewRatingPage extends StatelessWidget {
       return AppBar(
         backgroundColor: backgroundColor1,
         leading: IconButton(
-          icon: Icon(Icons.chevron_left),
+          icon: const Icon(Icons.chevron_left),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -47,10 +47,10 @@ class ViewRatingPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('JKT-SBY'),
@@ -71,28 +71,28 @@ class ViewRatingPage extends StatelessWidget {
             'assets/images/icon_star_colored.png',
             height: 40,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Image.asset(
             'assets/images/icon_star_colored.png',
             height: 40,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Image.asset(
             'assets/images/icon_star_colored.png',
             height: 40,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Image.asset(
             'assets/images/icon_star_blank.png',
             height: 40,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Image.asset(
@@ -116,12 +116,12 @@ class ViewRatingPage extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               height: 300.0,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
@@ -164,7 +164,7 @@ class ViewRatingPage extends StatelessWidget {
                 // Navigator.pushNamed(context, '/home');
               },
               style: TextButton.styleFrom(
-                backgroundColor: Color(0xffff0000),
+                backgroundColor: const Color(0xffff0000),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),
                 ),

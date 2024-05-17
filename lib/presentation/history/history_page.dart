@@ -22,7 +22,7 @@ class HistoryPage extends StatelessWidget {
                   fontSize: 16.0, fontWeight: semiBold),
               unselectedLabelStyle: subtitleTextStyle.copyWith(
                   fontSize: 16.0, fontWeight: regular),
-              tabs: [
+              tabs: const [
                 Tab(
                   text: 'Waiting',
                 ),
@@ -43,7 +43,7 @@ class HistoryPage extends StatelessWidget {
             children: <Widget>[
               // Waiting TAB
               ListView(
-                children: <Widget>[
+                children: const <Widget>[
                   // Add multiple instances of OnProcessHistoryCard() here
                   OnProcessHistoryCard(),
                   OnProcessHistoryCard(),
@@ -57,7 +57,7 @@ class HistoryPage extends StatelessWidget {
 // ======================
 
               ListView(
-                children: <Widget>[
+                children: const <Widget>[
                   // Add multiple instances of OnProcessHistoryCard() here
                   OnProcessHistoryCard(),
                   OnProcessHistoryCard(),
@@ -68,7 +68,7 @@ class HistoryPage extends StatelessWidget {
                 ],
               ),
               ListView(
-                children: <Widget>[
+                children: const <Widget>[
                   // Add multiple instances of FinishedHistoryCard() here
                   FinishedHistoryCard(),
                   FinishedHistoryCard(),
@@ -79,7 +79,7 @@ class HistoryPage extends StatelessWidget {
                 ],
               ),
               ListView(
-                children: <Widget>[
+                children: const <Widget>[
                   // Add multiple instances of RejectedHistoryCard() here
                   RejectedHistoryCard(),
                   RejectedHistoryCard(),

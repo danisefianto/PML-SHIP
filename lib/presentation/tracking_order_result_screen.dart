@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/core/components/buttons.dart';
 
 import '../core/styles.dart';
 import 'widgets/search_bar.dart';
@@ -22,9 +23,9 @@ class TrackingTwoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Track your order'),
+        title: const Text('Track your order'),
         leading: IconButton(
-          icon: Icon(Icons.chevron_left),
+          icon: const Icon(Icons.chevron_left),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -57,9 +58,9 @@ class TrackingTwoScreen extends StatelessWidget {
             // const SizedBox(height: 9),
 
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               child: Table(
-                border: TableBorder(
+                border: const TableBorder(
                   horizontalInside: BorderSide(
                     width: 1,
                     color: Color(0xffe5e7eb),
@@ -81,48 +82,48 @@ class TrackingTwoScreen extends StatelessWidget {
                         child: Container(
                           height: 32,
                           padding: const EdgeInsets.all(8.0),
-                          color: Color(0xffe5e7eb),
-                          child: Text('Shipper'),
+                          color: const Color(0xffe5e7eb),
+                          child: const Text('Shipper'),
                         ),
                       ),
                       TableCell(
                         child: Container(
                           height: 32,
                           padding: const EdgeInsets.all(8.0),
-                          color: Color(0xffe5e7eb),
-                          child: Text('Consignee'),
+                          color: const Color(0xffe5e7eb),
+                          child: const Text('Consignee'),
                         ),
                       ),
                     ],
                   ),
-                  TableRow(
+                  const TableRow(
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text('PT BUMA'),
                         ),
                       ),
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text('Prima Multi Mineral,PT'),
                         ),
                       ),
                     ],
                   ),
-                  TableRow(
+                  const TableRow(
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                               'JL.PAHLAWAN SERIBU RUKO GOLDEN BOULEVARD BLOK O/5-6 BUMI SERPONG DAMAI,KEL. LENGKONG GUDANG, KEC. SERPONG, KOTA TANGERANG SELATAN, BANTEN, 15311, INDONESIA'),
                         ),
                       ),
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                               'JL. RAWAGELAM I NO.9 KAWASAN INDUSTRI PULOGADUNG JAKARTA TIMUR 13930'),
                         ),
@@ -136,9 +137,9 @@ class TrackingTwoScreen extends StatelessWidget {
 
             const SizedBox(height: 25),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               child: Table(
-                border: TableBorder(
+                border: const TableBorder(
                   horizontalInside: BorderSide(
                     width: 1,
                     color: Color(0xffe5e7eb),
@@ -157,31 +158,31 @@ class TrackingTwoScreen extends StatelessWidget {
                         child: Container(
                           height: 32,
                           padding: const EdgeInsets.all(8.0),
-                          color: Color(0xffe5e7eb),
-                          child: Text('From'),
+                          color: const Color(0xffe5e7eb),
+                          child: const Text('From'),
                         ),
                       ),
                       TableCell(
                         child: Container(
                           height: 32,
                           padding: const EdgeInsets.all(8.0),
-                          color: Color(0xffe5e7eb),
-                          child: Text('To'),
+                          color: const Color(0xffe5e7eb),
+                          child: const Text('To'),
                         ),
                       ),
                     ],
                   ),
-                  TableRow(
+                  const TableRow(
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text('Tanjung Perak Port'),
                         ),
                       ),
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text('Banjarmasin Port'),
                         ),
                       ),
@@ -190,13 +191,13 @@ class TrackingTwoScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               child: Table(
-                border: TableBorder(
+                border: const TableBorder(
                   horizontalInside: BorderSide(
                     width: 1,
                     color: Color(0xffe5e7eb),
@@ -215,31 +216,31 @@ class TrackingTwoScreen extends StatelessWidget {
                         child: Container(
                           height: 32,
                           padding: const EdgeInsets.all(8.0),
-                          color: Color(0xffe5e7eb),
-                          child: Text('Cargo Description'),
+                          color: const Color(0xffe5e7eb),
+                          child: const Text('Cargo Description'),
                         ),
                       ),
                       TableCell(
                         child: Container(
                           height: 32,
                           padding: const EdgeInsets.all(8.0),
-                          color: Color(0xffe5e7eb),
-                          child: Text('Cargo Weight'),
+                          color: const Color(0xffe5e7eb),
+                          child: const Text('Cargo Weight'),
                         ),
                       ),
                     ],
                   ),
-                  TableRow(
+                  const TableRow(
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text('Batu bara'),
                         ),
                       ),
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text('10 Metric tonnes'),
                         ),
                       ),
@@ -308,11 +309,11 @@ class TrackingTwoScreen extends StatelessWidget {
 
   Widget _buildTrackingOne(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Text(
           //   "Track your Order",
           //   style: TextStyle(
@@ -324,9 +325,9 @@ class TrackingTwoScreen extends StatelessWidget {
           // SizedBox(height: 10),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Color(
+              color: const Color(
                   0xFF4682B4), // Mengubah warna menjadi 0xFF4682B4 (warna biru)
               borderRadius: BorderRadius.circular(10),
             ),
@@ -341,7 +342,7 @@ class TrackingTwoScreen extends StatelessWidget {
                   ),
                 ),
                 // SizedBox(height: 10),
-                SearchBarWidget(
+                const SearchBarWidget(
                   customHintText: 'ID 2024.211.190278',
                 )
                 // Row(
@@ -363,105 +364,30 @@ class TrackingTwoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCargoShip(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        alignment: Alignment.center,
-        margin: const EdgeInsets.only(left: 9, right: 13),
-        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 11),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadiusStyle.roundedBorder5,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            // const CustomImageView(
-            //   imagePath: ImageConstant.imgCargoShip30x30,
-            //   height: 30,
-            //   width: 30,
-            //   marginBottom: 10,
-            // ),
-            // Text('some image'),
-            Icon(Icons.directions_boat),
-            const SizedBox(width: 10), // Tambahkan jarak antara gambar dan teks
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Batu Bara muatan 10 ton dengan jenis tug",
-                    style: primaryTextStyle,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    "Tracking ID 2024.211.29.1920",
-                    style: primaryTextStyle,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPrice(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 9, right: 13),
-        child: TextFormField(
-          controller: priceController,
-          decoration: InputDecoration(
-            hintText: "Taboneo, Kalimantan 291124",
-          ),
-        )
-        //  CustomTextFormField(
-        //   controller: priceController,
-        //   hintText: "Taboneo, Kalimantan 291124",
-        //   alignment: Alignment.center,
-        // ),
-        );
-  }
-
-  Widget _buildPrice1(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 9, right: 13),
-        child: TextField(
-          controller: priceController1,
-          decoration: InputDecoration(
-            hintText: "Samarinda, Kalimantan 291124",
-          ),
-        )
-        // CustomTextFormField(
-        //   controller: priceController1,
-        //   hintText: "Samarinda, Kalimantan 291124",
-        //   textInputAction: TextInputAction.done,
-        //   alignment: Alignment.center,
-        // ),
-        );
-  }
-
   Widget _buildNext(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 40),
-      child: Align(
-          alignment: Alignment.center,
-          child: ElevatedButton(onPressed: () {}, child: Text('Next'))
-          // CustomElevatedButton(
-          //   height: 19,
-          //   width: 76,
-          //   text: "Next",
-          //   color: const Color(0xFF4682B4),
-          //   buttonTextStyle: const TextStyle(
-          //     color: Colors.white,
-          //     fontSize: 12,
-          //   ),
-          //   onPressed: () {},
-          //   onTap: () {},
-          //   buttonTextstyle: null,
-          // ),
-          ),
+      padding: const EdgeInsets.all(30.0),
+      child: Button.filled(
+        onPressed: () {},
+        label: 'Next',
+      ),
     );
+    // ElevatedButton(
+    //   onPressed: () {},
+    //   child: const Text('Next'),
+    // )
+    // CustomElevatedButton(
+    //   height: 19,
+    //   width: 76,
+    //   text: "Next",
+    //   color: const Color(0xFF4682B4),
+    //   buttonTextStyle: const TextStyle(
+    //     color: Colors.white,
+    //     fontSize: 12,
+    //   ),
+    //   onPressed: () {},
+    //   onTap: () {},
+    //   buttonTextstyle: null,
+    // ),
   }
 }

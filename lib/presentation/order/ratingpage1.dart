@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/core/components/buttons.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 import 'package:pml_ship/core/styles.dart';
@@ -6,7 +7,7 @@ import 'package:pml_ship/core/styles.dart';
 // Import halaman OTPPage2
 
 class RatingPage1 extends StatefulWidget {
-  const RatingPage1({Key? key}) : super(key: key);
+  const RatingPage1({super.key});
 
   @override
   _RatingPage1State createState() => _RatingPage1State();
@@ -19,7 +20,7 @@ class _RatingPage1State extends State<RatingPage1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.chevron_left),
+        leading: const Icon(Icons.chevron_left),
         title: Text(
           'Rate Order',
           style: primaryTextStyle,
@@ -32,9 +33,9 @@ class _RatingPage1State extends State<RatingPage1> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   'Kasih Rating Buat PML SHIP',
                   style: TextStyle(
@@ -43,7 +44,7 @@ class _RatingPage1State extends State<RatingPage1> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // RatingBar.builder(
               //   initialRating: rating,
               //   minRating: 1,
@@ -69,19 +70,19 @@ class _RatingPage1State extends State<RatingPage1> {
               //   glow: false,
               //   itemSize: 40,
               // ),
-              SizedBox(
+              const SizedBox(
                   height:
                       10), // Padding antara bintang dengan teks "Apa yang menurutmu oke?"
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   'Apa yang menurutmu oke?',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
                   maxLines: null, // Unlimited lines
                   minLines: 3,
@@ -91,29 +92,25 @@ class _RatingPage1State extends State<RatingPage1> {
                     hintStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(),
                     filled: true, // Mengaktifkan fill
-                    fillColor: const Color(0xFF4682B4), // Warna fill kolom
+                    fillColor: Color(0xFF4682B4), // Warna fill kolom
                   ),
                   textAlign: TextAlign.center, // Posisi teks di tengah
                 ),
               ),
-              SizedBox(height: 20), // Tambahkan jarak sekitar 20
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            SignInPage()), // Navigasi ke OTPPage3
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF4682B4), // Warna latar belakang
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 10), // Padding button
-                ),
-                child: Text(
-                  "Next",
-                  style: TextStyle(color: Colors.white),
+              const SizedBox(height: 20), // Tambahkan jarak sekitar 20
+
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Button.filled(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const SignInPage()), // Navigasi ke OTPPage3
+                    );
+                  },
+                  label: 'Next',
                 ),
               ),
             ],
@@ -125,7 +122,7 @@ class _RatingPage1State extends State<RatingPage1> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: RatingPage1(),
   ));
 }

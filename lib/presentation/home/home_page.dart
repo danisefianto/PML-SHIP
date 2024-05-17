@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-import 'package:pml_ship/presentation/order/order_port_page.dart';
+import 'package:pml_ship/presentation/order/pages/order_port_page.dart';
 
 import '../../core/styles.dart';
 import '../../data/models/response/auth_response_model.dart';
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -55,11 +55,11 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Customer Data'),
+                      const Text('Customer Data'),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 GestureDetector(
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Order Data'),
+                      const Text('Order Data'),
                     ],
                   ),
                 ),
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -110,11 +110,11 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Document'),
+                      const Text('Document'),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 GestureDetector(
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Payment'),
+                      const Text('Payment'),
                     ],
                   ),
                 ),
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -184,11 +184,11 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Order'),
+                      const Text('Order'),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 GestureDetector(
@@ -204,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           width: 60.0,
                           height: 60.0,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color(0xff9DB6D4),
                           ),
@@ -214,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                             color: primaryColor,
                           ),
                         ),
-                        Text('Risk Mitigation'),
+                        const Text('Risk Mitigation'),
                       ],
                     ),
                   ),
@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -244,11 +244,11 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Track Vessel'),
+                      const Text('Track Vessel'),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 GestureDetector(
@@ -260,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: 60.0,
                         height: 60.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                           color: primaryColor,
                         ),
                       ),
-                      Text('Document List'),
+                      const Text('Document List'),
                     ],
                   ),
                 ),
@@ -292,12 +292,12 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage:
                       AssetImage('assets/image_profile_example.jpg'),
                   radius: 30.0,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15.0,
                 ),
                 Expanded(
@@ -312,7 +312,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        '${user?.name ?? ''}',
+                        user?.name ?? '',
                         style: primaryTextStyle.copyWith(
                           fontWeight: bold,
                           fontSize: 24,
@@ -324,7 +324,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Image.asset(
@@ -345,7 +345,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        label: Row(
+        label: const Row(
           children: [
             Text('WhatsApp Us!'),
             SizedBox(

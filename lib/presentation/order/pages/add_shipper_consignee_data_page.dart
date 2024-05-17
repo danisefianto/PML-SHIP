@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/core/components/buttons.dart';
 import 'package:pml_ship/data/models/request/add_shipper_consignee_request_model.dart';
 import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
-import 'package:pml_ship/presentation/order/order_port_page.dart';
-import 'package:pml_ship/presentation/order/order_summary_page.dart';
+import 'package:pml_ship/presentation/order/pages/order_summary_page.dart';
 
-import '../../core/styles.dart';
+import '../../../core/styles.dart';
 
-class InputShipperConsigneeDataPage extends StatefulWidget {
+class AddShipperConsigneeDataPage extends StatefulWidget {
   final String transactionIdMessage;
 
-  const InputShipperConsigneeDataPage({
+  const AddShipperConsigneeDataPage({
     super.key,
     required this.transactionIdMessage,
   });
 
   @override
-  State<InputShipperConsigneeDataPage> createState() =>
-      _InputShipperConsigneeDataPageState();
+  State<AddShipperConsigneeDataPage> createState() =>
+      _AddShipperConsigneeDataPageState();
 }
 
-class _InputShipperConsigneeDataPageState
-    extends State<InputShipperConsigneeDataPage> {
+class _AddShipperConsigneeDataPageState
+    extends State<AddShipperConsigneeDataPage> {
   final TextEditingController shipperName = TextEditingController();
   final TextEditingController shipperAddress = TextEditingController();
   final TextEditingController consigneeName = TextEditingController();
@@ -38,23 +38,23 @@ class _InputShipperConsigneeDataPageState
 
   @override
   Widget build(BuildContext context) {
-    Widget actorInput(String actor_name, TextEditingController controller) {
+    Widget actorInput(String actorName, TextEditingController controller) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '$actor_name Name',
+            '$actorName Name',
             style: primaryTextStyle.copyWith(
               fontWeight: medium,
               fontSize: 16,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12.0,
           ),
           Container(
             height: 50.0,
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
             ),
             decoration: BoxDecoration(
@@ -66,18 +66,18 @@ class _InputShipperConsigneeDataPageState
             child: Center(
               child: Row(
                 children: [
-                  if (actor_name == 'Shipper')
-                    Icon(
+                  if (actorName == 'Shipper')
+                    const Icon(
                       Icons.sailing,
                     )
                   else
                     Transform.scale(
                       scaleX: -1,
-                      child: Icon(
+                      child: const Icon(
                         Icons.sailing,
                       ),
                     ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
                   Expanded(
@@ -85,7 +85,7 @@ class _InputShipperConsigneeDataPageState
                       style: primaryTextStyle,
                       controller: controller,
                       decoration: InputDecoration.collapsed(
-                        hintText: '$actor_name\'s company name',
+                        hintText: '$actorName\'s company name',
                         hintStyle: subtitleTextStyle,
                       ),
                     ),
@@ -99,27 +99,27 @@ class _InputShipperConsigneeDataPageState
     }
 
     Widget actorAddressInput(
-      String actor_name,
+      String actorName,
       TextEditingController controller,
     ) {
       return Container(
-        margin: EdgeInsets.only(top: 20.0),
+        margin: const EdgeInsets.only(top: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '$actor_name Address',
+              '$actorName Address',
               style: primaryTextStyle.copyWith(
                 fontWeight: medium,
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
             Container(
               height: 50.0,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
@@ -131,10 +131,10 @@ class _InputShipperConsigneeDataPageState
               child: Center(
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.pin_drop,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16.0,
                     ),
                     Expanded(
@@ -142,7 +142,7 @@ class _InputShipperConsigneeDataPageState
                         style: primaryTextStyle,
                         controller: controller,
                         decoration: InputDecoration.collapsed(
-                          hintText: '$actor_name\'s company address',
+                          hintText: '$actorName\'s company address',
                           hintStyle: subtitleTextStyle,
                         ),
                       ),
@@ -159,22 +159,23 @@ class _InputShipperConsigneeDataPageState
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Shipper and Consignee Data'),
+          title: const Text('Shipper and Consignee Data'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             horizontal: 15,
           ),
           child: ListView(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15.0, horizontal: 8.0),
                 decoration: BoxDecoration(
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(10),
@@ -187,11 +188,12 @@ class _InputShipperConsigneeDataPageState
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15.0, horizontal: 8.0),
                 decoration: BoxDecoration(
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(10),
@@ -203,7 +205,6 @@ class _InputShipperConsigneeDataPageState
                   ],
                 ),
               ),
-              // TODO: Add BlocConsumer
               BlocConsumer<AddShipperConsigneeBloc, AddShipperConsigneeState>(
                 listener: (context, state) {
                   state.maybeWhen(
@@ -235,19 +236,9 @@ class _InputShipperConsigneeDataPageState
                   );
                 },
                 builder: (context, state) {
-                  return Container(
-                    height: 50.0,
-                    width: double.infinity,
-                    margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
-                    child: FilledButton(
-                      child: Text(
-                        'Place order',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: semiBold,
-                          fontSize: 16.0,
-                          color: primaryColor,
-                        ),
-                      ),
+                  return Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Button.filled(
                       onPressed: () {
                         final dataRequest = AddShipperConsigneeRequestModel(
                           transactionId: widget.transactionIdMessage,
@@ -261,12 +252,7 @@ class _InputShipperConsigneeDataPageState
                                   dataRequest),
                             );
                       },
-                      style: FilledButton.styleFrom(
-                        backgroundColor: secondaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
+                      label: 'Place order',
                     ),
                   );
                 },

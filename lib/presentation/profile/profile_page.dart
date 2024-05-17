@@ -49,11 +49,11 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: EdgeInsets.all(defaultMargin),
           child: Row(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundImage: AssetImage('assets/image_profile_example.jpg'),
                 radius: 30.0,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               ),
 
@@ -71,26 +71,26 @@ class _ProfilePageState extends State<ProfilePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${user.data?.name ?? ''}',
+                            user.data.name ?? '',
                             style: primaryTextStyle.copyWith(
                               fontWeight: semiBold,
                               fontSize: 24,
                             ),
                           ),
                           Text(
-                            '${user.data?.email ?? ''}',
+                            user.data.email ?? '',
                             style: subtitleTextStyle.copyWith(
                               fontWeight: regular,
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            '${user.data?.companyName ?? ''}',
+                            user.data.companyName ?? '',
                             style: subtitleTextStyle.copyWith(
                                 fontWeight: regular, fontSize: 16),
                           ),
                           Text(
-                            'NPWP: ${user.data?.companyNpwp ?? ''}',
+                            'NPWP: ${user.data.companyNpwp ?? ''}',
                             style: subtitleTextStyle.copyWith(
                               fontWeight: regular,
                               fontSize: 16,
@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     Widget menuItem(String text) {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 16.0,
         ),
         child: Row(
@@ -139,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
           //   child:
           Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
         decoration: BoxDecoration(
           color: primaryColor,
         ),
@@ -158,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
               style: primaryTextStyle.copyWith(
                   fontSize: 16.0, fontWeight: semiBold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Text(
@@ -169,16 +169,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             GestureDetector(
-              child: menuItem('Edit Personal Profile'),
-              onTap: () =>
-                  Navigator.pushNamed(context, '/edit-personal-profile'),
+              child: menuItem('Edit Personal and Company Profile'),
+              onTap: () => Navigator.pushNamed(
+                  context, '/edit-personal-and-company-profile'),
             ),
-            GestureDetector(
-              child: menuItem('Edit Company Profile'),
-              onTap: () =>
-                  Navigator.pushNamed(context, '/edit-company-profile'),
-            ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Text(
@@ -197,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.pushNamed(context, '/notification-settings');
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Text(
@@ -224,7 +219,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: menuItem('Contact Us'),
               onTap: () => Navigator.pushNamed(context, '/contact-us'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             BlocListener<LogoutBloc, LogoutState>(

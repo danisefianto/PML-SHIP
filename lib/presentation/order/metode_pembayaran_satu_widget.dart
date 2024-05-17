@@ -8,12 +8,12 @@ class MetodePembayaranSatuWidget extends StatefulWidget {
   final VoidCallback onTap;
 
   const MetodePembayaranSatuWidget({
-    Key? key,
+    super.key,
     required this.paymentMethod,
     required this.bankName,
     required this.onTap,
     required bool isSelected,
-  }) : super(key: key);
+  });
 
   @override
   _MetodePembayaranSatuWidgetState createState() =>
@@ -35,7 +35,7 @@ class _MetodePembayaranSatuWidgetState
       },
       child: Container(
         width: double.maxFinite,
-        padding: EdgeInsets.all(17),
+        padding: const EdgeInsets.all(17),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -48,7 +48,7 @@ class _MetodePembayaranSatuWidgetState
                   children: [
                     Text(
                       widget.paymentMethod,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 14,
                       ),
@@ -59,22 +59,22 @@ class _MetodePembayaranSatuWidgetState
                 ),
               ),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Container(
               height: 33,
               width: 36,
               decoration: BoxDecoration(
-                color: isSelected ? Color(0xFF9DB6D4) : Color(0xFF4682B4),
+                color: isSelected ? const Color(0xFF9DB6D4) : const Color(0xFF4682B4),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Center(
                 child: isSelected
-                    ? Icon(
+                    ? const Icon(
                         Icons.check,
                         color: Colors.white,
                         size: 20,
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ),
             ),
           ],

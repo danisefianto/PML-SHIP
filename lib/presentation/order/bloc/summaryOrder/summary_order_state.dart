@@ -1,10 +1,10 @@
 part of 'summary_order_bloc.dart';
 
-sealed class SummaryOrderState extends Equatable {
-  const SummaryOrderState();
-  
-  @override
-  List<Object> get props => [];
+@freezed
+class SummaryOrderState with _$SummaryOrderState {
+  const factory SummaryOrderState.initial() = _Initial;
+  const factory SummaryOrderState.loading() = _Loading;
+  const factory SummaryOrderState.success(
+      SummaryOrderResponseModel summaryOrderResponseModel) = _Success;
+  const factory SummaryOrderState.error(String message) = _Error;
 }
-
-final class SummaryOrderInitial extends SummaryOrderState {}

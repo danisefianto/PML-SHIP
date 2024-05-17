@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 import 'package:pml_ship/data/models/request/order_port_request_model.dart';
-import 'package:pml_ship/data/models/response/order_port_response_model.dart';
 import 'package:pml_ship/presentation/order/bloc/orderPort/order_port_bloc.dart';
-import 'package:pml_ship/presentation/order/input_shipper_consignee_data_page.dart';
+import 'package:pml_ship/presentation/order/pages/add_shipper_consignee_data_page.dart';
 
-import '../../core/styles.dart';
-import '../widgets/select_date_widget.dart';
-import '../widgets/select_port_dropdown_widget.dart';
+import '../../../core/styles.dart';
+import '../../widgets/select_date_widget.dart';
 
 class OrderPortPage extends StatefulWidget {
   const OrderPortPage({super.key});
@@ -40,7 +38,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool _allFieldsAreEmpty() {
+    bool allFieldsAreEmpty() {
       // Replace the following with your actual logic
       return loadingPortController.text.isEmpty ||
           dischargePortController.text.isEmpty ||
@@ -55,7 +53,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
       TextEditingController cargoController,
     ) {
       return Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
+        margin: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -66,12 +64,12 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
             Container(
               height: 50.0,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
@@ -99,16 +97,16 @@ class _OrderPortPageState extends State<OrderPortPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Request Order'),
+          title: const Text('Request Order'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
         body: Container(
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           // margin: EdgeInsets.symmetric(
           //   horizontal: defaultMargin,
           // ),
@@ -119,7 +117,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 Container(
                   width: double.infinity,
                   color: secondaryColor,
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                   child: Text(
                     'Port',
                     style: primaryTextStyle.copyWith(
@@ -128,11 +126,11 @@ class _OrderPortPageState extends State<OrderPortPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -143,12 +141,12 @@ class _OrderPortPageState extends State<OrderPortPage> {
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12.0,
                       ),
                       Container(
                         height: 50.0,
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
                         ),
                         decoration: BoxDecoration(
@@ -190,11 +188,11 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 //     ),
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -205,12 +203,12 @@ class _OrderPortPageState extends State<OrderPortPage> {
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12.0,
                       ),
                       Container(
                         height: 50.0,
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
                         ),
                         decoration: BoxDecoration(
@@ -237,13 +235,13 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 //   customMargin: defaultMargin,
                 //   cargoState: 'discharge',
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
                   width: double.infinity,
                   color: secondaryColor,
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                   child: Text(
                     'Date',
                     style: primaryTextStyle.copyWith(
@@ -252,11 +250,11 @@ class _OrderPortPageState extends State<OrderPortPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     children: [
                       SelectDateWidget(
@@ -271,13 +269,13 @@ class _OrderPortPageState extends State<OrderPortPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
                   width: double.infinity,
                   color: secondaryColor,
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                   child: Text(
                     'Cargo',
                     style: primaryTextStyle.copyWith(
@@ -286,7 +284,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 cargoInput(
@@ -294,7 +292,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                   'Describe your cargo',
                   cargoDescriptionController,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 cargoInput(
@@ -317,7 +315,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => InputShipperConsigneeDataPage(
+                            builder: (context) => AddShipperConsigneeDataPage(
                                 transactionIdMessage: data.data.transactionId),
                           ),
                         );
@@ -339,9 +337,9 @@ class _OrderPortPageState extends State<OrderPortPage> {
                           padding: const EdgeInsets.all(30.0),
                           child: Button.filled(
                             onPressed: () {
-                              if (_allFieldsAreEmpty()) {
+                              if (allFieldsAreEmpty()) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
+                                  const SnackBar(
                                     content: Text('Some fields are empty!'),
                                     backgroundColor: Colors.red,
                                   ),

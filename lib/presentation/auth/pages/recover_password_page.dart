@@ -5,12 +5,12 @@ import 'package:pml_ship/core/components/buttons.dart';
 import '../../../core/styles.dart';
 
 class RecoverPasswordPage extends StatelessWidget {
-  const RecoverPasswordPage({Key? key});
+  const RecoverPasswordPage({super.key});
   @override
   Widget build(BuildContext context) {
     Widget emailInput() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 18.0,
         ),
         child: Column(
@@ -23,12 +23,12 @@ class RecoverPasswordPage extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
             Container(
               height: 50.0,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
@@ -40,8 +40,8 @@ class RecoverPasswordPage extends StatelessWidget {
               child: Center(
                 child: Row(
                   children: [
-                    Icon(Icons.email),
-                    SizedBox(
+                    const Icon(Icons.email),
+                    const SizedBox(
                       width: 16.0,
                     ),
                     Expanded(
@@ -57,7 +57,7 @@ class RecoverPasswordPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
@@ -73,7 +73,7 @@ class RecoverPasswordPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -92,7 +92,7 @@ class RecoverPasswordPage extends StatelessWidget {
                     // margin: EdgeInsets.only(top: 20.0),
                     width: 300,
                     height: 300,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/image_logo.png'),
                       ),
@@ -114,7 +114,7 @@ class RecoverPasswordPage extends StatelessWidget {
                 ),
                 emailInput(),
                 Container(
-                  margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
+                  margin: const EdgeInsets.only(top: 30.0, bottom: 30.0),
                   child: Button.filled(
                     onPressed: () {
                       Navigator.pushNamed(context, '/otp-input-password-reset');

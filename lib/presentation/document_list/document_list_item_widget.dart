@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/styles.dart';
+
 
 class DocumentListPageWidget extends StatelessWidget {
   final String documentName;
@@ -37,7 +37,7 @@ class DocumentListPageWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap, // Gunakan onTap yang diterima dari constructor
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
         decoration: BoxDecoration(
           color: boxColor, // Mengatur warna kotak
           borderRadius: BorderRadius.circular(5), // Atur sudut border
@@ -53,7 +53,7 @@ class DocumentListPageWidget extends StatelessWidget {
             //   marginBottom: 10,
             //   margin: EdgeInsets.only(top: 1.v),
             // ),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,

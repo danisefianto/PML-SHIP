@@ -17,6 +17,8 @@ import '../../../core/styles.dart';
 // TODO: perbaiki form sesuaikan sign_up_page.dart
 // TODO: pisahkan form personal account dan company account
 class Registerpage extends StatefulWidget {
+  const Registerpage({super.key});
+
   @override
   _RegisterpageState createState() => _RegisterpageState();
 }
@@ -80,7 +82,7 @@ class _RegisterpageState extends State<Registerpage> {
           title:
               Text('Registrasi Data Akun', style: primaryTextStyle.copyWith()),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -100,26 +102,26 @@ class _RegisterpageState extends State<Registerpage> {
                       borderRadius:
                           BorderRadius.circular(12), // Menentukan radius sudut
                     ),
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Text(
                       "PIC Info",
                       style: primaryTextStyle,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: picNameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'PIC Name',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -131,20 +133,20 @@ class _RegisterpageState extends State<Registerpage> {
                     // },
                   ),
 
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: picPhoneController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'PIC Phone',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -155,20 +157,20 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: picEmailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'PIC Email',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -179,7 +181,7 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Container(
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
@@ -187,26 +189,26 @@ class _RegisterpageState extends State<Registerpage> {
                       borderRadius:
                           BorderRadius.circular(12), // Menentukan radius sudut
                     ),
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Text(
                       "Company Info",
                       style: primaryTextStyle,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: companyNameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Company Name',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -217,20 +219,20 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: companyNpwpController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Company TIN/NPWP',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -241,20 +243,20 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: companyAddressController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Company Address',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -265,16 +267,16 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: companyPhoneController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Company Phone',
@@ -288,20 +290,20 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: companyEmailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Company Email',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -312,7 +314,7 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Container(
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
@@ -320,7 +322,7 @@ class _RegisterpageState extends State<Registerpage> {
                       borderRadius:
                           BorderRadius.circular(12), // Menentukan radius sudut
                     ),
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Text(
                       "Account Info",
                       style: primaryTextStyle,
@@ -349,7 +351,7 @@ class _RegisterpageState extends State<Registerpage> {
                   //   //   return null;
                   //   // },
                   // ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
@@ -370,15 +372,15 @@ class _RegisterpageState extends State<Registerpage> {
                         },
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Password',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
                     ),
@@ -390,7 +392,7 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
@@ -410,11 +412,11 @@ class _RegisterpageState extends State<Registerpage> {
                         },
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Confirm Password',
@@ -429,25 +431,25 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: aktaPerusahaanController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF4682B4)),
+                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       labelText: 'Akta Perusahaan',
                       hintText: 'b100_PML.Pdf',
                       // helperText: 'format file: akta_perusahaan.Pdf',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
-                      suffixIcon: Icon(Icons.upload_file),
+                      suffixIcon: const Icon(Icons.upload_file),
                     ),
                     // validator: (value) {
                     //   if (value == null || value.isEmpty) {
@@ -456,7 +458,7 @@ class _RegisterpageState extends State<Registerpage> {
                     //   return null;
                     // },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   BlocConsumer<RegisterBloc, RegisterState>(
                     listener: (context, state) {
                       state.maybeWhen(

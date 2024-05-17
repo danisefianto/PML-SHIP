@@ -10,10 +10,10 @@ class RiskmitigationItemwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Color(0xffDBEFEF),
+        color: const Color(0xffDBEFEF),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,17 +25,17 @@ class RiskmitigationItemwidget extends StatelessWidget {
               style: primaryTextStyle,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                'assets/weather-icons/wave.png',
+                'weather_icons/wave.png',
                 height: 32,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Expanded(

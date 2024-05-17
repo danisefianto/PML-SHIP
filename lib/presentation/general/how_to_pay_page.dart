@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/styles.dart';
 
 class HowToPayPage extends StatefulWidget {
-  const HowToPayPage({Key? key}) : super(key: key);
+  const HowToPayPage({super.key});
 
   @override
   _HowToPayPageState createState() => _HowToPayPageState();
@@ -16,15 +16,15 @@ class _HowToPayPageState extends State<HowToPayPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('How To Pay'),
+          title: const Text('How To Pay'),
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
-        backgroundColor: Color(0xFFEAE5E5),
+        backgroundColor: const Color(0xFFEAE5E5),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -32,8 +32,8 @@ class _HowToPayPageState extends State<HowToPayPage> {
             children: [
               Container(
                 // width: MediaQuery.of(context).size.width * 0.95,
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: Column(
@@ -42,7 +42,7 @@ class _HowToPayPageState extends State<HowToPayPage> {
                       'PML SHIP mendukung berbagai transfer Rekening Bank dan atau kartu kredit:',
                       style: primaryTextStyle,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -52,22 +52,22 @@ class _HowToPayPageState extends State<HowToPayPage> {
                             'assets/visa.png',
                             height: 50,
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Image.asset(
                             'assets/americanexpress.png',
                             height: 50,
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Image.asset(
                             'assets/jcb.png',
                             height: 50,
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Image.asset(
                             'assets/mastercard.png',
                             height: 50,
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Image.asset(
                             'assets/unionpay.png',
                             height: 50,
@@ -75,8 +75,8 @@ class _HowToPayPageState extends State<HowToPayPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Kartu Kredit/debit lokal atau luar negeri',
                       style: TextStyle(
                         fontSize: 10,
@@ -84,8 +84,8 @@ class _HowToPayPageState extends State<HowToPayPage> {
                         fontFamily: 'Inter',
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Row(
+                    const SizedBox(height: 10),
+                    const Row(
                       children: [
                         SizedBox(width: 10),
                         Text(
@@ -111,14 +111,14 @@ class _HowToPayPageState extends State<HowToPayPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       'Alternatif lainnya, anda juga bisa membayar dengan metode transfer seperti metode transfer pada umumnya yang akan diverifikasi secara manual dan otomatis melalui lampiran bukti yang dikirim pengguna.',
                       style: primaryTextStyle,
                       textAlign: TextAlign.justify,
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Berikut adalah cara melakukan transfer:',
                       style: TextStyle(
                         fontSize: 20,
@@ -126,7 +126,7 @@ class _HowToPayPageState extends State<HowToPayPage> {
                         fontFamily: 'Inter',
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -136,7 +136,7 @@ class _HowToPayPageState extends State<HowToPayPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       '*Menu Transfer di halaman Metode Pembayaran*\n'
                       'Pada menu *Beranda* > pilih *Order* > Melakukan pengisian *Request Order* dan *Planning Order* > pada  *Halaman Invoice*  klik Next > Kemudian pilih salah satu skema pembayaran  kemudian klik Bayar > Pilih salah satu akun rekening bank yang sesuai > lakukan transfer sesuai nominal > lampirkan bukti pada *Halaman Metode Pembayaran*',
