@@ -63,7 +63,6 @@ class SecurityPage extends StatelessWidget {
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Riwayat Masuk",

@@ -23,7 +23,7 @@ class SummaryOrderRemoteDataSource {
     );
     log("resposen: ${response.statusCode}");
     log("resposen: ${response.body}");
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return Right(SummaryOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Summary order error');

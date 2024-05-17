@@ -21,7 +21,6 @@ class OrderSummaryPage extends StatefulWidget {
 }
 
 class _OrderSummaryPageState extends State<OrderSummaryPage> {
-  DetailSummaryOrder? dataDetailSummaryOrder;
   @override
   void initState() {
     context
@@ -33,43 +32,13 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    Widget header() {
-      return Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(color: Color(0xFFB2DFDB)),
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(right: 8.0),
-              child: Icon(Icons.receipt),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Sedang diproses',
-                    style: primaryTextStyle.copyWith(
-                        fontWeight: bold, fontSize: 16),
-                  ),
-                  Text(
-                    'Pesanan kamu sedang diproses admin dalam 1 hari kerja.',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: regular,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+  void dispose() {
+    context.read<SummaryOrderBloc>().close();
+    super.dispose();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     Widget selectFile() {
       return DottedBorder(
         strokeWidth: 3,
@@ -113,6 +82,218 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
       );
     }
 
+    Widget buildSummaryOrderUI(
+        SummaryOrderResponseModel summaryOrderResponseModel) {
+      return SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(color: Color(0xFFB2DFDB)),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8.0),
+                    child: Icon(Icons.receipt),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sedang diproses',
+                          style: primaryTextStyle.copyWith(
+                              fontWeight: bold, fontSize: 16),
+                        ),
+                        Text(
+                          'Pesanan kamu sedang diproses admin dalam 1 hari kerja.',
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: regular,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.transactionIdMessage),
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(color: Colors.amber),
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            'Detail pesanan',
+                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                                'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
+                            Text(
+                                'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
+                          ],
+                        ),
+                        const Padding(
+                          padding:
+                              EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                          child: Text('MV Brahma DUMMY'),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, left: 8.0, right: 8.0),
+                          child: Text(
+                            '${summaryOrderResponseModel.data.portOfLoadingId} - ${summaryOrderResponseModel.data.portOfDischargeId}',
+                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, left: 8.0, right: 8.0),
+                          // dari planning
+                          child: Text(
+                            'ETD: ${summaryOrderResponseModel.data.dateOfLoading}',
+                            style: primaryTextStyle.copyWith(fontWeight: light),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            'ETA: Selasa, 21 Mei 2024 DUMMY',
+                            style: primaryTextStyle.copyWith(fontWeight: light),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(color: Colors.amber),
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            'Shipper Info',
+                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, left: 8.0, right: 8.0),
+                          child: Text(
+                            // 'PT BUma',
+                            '${summaryOrderResponseModel.data.shipperName}',
+                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${summaryOrderResponseModel.data.shipperAddress}',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(color: Colors.amber),
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            'Consignee Info',
+                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, left: 8.0, right: 8.0),
+                          child: Text(
+                            '${summaryOrderResponseModel.data.consigneeName}',
+                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${summaryOrderResponseModel.data.consigneeAddress}',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  selectFile(),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Button.filled(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/sign-in');
+                      },
+                      label: 'Negosiasi Pesanan',
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Button.outlined(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/sign-in');
+                      },
+                      label: 'Batalkan Pesanan',
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -124,224 +305,19 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
             },
           ),
         ),
-        body: ListView(
-          children: [
-            header(),
-            const SizedBox(
-              height: 20,
-            ),
-            BlocConsumer<SummaryOrderBloc, SummaryOrderState>(
-              listener: (context, state) {
-                state.maybeWhen(
-                  loading: () {
-                    // circular
-                    return const CircularProgressIndicator();
-                  },
-                  orElse: () {},
-                  error: (error) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(error),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  },
-                  success: (data) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Data ditambahkan'),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    // Navigator.pushNamed(context, '/order-summary');
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => OrderSummaryPage(
-                    //         transactionIdMessage: data.data.transactionId),
-                    //   ),
-                    // );
-                  },
-                );
+        body: BlocBuilder<SummaryOrderBloc, SummaryOrderState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () => Center(child: CircularProgressIndicator()),
+              loading: () => Center(child: CircularProgressIndicator()),
+              success: (summaryOrderResponseModel) {
+                return buildSummaryOrderUI(summaryOrderResponseModel);
               },
-              builder: (context, state) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(widget.transactionIdMessage),
-                            Container(
-                              width: double.infinity,
-                              decoration:
-                                  const BoxDecoration(color: Colors.amber),
-                              padding: const EdgeInsets.all(8),
-                              child: Text(
-                                'Detail pesanan',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(dataDetailSummaryOrder?.cargoDescription ??
-                                    ''),
-                                Text(dataDetailSummaryOrder?.cargoWeight ?? ''),
-                              ],
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                  top: 8.0, left: 8.0, right: 8.0),
-                              child: Text('MV Brahma DUMMY'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, left: 8.0, right: 8.0),
-                              child: Text(
-                                'Tanjung perak- Banjarmasin DUMMY',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, left: 8.0, right: 8.0),
-                              // dari planning
-                              child: Text(
-                                'ETD: Senin, 6 Mei 2024 DUMMY',
-                                style: primaryTextStyle.copyWith(
-                                    fontWeight: light),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Text(
-                                'ETA: Selasa, 21 Mei 2024 DUMMY',
-                                style: primaryTextStyle.copyWith(
-                                    fontWeight: light),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              decoration:
-                                  const BoxDecoration(color: Colors.amber),
-                              padding: const EdgeInsets.all(8),
-                              child: Text(
-                                'Shipper Info',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, left: 8.0, right: 8.0),
-                              child: Text(
-                                // 'PT BUma',
-                                dataDetailSummaryOrder?.shipperName ?? '',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                dataDetailSummaryOrder?.shipperAddress ?? '',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              decoration:
-                                  const BoxDecoration(color: Colors.amber),
-                              padding: const EdgeInsets.all(8),
-                              child: Text(
-                                'Consignee Info',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, left: 8.0, right: 8.0),
-                              child: Text(
-                                dataDetailSummaryOrder?.consigneeName ?? '',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                dataDetailSummaryOrder?.consigneeAddress ?? '',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      selectFile(),
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Button.filled(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/sign-in');
-                          },
-                          label: 'Negosiasi Pesanan',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Button.outlined(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/sign-in');
-                          },
-                          label: 'Batalkan Pesanan',
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+              error: (message) {
+                return Center(child: Text('Error: $message'));
               },
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

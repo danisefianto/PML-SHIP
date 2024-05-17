@@ -40,7 +40,7 @@ class _EditPersonalAndCompanyProfilePageState
   @override
   void initState() {
     super.initState();
-    context.read<ProfileBloc>().add(ProfileEvent.getFullUserData());
+    context.read<ProfileBloc>().add(const ProfileEvent.getFullUserData());
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -79,7 +79,7 @@ class _EditPersonalAndCompanyProfilePageState
           listener: (context, state) {
             state.maybeWhen(
               success: (response) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Profile updated successfully'),
                   backgroundColor: Colors.green,
                 ));
@@ -96,9 +96,9 @@ class _EditPersonalAndCompanyProfilePageState
           child: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
               return state.maybeWhen(
-                loading: () => Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: CircularProgressIndicator()),
                 error: (message) => Center(child: Text('Error: $message')),
-                orElse: () => Center(child: Text('No data')),
+                orElse: () => const Center(child: Text('No data')),
                 success: (profile) {
                   _picNameController.text = profile.data.name!;
                   _picEmailController.text = profile.data.email!;
@@ -533,7 +533,7 @@ class _EditPersonalAndCompanyProfilePageState
                                               _companyOriginalPhone) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackBar(
+                                          const SnackBar(
                                             content: Text('Data not changed'),
                                             backgroundColor: Colors.green,
                                           ),

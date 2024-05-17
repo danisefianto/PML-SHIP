@@ -23,9 +23,8 @@ class UpdateUserDataRemoteDataSource {
     );
     log("resposen: ${response.statusCode}");
     log("resposen: ${response.body}");
-    // log("request: ${updateUserDataRequestModel.toJson()}");
-    print("request: ${updateUserDataRequestModel.toJson()}");
-    print("resposen: ${response.body}");
+    log("request: ${updateUserDataRequestModel.toJson()}");
+
     if (response.statusCode == 200) {
       return Right(UpdateUserDataResponseModel.fromJson(response.body));
     } else {
