@@ -22,6 +22,8 @@ class OrderPortRemoteDataSource {
     );
     log("resposen: ${response.statusCode}");
     log("resposen: ${response.body}");
+    // print("request: ${orderPortRequestModel.toJson()}");
+    // print("resposen: ${response.body}");
     if (response.statusCode == 201) {
       return Right(OrderPortResponseModel.fromJson(response.body));
     } else {

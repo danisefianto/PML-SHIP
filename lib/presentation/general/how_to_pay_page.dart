@@ -5,7 +5,7 @@ class HowToPayPage extends StatefulWidget {
   const HowToPayPage({super.key});
 
   @override
-  _HowToPayPageState createState() => _HowToPayPageState();
+  State<HowToPayPage> createState() => _HowToPayPageState();
 }
 
 class _HowToPayPageState extends State<HowToPayPage> {

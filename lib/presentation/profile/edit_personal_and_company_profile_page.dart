@@ -21,11 +21,12 @@ class _EditPersonalAndCompanyProfilePageState
   final TextEditingController _picPhoneController = TextEditingController();
   // final TextEditingController _passwordController = TextEditingController();
 
-  TextEditingController _companyNameController = TextEditingController();
-  TextEditingController _companyNpwpController = TextEditingController();
-  TextEditingController _companyAddressController = TextEditingController();
-  TextEditingController _companyEmailController = TextEditingController();
-  TextEditingController _companyPhoneController = TextEditingController();
+  final TextEditingController _companyNameController = TextEditingController();
+  final TextEditingController _companyNpwpController = TextEditingController();
+  final TextEditingController _companyAddressController =
+      TextEditingController();
+  final TextEditingController _companyEmailController = TextEditingController();
+  final TextEditingController _companyPhoneController = TextEditingController();
 
   // TextEditingController _confirmPasswordController = TextEditingController();
   String? _picOriginalName;

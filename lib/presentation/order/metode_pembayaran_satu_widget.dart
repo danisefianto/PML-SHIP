@@ -16,7 +16,7 @@ class MetodePembayaranSatuWidget extends StatefulWidget {
   });
 
   @override
-  _MetodePembayaranSatuWidgetState createState() =>
+  State<MetodePembayaranSatuWidget> createState() =>
       _MetodePembayaranSatuWidgetState();
 }
 
@@ -64,7 +64,9 @@ class _MetodePembayaranSatuWidgetState
               height: 33,
               width: 36,
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF9DB6D4) : const Color(0xFF4682B4),
+                color: isSelected
+                    ? const Color(0xFF9DB6D4)
+                    : const Color(0xFF4682B4),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Center(

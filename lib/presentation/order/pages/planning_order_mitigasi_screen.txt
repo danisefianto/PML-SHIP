@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/core/components/buttons.dart';
+import 'package:pml_ship/presentation/order/pages/add_shipper_consignee_data_page.dart';
 
-import '../../core/styles.dart';
-import '../widgets/select_vessel_dropdown_widget.dart';
+import '../../../core/styles.dart';
+import '../../widgets/select_vessel_dropdown_widget.dart';
 
-class PlanningOrderMitigasiScreen extends StatefulWidget {
-  const PlanningOrderMitigasiScreen({super.key});
+class PlanningOrderAndWeatherRiskMitigationPage extends StatefulWidget {
+  final String transactionIdMessage;
+  const PlanningOrderAndWeatherRiskMitigationPage({
+    super.key,
+    required this.transactionIdMessage,
+  });
 
   @override
-  State<PlanningOrderMitigasiScreen> createState() => _PlanningOrderMitigasiScreenState();
+  State<PlanningOrderAndWeatherRiskMitigationPage> createState() =>
+      _PlanningOrderAndWeatherRiskMitigationPageState();
 }
 
-class _PlanningOrderMitigasiScreenState extends State<PlanningOrderMitigasiScreen> {
-  TextEditingController isianController = TextEditingController();
-
-  TextEditingController isianController1 = TextEditingController();
-
-  TextEditingController isianController2 = TextEditingController();
-
-  List<String> dates = List.generate(31, (index) => (index + 1).toString());
-
-  List<String> months = List.generate(12, (index) => (index + 1).toString());
-
-  List<String> years = List.generate(10, (index) => (2024 + index).toString());
-
-  // List<String> routes = [
+class _PlanningOrderAndWeatherRiskMitigationPageState
+    extends State<PlanningOrderAndWeatherRiskMitigationPage> {
   @override
   Widget build(BuildContext context) {
     Widget weatherDataInPort(
       String portName,
       String date,
     ) {
-      // tipePelabuhan = ['loading', 'discharge']
       return Column(
         children: [
           Row(
@@ -82,13 +76,6 @@ class _PlanningOrderMitigasiScreenState extends State<PlanningOrderMitigasiScree
       );
     }
 
-
-
-
-
-
-
-
 // TODO: fix Navigator.pop
     return SafeArea(
       child: Scaffold(
@@ -113,7 +100,8 @@ class _PlanningOrderMitigasiScreenState extends State<PlanningOrderMitigasiScree
                 Container(
                   width: double.infinity,
                   color: secondaryColor,
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                   child: Text(
                     'Reccomendation',
                     style: primaryTextStyle.copyWith(
@@ -146,31 +134,56 @@ class _PlanningOrderMitigasiScreenState extends State<PlanningOrderMitigasiScree
                         'Lamongan',
                         '2024-05-14',
                       ),
-                      Container(
-                        height: 50.0,
-                        width: double.infinity,
-                        margin: const EdgeInsets.only(top: 30.0, bottom: 30.0),
-                        child: FilledButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, '/input-shipper-consignee-data');
-                          },
-                          style: FilledButton.styleFrom(
-                            backgroundColor: secondaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
+                      BlocConsumer<QuotationBloc, QuotationState>(
+                        listener: (context, state) {
+                          // TODO: implement listener
+                        },
+                        builder: (context, state) {
+                          return Padding(
+                            padding: const EdgeInsets.all(30.0),
+                            child: Button.outlined(
+                              onPressed: () {
+                                // Navigator.pushNamed(
+                                //     context, '/input-shipper-consignee-data');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        AddShipperConsigneeDataPage(
+                                            transactionIdMessage:
+                                                data.data.transactionId),
+                                  ),
+                                );
+                              },
+                              label: 'Next',
                             ),
-                          ),
-                          child: Text(
-                            'Next',
-                            style: primaryTextStyle.copyWith(
-                              fontWeight: semiBold,
-                              fontSize: 16.0,
-                              color: primaryColor,
-                            ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
+                      // Container(
+                      //   height: 50.0,
+                      //   width: double.infinity,
+                      //   margin: const EdgeInsets.only(top: 30.0, bottom: 30.0),
+                      //   child: FilledButton(
+                      //     onPressed: () {
+
+                      // },
+                      //     style: FilledButton.styleFrom(
+                      //       backgroundColor: secondaryColor,
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(12.0),
+                      //       ),
+                      //     ),
+                      //     child: Text(
+                      //       'Next',
+                      //       style: primaryTextStyle.copyWith(
+                      //         fontWeight: semiBold,
+                      //         fontSize: 16.0,
+                      //         color: primaryColor,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

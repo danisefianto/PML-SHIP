@@ -5,7 +5,7 @@ class FAQPage extends StatefulWidget {
   const FAQPage({super.key});
 
   @override
-  _FAQPageState createState() => _FAQPageState();
+  State<FAQPage> createState() => _FAQPageState();
 }
 
 class _FAQPageState extends State<FAQPage> {

@@ -6,7 +6,7 @@ class NotificationSetting extends StatefulWidget {
   const NotificationSetting({super.key});
 
   @override
-  _NotificationSettingState createState() => _NotificationSettingState();
+  State<NotificationSetting> createState() => _NotificationSettingState();
 }
 
 class _NotificationSettingState extends State<NotificationSetting> {

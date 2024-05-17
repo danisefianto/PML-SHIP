@@ -7,11 +7,6 @@ import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
 
 import '../../../core/styles.dart';
 
-// TODO: Add
-// Navigator.pushNamedAndRemoveUntil(
-//                 context, '/sign-in', (route) => false);
-//           },
-
 // TODO: Delete leading and appbar
 
 // TODO: perbaiki form sesuaikan sign_up_page.dart
@@ -20,7 +15,7 @@ class Registerpage extends StatefulWidget {
   const Registerpage({super.key});
 
   @override
-  _RegisterpageState createState() => _RegisterpageState();
+  State<Registerpage> createState() => _RegisterpageState();
 }
 
 class _RegisterpageState extends State<Registerpage> {
@@ -46,15 +41,16 @@ class _RegisterpageState extends State<Registerpage> {
   TextEditingController picNameController = TextEditingController();
   TextEditingController picPhoneController = TextEditingController();
   TextEditingController picEmailController = TextEditingController();
+
   TextEditingController companyNameController = TextEditingController();
   TextEditingController companyNpwpController = TextEditingController();
   TextEditingController companyAddressController = TextEditingController();
   TextEditingController companyEmailController = TextEditingController();
   TextEditingController companyPhoneController = TextEditingController();
-  // TextEditingController usernameController = TextEditingController();
+  TextEditingController aktaPerusahaanController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController aktaPerusahaanController = TextEditingController();
 
   @override
   void dispose() {
@@ -66,7 +62,7 @@ class _RegisterpageState extends State<Registerpage> {
     companyAddressController.dispose();
     companyEmailController.dispose();
     companyPhoneController.dispose();
-    // usernameController.dispose();
+
     passwordController.dispose();
     confirmPasswordController.dispose();
     aktaPerusahaanController.dispose();
@@ -125,14 +121,7 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter PIC Phone';
-                    //   }
-                    //   return null;
-                    // },
                   ),
-
                   const SizedBox(height: 16),
                   TextFormField(
                     controller: picPhoneController,
@@ -150,12 +139,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter PIC Phone';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -174,12 +157,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter PIC Email';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   Container(
@@ -212,12 +189,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter Company Name';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -236,12 +207,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter Company TIN/NPWP';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -260,12 +225,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter Company Address';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -283,12 +242,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter Company Phone';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -307,12 +260,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter Company Email';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   Container(
@@ -328,40 +275,16 @@ class _RegisterpageState extends State<Registerpage> {
                       style: primaryTextStyle,
                     ),
                   ),
-                  // SizedBox(height: 16),
-                  // TextFormField(
-                  // controller: usernameController,
-                  //   decoration: InputDecoration(
-                  //     enabledBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(color: Color(0xFF4682B4)),
-                  //       borderRadius: BorderRadius.circular(25),
-                  //     ),
-                  //     focusedBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(color: Color(0xFF4682B4)),
-                  //       borderRadius: BorderRadius.circular(25),
-                  //     ),
-                  //     labelText: 'Username',
-                  //     filled: true,
-                  //     fillColor: Colors.white,
-                  //   ),
-                  //   // validator: (value) {
-                  //   //   if (value == null || value.isEmpty) {
-                  //   //     return 'Please enter Username';
-                  //   //   }
-                  //   //   return null;
-                  //   // },
-                  // ),
                   const SizedBox(height: 16),
                   TextFormField(
                     onChanged: (value) {
                       setState(() {
-                        password =
-                            value; // Update the password when input changes
+                        // Update the password when input changes
+                        password = value;
                       });
                     },
                     controller: passwordController,
                     obscureText: showPassword,
-
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         icon: Icon(showPassword
@@ -384,13 +307,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please enter Password';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -423,13 +339,6 @@ class _RegisterpageState extends State<Registerpage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please confirm Password';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -451,12 +360,6 @@ class _RegisterpageState extends State<Registerpage> {
                       fillColor: Colors.white,
                       suffixIcon: const Icon(Icons.upload_file),
                     ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Please Upload Akta Perusahaan';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 16),
                   BlocConsumer<RegisterBloc, RegisterState>(

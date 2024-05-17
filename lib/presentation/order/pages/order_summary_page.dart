@@ -141,7 +141,6 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.transactionIdMessage),
                         Container(
                           width: double.infinity,
                           decoration: const BoxDecoration(color: Colors.amber),
@@ -151,6 +150,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
+                        Text(widget.transactionIdMessage),
                         Row(
                           children: [
                             Text(
@@ -308,8 +308,8 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
         body: BlocBuilder<SummaryOrderBloc, SummaryOrderState>(
           builder: (context, state) {
             return state.when(
-              initial: () => Center(child: CircularProgressIndicator()),
-              loading: () => Center(child: CircularProgressIndicator()),
+              initial: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(child: CircularProgressIndicator()),
               success: (summaryOrderResponseModel) {
                 return buildSummaryOrderUI(summaryOrderResponseModel);
               },

@@ -28,7 +28,7 @@ class UpdateUserDataRemoteDataSource {
     if (response.statusCode == 200) {
       return Right(UpdateUserDataResponseModel.fromJson(response.body));
     } else {
-      return Left('Update data error.');
+      return const Left('Update data error.');
     }
   }
 }

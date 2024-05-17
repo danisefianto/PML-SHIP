@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/presentation/port/bloc/port/port_bloc.dart';
 import '../../core/styles.dart';
 
 class SelectPortDropdownWidget extends StatefulWidget {
   final double customMargin;
-  final String cargoState;
+  final String portType;
+  final void Function(String name, int id)? onPortSelected;
   const SelectPortDropdownWidget({
     super.key,
     required this.customMargin,
-    required this.cargoState,
+    required this.portType,
+    this.onPortSelected,
   });
 
   @override
@@ -16,241 +20,97 @@ class SelectPortDropdownWidget extends StatefulWidget {
 }
 
 class _SelectPortDropdownWidgetState extends State<SelectPortDropdownWidget> {
-  List<Port> ports = [
-    Port(
-      name: "ADARO KELANIS",
-    ),
-    Port(
-      name: "Anchorage Area PML 1",
-    ),
-    Port(
-      name: "ASAM2 - KINTAP",
-    ),
-    Port(
-      name: "BIRINGKASI",
-    ),
-    Port(
-      name: "BONTANG",
-    ),
-    Port(
-      name: "BUNATI",
-    ),
-    Port(
-      name: "CIREBON",
-    ),
-    Port(
-      name: "Ciwandan - Cigading",
-    ),
-    Port(
-      name: "DUMAI",
-    ),
-    Port(
-      name: "Garongkong",
-    ),
-    Port(
-      name: "GIJ",
-    ),
-    Port(
-      name: "GRESIK",
-    ),
-    Port(
-      name: "JETTY AMI - KABANEA",
-    ),
-    Port(
-      name: "JETTY IMIP - MOROWALI",
-    ),
-    Port(
-      name: "Kampot International",
-    ),
-    Port(
-      name: "KENDAWANGAN",
-    ),
-    Port(
-      name: "Koh Si Chang",
-    ),
-    Port(
-      name: "KUMAI",
-    ),
-    Port(
-      name: "LAMONGAN",
-    ),
-    Port(
-      name: "MALOY",
-    ),
-    Port(
-      name: "MERAK/BOJANEGARA",
-    ),
-    Port(
-      name: "MERAMO",
-    ),
-    Port(
-      name: "Morosi",
-    ),
-    Port(
-      name: "MTU HABCO",
-    ),
-    Port(
-      name: "PALOPO",
-    ),
-    Port(
-      name: "PARINGLAHUNG",
-    ),
-    Port(
-      name: "PATRIA MARITIME PERKASA BATAM",
-    ),
-    Port(
-      name: "PERTAMINA BALIKPAPAN",
-    ),
-    Port(
-      name: "PLTU BARRU",
-    ),
-    Port(
-      name: "PLTU BATANG",
-    ),
-    Port(
-      name: "PLTU CILACAP",
-    ),
-    Port(
-      name: "PLTU INDRAMAYU",
-    ),
-    Port(
-      name: "PLTU JAWA 7",
-    ),
-    Port(
-      name: "PLTU JENEPONTO",
-    ),
-    Port(
-      name: "PLTU LABUAN",
-    ),
-    Port(
-      name: "PLTU LONTAR",
-    ),
-    Port(
-      name: "PLTU PACITAN",
-    ),
-    Port(
-      name: "PLTU PAITON",
-    ),
-    Port(
-      name: "PLTU Pangkalan Susu",
-    ),
-    Port(
-      name: "PLTU PELABUHAN RATU",
-    ),
-    Port(
-      name: "PLTU SURALAYA",
-    ),
-    Port(
-      name: "PROBOLINGGO",
-    ),
-    Port(
-      name: "PULANG PISAU",
-    ),
-    Port(
-      name: "Pulau Gebe",
-    ),
-    Port(
-      name: "REMBANG",
-    ),
-    Port(
-      name: "SANGATTA",
-    ),
-    Port(
-      name: "SEBAKIS",
-    ),
-    Port(
-      name: "Siam City Cement Plant Jetty",
-    ),
-    Port(
-      name: "SUNGAI DANAU",
-    ),
-    Port(
-      name: "SUNGAI PUTING",
-    ),
-    Port(
-      name: "T. TIMBAU",
-    ),
-    Port(
-      name: "TABONEO",
-    ),
-    Port(
-      name: "TANAH GROGOT",
-    ),
-    Port(
-      name: "TARAHAN",
-    ),
-    Port(
-      name: "TG. BATU",
-    ),
-    Port(
-      name: "TG. SELOR",
-    ),
-    Port(
-      name: "Tha Sala",
-    ),
-    Port(
-      name: "Tha Thong",
-    ),
-    Port(
-      name: "TRISAKTI",
-    ),
-    Port(
-      name: "TUBAN",
-    ),
-    Port(
-      name: "Vung Tau/HCM",
-    ),
-  ];
+  String selectedPortName = '';
+  int selectedPortId = 0;
 
-  Port? selectedPort;
+  void _onPortSelected(Port? port) {
+    if (port != null) {
+      setState(() {
+        selectedPortName = port.name;
+        selectedPortId = port.id;
+      });
+      // Call the callback function to pass the selected port's ID and name
+      if (widget.onPortSelected != null) {
+        widget.onPortSelected!(port.name, port.id);
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Add BlocListener to listen for state changes in the PortBloc
+    context.read<PortBloc>().add(const PortEvent.started());
+  }
 
   @override
   Widget build(BuildContext context) {
+    // double width = MediaQuery.of(context).size.width - 30 * 2;
     double width = MediaQuery.of(context).size.width - widget.customMargin * 2;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Where is the ${widget.cargoState} port?',
+          'Where is the ${widget.portType} port?',
           style: primaryTextStyle,
         ),
         const SizedBox(
           height: 5.0,
         ),
-        DropdownMenu<Port>(
-          leadingIcon: const Icon(Icons.near_me),
-          width: width,
-          menuHeight: 350,
-          hintText: 'Select ${widget.cargoState} port',
-          textStyle: primaryTextStyle,
-          onSelected: (Port? value) {
-            setState(() {
-              selectedPort = value;
-            });
+        BlocBuilder<PortBloc, PortState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () =>
+                  Container(), // Initial state is not handled in this widget
+              loading: () => const Center(
+                  child:
+                      CircularProgressIndicator()), // Show loading indicator while fetching ports
+              error: (message) => Text('Error: $message',
+                  style: const TextStyle(
+                      color: Colors
+                          .red)), // Show error message if fetching ports fails
+              success: (ports) => DropdownMenu<Port>(
+                leadingIcon: const Icon(Icons.near_me),
+                width: width,
+                menuHeight: 350,
+                hintText: 'Select ${widget.portType} port',
+                textStyle: primaryTextStyle,
+                onSelected: _onPortSelected,
+                dropdownMenuEntries: ports.data
+                    .map(
+                      (port) => DropdownMenuEntry<Port>(
+                        value: Port(
+                            id: port.id,
+                            name: port.name), // Convert PortData to Port
+                        label: port.name,
+                        style: ButtonStyle(
+                          textStyle:
+                              MaterialStateProperty.all(primaryTextStyle),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            );
           },
-          dropdownMenuEntries: ports
-              .map(
-                (Port port) => DropdownMenuEntry<Port>(
-                  value: port,
-                  label: port.name,
-                  style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(primaryTextStyle),
-                  ),
-                ),
-              )
-              .toList(),
         ),
         // if (selectedPort != null)
         //   Text('You selected a ${selectedPort?.name}')
         // else
         //   const Text('Please select an port.'),
+        const SizedBox(height: 10),
+        // Text('Selected Port: $selectedPortName (ID: $selectedPortId)'),
       ],
     );
   }
 }
 
 class Port {
+  final int id;
   final String name;
 
-  Port({required this.name});
+  Port({
+    required this.id,
+    required this.name,
+  });
 }

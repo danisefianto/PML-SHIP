@@ -7,7 +7,7 @@ class MetodePembayaranSatuPage extends StatefulWidget {
   const MetodePembayaranSatuPage({super.key});
 
   @override
-  _MetodePembayaranSatuPageState createState() =>
+  State<MetodePembayaranSatuPage> createState() =>
       _MetodePembayaranSatuPageState();
 }
 

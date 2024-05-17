@@ -10,7 +10,7 @@ class RatingPage1 extends StatefulWidget {
   const RatingPage1({super.key});
 
   @override
-  _RatingPage1State createState() => _RatingPage1State();
+  State<RatingPage1> createState() => _RatingPage1State();
 }
 
 class _RatingPage1State extends State<RatingPage1> {
@@ -119,10 +119,4 @@ class _RatingPage1State extends State<RatingPage1> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: RatingPage1(),
-  ));
 }

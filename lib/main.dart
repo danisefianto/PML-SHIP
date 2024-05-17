@@ -28,7 +28,7 @@ import 'presentation/auth/pages/registration_process_waiting.dart';
 import 'presentation/auth/pages/set_new_password.dart';
 import 'presentation/auth/pages/sign_in_page.dart';
 import 'presentation/document_list/document_list_page.dart';
-import 'presentation/order/planning_order_mitigasi_screen.dart';
+// import 'presentation/order/pages/planning_order_mitigasi_screen.txt';
 import 'presentation/risk_mitigation/risk_mitigation_page.dart';
 import 'presentation/main_page/main_page.dart';
 
@@ -121,7 +121,7 @@ class MainApp extends StatelessWidget {
           '/sign-up': (context) => const Registerpage(),
           '/home': (context) => const MainPage(),
           '/edit-personal-and-company-profile': (context) =>
-              EditPersonalAndCompanyProfilePage(),
+              const EditPersonalAndCompanyProfilePage(),
           '/how-to-pay': (context) => const HowToPayPage(),
           '/security': (context) => const SecurityPage(),
           '/faq': (context) => const FAQPage(),
@@ -137,7 +137,8 @@ class MainApp extends StatelessWidget {
           '/contact-us': (context) => const ContactUsPage(),
           '/list-document': (context) => const DocumentListPage(),
           '/track-vessel': (context) => TrackingOneScreen(),
-          '/plan-order': (context) => const PlanningOrderMitigasiScreen(),
+          // '/plan-order': (context) =>
+          //     const PlanningOrderAndWeatherRiskMitigationPage(),
           '/registration-process-waiting': (context) =>
               const RegistrationProcessWaitingPage(),
         },
