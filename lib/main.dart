@@ -5,6 +5,7 @@ import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
 import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/order_port_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/port_remote_datasource.dart';
+import 'package:pml_ship/data/datasource/quotation_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/summary_order_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/update_user_data_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/user_remote_datasource.dart';
@@ -13,6 +14,7 @@ import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
+import 'package:pml_ship/presentation/order/bloc/checkQuotation/check_quotation_bloc.dart';
 import 'package:pml_ship/presentation/order/bloc/orderPort/order_port_bloc.dart';
 import 'package:pml_ship/presentation/order/bloc/summaryOrder/summary_order_bloc.dart';
 import 'package:pml_ship/presentation/port/bloc/port/port_bloc.dart';
@@ -28,7 +30,7 @@ import 'presentation/auth/pages/registration_process_waiting.dart';
 import 'presentation/auth/pages/set_new_password.dart';
 import 'presentation/auth/pages/sign_in_page.dart';
 import 'presentation/document_list/document_list_page.dart';
-// import 'presentation/order/pages/planning_order_mitigasi_screen.txt';
+
 import 'presentation/risk_mitigation/risk_mitigation_page.dart';
 import 'presentation/main_page/main_page.dart';
 
@@ -86,6 +88,9 @@ class MainApp extends StatelessWidget {
           create: (context) =>
               UpdateUserDataBloc(UpdateUserDataRemoteDataSource()),
         ),
+        BlocProvider(
+          create: (context) => CheckQuotationBloc(QuotationRemoteDataSource()),
+        ),
       ],
       child: MaterialApp(
         home: FutureBuilder<bool>(
@@ -137,8 +142,6 @@ class MainApp extends StatelessWidget {
           '/contact-us': (context) => const ContactUsPage(),
           '/list-document': (context) => const DocumentListPage(),
           '/track-vessel': (context) => TrackingOneScreen(),
-          // '/plan-order': (context) =>
-          //     const PlanningOrderAndWeatherRiskMitigationPage(),
           '/registration-process-waiting': (context) =>
               const RegistrationProcessWaitingPage(),
         },

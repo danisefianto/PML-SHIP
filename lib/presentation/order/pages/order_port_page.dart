@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 import 'package:pml_ship/data/models/request/order_port_request_model.dart';
 import 'package:pml_ship/presentation/order/bloc/orderPort/order_port_bloc.dart';
+import 'package:pml_ship/presentation/order/pages/quotation_and_weather_risk_mitigation_page.dart';
 // import 'package:pml_ship/presentation/order/pages/add_shipper_consignee_data_page.dart';
 // import 'package:pml_ship/presentation/order/pages/planning_order_mitigasi_screen.txt';
 import 'package:pml_ship/presentation/widgets/select_port_dropdown_widget.dart';
@@ -222,14 +223,16 @@ class _OrderPortPageState extends State<OrderPortPage> {
                             backgroundColor: Colors.green,
                           ),
                         );
-                        // Navigator.pushNamed(context, '/plan-order');
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => PlanningOrderAndWeatherRiskMitigationPage(
-                        //         transactionIdMessage: data.data.transactionId),
-                        //   ),
-                        // );
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                QuotationAndWeatherRiskMitigationPage(
+                                    transactionIdMessage:
+                                        data.data.transactionId),
+                          ),
+                        );
                       },
                       error: (error) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -252,6 +255,14 @@ class _OrderPortPageState extends State<OrderPortPage> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('Some fields are empty!'),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              } else if (loadingPortId == dischargePortId) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                        'Loading port and discharge port cannot be the same!'),
                                     backgroundColor: Colors.red,
                                   ),
                                 );
