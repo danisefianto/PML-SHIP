@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:pml_ship/core/constants/variables.dart';
 import 'package:dartz/dartz.dart';
 
-import 'package:pml_ship/data/models/request/update_user_data_request_model';
+import 'package:pml_ship/data/models/request/update_user_data_request_model.dart';
 import 'package:pml_ship/data/models/response/update_user_data_response_model.dart';
 
 import 'package:pml_ship/data/datasource/auth_local_datasource.dart';

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 import 'package:pml_ship/data/models/request/summary_order_request_model.dart';
 import 'package:pml_ship/data/models/response/summary_order_response_model.dart';
+import 'package:pml_ship/presentation/main_page/main_page.dart';
 import 'package:pml_ship/presentation/order/bloc/summaryOrder/summary_order_bloc.dart';
 
 import '../../../core/styles.dart';
@@ -29,12 +30,6 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
           transactionId: widget.transactionIdMessage,
         )));
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    context.read<SummaryOrderBloc>().close();
-    super.dispose();
   }
 
   @override
@@ -146,46 +141,40 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           decoration: const BoxDecoration(color: Colors.amber),
                           padding: const EdgeInsets.all(8),
                           child: Text(
-                            'Detail pesanan',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
-                          ),
-                        ),
-                        Text(widget.transactionIdMessage),
-                        Row(
-                          children: [
-                            Text(
-                                'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
-                            Text(
-                                'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
-                          ],
-                        ),
-                        const Padding(
-                          padding:
-                              EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
-                          child: Text('MV Brahma DUMMY'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8.0, left: 8.0, right: 8.0),
-                          child: Text(
-                            '${summaryOrderResponseModel.data.portOfLoadingId} - ${summaryOrderResponseModel.data.portOfDischargeId}',
+                            'Detail pesanan ${widget.transactionIdMessage}',
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8.0, left: 8.0, right: 8.0),
-                          // dari planning
-                          child: Text(
-                            'ETD: ${summaryOrderResponseModel.data.dateOfLoading}',
-                            style: primaryTextStyle.copyWith(fontWeight: light),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            'ETA: Selasa, 21 Mei 2024 DUMMY',
-                            style: primaryTextStyle.copyWith(fontWeight: light),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
+                              Text(
+                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
+
+                              Text('MV Brahma DUMMY'),
+
+                              Text(
+                                '${summaryOrderResponseModel.data.portOfLoadingId} - ${summaryOrderResponseModel.data.portOfDischargeId}',
+                                style:
+                                    primaryTextStyle.copyWith(fontWeight: bold),
+                              ),
+
+                              // dari planning
+                              Text(
+                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading}',
+                                style: primaryTextStyle.copyWith(
+                                    fontWeight: light),
+                              ),
+                              Text(
+                                'ETA: Selasa, 21 Mei 2024 DUMMY',
+                                style: primaryTextStyle.copyWith(
+                                    fontWeight: light),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -304,6 +293,17 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
               Navigator.pop(context);
             },
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainPage()),
+                    (route) => false);
+              },
+            ),
+          ],
         ),
         body: BlocBuilder<SummaryOrderBloc, SummaryOrderState>(
           builder: (context, state) {

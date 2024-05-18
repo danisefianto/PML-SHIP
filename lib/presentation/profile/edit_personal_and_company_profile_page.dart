@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 import 'package:pml_ship/core/styles.dart';
-import 'package:pml_ship/data/models/request/update_user_data_request_model';
+import 'package:pml_ship/data/models/request/update_user_data_request_model.dart';
 import 'package:pml_ship/presentation/profile/bloc/profile/profile_bloc.dart';
 import 'package:pml_ship/presentation/profile/bloc/update_user_data/update_user_data_bloc.dart';
 

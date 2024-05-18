@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pml_ship/data/datasource/update_user_data_remote_datasource.dart';
-import 'package:pml_ship/data/models/request/update_user_data_request_model';
+import 'package:pml_ship/data/models/request/update_user_data_request_model.dart';
 import 'package:pml_ship/data/models/response/update_user_data_response_model.dart';
 
 part 'update_user_data_event.dart';
