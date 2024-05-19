@@ -43,9 +43,12 @@ As a shipping company, [PT Patria Maritime Lines](https://pml.co.id/) experience
 
 # Technology Used
 1. Android
-    - [Flutter](https://flutter.dev/) 3.19.6
+    - [Flutter](https://flutter.dev/) 3.22
 2. Backend
-    - [Laravel](https://laravel.com/) 11
+    - [Laravel](https://laravel.com/) 11.7.0
+    - [PHP](https://www.php.net/) 8.3.7 VS16 x64 Thread Safe for Windows
+    - [Apache](https://www.apachelounge.com/download/) Apache 2.4.59-240404 Win64
+    - [MySQL](https://dev.mysql.com/downloads/mysql/) MySQL mysql-8.0.30-winx64
 3. Design
     - [Figma](https://www.figma.com/)
 
