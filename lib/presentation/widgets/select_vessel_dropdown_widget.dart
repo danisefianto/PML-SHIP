@@ -233,7 +233,7 @@ class _SelectVesselDropdownWidgetState
                   value: vessel,
                   label: vessel.name,
                   style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(primaryTextStyle),
+                    textStyle: WidgetStateProperty.all(primaryTextStyle),
                   ),
                 ),
               )

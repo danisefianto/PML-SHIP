@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:pml_ship/core/components/buttons.dart';
+import 'package:pml_ship/core/constants/variables.dart';
 import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
+import 'package:pml_ship/data/models/request/currency_request_model.dart';
 import 'package:pml_ship/data/models/response/user_response_model.dart';
 import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
+import 'package:pml_ship/presentation/profile/bloc/currency/currency_bloc.dart';
 import 'package:pml_ship/presentation/profile/bloc/profile/profile_bloc.dart';
 
 import '../../core/styles.dart';
@@ -32,6 +36,14 @@ class _ProfilePageState extends State<ProfilePage> {
     // });
     // Text('${user?.data.name ?? 'No Data'}')
     context.read<ProfileBloc>().add(const ProfileEvent.getFullUserData());
+    // Create the currency request model
+    final request = CurrencyRequestModel(
+      apikey: Variables.currencyApiKey,
+      baseCurrency: 'USD',
+      currencies: ['IDR'],
+    );
+
+    context.read<CurrencyBloc>().add(CurrencyEvent.fetchRates(request));
     super.initState();
   }
 
@@ -146,17 +158,36 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Currency Rate',
-              style: primaryTextStyle.copyWith(
-                fontWeight: semiBold,
-                fontSize: 16.0,
-              ),
-            ),
-            Text(
-              '1 Dollar = Rp16.241,00',
-              style: primaryTextStyle.copyWith(
-                  fontSize: 16.0, fontWeight: semiBold),
+            BlocBuilder<CurrencyBloc, CurrencyState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () {
+                    return const Center(child: Text('Error'));
+                  },
+                  loading: () {
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  success: (rates) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Currency Rate',
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                        Text(
+                          '1 USD = ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(rates.data.idr)}',
+                          style: primaryTextStyle.copyWith(
+                              fontSize: 16.0, fontWeight: semiBold),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
             const SizedBox(
               height: 30.0,

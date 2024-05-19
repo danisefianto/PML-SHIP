@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:pml_ship/core/components/buttons.dart';
 import 'package:pml_ship/data/models/request/quotation_request_model.dart';
 import 'package:pml_ship/presentation/order/bloc/checkQuotation/check_quotation_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:pml_ship/presentation/order/pages/add_shipper_consignee_data_page.dart';
-
-import '../../../core/styles.dart';
 
 class QuotationAndWeatherRiskMitigationPage extends StatefulWidget {
   final String transactionIdMessage;
+
   const QuotationAndWeatherRiskMitigationPage({
     super.key,
     required this.transactionIdMessage,
@@ -24,26 +23,17 @@ class _QuotationAndWeatherRiskMitigationPageState
     extends State<QuotationAndWeatherRiskMitigationPage> {
   @override
   void initState() {
-    context
-        .read<CheckQuotationBloc>()
-        .add(CheckQuotationEvent.checkQuotation(QuotationRequestModel(
-          transactionId: widget.transactionIdMessage,
-        )));
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    context.read<CheckQuotationBloc>().close();
-    super.dispose();
+    context.read<CheckQuotationBloc>().add(
+          CheckQuotationEvent.checkQuotation(
+            QuotationRequestModel(transactionId: widget.transactionIdMessage),
+          ),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget weatherDataInPort(
-      String portName,
-      String date,
-    ) {
+    Widget weatherDataInPort(String portName, String date) {
       return Column(
         children: [
           Row(
@@ -68,7 +58,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                   Text('Suhu: 32 C'),
                   Text('Wind speed min: 18 km/h'),
                   Text('Wind speed max: 18 km/h'),
-                  Text('WInd Direction From: North'),
+                  Text('Wind Direction From: North'),
                 ],
               ),
             ],
@@ -79,113 +69,115 @@ class _QuotationAndWeatherRiskMitigationPageState
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Quotation'),
-          leading: IconButton(
-            icon: const Icon(Icons.chevron_left),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 24.0),
-          children: [
-            BlocBuilder<CheckQuotationBloc, CheckQuotationState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  error: (message) {
-                    // return snackbar
-                    return const Text('Error');
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                title: const Text('Quotation'),
+                leading: IconButton(
+                  icon: const Icon(Icons.chevron_left),
+                  onPressed: () {
+                    Navigator.pop(context);
                   },
-                  orElse: () {
-                    // return error
-                    return const Text('Error');
-                  },
-                  loading: () {
-                    // return circular progress indicator
-                    return const Center(child: CircularProgressIndicator());
-                  },
-                  success: (routes) {
-                    return ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        separatorBuilder: (context, index) => const SizedBox(
-                              height: 16,
-                            ),
-                        itemCount: routes.data.length,
-                        itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                // build another bloc
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(16.0),
-                                decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    // add color
-                                    side: const BorderSide(
-                                        color: Colors.grey, width: 1),
-                                  ),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      routes.data[index].vesselName,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${routes.data[index].portOfLoadingName}-${routes.data[index].portOfDischargeName}',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Estimasi perjalanan: ${routes.data[index].estimatedDay}',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Estimasi biaya: ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(routes.data[index].estimatedCost)}',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                ),
+                pinned: true,
+                floating: true,
+                forceElevated: innerBoxIsScrolled,
+              ),
+            ];
+          },
+          body: BlocBuilder<CheckQuotationBloc, CheckQuotationState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                error: (message) {
+                  return Center(
+                    child: Text('Error: $message',
+                        style: const TextStyle(color: Colors.red)),
+                  );
+                },
+                loading: () {
+                  return const Center(child: CircularProgressIndicator());
+                },
+                success: (routes) {
+                  return ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 50.0, horizontal: 24.0),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
+                    itemCount: routes.data.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        // Handle item tap
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(16.0),
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side:
+                                const BorderSide(color: Colors.grey, width: 1),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              routes.data[index].vesselName,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
                               ),
-                            ));
-                  },
-                );
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Button.outlined(
-                onPressed: () {
-                  // Navigator.pushNamed(
-                  //     context, '/input-shipper-consignee-data');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddShipperConsigneeDataPage(
-                          transactionIdMessage: widget.transactionIdMessage),
+                            ),
+                            Text(
+                              '${routes.data[index].portOfLoadingName} - ${routes.data[index].portOfDischargeName}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              'Estimasi perjalanan: ${routes.data[index].estimatedDay} hari',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              'Estimasi biaya: ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(routes.data[index].estimatedCost)}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 },
-                label: 'Next',
-              ),
-            )
-          ],
+                orElse: () {
+                  return const Center(child: Text('No data available'));
+                },
+              );
+            },
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Button.outlined(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddShipperConsigneeDataPage(
+                    transactionIdMessage: widget.transactionIdMessage,
+                  ),
+                ),
+              );
+            },
+            label: 'Next',
+          ),
         ),
       ),
     );

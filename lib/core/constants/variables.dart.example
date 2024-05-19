@@ -1,6 +1,11 @@
 class Variables {
   static const String appName = 'PML Ship';
-  static const String apiVersion = 'v1';
   static const String baseUrl = 'http://127.0.0.1:8000';
   // static const String baseUrl = 'https://example.com';
+  static const String currencyApiUrl = 'https://api.freecurrencyapi.com/';
+  static const String currencyApiVersion = 'v1';
+  static const String currencyApiKey =
+      'YOUR_API_KEY';
+  static const String weatherApiUrl = 'https://api.open-meteo.com/';
+  static const String weatherApiVersion = 'v1';
 }

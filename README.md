@@ -47,8 +47,8 @@ As a shipping company, [PT Patria Maritime Lines](https://pml.co.id/) experience
 2. Backend
     - [Laravel](https://laravel.com/) 11.7.0
     - [PHP](https://www.php.net/) 8.3.7 VS16 x64 Thread Safe for Windows
-    - [Apache](https://www.apachelounge.com/download/) Apache 2.4.59-240404 Win64
-    - [MySQL](https://dev.mysql.com/downloads/mysql/) MySQL mysql-8.0.30-winx64
+    - [Apache](https://www.apachelounge.com/download/) 2.4.59-240404 Win64
+    - [MySQL](https://dev.mysql.com/downloads/mysql/) mysql-8.0.30-winx64
     - [Composer](https://getcomposer.org/download/) 2.7.6
 3. Design
     - [Figma](https://www.figma.com/)

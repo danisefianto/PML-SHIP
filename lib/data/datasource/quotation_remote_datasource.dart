@@ -25,12 +25,12 @@ class QuotationRemoteDataSource {
     log("resposen: ${response.statusCode}");
     log("resposen: ${response.body}");
 
-    print("request: ${quotationRequestModel.toJson()}");
-    print("resposen: ${response.body}");
+    // print("request: ${quotationRequestModel.toJson()}");
+    // print("resposen: ${response.body}");
     if (response.statusCode == 200) {
       return Right(QuotationResponseModel.fromJson(response.body));
     } else {
-      return const Left('Quotation error');
+      return const Left('Failed to check quotation');
     }
   }
 }

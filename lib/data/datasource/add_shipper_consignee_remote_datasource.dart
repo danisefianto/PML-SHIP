@@ -26,7 +26,8 @@ class AddShipperConsigneeRemoteDataSource {
     if (response.statusCode == 201) {
       return Right(AddShipperConsigneeResponseModel.fromJson(response.body));
     } else {
-      return Left('Order error ${response.body}');
+      return const Left(
+          'Failed to add shipper and consignee data. Check your data again.');
     }
   }
 }
