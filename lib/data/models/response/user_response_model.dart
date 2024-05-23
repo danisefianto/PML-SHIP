@@ -1,4 +1,4 @@
-
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class UserResponseModel {
@@ -24,21 +24,21 @@ class UserResponseModel {
 }
 
 class FullUserData {
-  final int? id;
-  final String? role;
-  final String? name;
-  final String? phone;
-  final String? email;
-  final DateTime? emailVerifiedAt;
-  final String? companyName;
-  final String? companyAddress;
-  final String? companyPhone;
-  final String? companyEmail;
-  final String? companyNpwp;
-  final String? companyAktaUrl;
+  final int id;
+  final String role;
+  final String name;
+  final String phone;
+  final String email;
+  final dynamic emailVerifiedAt;
+  final String companyName;
+  final String companyAddress;
+  final String companyPhone;
+  final String companyEmail;
+  final String companyNpwp;
+  final String companyAktaUrl;
   final DateTime createdAt;
   final DateTime updatedAt;
-  // final DateTime? deletedAt;
+  // final DateTime deletedAt;
 
   FullUserData({
     required this.id,
@@ -69,7 +69,7 @@ class FullUserData {
         name: json["name"],
         phone: json["phone"],
         email: json["email"],
-        emailVerifiedAt: DateTime.parse(json["email_verified_at"]),
+        emailVerifiedAt: json["email_verified_at"],
         companyName: json["company_name"],
         companyAddress: json["company_address"],
         companyPhone: json["company_phone"],

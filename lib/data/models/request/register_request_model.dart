@@ -1,4 +1,6 @@
-import 'dart:convert';
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 
 class RegisterRequestModel {
   final String name;
@@ -10,7 +12,7 @@ class RegisterRequestModel {
   final String companyPhone;
   final String companyEmail;
   final String companyNpwp;
-  final String companyAktaUrl;
+  final File companyAktaUrl;
 
   RegisterRequestModel({
     required this.name,
@@ -25,35 +27,17 @@ class RegisterRequestModel {
     required this.companyAktaUrl,
   });
 
-  factory RegisterRequestModel.fromJson(String str) =>
-      RegisterRequestModel.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory RegisterRequestModel.fromMap(Map<String, dynamic> json) =>
-      RegisterRequestModel(
-        name: json["name"],
-        phone: json["phone"],
-        email: json["email"],
-        password: json["password"],
-        companyName: json["company_name"],
-        companyAddress: json["company_address"],
-        companyPhone: json["company_phone"],
-        companyEmail: json["company_email"],
-        companyNpwp: json["company_NPWP"],
-        companyAktaUrl: json["company_akta_url"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "name": name,
-        "phone": phone,
-        "email": email,
-        "password": password,
-        "company_name": companyName,
-        "company_address": companyAddress,
-        "company_phone": companyPhone,
-        "company_email": companyEmail,
-        "company_NPWP": companyNpwp,
-        "company_akta_url": companyAktaUrl,
-      };
+  Map<String, String> toMap() {
+    return {
+      'name': name,
+      'phone': phone,
+      'email': email,
+      'password': password,
+      'company_name': companyName,
+      'company_address': companyAddress,
+      'company_phone': companyPhone,
+      'company_email': companyEmail,
+      'company_NPWP': companyNpwp,
+    };
+  }
 }

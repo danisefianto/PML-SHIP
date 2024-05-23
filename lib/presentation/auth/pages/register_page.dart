@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,10 +50,12 @@ class _RegisterpageState extends State<Registerpage> {
   TextEditingController companyAddressController = TextEditingController();
   TextEditingController companyEmailController = TextEditingController();
   TextEditingController companyPhoneController = TextEditingController();
-  TextEditingController aktaPerusahaanController = TextEditingController();
+  // TextEditingController aktaPerusahaanController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+
+  File? selectedFile; // Variable to store the selected file
 
   @override
   void dispose() {
@@ -65,9 +70,24 @@ class _RegisterpageState extends State<Registerpage> {
 
     passwordController.dispose();
     confirmPasswordController.dispose();
-    aktaPerusahaanController.dispose();
+    // aktaPerusahaanController.dispose();
 
     super.dispose();
+  }
+
+  Future<void> _pickFile() async {
+    final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    setState(() {
+      if (pickedFile != null) {
+        selectedFile = File(pickedFile.files.single.path!);
+      } else {
+        selectedFile = null;
+      }
+    });
   }
 
   @override
@@ -101,7 +121,9 @@ class _RegisterpageState extends State<Registerpage> {
                     padding: const EdgeInsets.all(5),
                     child: Text(
                       "PIC Info",
-                      style: primaryTextStyle,
+                      style: primaryTextStyle.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -172,7 +194,9 @@ class _RegisterpageState extends State<Registerpage> {
                     padding: const EdgeInsets.all(5),
                     child: Text(
                       "Company Info",
-                      style: primaryTextStyle,
+                      style: primaryTextStyle.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -276,7 +300,9 @@ class _RegisterpageState extends State<Registerpage> {
                     padding: const EdgeInsets.all(5),
                     child: Text(
                       "Account Info",
-                      style: primaryTextStyle,
+                      style: primaryTextStyle.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -346,24 +372,47 @@ class _RegisterpageState extends State<Registerpage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  TextFormField(
-                    controller: aktaPerusahaanController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
-                        borderRadius: BorderRadius.circular(25),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF4682B4),
+                      borderRadius:
+                          BorderRadius.circular(12), // Menentukan radius sudut
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: Text(
+                      "Document Info",
+                      style: primaryTextStyle.copyWith(
+                        color: Colors.white,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color(0xFF4682B4)),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      labelText: 'Akta Perusahaan',
-                      hintText: 'b100_PML.Pdf',
-                      // helperText: 'format file: akta_perusahaan.Pdf',
-                      border: const OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.white,
-                      suffixIcon: const Icon(Icons.upload_file),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: _pickFile,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Upload Akta Perusahaan (PDF)',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Icon(Icons.upload_file),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        if (selectedFile != null)
+                          Text(
+                            'Selected file: ${selectedFile!.path.split('/').last}',
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black),
+                          ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -387,7 +436,7 @@ class _RegisterpageState extends State<Registerpage> {
                                 backgroundColor: Colors.green,
                               ),
                             );
-                            Navigator.pushNamed(
+                            Navigator.pushReplacementNamed(
                                 context, '/registration-process-waiting');
                           });
                     },
@@ -413,7 +462,7 @@ class _RegisterpageState extends State<Registerpage> {
                                   companyPhone: companyPhoneController.text,
                                   companyEmail: companyEmailController.text,
                                   companyNpwp: companyNpwpController.text,
-                                  companyAktaUrl: aktaPerusahaanController.text,
+                                  companyAktaUrl: selectedFile!,
                                 );
                                 context
                                     .read<RegisterBloc>()

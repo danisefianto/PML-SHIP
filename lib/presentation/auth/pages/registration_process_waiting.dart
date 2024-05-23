@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/styles.dart';
 
-
 class RegistrationProcessWaitingPage extends StatelessWidget {
   const RegistrationProcessWaitingPage({super.key});
 
@@ -57,10 +56,9 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
                 const SizedBox(height: 50), // Tambahkan jarak sekitar 50
                 SizedBox(
                   height: 50.0,
-                  
                   child: FilledButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/sign-in');
+                      Navigator.pushReplacementNamed(context, '/sign-in');
                     },
                     style: FilledButton.styleFrom(
                       backgroundColor: secondaryColor,

@@ -13,17 +13,38 @@ import 'package:pml_ship/data/models/response/register_response_model.dart';
 class AuthRemoteDatasource {
   Future<Either<String, RegisterResponseModel>> register(
       RegisterRequestModel registerRequestModel) async {
-    final response = await http.post(
-      Uri.parse('${Variables.baseUrl}/api/register'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: registerRequestModel.toJson(),
-    );
+    // final response = await http.post(
+    //   Uri.parse('${Variables.baseUrl}/api/register'),
+    // headers: <String, String>{
+    //   'Content-Type': 'application/json; charset=UTF-8',
+    // },
+    //   body: registerRequestModel.toJson(),
+    // );
+    // log("resposen: ${response.statusCode}");
+    // log("resposen: ${response.body}");
+    // if (response.statusCode == 201) {
+    //   return Right(RegisterResponseModel.fromJson(response.body));
+    // } else {
+    //   return const Left('Registrasi gagal. Cek kembali data Anda.');
+    // }
+
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${Variables.baseUrl}/api/register'));
+    request.fields.addAll(registerRequestModel.toMap());
+    request.files.add(await http.MultipartFile.fromPath(
+        'company_akta_url', registerRequestModel.companyAktaUrl.path));
+
+    // Add header here if necessary
+
+    http.StreamedResponse response = await request.send();
+
+    final String body = await response.stream.bytesToString();
+
     log("resposen: ${response.statusCode}");
-    log("resposen: ${response.body}");
+    log("resposen: $body");
+
     if (response.statusCode == 201) {
-      return Right(RegisterResponseModel.fromJson(response.body));
+      return Right(RegisterResponseModel.fromJson(body));
     } else {
       return const Left('Registrasi gagal. Cek kembali data Anda.');
     }
