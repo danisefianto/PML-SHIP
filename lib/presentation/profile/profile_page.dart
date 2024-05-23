@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              user.data.name ?? '',
+                              user.data.name,
                               style: primaryTextStyle.copyWith(
                                 fontWeight: semiBold,
                                 fontSize: 24,
@@ -93,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               overflow: TextOverflow.visible,
                             ),
                             Text(
-                              user.data.email ?? '',
+                              user.data.email,
                               style: subtitleTextStyle.copyWith(
                                 fontWeight: regular,
                                 fontSize: 16,
@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               overflow: TextOverflow.visible,
                             ),
                             Text(
-                              user.data.companyName ?? '',
+                              user.data.companyName,
                               style: subtitleTextStyle.copyWith(
                                 fontWeight: regular,
                                 fontSize: 16,
@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               overflow: TextOverflow.visible,
                             ),
                             Text(
-                              'NPWP: ${user.data.companyNpwp ?? ''}',
+                              'NPWP: ${user.data.companyNpwp}',
                               style: subtitleTextStyle.copyWith(
                                 fontWeight: regular,
                                 fontSize: 16,
