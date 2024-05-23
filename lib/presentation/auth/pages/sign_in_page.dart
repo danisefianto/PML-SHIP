@@ -92,7 +92,6 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: primaryColor,
         resizeToAvoidBottomInset: true,
         body: ListView(
-   
           children: [
             // header(),
             Column(
@@ -162,6 +161,10 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                           Expanded(
                             child: TextFormField(
+                              autofillHints: const [
+                                AutofillHints.email,
+                                AutofillHints.username
+                              ],
                               controller: emailController,
                               style: primaryTextStyle,
                               decoration: InputDecoration(
@@ -223,6 +226,7 @@ class _SignInPageState extends State<SignInPage> {
                                       value; // Update the password when input changes
                                 });
                               },
+                              autofillHints: const [AutofillHints.password],
                               controller: passwordController,
                               style: primaryTextStyle,
                               obscureText: showPassword,

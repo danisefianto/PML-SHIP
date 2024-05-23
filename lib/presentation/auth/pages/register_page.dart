@@ -106,6 +106,7 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    autofillHints: const [AutofillHints.name],
                     controller: picNameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -124,6 +125,7 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    autofillHints: const [AutofillHints.telephoneNumber],
                     controller: picPhoneController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -142,6 +144,7 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    autofillHints: const [AutofillHints.email],
                     controller: picEmailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -174,6 +177,7 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    autofillHints: const [AutofillHints.organizationName],
                     controller: companyNameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -277,6 +281,7 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    autofillHints: const [AutofillHints.newPassword],
                     onChanged: (value) {
                       setState(() {
                         // Update the password when input changes
