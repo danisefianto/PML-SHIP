@@ -1,6 +1,6 @@
 class WeatherRequestModel {
-  final double latitude;
-  final double longitude;
+  final String latitude;
+  final String longitude;
   final String startDate;
   final String endDate;
 
