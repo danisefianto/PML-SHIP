@@ -69,50 +69,62 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 16,
               ),
 
-              BlocBuilder<ProfileBloc, ProfileState>(
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    orElse: () {
-                      return const Center(child: Text('Error'));
-                    },
-                    loading: () {
-                      return const Center(child: CircularProgressIndicator());
-                    },
-                    success: (user) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            user.data.name ?? '',
-                            style: primaryTextStyle.copyWith(
-                              fontWeight: semiBold,
-                              fontSize: 24,
+              Expanded(
+                child: BlocBuilder<ProfileBloc, ProfileState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      orElse: () {
+                        return const Center(child: Text('Error'));
+                      },
+                      loading: () {
+                        return const Center(child: CircularProgressIndicator());
+                      },
+                      success: (user) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              user.data.name ?? '',
+                              style: primaryTextStyle.copyWith(
+                                fontWeight: semiBold,
+                                fontSize: 24,
+                              ),
+                              softWrap: true,
+                              overflow: TextOverflow.visible,
                             ),
-                          ),
-                          Text(
-                            user.data.email ?? '',
-                            style: subtitleTextStyle.copyWith(
-                              fontWeight: regular,
-                              fontSize: 16,
+                            Text(
+                              user.data.email ?? '',
+                              style: subtitleTextStyle.copyWith(
+                                fontWeight: regular,
+                                fontSize: 16,
+                              ),
+                              softWrap: true,
+                              overflow: TextOverflow.visible,
                             ),
-                          ),
-                          Text(
-                            user.data.companyName ?? '',
-                            style: subtitleTextStyle.copyWith(
-                                fontWeight: regular, fontSize: 16),
-                          ),
-                          Text(
-                            'NPWP: ${user.data.companyNpwp ?? ''}',
-                            style: subtitleTextStyle.copyWith(
-                              fontWeight: regular,
-                              fontSize: 16,
+                            Text(
+                              user.data.companyName ?? '',
+                              style: subtitleTextStyle.copyWith(
+                                fontWeight: regular,
+                                fontSize: 16,
+                              ),
+                              softWrap: true,
+                              overflow: TextOverflow.visible,
                             ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
+                            Text(
+                              'NPWP: ${user.data.companyNpwp ?? ''}',
+                              style: subtitleTextStyle.copyWith(
+                                fontWeight: regular,
+                                fontSize: 16,
+                              ),
+                              softWrap: true,
+                              overflow: TextOverflow.visible,
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
               // ),
             ],
