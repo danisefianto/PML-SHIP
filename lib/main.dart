@@ -18,6 +18,7 @@ import 'package:pml_ship/data/datasource/weather_remote_datasource.dart';
 import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
+import 'package:pml_ship/presentation/onboarding/pages/onboarding_page.dart';
 import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
 import 'package:pml_ship/presentation/order/bloc/checkQuotation/check_quotation_bloc.dart';
 import 'package:pml_ship/presentation/order/bloc/orderPort/order_port_bloc.dart';
@@ -48,7 +49,7 @@ import 'package:pml_ship/presentation/general/how_to_pay_page.dart';
 import 'package:pml_ship/presentation/settings/notification_settings_page.dart';
 import 'package:pml_ship/presentation/settings/security_page.dart';
 import 'package:pml_ship/presentation/settings/where_you_are_logged_in_page.dart';
-import 'package:pml_ship/presentation/onboarding/splash_page.dart';
+// import 'package:pml_ship/presentation/onboarding/splash_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -120,7 +121,8 @@ class MainApp extends StatelessWidget {
                 return const MainPage();
               } else {
                 // Navigator.pushNamed(context, '/splash');
-                return const SplashPage();
+                // return const SplashPage();
+                return const OnboardingPage();
               }
             }
             return const Scaffold(
@@ -133,7 +135,7 @@ class MainApp extends StatelessWidget {
         // TODO: Change routes from namedRoutes to onGenerateRoute
         // https://docs.flutter.dev/ui/navigation#limitations
         routes: {
-          '/splash': (context) => const SplashPage(),
+          // '/splash': (context) => const SplashPage(),
           '/sign-in': (context) => const SignInPage(),
           '/sign-up': (context) => const Registerpage(),
           '/home': (context) => const MainPage(),

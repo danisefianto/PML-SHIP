@@ -23,21 +23,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   final onboardingData = [
     OnboardingModel(
-      image: Assets.images.onboarding.screen1.path,
-      text: 'Jelajahi Potensimu dengan Tes Online Akademik di CWB !',
+      image: 'assets/onboarding/slide01.jpg',
+      text:
+          'Shop with ease and confidence - PT Patria Maritime Lines delivers your purchases directly to you',
     ),
     OnboardingModel(
-      image: Assets.images.onboarding.screen2.path,
-      text: 'Jelajahi Potensimu dengan Tes Online Akademik di CWB !',
+      image: 'assets/onboarding/slide02.jpg',
+      text:
+          'Track your order in real-time and see it sailing smoothly towards you with PT Patria Maritime Lines.',
     ),
     OnboardingModel(
-      image: Assets.images.onboarding.screen3.path,
-      text: 'Jelajahi Potensimu dengan Tes Online Akademik di CWB !',
+      image: 'assets/onboarding/slide03.jpg',
+      text:
+          'Sit back, relax, and enjoy your purchases delivered quickly and securely by PT Patria Maritime Lines.',
     ),
   ];
 
   void navigate() {
-    context.pushReplacement(const SignInPage());
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const SignInPage()));
   }
 
   @override
@@ -53,9 +57,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
         children: [
           Container(
             height: 400.0,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(Assets.images.onboarding.ornament.path),
+                image: AssetImage('assets/onboarding/ornament.png'),
                 fit: BoxFit.contain,
               ),
             ),
@@ -78,7 +82,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.all(30.0),
-                child: Button.outlined(
+                child: Button.filled(
                   onPressed: () {
                     if (currentPage < onboardingData.length - 1) {
                       pageController.nextPage(

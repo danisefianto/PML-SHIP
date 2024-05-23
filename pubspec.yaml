@@ -43,3 +43,4 @@ flutter:
     - assets/weather_icons/wave.png
     - assets/weather_icons/wind.png
     - assets/weather_icons/
+    - assets/onboarding/
