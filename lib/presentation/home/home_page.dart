@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Selamat Pagi',
+                        'Welcome',
                         style: primaryTextStyle.copyWith(
                           fontWeight: regular,
                           fontSize: 16,
