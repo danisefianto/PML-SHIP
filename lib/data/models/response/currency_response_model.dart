@@ -1,10 +1,20 @@
 import 'dart:convert';
 
 class CurrencyResponseModel {
-  final CurrencyData data;
+  final int id;
+  final String baseCurrency;
+  final String currencies;
+  final String rate;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   CurrencyResponseModel({
-    required this.data,
+    required this.id,
+    required this.baseCurrency,
+    required this.currencies,
+    required this.rate,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   factory CurrencyResponseModel.fromJson(String str) =>
@@ -14,31 +24,20 @@ class CurrencyResponseModel {
 
   factory CurrencyResponseModel.fromMap(Map<String, dynamic> json) =>
       CurrencyResponseModel(
-        data: CurrencyData.fromMap(json["data"]),
+        id: json["id"],
+        baseCurrency: json["base_currency"],
+        currencies: json["currencies"],
+        rate: json["rate"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "data": data.toMap(),
-      };
-}
-
-class CurrencyData {
-  final double idr;
-
-  CurrencyData({
-    required this.idr,
-  });
-
-  factory CurrencyData.fromJson(String str) =>
-      CurrencyData.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory CurrencyData.fromMap(Map<String, dynamic> json) => CurrencyData(
-        idr: json["IDR"]?.toDouble(),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "IDR": idr,
+        "id": id,
+        "base_currency": baseCurrency,
+        "currencies": currencies,
+        "rate": rate,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }

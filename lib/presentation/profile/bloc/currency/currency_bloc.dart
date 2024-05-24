@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pml_ship/data/datasource/currency_remote_datasource.dart';
-import 'package:pml_ship/data/models/request/currency_request_model.dart';
 import 'package:pml_ship/data/models/response/currency_response_model.dart';
 
 part 'currency_event.dart';
@@ -15,7 +14,7 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     on<_FetchRates>((event, emit) async {
       emit(const _Loading());
 
-      final result = await dataSource.fetchLatestRates(event.request);
+      final result = await dataSource.fetchLatestRates();
       result.fold(
         (l) => emit(_Error(l)),
         (r) => emit(_Success(r)),

@@ -16,20 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CurrencyEvent {
-  CurrencyRequestModel get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CurrencyRequestModel request) fetchRates,
+    required TResult Function() fetchRates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CurrencyRequestModel request)? fetchRates,
+    TResult? Function()? fetchRates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CurrencyRequestModel request)? fetchRates,
+    TResult Function()? fetchRates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,10 +48,6 @@ mixin _$CurrencyEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CurrencyEventCopyWith<CurrencyEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -60,8 +55,6 @@ abstract class $CurrencyEventCopyWith<$Res> {
   factory $CurrencyEventCopyWith(
           CurrencyEvent value, $Res Function(CurrencyEvent) then) =
       _$CurrencyEventCopyWithImpl<$Res, CurrencyEvent>;
-  @useResult
-  $Res call({CurrencyRequestModel request});
 }
 
 /// @nodoc
@@ -73,30 +66,13 @@ class _$CurrencyEventCopyWithImpl<$Res, $Val extends CurrencyEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_value.copyWith(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as CurrencyRequestModel,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$FetchRatesImplCopyWith<$Res>
-    implements $CurrencyEventCopyWith<$Res> {
+abstract class _$$FetchRatesImplCopyWith<$Res> {
   factory _$$FetchRatesImplCopyWith(
           _$FetchRatesImpl value, $Res Function(_$FetchRatesImpl) then) =
       __$$FetchRatesImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({CurrencyRequestModel request});
 }
 
 /// @nodoc
@@ -106,75 +82,51 @@ class __$$FetchRatesImplCopyWithImpl<$Res>
   __$$FetchRatesImplCopyWithImpl(
       _$FetchRatesImpl _value, $Res Function(_$FetchRatesImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_$FetchRatesImpl(
-      null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as CurrencyRequestModel,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$FetchRatesImpl implements _FetchRates {
-  const _$FetchRatesImpl(this.request);
-
-  @override
-  final CurrencyRequestModel request;
+  const _$FetchRatesImpl();
 
   @override
   String toString() {
-    return 'CurrencyEvent.fetchRates(request: $request)';
+    return 'CurrencyEvent.fetchRates()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchRatesImpl &&
-            (identical(other.request, request) || other.request == request));
+        (other.runtimeType == runtimeType && other is _$FetchRatesImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, request);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FetchRatesImplCopyWith<_$FetchRatesImpl> get copyWith =>
-      __$$FetchRatesImplCopyWithImpl<_$FetchRatesImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CurrencyRequestModel request) fetchRates,
+    required TResult Function() fetchRates,
   }) {
-    return fetchRates(request);
+    return fetchRates();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CurrencyRequestModel request)? fetchRates,
+    TResult? Function()? fetchRates,
   }) {
-    return fetchRates?.call(request);
+    return fetchRates?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CurrencyRequestModel request)? fetchRates,
+    TResult Function()? fetchRates,
     required TResult orElse(),
   }) {
     if (fetchRates != null) {
-      return fetchRates(request);
+      return fetchRates();
     }
     return orElse();
   }
@@ -209,15 +161,7 @@ class _$FetchRatesImpl implements _FetchRates {
 }
 
 abstract class _FetchRates implements CurrencyEvent {
-  const factory _FetchRates(final CurrencyRequestModel request) =
-      _$FetchRatesImpl;
-
-  @override
-  CurrencyRequestModel get request;
-  @override
-  @JsonKey(ignore: true)
-  _$$FetchRatesImplCopyWith<_$FetchRatesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _FetchRates() = _$FetchRatesImpl;
 }
 
 /// @nodoc
@@ -226,25 +170,25 @@ mixin _$CurrencyState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(String message) error,
     required TResult Function(CurrencyResponseModel currencyResponseModel)
         success,
-    required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult? Function(String message)? error,
+    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult Function(String message)? error,
+    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -252,24 +196,24 @@ mixin _$CurrencyState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -333,9 +277,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(String message) error,
     required TResult Function(CurrencyResponseModel currencyResponseModel)
         success,
-    required TResult Function(String message) error,
   }) {
     return initial();
   }
@@ -345,8 +289,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult? Function(String message)? error,
+    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
   }) {
     return initial?.call();
   }
@@ -356,8 +300,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult Function(String message)? error,
+    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -371,8 +315,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
   }) {
     return initial(this);
   }
@@ -382,8 +326,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -393,8 +337,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -448,9 +392,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(String message) error,
     required TResult Function(CurrencyResponseModel currencyResponseModel)
         success,
-    required TResult Function(String message) error,
   }) {
     return loading();
   }
@@ -460,8 +404,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult? Function(String message)? error,
+    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
   }) {
     return loading?.call();
   }
@@ -471,8 +415,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult Function(String message)? error,
+    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -486,8 +430,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
   }) {
     return loading(this);
   }
@@ -497,8 +441,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
   }) {
     return loading?.call(this);
   }
@@ -508,8 +452,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -521,6 +465,152 @@ class _$LoadingImpl implements _Loading {
 
 abstract class _Loading implements CurrencyState {
   const factory _Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$CurrencyStateCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ErrorImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'CurrencyState.error(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(CurrencyResponseModel currencyResponseModel)
+        success,
+  }) {
+    return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
+  }) {
+    return error?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Error implements CurrencyState {
+  const factory _Error(final String message) = _$ErrorImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -590,9 +680,9 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(String message) error,
     required TResult Function(CurrencyResponseModel currencyResponseModel)
         success,
-    required TResult Function(String message) error,
   }) {
     return success(currencyResponseModel);
   }
@@ -602,8 +692,8 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult? Function(String message)? error,
+    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
   }) {
     return success?.call(currencyResponseModel);
   }
@@ -613,8 +703,8 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     TResult Function(String message)? error,
+    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -628,8 +718,8 @@ class _$SuccessImpl implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
   }) {
     return success(this);
   }
@@ -639,8 +729,8 @@ class _$SuccessImpl implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
   }) {
     return success?.call(this);
   }
@@ -650,8 +740,8 @@ class _$SuccessImpl implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -668,151 +758,5 @@ abstract class _Success implements CurrencyState {
   CurrencyResponseModel get currencyResponseModel;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$CurrencyStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.message);
-
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'CurrencyState.error(message: $message)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(CurrencyResponseModel currencyResponseModel)
-        success,
-    required TResult Function(String message) error,
-  }) {
-    return error(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(CurrencyResponseModel currencyResponseModel)? success,
-    TResult? Function(String message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(CurrencyResponseModel currencyResponseModel)? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements CurrencyState {
-  const factory _Error(final String message) = _$ErrorImpl;
-
-  String get message;
-  @JsonKey(ignore: true)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
