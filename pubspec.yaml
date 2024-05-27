@@ -10,38 +10,50 @@ dependencies:
   bloc: ^8.1.4
   cached_network_image: ^3.3.0
   dartz: ^0.10.1
-  dio: ^5.4.3+1
   dotted_border: ^2.1.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
   flutter_secure_storage: ^9.1.1
-  flutter_svg: ^2.0.9
+  flutter_svg: ^2.0.10+1
   flutter_svg_provider: ^1.0.7
-  freezed: ^2.5.2
   freezed_annotation: ^2.4.1
   google_fonts: ^6.2.1
   http: ^1.2.1
   intl: ^0.19.0
   shared_preferences: ^2.2.3
   syncfusion_flutter_datepicker: ^25.1.42
+
 dev_dependencies:
   build_runner: ^2.4.9
   file_picker: ^8.0.3
+  flutter_gen_runner: ^5.5.0+1
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
   json_serializable: ^6.8.0
   sizer: ^2.0.0
+  freezed: ^2.5.2
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/
-    - assets/weather-icons/
-    - assets/weather_icons/wave.png
-    - assets/weather_icons/wind.png
-    - assets/weather_icons/
-    - assets/onboarding/
+    - assets/image/
+    - assets/image/logo/
+    - assets/image/onboarding/
+    - assets/image/payment/
+    - assets/image/port/
+    - assets/image/ship/
+    - assets/icon/
+    - assets/icon/weather/
+    - assets/icon/weather/en/am/
+    - assets/icon/weather/en/pm/
+    - assets/icon/weather/id/am/
+    - assets/icon/weather/id/pm/
+
+flutter_gen:
+  output: lib/core/assets/
+  integrations:
+    flutter_svg: true

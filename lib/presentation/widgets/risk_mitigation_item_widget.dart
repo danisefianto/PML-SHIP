@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../core/core.dart';
 import '../../core/styles.dart';
 
 class RiskmitigationItemwidget extends StatelessWidget {
@@ -31,10 +32,7 @@ class RiskmitigationItemwidget extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                'weather_icons/wave.png',
-                height: 32,
-              ),
+              Assets.icon.weather.wave.image(height: 32),
               const SizedBox(
                 width: 15,
               ),

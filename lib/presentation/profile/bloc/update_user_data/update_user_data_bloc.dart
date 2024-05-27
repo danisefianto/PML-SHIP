@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pml_ship/data/datasource/update_user_data_remote_datasource.dart';
-import 'package:pml_ship/data/models/request/update_user_data_request_model.dart';
-import 'package:pml_ship/data/models/response/update_user_data_response_model.dart';
+import '../../../../data/datasource/update_user_data_remote_datasource.dart';
+import '../../../../data/models/request/update_user_data_request_model.dart';
+import '../../../../data/models/response/update_user_data_response_model.dart';
 
 part 'update_user_data_event.dart';
 part 'update_user_data_state.dart';

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:pml_ship/data/datasource/quotation_remote_datasource.dart';
-import 'package:pml_ship/data/models/response/quotation_response_model.dart';
-import 'package:pml_ship/data/models/request/quotation_request_model.dart';
+import '../../../../data/datasource/quotation_remote_datasource.dart';
+import '../../../../data/models/response/quotation_response_model.dart';
+import '../../../../data/models/request/quotation_request_model.dart';
 
 part 'check_quotation_event.dart';
 part 'check_quotation_state.dart';

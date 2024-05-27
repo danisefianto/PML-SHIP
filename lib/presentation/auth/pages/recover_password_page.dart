@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pml_ship/core/components/buttons.dart';
 
+import '../../../core/core.dart';
 import '../../../core/styles.dart';
 
 class RecoverPasswordPage extends StatelessWidget {
@@ -92,9 +92,10 @@ class RecoverPasswordPage extends StatelessWidget {
                     // margin: EdgeInsets.only(top: 20.0),
                     width: 300,
                     height: 300,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/image_logo.png'),
+                        image: AssetImage(Assets
+                            .image.imageAppLogoTransparentBackground.path),
                       ),
                     ),
                   ),

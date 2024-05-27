@@ -60,9 +60,7 @@ class Datum {
   String toJson() => json.encode(toMap());
 
   factory Datum.fromMap(Map<String, dynamic> json) => Datum(
-        vesselId: json["vessel_id"] is int
-            ? json["vessel_id"]
-            : int.parse(json["vessel_id"].toString()),
+        vesselId: json["vessel_id"],
         vesselName: json["vessel_name"],
         portOfLoadingName: json["port_of_loading_name"],
         portOfDischargeName: json["port_of_discharge_name"],
@@ -71,14 +69,10 @@ class Datum {
         portOfDischargeLatitude: json["port_of_discharge_latitude"],
         portOfDischargeLongitude: json["port_of_discharge_longitude"],
         dateOfLoading: DateTime.parse(json["date_of_loading"]),
-        estimatedDay: json["estimated_day"] is int
-            ? json["estimated_day"]
-            : int.parse(json["estimated_day"].toString()),
+        estimatedDay: json["estimated_day"],
         estimatedDateOfDischarge:
             DateTime.parse(json["estimated_date_of_discharge"]),
-        estimatedCost: json["estimated_cost"] is int
-            ? json["estimated_cost"]
-            : int.parse(json["estimated_cost"].toString()), // Ensure int type
+        estimatedCost: json["estimated_cost"],
       );
 
   Map<String, dynamic> toMap() => {

@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-import 'package:pml_ship/data/models/response/user_response_model.dart';
-
-import 'package:pml_ship/core/components/buttons.dart';
+import '../../core/core.dart';
 import '../../core/styles.dart';
-
-import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
-import 'package:pml_ship/presentation/profile/bloc/currency/currency_bloc.dart';
-import 'package:pml_ship/presentation/profile/bloc/profile/profile_bloc.dart';
+import '../../data/datasource/auth_local_datasource.dart';
+import '../../data/models/response/user_response_model.dart';
+import '../auth/bloc/logout/logout_bloc.dart';
+import 'bloc/currency/currency_bloc.dart';
+import 'bloc/profile/profile_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -55,8 +53,9 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: EdgeInsets.all(defaultMargin),
           child: Row(
             children: [
-              const CircleAvatar(
-                backgroundImage: AssetImage('assets/image_profile_example.jpg'),
+              CircleAvatar(
+                backgroundImage:
+                    AssetImage(Assets.image.imageProfileExample.path),
                 radius: 30.0,
               ),
               const SizedBox(

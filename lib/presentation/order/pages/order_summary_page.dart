@@ -1,13 +1,13 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/core/components/buttons.dart';
-import 'package:pml_ship/data/models/request/summary_order_request_model.dart';
-import 'package:pml_ship/data/models/response/summary_order_response_model.dart';
-import 'package:pml_ship/presentation/main_page/main_page.dart';
-import 'package:pml_ship/presentation/order/bloc/summaryOrder/summary_order_bloc.dart';
 
+import '../../../core/components/buttons.dart';
 import '../../../core/styles.dart';
+import '../../../data/models/request/summary_order_request_model.dart';
+import '../../../data/models/response/summary_order_response_model.dart';
+import '../../main_page/main_page.dart';
+import '../bloc/summaryOrder/summary_order_bloc.dart';
 
 class OrderSummaryPage extends StatefulWidget {
   final String transactionIdMessage;

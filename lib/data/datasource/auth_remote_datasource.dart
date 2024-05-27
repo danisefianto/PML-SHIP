@@ -1,14 +1,13 @@
 import 'dart:developer';
 
-import 'package:pml_ship/core/constants/variables.dart';
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-
 import 'package:dartz/dartz.dart';
-
 import 'package:http/http.dart' as http;
-import 'package:pml_ship/data/models/request/register_request_model.dart';
-import 'package:pml_ship/data/models/response/auth_response_model.dart';
-import 'package:pml_ship/data/models/response/register_response_model.dart';
+
+import '../../core/constants/variables.dart';
+import '../models/request/register_request_model.dart';
+import '../models/response/auth_response_model.dart';
+import '../models/response/register_response_model.dart';
+import 'auth_local_datasource.dart';
 
 class AuthRemoteDatasource {
   Future<Either<String, RegisterResponseModel>> register(

@@ -1,4 +1,4 @@
-import 'package:pml_ship/data/models/response/auth_response_model.dart';
+import '../models/response/auth_response_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthLocalDataSource {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/core/components/buttons.dart';
-import '../auth/pages/sign_in_page.dart';
+
+import '../../core/components/buttons.dart';
 import '../../core/styles.dart';
+import '../auth/pages/sign_in_page.dart';
 
 class MetodePembayaranPage extends StatelessWidget {
   const MetodePembayaranPage({super.key});

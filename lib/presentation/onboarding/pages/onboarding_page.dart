@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
-// import 'package:flutter_cbt_tpa_app/core/extensions/build_context_ext.dart';
+import '../../../core/core.dart';
+import '../../auth/pages/sign_in_page.dart';
 
-// import '../../../core/assets/assets.gen.dart';
-import '../../../core/components/buttons.dart';
-// import '../../auth/pages/login_page.dart';
 import '../models/onboarding_model.dart';
 import '../widgets/onboarding_content.dart';
 import '../widgets/onboarding_indicator.dart';
@@ -23,17 +20,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   final onboardingData = [
     OnboardingModel(
-      image: 'assets/onboarding/slide01.jpg',
+      image: Assets.image.onboarding.imageSlide01.path,
       text:
           'Shop with ease and confidence - PT Patria Maritime Lines delivers your purchases directly to you',
     ),
     OnboardingModel(
-      image: 'assets/onboarding/slide02.jpg',
+      image: Assets.image.onboarding.imageSlide02.path,
       text:
           'Track your order in real-time and see it sailing smoothly towards you with PT Patria Maritime Lines.',
     ),
     OnboardingModel(
-      image: 'assets/onboarding/slide03.jpg',
+      image: Assets.image.onboarding.imageSlide03.path,
       text:
           'Sit back, relax, and enjoy your purchases delivered quickly and securely by PT Patria Maritime Lines.',
     ),
@@ -57,9 +54,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
         children: [
           Container(
             height: 400.0,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/onboarding/ornament.png'),
+                image: AssetImage(Assets.image.onboarding.imageOrnament.path),
                 fit: BoxFit.contain,
               ),
             ),

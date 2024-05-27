@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-import 'package:pml_ship/presentation/order/pages/order_port_page.dart';
 
+import '../../core/core.dart';
 import '../../core/styles.dart';
+import '../../data/datasource/auth_local_datasource.dart';
 import '../../data/models/response/auth_response_model.dart';
+import '../order/pages/order_port_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -298,9 +299,9 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundImage:
-                      AssetImage('assets/image_profile_example.jpg'),
+                      AssetImage(Assets.image.imageProfileExample.path),
                   radius: 30.0,
                 ),
                 const SizedBox(
@@ -333,10 +334,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          Image.asset(
-            'assets/image 6.png',
-            height: 200,
-          )
+          Assets.image.ship.imageShipPatriaAndromeda1.image(),
         ],
       );
     }
@@ -345,6 +343,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           header(),
+
           // customDataAdmin(),
           customDataCustomer(),
         ],

@@ -1,20 +1,26 @@
 class WeatherRequestModel {
-  final String latitude;
-  final String longitude;
+  final List<String> latitude;
+  final List<String> longitude;
+  final List<String> daily;
+  final String timezone;
   final String startDate;
   final String endDate;
 
   WeatherRequestModel({
     required this.latitude,
     required this.longitude,
+    required this.daily,
+    required this.timezone,
     required this.startDate,
     required this.endDate,
   });
 
-  Map<String, String> toQueryParameters() {
+  Map<String, dynamic> toQueryParameters() {
     return {
-      'latitude': latitude.toString(),
-      'longitude': longitude.toString(),
+      'latitude': latitude.join(','),
+      'longitude': longitude.join(','),
+      'daily': daily.join(','),
+      'timezone': timezone,
       'start_date': startDate,
       'end_date': endDate,
     };

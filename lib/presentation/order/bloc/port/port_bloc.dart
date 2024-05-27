@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pml_ship/data/datasource/port_remote_datasource.dart';
-import 'package:pml_ship/data/models/response/port_response_model.dart';
+import '../../../../data/datasource/port_remote_datasource.dart';
+import '../../../../data/models/response/port_response_model.dart';
 
 part 'port_event.dart';
 part 'port_state.dart';

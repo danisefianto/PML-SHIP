@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/core.dart';
 import '../../core/styles.dart';
 
 class ViewRatingPage extends StatelessWidget {
@@ -38,11 +39,9 @@ class ViewRatingPage extends StatelessWidget {
               children: [
                 Expanded(
                   // Wrap the image with Expanded
-                  child: Image.asset(
-                    'assets/images/image_ship_aurora_christine.png',
-                    width: 150.0,
-                    fit: BoxFit
-                        .contain, // Ensure the image fits within the available space
+                  child: Assets.image.payment.imageVisaLogo.image(
+                    width: 150,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ],
@@ -67,38 +66,23 @@ class ViewRatingPage extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            'assets/images/icon_star_colored.png',
-            height: 40,
-          ),
+          Assets.icon.iconStarColored.image(height: 40),
           const SizedBox(
             width: 10,
           ),
-          Image.asset(
-            'assets/images/icon_star_colored.png',
-            height: 40,
-          ),
+          Assets.icon.iconStarColored.image(height: 40),
           const SizedBox(
             width: 10,
           ),
-          Image.asset(
-            'assets/images/icon_star_colored.png',
-            height: 40,
-          ),
+          Assets.icon.iconStarColored.image(height: 40),
           const SizedBox(
             width: 10,
           ),
-          Image.asset(
-            'assets/images/icon_star_blank.png',
-            height: 40,
-          ),
+          Assets.icon.iconStarColored.image(height: 40),
           const SizedBox(
             width: 10,
           ),
-          Image.asset(
-            'assets/images/icon_star_blank.png',
-            height: 40,
-          ),
+          Assets.icon.iconStarColored.image(height: 40),
         ],
       );
     }

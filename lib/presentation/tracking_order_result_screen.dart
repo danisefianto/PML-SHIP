@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/core/components/buttons.dart';
 
+import '../core/components/buttons.dart';
 import '../core/styles.dart';
 import 'widgets/search_bar.dart';
 

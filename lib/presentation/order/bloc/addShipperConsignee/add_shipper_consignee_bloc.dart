@@ -1,13 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pml_ship/data/datasource/add_shipper_consignee_remote_datasource.dart';
-import 'package:pml_ship/data/models/response/add_shipper_consignee_response_model.dart';
-import 'package:pml_ship/data/models/request/add_shipper_consignee_request_model.dart';
 
+import '../../../../data/datasource/add_shipper_consignee_remote_datasource.dart';
+import '../../../../data/models/request/add_shipper_consignee_request_model.dart';
+import '../../../../data/models/response/add_shipper_consignee_response_model.dart';
+
+part 'add_shipper_consignee_bloc.freezed.dart';
 part 'add_shipper_consignee_event.dart';
 part 'add_shipper_consignee_state.dart';
-part 'add_shipper_consignee_bloc.freezed.dart';
 
 class AddShipperConsigneeBloc
     extends Bloc<AddShipperConsigneeEvent, AddShipperConsigneeState> {

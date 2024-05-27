@@ -1,12 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/core/components/buttons.dart';
 
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
-
+import '../../../core/core.dart';
 import '../../../core/styles.dart';
+import '../../../data/datasource/auth_local_datasource.dart';
+import '../bloc/login/login_bloc.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -103,9 +102,10 @@ class _SignInPageState extends State<SignInPage> {
                     margin: const EdgeInsets.only(top: 20.0),
                     width: 300,
                     height: 300,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/image_logo.png'),
+                        image: AssetImage(Assets
+                            .image.imageAppLogoTransparentBackground.path),
                       ),
                     ),
                   ),

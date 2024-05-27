@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/styles.dart';
 
 class FinishedHistoryCard extends StatelessWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../core/core.dart';
 import '../../core/styles.dart';
 
 class HowToPayPage extends StatefulWidget {
@@ -24,7 +26,7 @@ class _HowToPayPageState extends State<HowToPayPage> {
             },
           ),
         ),
-        backgroundColor: const Color(0xFFEAE5E5),
+        // backgroundColor: const Color(0xFFEAE5E5),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,8 +36,8 @@ class _HowToPayPageState extends State<HowToPayPage> {
                 // width: MediaQuery.of(context).size.width * 0.95,
                 padding: const EdgeInsets.all(20),
                 decoration: const BoxDecoration(
-                  color: Colors.grey,
-                ),
+                    // color: Colors.grey,
+                    ),
                 child: Column(
                   children: [
                     Text(
@@ -48,30 +50,18 @@ class _HowToPayPageState extends State<HowToPayPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/visa.png',
-                            height: 50,
-                          ),
+                          Assets.image.payment.imageVisaLogo.image(height: 50),
                           const SizedBox(width: 20),
-                          Image.asset(
-                            'assets/americanexpress.png',
-                            height: 50,
-                          ),
+                          Assets.image.payment.imageAmericanExpressLogo
+                              .image(height: 50),
                           const SizedBox(width: 20),
-                          Image.asset(
-                            'assets/jcb.png',
-                            height: 50,
-                          ),
+                          Assets.image.payment.imageJcbLogo.image(height: 50),
                           const SizedBox(width: 20),
-                          Image.asset(
-                            'assets/mastercard.png',
-                            height: 50,
-                          ),
+                          Assets.image.payment.imageMastercardLogo
+                              .image(height: 50),
                           const SizedBox(width: 20),
-                          Image.asset(
-                            'assets/unionpay.png',
-                            height: 50,
-                          ),
+                          Assets.image.payment.imageUnionpayLogo
+                              .image(height: 50),
                         ],
                       ),
                     ),
@@ -130,10 +120,8 @@ class _HowToPayPageState extends State<HowToPayPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/payment.jpg',
-                          height: 500,
-                        ),
+                        Assets.image.payment.imagePaymentTutorial
+                            .image(height: 400),
                       ],
                     ),
                     const SizedBox(height: 20),

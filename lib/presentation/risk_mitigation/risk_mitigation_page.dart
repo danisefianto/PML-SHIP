@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/risk_mitigation_item_widget.dart';
 
 class RiskMitigationScreen extends StatelessWidget {
@@ -23,7 +24,8 @@ class RiskMitigationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,

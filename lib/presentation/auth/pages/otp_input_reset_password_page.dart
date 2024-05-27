@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pml_ship/core/components/buttons.dart';
+import '../../../core/components/buttons.dart';
 
 import '../../../core/styles.dart';
 
@@ -50,7 +50,8 @@ class OtpInputPasswordResetPage extends StatelessWidget {
             decoration: InputDecoration(
                 hintText: code.toString(),
                 counterText: '',
-                hintStyle: const TextStyle(color: Colors.black, fontSize: 20.0))),
+                hintStyle:
+                    const TextStyle(color: Colors.black, fontSize: 20.0))),
       );
     }
 

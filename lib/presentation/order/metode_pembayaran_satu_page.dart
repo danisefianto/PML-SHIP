@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/core/components/buttons.dart';
+import '../../core/components/buttons.dart';
 import 'metode_pembayaran_satu_widget.dart';
 import '../../core/styles.dart';
 

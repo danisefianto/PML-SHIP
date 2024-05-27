@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/core/components/buttons.dart';
-// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
-import 'package:pml_ship/core/styles.dart';
+
+import '../../core/components/buttons.dart';
+import '../../core/styles.dart';
+import '../auth/pages/sign_in_page.dart';
 
 // Import halaman OTPPage2
 

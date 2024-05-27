@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/core/components/buttons.dart';
-import 'package:pml_ship/data/models/request/add_shipper_consignee_request_model.dart';
-import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
-import 'package:pml_ship/presentation/order/pages/order_summary_page.dart';
+import '../../../core/components/buttons.dart';
+import '../../../data/models/request/add_shipper_consignee_request_model.dart';
+import '../bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
+import 'order_summary_page.dart';
 
 import '../../../core/styles.dart';
 

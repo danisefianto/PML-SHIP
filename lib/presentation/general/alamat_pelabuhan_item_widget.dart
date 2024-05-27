@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/core.dart';
 // import 'package:pml_ship/core/app_export.dart';
 
 class AlamatPelabuhanItemWidget extends StatelessWidget {
@@ -24,9 +25,9 @@ class AlamatPelabuhanItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(width: 10),
-                Image.asset('assets/image_13.png'),
+                Assets.image.port.imagePort01.image(),
                 const SizedBox(width: 10),
-                Image.asset('assets/image_14.png')
+                Assets.image.port.imagePort02.image(),
               ],
             ),
             const SizedBox(height: 9),
@@ -36,8 +37,6 @@ class AlamatPelabuhanItemWidget extends StatelessWidget {
       ),
     );
   }
-
-
 
   Widget _buildButtonRow() {
     return const Row(
@@ -71,7 +70,4 @@ class AlamatPelabuhanItemWidget extends StatelessWidget {
       ],
     );
   }
-
-
-  }
-
+}

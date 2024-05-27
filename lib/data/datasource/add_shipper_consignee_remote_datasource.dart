@@ -1,12 +1,12 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:pml_ship/data/models/request/add_shipper_consignee_request_model.dart';
-import 'package:pml_ship/data/models/response/add_shipper_consignee_response_model.dart';
+import '../models/request/add_shipper_consignee_request_model.dart';
+import '../models/response/add_shipper_consignee_response_model.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:pml_ship/core/constants/variables.dart';
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
+import '../../core/constants/variables.dart';
+import 'auth_local_datasource.dart';
 
 class AddShipperConsigneeRemoteDataSource {
   Future<Either<String, AddShipperConsigneeResponseModel>> addShipperConsignee(

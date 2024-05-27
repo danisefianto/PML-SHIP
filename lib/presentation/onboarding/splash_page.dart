@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../core/core.dart';
 import '../../core/styles.dart';
 
 class SplashPage extends StatefulWidget {
@@ -27,10 +28,9 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            'assets/image_ship.jpg',
-            fit: BoxFit.cover, // Ensure the image covers the whole screen
+          Assets.image.ship.imageShipUnsplash.image(
             height: double.infinity, // Ensures image takes full height
+            fit: BoxFit.cover, // Ensure the image covers the whole screen
           ),
           Container(
             decoration: BoxDecoration(
