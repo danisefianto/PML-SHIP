@@ -1,11 +1,11 @@
 import 'dart:developer';
-import 'package:http/http.dart' as http;
-import '../../core/constants/variables.dart';
-import 'package:dartz/dartz.dart';
 
+import 'package:dartz/dartz.dart';
+import 'package:http/http.dart' as http;
+
+import '../../core/constants/variables.dart';
 import '../models/request/update_user_data_request_model.dart';
 import '../models/response/update_user_data_response_model.dart';
-
 import 'auth_local_datasource.dart';
 
 class UpdateUserDataRemoteDataSource {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../core/components/buttons.dart';
-import 'metode_pembayaran_satu_widget.dart';
+
+import '../../../core/core.dart';
 import '../../core/styles.dart';
+import 'metode_pembayaran_satu_widget.dart';
 
 class MetodePembayaranSatuPage extends StatefulWidget {
   const MetodePembayaranSatuPage({super.key});

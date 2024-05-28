@@ -386,6 +386,10 @@ class $AssetsIconWeatherEnPmGen {
 class $AssetsIconWeatherIdAmGen {
   const $AssetsIconWeatherIdAmGen();
 
+  /// File path: assets/icon/weather/id/am/angin-am.png
+  AssetGenImage get anginAm =>
+      const AssetGenImage('assets/icon/weather/id/am/angin-am.png');
+
   /// File path: assets/icon/weather/id/am/asap-am.webp
   AssetGenImage get asapAm =>
       const AssetGenImage('assets/icon/weather/id/am/asap-am.webp');
@@ -434,12 +438,9 @@ class $AssetsIconWeatherIdAmGen {
   AssetGenImage get udaraKaburAm =>
       const AssetGenImage('assets/icon/weather/id/am/udara kabur-am.webp');
 
-  /// File path: assets/icon/weather/id/am/wind-am.png
-  AssetGenImage get windAm =>
-      const AssetGenImage('assets/icon/weather/id/am/wind-am.png');
-
   /// List of all assets
   List<AssetGenImage> get values => [
+        anginAm,
         asapAm,
         berawanTebalAm,
         berawanAm,
@@ -451,8 +452,7 @@ class $AssetsIconWeatherIdAmGen {
         hujanRinganAm,
         hujanAm,
         kabutAm,
-        udaraKaburAm,
-        windAm
+        udaraKaburAm
       ];
 }
 

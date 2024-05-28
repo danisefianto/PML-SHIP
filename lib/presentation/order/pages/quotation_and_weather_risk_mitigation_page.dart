@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import '../../../core/styles.dart';
 
 import '../../../core/core.dart';
 import '../../../data/models/request/quotation_request_model.dart';
@@ -130,14 +131,6 @@ class _QuotationAndWeatherRiskMitigationPageState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              DateFormat("yyyy-MM-dd")
-                                  .format(routes.data[index].dateOfLoading),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
                               routes.data[index].vesselName,
                               style: const TextStyle(
                                 fontSize: 16,
@@ -159,21 +152,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                               ),
                             ),
                             Text(
-                              'Estimasi biaya: ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(routes.data[index].estimatedCost)}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              'Loading port coordinate: ${routes.data[index].portOfLoadingLatitude}, ${routes.data[index].portOfLoadingLongitude}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              'Discharge port coordinate: ${routes.data[index].portOfDischargeLatitude}, ${routes.data[index].portOfDischargeLongitude}',
+                              'Estimasi biaya: ${routes.data[index].estimatedCost.currencyEYDFormatRp}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -241,9 +220,10 @@ class _QuotationAndWeatherRiskMitigationPageState
                               (wc) => wc.code == code,
                               orElse: () => WeatherCode(
                                 code: -1,
-                                description: 'Unknown',
+                                indonesianDescription: 'Tidak diketahui',
+                                englishDescription: 'Unknown',
                                 icon: Assets.icon.iconImageNotFound.image(
-                                  height: 20,
+                                  width: 40,
                                 ), // Fallback image
                               ),
                             );
@@ -251,59 +231,333 @@ class _QuotationAndWeatherRiskMitigationPageState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (firstDayIndex != -1) ...[
-                              Text(
-                                  'Location 1: ${firstLocation.latitude}, ${firstLocation.longitude}'),
-                              Text(
-                                  'Weather for ${DateFormat("yyyy-MM-dd").format(firstLocation.daily.time.first)}:'),
-                              // Text(
-                              //     'Weather Code: ${firstLocation.daily.weatherCode.first}'),
-                              Row(
+                              // First Location Weather
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  weatherCodeObject(
-                                          firstLocation.daily.weatherCode.first)
-                                      .icon,
-                                  const SizedBox(width: 8),
-                                  Text(weatherCodeObject(
-                                          firstLocation.daily.weatherCode.first)
-                                      .description),
+                                  Container(
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      border: Border.all(),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          // Port of Loading:
+                                          '${selectedRoute.portOfLoadingName}',
+                                          style: primaryTextStyle.copyWith(
+                                            fontSize: 16,
+                                            fontWeight: bold,
+                                          ),
+                                        ),
+                                        Text(firstLocation.daily.time.first
+                                            .toFormattedInternationalLongDate()),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          border: Border.all(),
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${firstLocation.daily.temperature2MMin.first} °C/${firstLocation.daily.temperature2MMax.first} °C',
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontSize: 16,
+                                                    fontWeight: bold,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  weatherCodeObject(
+                                                          firstLocation
+                                                              .daily
+                                                              .weatherCode
+                                                              .first)
+                                                      .englishDescription,
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontWeight: semiBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            weatherCodeObject(firstLocation
+                                                    .daily.weatherCode.first)
+                                                .icon
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 100,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          border: Border.all(),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Assets.icon.weather.id.pm.anginPm
+                                                .image(height: 30),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text('Wind',
+                                                    style: primaryTextStyle
+                                                        .copyWith()),
+                                                Text(
+                                                  '${firstLocation.daily.windSpeed10MMax.first} km/h',
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontWeight: semiBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 100,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          border: Border.all(),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            const Icon(
+                                              Icons.near_me,
+                                              size: 20,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Wind from',
+                                                  style: primaryTextStyle
+                                                      .copyWith(),
+                                                ),
+                                                Text(
+                                                  '${firstLocation.daily.windDirection10MDominant.first} degree',
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontWeight: semiBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
-                              Text(
-                                  'Max Temp: ${firstLocation.daily.temperature2MMax.first} °C'),
-                              Text(
-                                  'Min Temp: ${firstLocation.daily.temperature2MMin.first} °C'),
-                              Text(
-                                  'Wind speed: ${firstLocation.daily.windSpeed10MMax.first} km/h'),
-                              Text(
-                                  'Wind speed: ${firstLocation.daily.windDirection10MDominant.first} degree'),
                             ],
+                            // const SizedBox(
+                            //   height: 20,
+                            // ),
+
+                            Divider(),
                             if (secondLocation != null &&
                                 lastDayIndex != -1) ...[
-                              Text(
-                                  'Location 2: ${secondLocation.latitude}, ${secondLocation.longitude}'),
-                              Text(
-                                  'Weather for ${DateFormat("yyyy-MM-dd").format(secondLocation.daily.time.last)}:'),
-                              Text(
-                                  'Weather Code: ${secondLocation.daily.weatherCode.last}'),
-                              Row(
+                              // Second Location Weather
+                              // First Location Weather
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  weatherCodeObject(
-                                          secondLocation.daily.weatherCode.last)
-                                      .icon,
-                                  const SizedBox(width: 8),
-                                  Text(weatherCodeObject(
-                                          secondLocation.daily.weatherCode.last)
-                                      .description),
+                                  Container(
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      border: Border.all(),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          // Port of Discharge:
+                                          '${selectedRoute.portOfDischargeName}',
+                                          style: primaryTextStyle.copyWith(
+                                            fontSize: 16,
+                                            fontWeight: bold,
+                                          ),
+                                        ),
+                                        Text(firstLocation.daily.time.last
+                                            .toFormattedInternationalLongDate()),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          border: Border.all(),
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${firstLocation.daily.temperature2MMin.last} °C/${firstLocation.daily.temperature2MMax.last} °C',
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontSize: 16,
+                                                    fontWeight: bold,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  weatherCodeObject(
+                                                          firstLocation.daily
+                                                              .weatherCode.last)
+                                                      .englishDescription,
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontWeight: semiBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            weatherCodeObject(firstLocation
+                                                    .daily.weatherCode.last)
+                                                .icon
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 100,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          border: Border.all(),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Assets.icon.weather.id.pm.anginPm
+                                                .image(height: 30),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text('Wind',
+                                                    style: primaryTextStyle
+                                                        .copyWith()),
+                                                Text(
+                                                  '${firstLocation.daily.windSpeed10MMax.last} km/h',
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontWeight: semiBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 100,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          border: Border.all(),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            const Icon(
+                                              Icons.near_me,
+                                              size: 20,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Wind from',
+                                                  style: primaryTextStyle
+                                                      .copyWith(),
+                                                ),
+                                                Text(
+                                                  '${firstLocation.daily.windDirection10MDominant.last} degree',
+                                                  style:
+                                                      primaryTextStyle.copyWith(
+                                                    fontWeight: semiBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
-                              Text(
-                                  'Max Temp: ${secondLocation.daily.temperature2MMax.last} °C'),
-                              Text(
-                                  'Min Temp: ${secondLocation.daily.temperature2MMin.last} °C'),
-                              Text(
-                                  'Wind speed: ${secondLocation.daily.windSpeed10MMax.last} km/h'),
-                              Text(
-                                  'Wind speed: ${secondLocation.daily.windDirection10MDominant.last} degree'),
                             ],
                           ],
                         );

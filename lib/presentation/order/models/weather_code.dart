@@ -1,14 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import '../../../core/core.dart';
 
 class WeatherCode {
   final int code;
-  final String description;
+  final String englishDescription;
+  final String indonesianDescription;
   final Image icon;
 
   WeatherCode({
     required this.code,
-    required this.description,
+    required this.englishDescription,
+    required this.indonesianDescription,
     required this.icon,
   });
 }
@@ -17,100 +21,122 @@ class WeatherCode {
 final List<WeatherCode> weatherCodes = [
   WeatherCode(
     code: 0,
-    description: 'Cerah / Clear Skies',
+    indonesianDescription: 'Cerah',
+    englishDescription: 'Clear Skies',
     icon: Assets.icon.weather.id.am.cerahAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 1,
-    description: 'Cerah Berawan / Partly Cloudy',
+    indonesianDescription: 'Cerah Berawan',
+    englishDescription: 'Partly Cloudy',
     icon: Assets.icon.weather.id.am.cerahBerawanAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 2,
-    description: 'Cerah Berawan / Partly Cloudy',
+    indonesianDescription: 'Cerah Berawan',
+    englishDescription: 'Partly Cloudy',
     icon: Assets.icon.weather.id.am.cerahBerawanAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 3,
-    description: 'Berawan / Mostly Cloudy',
+    indonesianDescription: 'Berawan',
+    englishDescription: 'Mostly Cloudy',
     icon: Assets.icon.weather.id.am.berawanAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 4,
-    description: 'Berawan Tebal / Overcast',
+    indonesianDescription: 'Berawan Tebal',
+    englishDescription: 'Overcast',
     icon: Assets.icon.weather.id.am.berawanTebalAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 5,
-    description: 'Udara Kabur / Haze',
+    indonesianDescription: 'Udara Kabur',
+    englishDescription: 'Haze',
     icon: Assets.icon.weather.id.am.udaraKaburAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 10,
-    description: 'Asap / Smoke',
+    indonesianDescription: 'Asap',
+    englishDescription: 'Smoke',
     icon: Assets.icon.weather.id.am.asapAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 45,
-    description: 'Kabut / Fog',
+    indonesianDescription: 'Kabut',
+    englishDescription: 'Fog',
     icon: Assets.icon.weather.id.am.kabutAm.image(
-      height: 20,
+      width: 40,
+    ),
+  ),
+  WeatherCode(
+    code: 51,
+    indonesianDescription: 'Gerimis',
+    englishDescription: 'Drizzle',
+    icon: Assets.icon.weather.id.am.hujanRinganAm.image(
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 60,
-    description: 'Hujan Ringan / Light Rain',
+    indonesianDescription: 'Hujan Ringan',
+    englishDescription: 'Light Rain',
     icon: Assets.icon.weather.id.am.hujanRinganAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 61,
-    description: 'Hujan Sedang / Rain',
+    indonesianDescription: 'Hujan Sedang',
+    englishDescription: 'Rain',
     icon: Assets.icon.weather.id.am.hujanAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 63,
-    description: 'Hujan Lebat / Heavy Rain',
+    indonesianDescription: 'Hujan Lebat',
+    englishDescription: 'Heavy Rain',
     icon: Assets.icon.weather.id.am.hujanLebatAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 80,
-    description: 'Hujan Lokal / Isolated Shower',
+    indonesianDescription: 'Hujan Lokal',
+    englishDescription: 'Isolated Shower',
     icon: Assets.icon.weather.id.am.hujanLokalAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 95,
-    description: 'Hujan Petir / Severe Thunderstorm',
+    indonesianDescription: 'Hujan Petir',
+    englishDescription: 'Severe Thunderstorm',
     icon: Assets.icon.weather.id.am.hujanPetirAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
   WeatherCode(
     code: 97,
-    description: 'Hujan Petir / Severe Thunderstorm',
+    indonesianDescription: 'Hujan Petir',
+    englishDescription: 'Severe Thunderstorm',
     icon: Assets.icon.weather.id.am.hujanPetirAm.image(
-      height: 20,
+      width: 40,
     ),
   ),
 ];

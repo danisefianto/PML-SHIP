@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../core/components/buttons.dart';
+
 import '../../../core/styles.dart';
+import '../../../core/core.dart';
 
 class SetNewPasswordPage extends StatelessWidget {
   const SetNewPasswordPage({super.key});
@@ -43,8 +44,6 @@ class SetNewPasswordPage extends StatelessWidget {
                         style: primaryTextStyle,
                         obscureText: true,
                         decoration: InputDecoration(
-                          // floatingLabelBehavior: FloatingLabelBehavior.always,
-                          // labelText: 'try',
                           hintText: customLabelText,
                           hintStyle: subtitleTextStyle,
                         ),
@@ -76,7 +75,6 @@ class SetNewPasswordPage extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Set a new password',

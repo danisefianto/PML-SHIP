@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../core/components/buttons.dart';
+import '../../../core/core.dart';
 
 import '../../../core/styles.dart';
 

@@ -1,10 +1,11 @@
 import 'dart:developer';
-import 'package:http/http.dart' as http;
+
 import 'package:dartz/dartz.dart';
+import 'package:http/http.dart' as http;
 
 import '../../core/constants/variables.dart';
-import 'auth_local_datasource.dart';
 import '../models/response/currency_response_model.dart';
+import 'auth_local_datasource.dart';
 
 class CurrencyRemoteDataSource {
   Future<Either<String, CurrencyResponseModel>> fetchLatestRates() async {

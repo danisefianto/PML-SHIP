@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/components/buttons.dart';
+
+import '../../../core/core.dart';
+import '../../../core/styles.dart';
 import '../../../data/models/request/add_shipper_consignee_request_model.dart';
 import '../bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
 import 'order_summary_page.dart';
-
-import '../../../core/styles.dart';
 
 class AddShipperConsigneeDataPage extends StatefulWidget {
   final String transactionIdMessage;

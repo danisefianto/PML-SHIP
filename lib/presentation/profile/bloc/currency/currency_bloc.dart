@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../data/datasource/currency_remote_datasource.dart';
 import '../../../../data/models/response/currency_response_model.dart';
 
+part 'currency_bloc.freezed.dart';
 part 'currency_event.dart';
 part 'currency_state.dart';
-part 'currency_bloc.freezed.dart';
 
 class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
   final CurrencyRemoteDataSource dataSource;

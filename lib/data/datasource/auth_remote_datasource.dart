@@ -65,8 +65,12 @@ class AuthRemoteDatasource {
 
     if (response.statusCode == 200) {
       return Right(AuthResponseModel.fromJson(response.body));
-    } else {
+    } else if (response.statusCode == 401) {
       return const Left('Login failed. Check again your email and password.');
+    } else if (response.statusCode == 500) {
+      return const Left('Server error. Please try again later.');
+    } else {
+      return const Left('Login failed. Please try again later.');
     }
   }
 

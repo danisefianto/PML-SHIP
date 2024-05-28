@@ -2,12 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../data/datasource/quotation_remote_datasource.dart';
-import '../../../../data/models/response/quotation_response_model.dart';
 import '../../../../data/models/request/quotation_request_model.dart';
+import '../../../../data/models/response/quotation_response_model.dart';
 
+part 'check_quotation_bloc.freezed.dart';
 part 'check_quotation_event.dart';
 part 'check_quotation_state.dart';
-part 'check_quotation_bloc.freezed.dart';
 
 class CheckQuotationBloc
     extends Bloc<CheckQuotationEvent, CheckQuotationState> {

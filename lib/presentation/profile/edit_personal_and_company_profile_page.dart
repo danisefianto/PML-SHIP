@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/components/buttons.dart';
+
+import '../../../core/core.dart';
 import '../../core/styles.dart';
 import '../../data/models/request/update_user_data_request_model.dart';
 import 'bloc/profile/profile_bloc.dart';

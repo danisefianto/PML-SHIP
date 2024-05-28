@@ -334,7 +334,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          Assets.image.ship.imageShipPatriaAndromeda1.image(),
+          Assets.image.ship.imageShipPatriaAndromeda1.image(height: 200),
         ],
       );
     }

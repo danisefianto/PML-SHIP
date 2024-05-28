@@ -1,14 +1,15 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/core.dart';
 
-import '../../../core/components/buttons.dart';
 import '../../../core/styles.dart';
 import '../../../data/models/request/summary_order_request_model.dart';
 import '../../../data/models/response/summary_order_response_model.dart';
 import '../../main_page/main_page.dart';
 import '../bloc/summaryOrder/summary_order_bloc.dart';
 
+// TODO: fix supaya mendapat nama kapal, ETD
 class OrderSummaryPage extends StatefulWidget {
   final String transactionIdMessage;
 
@@ -163,9 +164,9 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                                     primaryTextStyle.copyWith(fontWeight: bold),
                               ),
 
-                              // dari planning
+                              // dari planning/quotation
                               Text(
-                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading}',
+                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading?.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
