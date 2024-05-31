@@ -100,7 +100,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                         children: [
                                           Text(historyResponse
                                               .data![index].createdAt!
-                                              .toFormattedIndonesianShortDateAndTime()),
+                                              .toFormattedIndonesianShortDateAndUTC7Time()),
                                           Text(historyResponse
                                               .data![index].transactionId
                                               .toString()),
@@ -260,7 +260,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                              '${historyResponse.data![index].createdAt?.toFormattedIndonesianShortDateAndTime()}'),
+                                              '${historyResponse.data![index].createdAt?.toFormattedIndonesianShortDateAndUTC7Time()}'),
                                           Text(historyResponse
                                               .data![index].transactionId
                                               .toString()),
@@ -412,7 +412,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                              '${historyResponse.data![index].createdAt?.toFormattedIndonesianShortDateAndTime()}'),
+                                              '${historyResponse.data![index].createdAt?.toFormattedIndonesianShortDateAndUTC7Time()}'),
                                           Text(historyResponse
                                               .data![index].transactionId
                                               .toString()),
@@ -552,7 +552,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                         children: [
                                           Text(historyResponse
                                               .data![index].createdAt!
-                                              .toFormattedIndonesianShortDateAndTime()),
+                                              .toFormattedIndonesianShortDateAndUTC7Time()),
                                           Text(historyResponse
                                               .data![index].transactionId
                                               .toString()),

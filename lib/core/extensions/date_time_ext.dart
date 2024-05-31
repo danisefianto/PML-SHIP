@@ -92,39 +92,92 @@ extension DateTimeExt on DateTime {
   }
 
   String toFormattedUTC7Time() {
-    String hour = this.hour.toString().padLeft(2, '0');
+    // Get the datetime and add hours to get UTC+7 time (WIB)
+    String hour = add(const Duration(hours: 7)).hour.toString().padLeft(2, '0');
     String minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute WIB';
     // 07:59 WIB
   }
 
   String toFormattedUTC8Time() {
-    String hour = this.hour.toString().padLeft(2, '0');
+    // Get the datetime and add hours to get UTC+8 time (WITA)
+    String hour = add(const Duration(hours: 8)).hour.toString().padLeft(2, '0');
     String minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute WITA';
     // 08:59 WITA
   }
 
   String toFormattedUTC9Time() {
-    String hour = this.hour.toString().padLeft(2, '0');
+    // Get the datetime and add hours to get UTC+9 time (WIT)
+    String hour = add(const Duration(hours: 9)).hour.toString().padLeft(2, '0');
     String minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute WIT';
     // 09:59 WIT
   }
 
-  String toFormattedIndonesianLongDateAndTime() {
+  String toFormattedIndonesianLongDateAndUTC7Time() {
     String dayName = _dayIndonesianNames[weekday - 1];
     return '$dayName, $day ${toFormattedIndonesianMonth()} $year ${toFormattedUTC7Time()}';
     // Selasa, 31 Desember 2024 07:59 WIB
   }
 
-  String toFormattedIndonesianShortDateAndTime() {
-    String day = this.day.toString().padLeft(2, '0');
-    String month = this.month.toString().padLeft(2, '0');
-    return '$day-$month-$year ${toFormattedUTC7Time()}';
+  String toFormattedIndonesianLongDateAndUTC8Time() {
+    String dayName = _dayIndonesianNames[weekday - 1];
+    return '$dayName, $day ${toFormattedIndonesianMonth()} $year ${toFormattedUTC8Time()}';
+    // Selasa, 31 Desember 2024 08:59 WITA
+  }
+
+  String toFormattedIndonesianLongDateAndUTC9Time() {
+    String dayName = _dayIndonesianNames[weekday - 1];
+    return '$dayName, $day ${toFormattedIndonesianMonth()} $year ${toFormattedUTC9Time()}';
+    // Selasa, 31 Desember 2024 09:59 WIT
+  }
+
+  String toFormattedIndonesianShortDateAndUTC7Time() {
+    return '${toFormattedIndonesianShortDate()} ${toFormattedUTC7Time()}';
     // 02-05-2024 07:59 WIB
     // 31-05-2024 07:59 WIB
     // 02-12-2024 07:59 WIB
     // 31-12-2024 07:59 WIB
+  }
+
+  String toFormattedIndonesianShortDateAndUTC8Time() {
+    return '${toFormattedIndonesianShortDate()} ${toFormattedUTC8Time()}';
+    // 02-05-2024 08:59 WITA
+    // 31-05-2024 08:59 WITA
+    // 02-12-2024 08:59 WITA
+    // 31-12-2024 08:59 WITA
+  }
+
+  String toFormattedIndonesianShortDateAndUTC9Time() {
+    return '${toFormattedIndonesianShortDate()} ${toFormattedUTC9Time()}';
+    // 02-05-2024 09:59 WITA
+    // 31-05-2024 09:59 WITA
+    // 02-12-2024 09:59 WITA
+    // 31-12-2024 09:59 WITA
+  }
+
+  String toFormattedInternationalShortDateAndUTC7Time() {
+    return '${toFormattedInternationalShortDate()} ${toFormattedUTC7Time()}';
+    // 2024-05-02 07:59 WIB
+    // 2024-05-31 07:59 WIB
+    // 2024-12-02 07:59 WIB
+    // 2024-12-31 07:59 WIB
+  }
+
+  String toFormattedInternationalShortDateAndUTC8Time() {
+    return '${toFormattedInternationalShortDate()} ${toFormattedUTC8Time()}';
+    // 2024-05-02 08:59 WITA
+    // 2024-05-31 08:59 WITA
+    // 2024-12-02 08:59 WITA
+    // 2024-12-31 08:59 WITA
+  }
+
+  String toFormattedInternationalShortDateAndUTC9Time() {
+    return '${toFormattedInternationalShortDate()} ${toFormattedUTC9Time()}';
+    // 2024-05-02 09:59 WIT
+    // 2024-05-31 09:59 WIT
+    // 2024-12-02 09:59 WIT
+    // 2024-12-31 09:59 WIT
   }
 }
