@@ -28,6 +28,10 @@ class $AssetsIconGen {
   AssetGenImage get iconProfile =>
       const AssetGenImage('assets/icon/icon_profile.png');
 
+  /// File path: assets/icon/icon_rejected.png
+  AssetGenImage get iconRejected =>
+      const AssetGenImage('assets/icon/icon_rejected.png');
+
   /// File path: assets/icon/icon_star_blank.png
   AssetGenImage get iconStarBlank =>
       const AssetGenImage('assets/icon/icon_star_blank.png');
@@ -49,6 +53,7 @@ class $AssetsIconGen {
         iconImageNotFound,
         iconLoading,
         iconProfile,
+        iconRejected,
         iconStarBlank,
         iconStarColored,
         iconWaiting
