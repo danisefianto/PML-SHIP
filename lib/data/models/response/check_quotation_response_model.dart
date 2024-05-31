@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-class QuotationResponseModel {
+class CheckQuotationResponseModel {
   final String transactionId;
   final List<Datum> data;
 
-  QuotationResponseModel({
+  CheckQuotationResponseModel({
     required this.transactionId,
     required this.data,
   });
 
-  factory QuotationResponseModel.fromJson(String str) =>
-      QuotationResponseModel.fromMap(json.decode(str));
+  factory CheckQuotationResponseModel.fromJson(String str) =>
+      CheckQuotationResponseModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory QuotationResponseModel.fromMap(Map<String, dynamic> json) =>
-      QuotationResponseModel(
+  factory CheckQuotationResponseModel.fromMap(Map<String, dynamic> json) =>
+      CheckQuotationResponseModel(
         transactionId: json["transaction_id"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromMap(x))),
       );
@@ -38,7 +38,9 @@ class Datum {
   final DateTime dateOfLoading;
   final int estimatedDay;
   final DateTime estimatedDateOfDischarge;
-  final int estimatedCost;
+  final int shippingCost;
+  final int handlingCost;
+  final int biayaParkirPelabuhan;
 
   Datum({
     required this.vesselId,
@@ -52,7 +54,9 @@ class Datum {
     required this.dateOfLoading,
     required this.estimatedDay,
     required this.estimatedDateOfDischarge,
-    required this.estimatedCost,
+    required this.shippingCost,
+    required this.handlingCost,
+    required this.biayaParkirPelabuhan,
   });
 
   factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
@@ -72,7 +76,9 @@ class Datum {
         estimatedDay: json["estimated_day"],
         estimatedDateOfDischarge:
             DateTime.parse(json["estimated_date_of_discharge"]),
-        estimatedCost: json["estimated_cost"],
+        shippingCost: json["shipping_cost"],
+        handlingCost: json["handling_cost"],
+        biayaParkirPelabuhan: json["biaya_parkir_pelabuhan"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -89,6 +95,8 @@ class Datum {
         "estimated_day": estimatedDay,
         "estimated_date_of_discharge":
             "${estimatedDateOfDischarge.year.toString().padLeft(4, '0')}-${estimatedDateOfDischarge.month.toString().padLeft(2, '0')}-${estimatedDateOfDischarge.day.toString().padLeft(2, '0')}",
-        "estimated_cost": estimatedCost,
+        "shipping_cost": shippingCost,
+        "handling_cost": handlingCost,
+        "biaya_parkir_pelabuhan": biayaParkirPelabuhan,
       };
 }
