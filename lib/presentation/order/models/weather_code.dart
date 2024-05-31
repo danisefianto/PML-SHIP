@@ -92,6 +92,14 @@ final List<WeatherCode> weatherCodes = [
     ),
   ),
   WeatherCode(
+    code: 53,
+    indonesianDescription: 'Gerimis',
+    englishDescription: 'Drizzle',
+    icon: Assets.icon.weather.id.am.hujanRinganAm.image(
+      width: 40,
+    ),
+  ),
+  WeatherCode(
     code: 60,
     indonesianDescription: 'Hujan Ringan',
     englishDescription: 'Light Rain',
@@ -125,6 +133,14 @@ final List<WeatherCode> weatherCodes = [
   ),
   WeatherCode(
     code: 95,
+    indonesianDescription: 'Hujan Petir',
+    englishDescription: 'Severe Thunderstorm',
+    icon: Assets.icon.weather.id.am.hujanPetirAm.image(
+      width: 40,
+    ),
+  ),
+  WeatherCode(
+    code: 96,
     indonesianDescription: 'Hujan Petir',
     englishDescription: 'Severe Thunderstorm',
     icon: Assets.icon.weather.id.am.hujanPetirAm.image(

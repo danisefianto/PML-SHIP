@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../data/datasource/add_shipper_consignee_remote_datasource.dart';
+import '../../../../data/datasource/order_remote_datasource.dart';
 import '../../../../data/models/request/add_shipper_consignee_request_model.dart';
 import '../../../../data/models/response/add_shipper_consignee_response_model.dart';
 
@@ -12,7 +12,7 @@ part 'add_shipper_consignee_state.dart';
 
 class AddShipperConsigneeBloc
     extends Bloc<AddShipperConsigneeEvent, AddShipperConsigneeState> {
-  final AddShipperConsigneeRemoteDataSource datasource;
+  final OrderRemoteDatasource datasource;
   AddShipperConsigneeBloc(
     this.datasource,
   ) : super(const _Initial()) {

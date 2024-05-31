@@ -5,6 +5,6 @@ class CheckQuotationState with _$CheckQuotationState {
   const factory CheckQuotationState.initial() = _Initial;
   const factory CheckQuotationState.loading() = _Loading;
   const factory CheckQuotationState.success(
-      QuotationResponseModel quotationResponseModel) = _Success;
+      CheckQuotationResponseModel quotationResponseModel) = _Success;
   const factory CheckQuotationState.error(String message) = _Error;
 }

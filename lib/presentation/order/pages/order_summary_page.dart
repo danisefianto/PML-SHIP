@@ -1,15 +1,15 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/core.dart';
 
+import '../../../core/core.dart';
 import '../../../core/styles.dart';
 import '../../../data/models/request/summary_order_request_model.dart';
 import '../../../data/models/response/summary_order_response_model.dart';
 import '../../main_page/main_page.dart';
 import '../bloc/summaryOrder/summary_order_bloc.dart';
+import 'conference_page.dart';
 
-// TODO: fix supaya mendapat nama kapal, ETD
 class OrderSummaryPage extends StatefulWidget {
   final String transactionIdMessage;
 
@@ -142,7 +142,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           decoration: const BoxDecoration(color: Colors.amber),
                           padding: const EdgeInsets.all(8),
                           child: Text(
-                            'Detail pesanan ${widget.transactionIdMessage}',
+                            'Detail pesanan',
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
@@ -151,29 +151,36 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                  'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
-                              Text(
-                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
-
-                              Text('MV Brahma DUMMY'),
+                              Text(summaryOrderResponseModel.data.vesselName),
 
                               Text(
-                                '${summaryOrderResponseModel.data.portOfLoadingId} - ${summaryOrderResponseModel.data.portOfDischargeId}',
+                                '${summaryOrderResponseModel.data.portOfLoadingName} - ${summaryOrderResponseModel.data.portOfDischargeName}',
                                 style:
                                     primaryTextStyle.copyWith(fontWeight: bold),
                               ),
 
                               // dari planning/quotation
                               Text(
-                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading?.toFormattedIndonesianLongDate()}',
+                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
                               Text(
-                                'ETA: Selasa, 21 Mei 2024 DUMMY',
+                                'ETA: ${summaryOrderResponseModel.data.dateOfDischarge.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
+                              ),
+                              const Divider(),
+                              Text(
+                                  'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
+                              Text(
+                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
+
+                              const Divider(),
+                              Text(
+                                'Estimated Cost: ${summaryOrderResponseModel.data.shippingCost.currencyEYDFormatRp}',
+                                style: primaryTextStyle.copyWith(
+                                    fontWeight: bold, fontSize: 16),
                               ),
                             ],
                           ),
@@ -205,14 +212,14 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
                             // 'PT BUma',
-                            '${summaryOrderResponseModel.data.shipperName}',
+                            summaryOrderResponseModel.data.shipperName,
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            '${summaryOrderResponseModel.data.shipperAddress}',
+                            summaryOrderResponseModel.data.shipperAddress,
                           ),
                         ),
                       ],
@@ -241,14 +248,14 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           padding: const EdgeInsets.only(
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
-                            '${summaryOrderResponseModel.data.consigneeName}',
+                            summaryOrderResponseModel.data.consigneeName,
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            '${summaryOrderResponseModel.data.consigneeAddress}',
+                            summaryOrderResponseModel.data.consigneeAddress,
                           ),
                         ),
                       ],
@@ -257,18 +264,30 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  selectFile(),
+                  // selectFile(),
                   Padding(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Button.filled(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/sign-in');
+                        // Navigator.pushNamed(context, '/main-page');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ConferencePage(
+                              transactionIdMessage:
+                                  summaryOrderResponseModel.data.transactionId,
+                            ),
+                          ),
+                        );
                       },
-                      label: 'Negosiasi Pesanan',
+                      label: 'Lanjutkan Pesanan',
                     ),
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Button.outlined(
                       onPressed: () {
                         Navigator.pushNamed(context, '/sign-in');

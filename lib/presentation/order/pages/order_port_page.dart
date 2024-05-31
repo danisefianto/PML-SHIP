@@ -170,6 +170,8 @@ class _OrderPortPageState extends State<OrderPortPage> {
                       SelectDateWidget(
                         dateController: loadingDateController,
                         labelText: 'Loading date',
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now().add(const Duration(days: 180)),
                       ),
                       Text(
                         'Loading dates must be scheduled at least two week in advance.',
@@ -292,7 +294,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                       },
                     );
                   },
-                )
+                ),
               ],
             ),
           ),

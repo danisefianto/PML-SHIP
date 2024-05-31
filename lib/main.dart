@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // Data Source
-import 'package:pml_ship/data/datasource/add_shipper_consignee_remote_datasource.dart';
+
 import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
 import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/currency_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/order_port_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/port_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/quotation_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/summary_order_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/update_user_data_remote_datasource.dart';
+import 'package:pml_ship/data/datasource/history_remote_datasource.dart';
 import 'package:pml_ship/data/datasource/user_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/weather_remote_datasource.dart';
 // Bloc
 import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
@@ -28,6 +23,7 @@ import 'package:pml_ship/presentation/general/alamat_pelabuhan_screen.dart';
 import 'package:pml_ship/presentation/general/contact_us_page.dart';
 import 'package:pml_ship/presentation/general/frequently_asked_question_page.dart';
 import 'package:pml_ship/presentation/general/how_to_pay_page.dart';
+import 'package:pml_ship/presentation/history/bloc/history/history_bloc.dart';
 import 'package:pml_ship/presentation/main_page/main_page.dart';
 import 'package:pml_ship/presentation/onboarding/pages/onboarding_page.dart';
 import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
@@ -46,6 +42,10 @@ import 'package:pml_ship/presentation/settings/security_page.dart';
 import 'package:pml_ship/presentation/settings/where_you_are_logged_in_page.dart';
 // Presentation
 import 'package:pml_ship/presentation/track_vessel/tracking_order_screen.dart';
+
+import 'data/datasource/order_remote_datasource.dart';
+import 'presentation/order/bloc/addConference/add_conference_bloc.dart';
+import 'presentation/order/bloc/placeQuotation/place_quotation_bloc.dart';
 
 void main() {
   runApp(const MainApp());
@@ -75,30 +75,37 @@ class MainApp extends StatelessWidget {
           create: (context) => ProfileBloc(UserRemoteDatasource()),
         ),
         BlocProvider(
-          create: (context) => PortBloc(PortRemoteDataSource()),
-        ),
-        BlocProvider(
-          create: (context) => OrderPortBloc(OrderPortRemoteDataSource()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              AddShipperConsigneeBloc(AddShipperConsigneeRemoteDataSource()),
-        ),
-        BlocProvider(
-          create: (context) => SummaryOrderBloc(SummaryOrderRemoteDataSource()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              UpdateUserDataBloc(UpdateUserDataRemoteDataSource()),
-        ),
-        BlocProvider(
-          create: (context) => CheckQuotationBloc(QuotationRemoteDataSource()),
+          create: (context) => UpdateUserDataBloc(UserRemoteDatasource()),
         ),
         BlocProvider(
           create: (context) => CurrencyBloc(CurrencyRemoteDataSource()),
         ),
         BlocProvider(
-          create: (context) => WeatherBloc(WeatherRemoteDataSource()),
+          create: (context) => PortBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => OrderPortBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => CheckQuotationBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => PlaceQuotationBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => WeatherBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => AddShipperConsigneeBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => SummaryOrderBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => AddConferenceBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => HistoryBloc(HistoryRemoteDatasource()),
         ),
       ],
       child: MaterialApp(
@@ -135,6 +142,7 @@ class MainApp extends StatelessWidget {
           '/sign-in': (context) => const SignInPage(),
           '/sign-up': (context) => const Registerpage(),
           '/home': (context) => const MainPage(),
+          // '/home': (context) => const ConferencePage(),
           '/edit-personal-and-company-profile': (context) =>
               const EditPersonalAndCompanyProfilePage(),
           '/how-to-pay': (context) => const HowToPayPage(),

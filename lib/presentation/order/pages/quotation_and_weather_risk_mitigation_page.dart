@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import '../../../core/styles.dart';
 
 import '../../../core/core.dart';
-import '../../../data/models/request/quotation_request_model.dart';
+import '../../../core/styles.dart';
+import '../../../data/models/request/check_quotation_request_model.dart';
+import '../../../data/models/request/place_quotation_request_model.dart';
 import '../../../data/models/request/weather_request_model.dart';
 import '../bloc/checkQuotation/check_quotation_bloc.dart';
+import '../bloc/placeQuotation/place_quotation_bloc.dart';
 import '../bloc/weather/weather_bloc.dart';
 import '../models/weather_code.dart';
 import 'add_shipper_consignee_data_page.dart';
@@ -36,7 +38,8 @@ class _QuotationAndWeatherRiskMitigationPageState
     super.initState();
     context.read<CheckQuotationBloc>().add(
           CheckQuotationEvent.checkQuotation(
-            QuotationRequestModel(transactionId: widget.transactionIdMessage),
+            CheckQuotationRequestModel(
+                transactionId: widget.transactionIdMessage),
           ),
         );
   }
@@ -152,7 +155,21 @@ class _QuotationAndWeatherRiskMitigationPageState
                               ),
                             ),
                             Text(
-                              'Estimasi biaya: ${routes.data[index].estimatedCost.currencyEYDFormatRp}',
+                              'Estimasi biaya pengiriman: ${routes.data[index].shippingCost.currencyEYDFormatRp}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              'Estimasi biaya penanganan: ${routes.data[index].handlingCost.currencyEYDFormatRp}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              'Estimasi biaya parkir pelabuhan: ${routes.data[index].biayaParkirPelabuhan.currencyEYDFormatRp}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -227,6 +244,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                                 ), // Fallback image
                               ),
                             );
+                        // TODO: Change to BottomSheet
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -392,15 +410,10 @@ class _QuotationAndWeatherRiskMitigationPageState
                                 ],
                               ),
                             ],
-                            // const SizedBox(
-                            //   height: 20,
-                            // ),
-
-                            Divider(),
+                            const Divider(),
                             if (secondLocation != null &&
                                 lastDayIndex != -1) ...[
                               // Second Location Weather
-                              // First Location Weather
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -566,18 +579,58 @@ class _QuotationAndWeatherRiskMitigationPageState
                   },
                 ),
               const SizedBox(height: 16),
-              Button.outlined(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddShipperConsigneeDataPage(
-                        transactionIdMessage: widget.transactionIdMessage,
-                      ),
-                    ),
+              BlocConsumer<PlaceQuotationBloc, PlaceQuotationState>(
+                listener: (context, state) {
+                  state.maybeWhen(
+                    orElse: () {},
+                    success: (data) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Data ditambahkan'),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddShipperConsigneeDataPage(
+                            transactionIdMessage: widget.transactionIdMessage,
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
-                label: 'Next',
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () {
+                      return Button.outlined(
+                        onPressed: () {
+                          final dataRequest = PlaceQuotationRequestModel(
+                            transactionId: widget.transactionIdMessage,
+                            vesselId: selectedRoute.vesselId,
+                            dateOfDischarge:
+                                selectedRoute.estimatedDateOfDischarge,
+                            shippingCost: selectedRoute.shippingCost.toString(),
+                            handlingCost: selectedRoute.handlingCost.toString(),
+                            biayaParkirPelabuhan:
+                                selectedRoute.biayaParkirPelabuhan.toString(),
+                          );
+
+                          context.read<PlaceQuotationBloc>().add(
+                              PlaceQuotationEvent.placeQuotation(dataRequest));
+                        },
+                        label: 'Next',
+                      );
+                    },
+                    loading: () {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                },
               ),
             ],
           ),

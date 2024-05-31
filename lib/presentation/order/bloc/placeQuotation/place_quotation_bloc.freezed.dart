@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'check_quotation_bloc.dart';
+part of 'place_quotation_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,58 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CheckQuotationEvent {
+mixin _$PlaceQuotationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(CheckQuotationRequestModel data) checkQuotation,
+    required TResult Function(PlaceQuotationRequestModel data) placeQuotation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(CheckQuotationRequestModel data)? checkQuotation,
+    TResult? Function(PlaceQuotationRequestModel data)? placeQuotation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(CheckQuotationRequestModel data)? checkQuotation,
+    TResult Function(PlaceQuotationRequestModel data)? placeQuotation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_CheckQuotation value) checkQuotation,
+    required TResult Function(_PlaceQuotation value) placeQuotation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_CheckQuotation value)? checkQuotation,
+    TResult? Function(_PlaceQuotation value)? placeQuotation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_CheckQuotation value)? checkQuotation,
+    TResult Function(_PlaceQuotation value)? placeQuotation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CheckQuotationEventCopyWith<$Res> {
-  factory $CheckQuotationEventCopyWith(
-          CheckQuotationEvent value, $Res Function(CheckQuotationEvent) then) =
-      _$CheckQuotationEventCopyWithImpl<$Res, CheckQuotationEvent>;
+abstract class $PlaceQuotationEventCopyWith<$Res> {
+  factory $PlaceQuotationEventCopyWith(
+          PlaceQuotationEvent value, $Res Function(PlaceQuotationEvent) then) =
+      _$PlaceQuotationEventCopyWithImpl<$Res, PlaceQuotationEvent>;
 }
 
 /// @nodoc
-class _$CheckQuotationEventCopyWithImpl<$Res, $Val extends CheckQuotationEvent>
-    implements $CheckQuotationEventCopyWith<$Res> {
-  _$CheckQuotationEventCopyWithImpl(this._value, this._then);
+class _$PlaceQuotationEventCopyWithImpl<$Res, $Val extends PlaceQuotationEvent>
+    implements $PlaceQuotationEventCopyWith<$Res> {
+  _$PlaceQuotationEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +83,7 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$CheckQuotationEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$PlaceQuotationEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -97,7 +97,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'CheckQuotationEvent.started()';
+    return 'PlaceQuotationEvent.started()';
   }
 
   @override
@@ -113,7 +113,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(CheckQuotationRequestModel data) checkQuotation,
+    required TResult Function(PlaceQuotationRequestModel data) placeQuotation,
   }) {
     return started();
   }
@@ -122,7 +122,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(CheckQuotationRequestModel data)? checkQuotation,
+    TResult? Function(PlaceQuotationRequestModel data)? placeQuotation,
   }) {
     return started?.call();
   }
@@ -131,7 +131,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(CheckQuotationRequestModel data)? checkQuotation,
+    TResult Function(PlaceQuotationRequestModel data)? placeQuotation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +144,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_CheckQuotation value) checkQuotation,
+    required TResult Function(_PlaceQuotation value) placeQuotation,
   }) {
     return started(this);
   }
@@ -153,7 +153,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_CheckQuotation value)? checkQuotation,
+    TResult? Function(_PlaceQuotation value)? placeQuotation,
   }) {
     return started?.call(this);
   }
@@ -162,7 +162,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_CheckQuotation value)? checkQuotation,
+    TResult Function(_PlaceQuotation value)? placeQuotation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,25 +172,25 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements CheckQuotationEvent {
+abstract class _Started implements PlaceQuotationEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$CheckQuotationImplCopyWith<$Res> {
-  factory _$$CheckQuotationImplCopyWith(_$CheckQuotationImpl value,
-          $Res Function(_$CheckQuotationImpl) then) =
-      __$$CheckQuotationImplCopyWithImpl<$Res>;
+abstract class _$$PlaceQuotationImplCopyWith<$Res> {
+  factory _$$PlaceQuotationImplCopyWith(_$PlaceQuotationImpl value,
+          $Res Function(_$PlaceQuotationImpl) then) =
+      __$$PlaceQuotationImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CheckQuotationRequestModel data});
+  $Res call({PlaceQuotationRequestModel data});
 }
 
 /// @nodoc
-class __$$CheckQuotationImplCopyWithImpl<$Res>
-    extends _$CheckQuotationEventCopyWithImpl<$Res, _$CheckQuotationImpl>
-    implements _$$CheckQuotationImplCopyWith<$Res> {
-  __$$CheckQuotationImplCopyWithImpl(
-      _$CheckQuotationImpl _value, $Res Function(_$CheckQuotationImpl) _then)
+class __$$PlaceQuotationImplCopyWithImpl<$Res>
+    extends _$PlaceQuotationEventCopyWithImpl<$Res, _$PlaceQuotationImpl>
+    implements _$$PlaceQuotationImplCopyWith<$Res> {
+  __$$PlaceQuotationImplCopyWithImpl(
+      _$PlaceQuotationImpl _value, $Res Function(_$PlaceQuotationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -198,33 +198,33 @@ class __$$CheckQuotationImplCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$CheckQuotationImpl(
+    return _then(_$PlaceQuotationImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as CheckQuotationRequestModel,
+              as PlaceQuotationRequestModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CheckQuotationImpl implements _CheckQuotation {
-  const _$CheckQuotationImpl(this.data);
+class _$PlaceQuotationImpl implements _PlaceQuotation {
+  const _$PlaceQuotationImpl(this.data);
 
   @override
-  final CheckQuotationRequestModel data;
+  final PlaceQuotationRequestModel data;
 
   @override
   String toString() {
-    return 'CheckQuotationEvent.checkQuotation(data: $data)';
+    return 'PlaceQuotationEvent.placeQuotation(data: $data)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CheckQuotationImpl &&
+            other is _$PlaceQuotationImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -234,37 +234,37 @@ class _$CheckQuotationImpl implements _CheckQuotation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CheckQuotationImplCopyWith<_$CheckQuotationImpl> get copyWith =>
-      __$$CheckQuotationImplCopyWithImpl<_$CheckQuotationImpl>(
+  _$$PlaceQuotationImplCopyWith<_$PlaceQuotationImpl> get copyWith =>
+      __$$PlaceQuotationImplCopyWithImpl<_$PlaceQuotationImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(CheckQuotationRequestModel data) checkQuotation,
+    required TResult Function(PlaceQuotationRequestModel data) placeQuotation,
   }) {
-    return checkQuotation(data);
+    return placeQuotation(data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(CheckQuotationRequestModel data)? checkQuotation,
+    TResult? Function(PlaceQuotationRequestModel data)? placeQuotation,
   }) {
-    return checkQuotation?.call(data);
+    return placeQuotation?.call(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(CheckQuotationRequestModel data)? checkQuotation,
+    TResult Function(PlaceQuotationRequestModel data)? placeQuotation,
     required TResult orElse(),
   }) {
-    if (checkQuotation != null) {
-      return checkQuotation(data);
+    if (placeQuotation != null) {
+      return placeQuotation(data);
     }
     return orElse();
   }
@@ -273,53 +273,51 @@ class _$CheckQuotationImpl implements _CheckQuotation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_CheckQuotation value) checkQuotation,
+    required TResult Function(_PlaceQuotation value) placeQuotation,
   }) {
-    return checkQuotation(this);
+    return placeQuotation(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_CheckQuotation value)? checkQuotation,
+    TResult? Function(_PlaceQuotation value)? placeQuotation,
   }) {
-    return checkQuotation?.call(this);
+    return placeQuotation?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_CheckQuotation value)? checkQuotation,
+    TResult Function(_PlaceQuotation value)? placeQuotation,
     required TResult orElse(),
   }) {
-    if (checkQuotation != null) {
-      return checkQuotation(this);
+    if (placeQuotation != null) {
+      return placeQuotation(this);
     }
     return orElse();
   }
 }
 
-abstract class _CheckQuotation implements CheckQuotationEvent {
-  const factory _CheckQuotation(final CheckQuotationRequestModel data) =
-      _$CheckQuotationImpl;
+abstract class _PlaceQuotation implements PlaceQuotationEvent {
+  const factory _PlaceQuotation(final PlaceQuotationRequestModel data) =
+      _$PlaceQuotationImpl;
 
-  CheckQuotationRequestModel get data;
+  PlaceQuotationRequestModel get data;
   @JsonKey(ignore: true)
-  _$$CheckQuotationImplCopyWith<_$CheckQuotationImpl> get copyWith =>
+  _$$PlaceQuotationImplCopyWith<_$PlaceQuotationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$CheckQuotationState {
+mixin _$PlaceQuotationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CheckQuotationResponseModel quotationResponseModel)
-        success,
+    required TResult Function(PlaceQuotationResponseModel data) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -327,8 +325,7 @@ mixin _$CheckQuotationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult? Function(PlaceQuotationResponseModel data)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -336,8 +333,7 @@ mixin _$CheckQuotationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult Function(PlaceQuotationResponseModel data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -370,16 +366,16 @@ mixin _$CheckQuotationState {
 }
 
 /// @nodoc
-abstract class $CheckQuotationStateCopyWith<$Res> {
-  factory $CheckQuotationStateCopyWith(
-          CheckQuotationState value, $Res Function(CheckQuotationState) then) =
-      _$CheckQuotationStateCopyWithImpl<$Res, CheckQuotationState>;
+abstract class $PlaceQuotationStateCopyWith<$Res> {
+  factory $PlaceQuotationStateCopyWith(
+          PlaceQuotationState value, $Res Function(PlaceQuotationState) then) =
+      _$PlaceQuotationStateCopyWithImpl<$Res, PlaceQuotationState>;
 }
 
 /// @nodoc
-class _$CheckQuotationStateCopyWithImpl<$Res, $Val extends CheckQuotationState>
-    implements $CheckQuotationStateCopyWith<$Res> {
-  _$CheckQuotationStateCopyWithImpl(this._value, this._then);
+class _$PlaceQuotationStateCopyWithImpl<$Res, $Val extends PlaceQuotationState>
+    implements $PlaceQuotationStateCopyWith<$Res> {
+  _$PlaceQuotationStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -396,7 +392,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CheckQuotationStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$PlaceQuotationStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -410,7 +406,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'CheckQuotationState.initial()';
+    return 'PlaceQuotationState.initial()';
   }
 
   @override
@@ -427,9 +423,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CheckQuotationResponseModel quotationResponseModel)
-        success,
+    required TResult Function(PlaceQuotationResponseModel data) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -440,8 +434,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult? Function(PlaceQuotationResponseModel data)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -452,8 +445,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult Function(PlaceQuotationResponseModel data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -501,7 +493,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CheckQuotationState {
+abstract class _Initial implements PlaceQuotationState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -514,7 +506,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CheckQuotationStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$PlaceQuotationStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -528,7 +520,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'CheckQuotationState.loading()';
+    return 'PlaceQuotationState.loading()';
   }
 
   @override
@@ -545,9 +537,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CheckQuotationResponseModel quotationResponseModel)
-        success,
+    required TResult Function(PlaceQuotationResponseModel data) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -558,8 +548,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult? Function(PlaceQuotationResponseModel data)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -570,8 +559,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult Function(PlaceQuotationResponseModel data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -619,7 +607,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements CheckQuotationState {
+abstract class _Loading implements PlaceQuotationState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -629,12 +617,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CheckQuotationResponseModel quotationResponseModel});
+  $Res call({PlaceQuotationResponseModel data});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$CheckQuotationStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$PlaceQuotationStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -643,13 +631,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? quotationResponseModel = null,
+    Object? data = null,
   }) {
     return _then(_$SuccessImpl(
-      null == quotationResponseModel
-          ? _value.quotationResponseModel
-          : quotationResponseModel // ignore: cast_nullable_to_non_nullable
-              as CheckQuotationResponseModel,
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as PlaceQuotationResponseModel,
     ));
   }
 }
@@ -657,14 +645,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.quotationResponseModel);
+  const _$SuccessImpl(this.data);
 
   @override
-  final CheckQuotationResponseModel quotationResponseModel;
+  final PlaceQuotationResponseModel data;
 
   @override
   String toString() {
-    return 'CheckQuotationState.success(quotationResponseModel: $quotationResponseModel)';
+    return 'PlaceQuotationState.success(data: $data)';
   }
 
   @override
@@ -672,12 +660,11 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.quotationResponseModel, quotationResponseModel) ||
-                other.quotationResponseModel == quotationResponseModel));
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, quotationResponseModel);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -690,12 +677,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CheckQuotationResponseModel quotationResponseModel)
-        success,
+    required TResult Function(PlaceQuotationResponseModel data) success,
     required TResult Function(String message) error,
   }) {
-    return success(quotationResponseModel);
+    return success(data);
   }
 
   @override
@@ -703,11 +688,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult? Function(PlaceQuotationResponseModel data)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(quotationResponseModel);
+    return success?.call(data);
   }
 
   @override
@@ -715,13 +699,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult Function(PlaceQuotationResponseModel data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(quotationResponseModel);
+      return success(data);
     }
     return orElse();
   }
@@ -764,11 +747,11 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements CheckQuotationState {
-  const factory _Success(
-      final CheckQuotationResponseModel quotationResponseModel) = _$SuccessImpl;
+abstract class _Success implements PlaceQuotationState {
+  const factory _Success(final PlaceQuotationResponseModel data) =
+      _$SuccessImpl;
 
-  CheckQuotationResponseModel get quotationResponseModel;
+  PlaceQuotationResponseModel get data;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -785,7 +768,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$CheckQuotationStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$PlaceQuotationStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -815,7 +798,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'CheckQuotationState.error(message: $message)';
+    return 'PlaceQuotationState.error(message: $message)';
   }
 
   @override
@@ -840,9 +823,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CheckQuotationResponseModel quotationResponseModel)
-        success,
+    required TResult Function(PlaceQuotationResponseModel data) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -853,8 +834,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult? Function(PlaceQuotationResponseModel data)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -865,8 +845,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CheckQuotationResponseModel quotationResponseModel)?
-        success,
+    TResult Function(PlaceQuotationResponseModel data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -914,7 +893,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements CheckQuotationState {
+abstract class _Error implements PlaceQuotationState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
