@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'document_list_item_widget.dart';
 
 import '../auth/pages/sign_in_page.dart';
+import 'document_list_item_widget.dart';
 
 class DocumentListPage extends StatelessWidget {
   const DocumentListPage({super.key});

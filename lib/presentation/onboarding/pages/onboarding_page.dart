@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/core.dart';
 import '../../auth/pages/sign_in_page.dart';
-
 import '../models/onboarding_model.dart';
 import '../widgets/onboarding_content.dart';
 import '../widgets/onboarding_indicator.dart';

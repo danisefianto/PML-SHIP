@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
 import '../../../core/core.dart';
+import '../../../core/styles.dart';
 
 class SetNewPasswordPage extends StatelessWidget {
   const SetNewPasswordPage({super.key});

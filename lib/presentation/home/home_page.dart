@@ -194,30 +194,25 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/request-order');
+                    Navigator.pushNamed(context, '/risk-mitigation');
                   },
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/risk-mitigation');
-                    },
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 60.0,
-                          height: 60.0,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xff9DB6D4),
-                          ),
-                          child: Icon(
-                            Icons.warning,
-                            size: 30,
-                            color: primaryColor,
-                          ),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 60.0,
+                        height: 60.0,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xff9DB6D4),
                         ),
-                        const Text('Risk Mitigation'),
-                      ],
-                    ),
+                        child: Icon(
+                          Icons.warning,
+                          size: 30,
+                          color: primaryColor,
+                        ),
+                      ),
+                      const Text('Risk Mitigation'),
+                    ],
                   ),
                 ),
               ],
@@ -229,12 +224,6 @@ class _HomePageState extends State<HomePage> {
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/track-vessel');
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const TestDropDown(),
-                    //   ),
-                    // );
                   },
                   child: Column(
                     children: [
@@ -346,6 +335,37 @@ class _HomePageState extends State<HomePage> {
 
           // customDataAdmin(),
           customDataCustomer(),
+
+          // GestureDetector(
+          //   onTap: () {
+          //     // Navigator.pushNamed(context, '/list-document');
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             const UploadDocumentInOrderSummaryPage(),
+          //       ),
+          //     );
+          //   },
+          //   child: Column(
+          //     children: [
+          //       Container(
+          //         width: 60.0,
+          //         height: 60.0,
+          //         decoration: const BoxDecoration(
+          //           shape: BoxShape.circle,
+          //           color: Color(0xff9DB6D4),
+          //         ),
+          //         child: Icon(
+          //           Icons.people,
+          //           size: 30,
+          //           color: primaryColor,
+          //         ),
+          //       ),
+          //       const Text('Conference'),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(

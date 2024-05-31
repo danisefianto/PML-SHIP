@@ -5,10 +5,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/core.dart';
 import 'package:pml_ship/data/models/request/register_request_model.dart';
 import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
 
+import '../../../core/core.dart';
 import '../../../core/styles.dart';
 
 // TODO: Delete leading and appbar
