@@ -111,4 +111,20 @@ extension DateTimeExt on DateTime {
     return '$hour:$minute WIT';
     // 09:59 WIT
   }
+
+  String toFormattedIndonesianLongDateAndTime() {
+    String dayName = _dayIndonesianNames[weekday - 1];
+    return '$dayName, $day ${toFormattedIndonesianMonth()} $year ${toFormattedUTC7Time()}';
+    // Selasa, 31 Desember 2024 07:59 WIB
+  }
+
+  String toFormattedIndonesianShortDateAndTime() {
+    String day = this.day.toString().padLeft(2, '0');
+    String month = this.month.toString().padLeft(2, '0');
+    return '$day-$month-$year ${toFormattedUTC7Time()}';
+    // 02-05-2024 07:59 WIB
+    // 31-05-2024 07:59 WIB
+    // 02-12-2024 07:59 WIB
+    // 31-12-2024 07:59 WIB
+  }
 }
