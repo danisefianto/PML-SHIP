@@ -287,7 +287,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                     height: 30,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    padding: const EdgeInsets.all(30.0),
                     child: Button.outlined(
                       onPressed: () {
                         Navigator.pushNamed(context, '/sign-in');
