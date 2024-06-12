@@ -7,11 +7,4 @@ extension NumExt on num {
         decimalDigits: 0,
       ).format(this);
   // Output: Rp123.456
-
-// TODO: Output 123.456 IDR
-  // String get currencyISO4217FormatRp => NumberFormat.currency(
-  //       locale: 'id_ID',
-  //       symbol: 'IDR',
-  //       decimalDigits: 0,
-  //     ).format(this);
 }

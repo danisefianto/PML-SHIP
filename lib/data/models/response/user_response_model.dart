@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class UserResponseModel {
@@ -28,7 +29,7 @@ class FullUserData {
   final String name;
   final String phone;
   final String email;
-  final dynamic emailVerifiedAt;
+  final DateTime? emailVerifiedAt;
   final String companyName;
   final String companyAddress;
   final String companyPhone;
@@ -37,7 +38,9 @@ class FullUserData {
   final String companyAktaUrl;
   final DateTime createdAt;
   final DateTime updatedAt;
-  // final DateTime deletedAt;
+  final DateTime? deletedAt;
+  final DateTime? rejectedDate;
+  final DateTime? approvedDate;
 
   FullUserData({
     required this.id,
@@ -45,7 +48,7 @@ class FullUserData {
     required this.name,
     required this.phone,
     required this.email,
-    required this.emailVerifiedAt,
+    this.emailVerifiedAt,
     required this.companyName,
     required this.companyAddress,
     required this.companyPhone,
@@ -54,7 +57,9 @@ class FullUserData {
     required this.companyAktaUrl,
     required this.createdAt,
     required this.updatedAt,
-    // required this.deletedAt,
+    this.deletedAt,
+    this.rejectedDate,
+    this.approvedDate,
   });
 
   factory FullUserData.fromJson(String str) =>
@@ -68,7 +73,9 @@ class FullUserData {
         name: json["name"],
         phone: json["phone"],
         email: json["email"],
-        emailVerifiedAt: json["email_verified_at"],
+        emailVerifiedAt: json["email_verified_at"] != null
+            ? DateTime.parse(json["email_verified_at"])
+            : null,
         companyName: json["company_name"],
         companyAddress: json["company_address"],
         companyPhone: json["company_phone"],
@@ -77,7 +84,15 @@ class FullUserData {
         companyAktaUrl: json["company_akta_url"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        // deletedAt: DateTime.parse(json["deleted_at"]),
+        deletedAt: json["deleted_at"] != null
+            ? DateTime.parse(json["deleted_at"])
+            : null,
+        rejectedDate: json["rejectedDate"] != null
+            ? DateTime.parse(json["rejectedDate"])
+            : null,
+        approvedDate: json["approvedDate"] != null
+            ? DateTime.parse(json["approvedDate"])
+            : null,
       );
 
   Map<String, dynamic> toMap() => {
@@ -86,7 +101,7 @@ class FullUserData {
         "name": name,
         "phone": phone,
         "email": email,
-        "email_verified_at": emailVerifiedAt,
+        "email_verified_at": emailVerifiedAt?.toIso8601String(),
         "company_name": companyName,
         "company_address": companyAddress,
         "company_phone": companyPhone,
@@ -95,6 +110,8 @@ class FullUserData {
         "company_akta_url": companyAktaUrl,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-        // "deleted_at": deletedAt.toIso8601String(),
+        "deleted_at": deletedAt?.toIso8601String(),
+        "rejectedDate": rejectedDate?.toIso8601String(),
+        "approvedDate": approvedDate?.toIso8601String(),
       };
 }

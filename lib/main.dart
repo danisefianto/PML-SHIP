@@ -1,51 +1,60 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 // Data Source
 
-import 'package:pml_ship/data/datasource/auth_local_datasource.dart';
-import 'package:pml_ship/data/datasource/auth_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/currency_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/history_remote_datasource.dart';
-import 'package:pml_ship/data/datasource/user_remote_datasource.dart';
-// Bloc
-import 'package:pml_ship/presentation/auth/bloc/login/login_bloc.dart';
-import 'package:pml_ship/presentation/auth/bloc/logout/logout_bloc.dart';
-import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
-import 'package:pml_ship/presentation/auth/pages/new_password_set_page.dart';
-import 'package:pml_ship/presentation/auth/pages/otp_input_reset_password_page.dart';
-import 'package:pml_ship/presentation/auth/pages/recover_password_page.dart';
-import 'package:pml_ship/presentation/auth/pages/register_page.dart';
-import 'package:pml_ship/presentation/auth/pages/registration_process_waiting.dart';
-import 'package:pml_ship/presentation/auth/pages/set_new_password.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
-import 'package:pml_ship/presentation/document_list/document_list_page.dart';
-import 'package:pml_ship/presentation/general/alamat_pelabuhan_screen.dart';
-import 'package:pml_ship/presentation/general/contact_us_page.dart';
-import 'package:pml_ship/presentation/general/frequently_asked_question_page.dart';
-import 'package:pml_ship/presentation/general/how_to_pay_page.dart';
-import 'package:pml_ship/presentation/history/bloc/history/history_bloc.dart';
-import 'package:pml_ship/presentation/main_page/main_page.dart';
-import 'package:pml_ship/presentation/onboarding/pages/onboarding_page.dart';
-import 'package:pml_ship/presentation/order/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
-import 'package:pml_ship/presentation/order/bloc/checkQuotation/check_quotation_bloc.dart';
-import 'package:pml_ship/presentation/order/bloc/orderPort/order_port_bloc.dart';
-import 'package:pml_ship/presentation/order/bloc/port/port_bloc.dart';
-import 'package:pml_ship/presentation/order/bloc/summaryOrder/summary_order_bloc.dart';
-import 'package:pml_ship/presentation/order/bloc/weather/weather_bloc.dart';
-import 'package:pml_ship/presentation/profile/bloc/currency/currency_bloc.dart';
-import 'package:pml_ship/presentation/profile/bloc/profile/profile_bloc.dart';
-import 'package:pml_ship/presentation/profile/bloc/update_user_data/update_user_data_bloc.dart';
-import 'package:pml_ship/presentation/profile/edit_personal_and_company_profile_page.dart';
-import 'package:pml_ship/presentation/risk_mitigation/risk_mitigation_page.dart';
-import 'package:pml_ship/presentation/settings/notification_settings_page.dart';
-import 'package:pml_ship/presentation/settings/security_page.dart';
-import 'package:pml_ship/presentation/settings/where_you_are_logged_in_page.dart';
-// Presentation
-import 'package:pml_ship/presentation/track_vessel/tracking_order_screen.dart';
-
+import 'core/core.dart';
+import 'data/datasource/auth_local_datasource.dart';
+import 'data/datasource/auth_remote_datasource.dart';
+import 'data/datasource/currency_remote_datasource.dart';
+import 'data/datasource/history_remote_datasource.dart';
 import 'data/datasource/order_remote_datasource.dart';
-import 'presentation/order/bloc/addConference/add_conference_bloc.dart';
-import 'presentation/order/bloc/placeQuotation/place_quotation_bloc.dart';
+import 'data/datasource/update_document_remote_datasource.dart';
+import 'data/datasource/user_remote_datasource.dart';
+import 'presentation/bloc/addConference/add_conference_bloc.dart';
+import 'presentation/bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
+import 'presentation/bloc/checkQuotation/check_quotation_bloc.dart';
+import 'presentation/bloc/currency/currency_bloc.dart';
+import 'presentation/bloc/history/history_bloc.dart';
+// Bloc
+import 'presentation/bloc/login/login_bloc.dart';
+import 'presentation/bloc/logout/logout_bloc.dart';
+import 'presentation/bloc/orderPort/order_port_bloc.dart';
+import 'presentation/bloc/placeQuotation/place_quotation_bloc.dart';
+import 'presentation/bloc/port/port_bloc.dart';
+import 'presentation/bloc/profile/profile_bloc.dart';
+import 'presentation/bloc/register/register_bloc.dart';
+import 'presentation/bloc/summaryOrder/summary_order_bloc.dart';
+import 'presentation/bloc/update_user_data/update_user_data_bloc.dart';
+import 'presentation/bloc/upload_document/upload_document_bloc.dart';
+import 'presentation/bloc/weather/weather_bloc.dart';
+import 'presentation/pages/auth/new_password_set_page.dart';
+import 'presentation/pages/auth/otp_input_reset_password_page.dart';
+import 'presentation/pages/auth/recover_password_page.dart';
+import 'presentation/pages/auth/register_page.dart';
+import 'presentation/pages/auth/registration_process_waiting.dart';
+import 'presentation/pages/auth/set_new_password.dart';
+import 'presentation/pages/auth/sign_in_page.dart';
+import 'presentation/pages/document_list/document_list_page.dart';
+import 'presentation/pages/general/alamat_pelabuhan_screen.dart';
+import 'presentation/pages/general/contact_us_page.dart';
+import 'presentation/pages/general/frequently_asked_question_page.dart';
+import 'presentation/pages/general/how_to_pay_page.dart';
+import 'presentation/pages/main_page/main_page.dart';
+import 'presentation/pages/onboarding/onboarding_page.dart';
+import 'presentation/pages/order/conference_page.dart';
+import 'presentation/pages/order/order_port_page.dart';
+import 'presentation/pages/order/order_process_waiting.dart';
+import 'presentation/pages/order/order_summary_page.dart';
+import 'presentation/pages/order/quotation_and_weather_risk_mitigation_page.dart';
+import 'presentation/pages/profile/edit_personal_and_company_profile_page.dart';
+import 'presentation/pages/risk_mitigation/risk_mitigation_page.dart';
+import 'presentation/pages/settings/notification_settings_page.dart';
+import 'presentation/pages/settings/security_page.dart';
+import 'presentation/pages/settings/where_you_are_logged_in_page.dart';
+import 'presentation/pages/track_vessel/tracking_order_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -56,10 +65,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   home: ShowPortPage(),
-    // );
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -107,6 +112,10 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HistoryBloc(HistoryRemoteDatasource()),
         ),
+        BlocProvider(
+          create: (context) =>
+              UploadDocumentBloc(UpdateDocumentRemoteDatasource()),
+        ),
       ],
       child: MaterialApp(
         home: FutureBuilder<bool>(
@@ -121,10 +130,11 @@ class MainApp extends StatelessWidget {
             }
             if (snapshot.hasData) {
               if (snapshot.data!) {
+                log('snapshot.data: ${snapshot.data}');
                 return const MainPage();
               } else {
-                // Navigator.pushNamed(context, '/splash');
-                // return const SplashPage();
+                log('snapshot.data: ${snapshot.data}');
+
                 return const OnboardingPage();
               }
             }
@@ -135,33 +145,56 @@ class MainApp extends StatelessWidget {
             );
           },
         ),
-        // TODO: Change routes from namedRoutes to onGenerateRoute
-        // https://docs.flutter.dev/ui/navigation#limitations
         routes: {
           // '/splash': (context) => const SplashPage(),
-          '/sign-in': (context) => const SignInPage(),
-          '/sign-up': (context) => const Registerpage(),
+          AppRoutes.signIn: (context) => const SignInPage(),
+          AppRoutes.signUp: (context) => const Registerpage(),
           '/home': (context) => const MainPage(),
-          // '/home': (context) => const ConferencePage(),
-          '/edit-personal-and-company-profile': (context) =>
+          AppRoutes.orderPort: (context) => const OrderPortPage(),
+          AppRoutes.orderSummary: (context) {
+            String transactionId =
+                ModalRoute.of(context)!.settings.arguments as String;
+            return OrderSummaryPage(
+              transactionIdMessage: transactionId,
+            );
+          },
+          AppRoutes.quotationAndWeatherRiskMitigation: (context) {
+            String transactionId =
+                ModalRoute.of(context)!.settings.arguments as String;
+            return QuotationAndWeatherRiskMitigationPage(
+              transactionIdMessage: transactionId,
+            );
+          },
+          AppRoutes.addConference: (context) {
+            String transactionId =
+                ModalRoute.of(context)!.settings.arguments as String;
+            return ConferencePage(
+              transactionIdMessage: transactionId,
+            );
+          },
+          AppRoutes.editPersonalAndCompanyProfile: (context) =>
               const EditPersonalAndCompanyProfilePage(),
-          '/how-to-pay': (context) => const HowToPayPage(),
-          '/security': (context) => const SecurityPage(),
-          '/faq': (context) => const FAQPage(),
-          '/port-location': (context) => const AlamatPelabuhanScreen(),
-          '/recover-password': (context) => const RecoverPasswordPage(),
-          '/otp-input-password-reset': (context) =>
+          AppRoutes.howToPay: (context) => const HowToPayPage(),
+          AppRoutes.security: (context) => const SecurityPage(),
+          AppRoutes.faq: (context) => const FAQPage(),
+          AppRoutes.portLocation: (context) => const AlamatPelabuhanScreen(),
+          AppRoutes.recoverPassword: (context) => const RecoverPasswordPage(),
+          AppRoutes.otpInputPasswordReset: (context) =>
               const OtpInputPasswordResetPage(),
-          '/set-new-password': (context) => const SetNewPasswordPage(),
-          '/new-password-set': (context) => const NewPasswordSetPage(),
-          '/where-you-are-logged-in': (context) => const WhereYouAreLoggedIn(),
-          '/risk-mitigation': (context) => const RiskMitigationScreen(),
-          '/notification-settings': (context) => const NotificationSetting(),
-          '/contact-us': (context) => const ContactUsPage(),
-          '/list-document': (context) => const DocumentListPage(),
-          '/track-vessel': (context) => TrackingOneScreen(),
-          '/registration-process-waiting': (context) =>
+          AppRoutes.setNewPassword: (context) => const SetNewPasswordPage(),
+          AppRoutes.newPasswordSet: (context) => const NewPasswordSetPage(),
+          AppRoutes.whereYouAreLoggedIn: (context) =>
+              const WhereYouAreLoggedIn(),
+          AppRoutes.riskMitigation: (context) => const RiskMitigationScreen(),
+          AppRoutes.notificationSettings: (context) =>
+              const NotificationSetting(),
+          AppRoutes.contactUs: (context) => const ContactUsPage(),
+          AppRoutes.documentList: (context) => const DocumentListPage(),
+          AppRoutes.trackVessel: (context) => TrackingOneScreen(),
+          AppRoutes.registrationProcessWaiting: (context) =>
               const RegistrationProcessWaitingPage(),
+          AppRoutes.orderProcessWaiting: (context) =>
+              const OrderProcessWaitingPage(),
         },
       ),
     );

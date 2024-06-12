@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 class AuthResponseModel {
@@ -32,12 +31,14 @@ class User {
   final String role;
   final String name;
   final String email;
+  final String status; // Add status field
 
   User({
     required this.id,
     required this.role,
     required this.name,
     required this.email,
+    required this.status, // Initialize status
   });
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -49,6 +50,7 @@ class User {
         role: json["role"],
         name: json["name"],
         email: json["email"],
+        status: json["status"], // Map status
       );
 
   Map<String, dynamic> toMap() => {
@@ -56,5 +58,6 @@ class User {
         "role": role,
         "name": name,
         "email": email,
+        "status": status, // Convert status to map
       };
 }
