@@ -19,19 +19,19 @@ mixin _$SummaryOrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SummaryOrderRequestModel data) getSummaryOrder,
+    required TResult Function(String transactionId) getSummaryOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(SummaryOrderRequestModel data)? getSummaryOrder,
+    TResult? Function(String transactionId)? getSummaryOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SummaryOrderRequestModel data)? getSummaryOrder,
+    TResult Function(String transactionId)? getSummaryOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SummaryOrderRequestModel data) getSummaryOrder,
+    required TResult Function(String transactionId) getSummaryOrder,
   }) {
     return started();
   }
@@ -122,7 +122,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(SummaryOrderRequestModel data)? getSummaryOrder,
+    TResult? Function(String transactionId)? getSummaryOrder,
   }) {
     return started?.call();
   }
@@ -131,7 +131,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SummaryOrderRequestModel data)? getSummaryOrder,
+    TResult Function(String transactionId)? getSummaryOrder,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -182,7 +182,7 @@ abstract class _$$SummaryOrderImplCopyWith<$Res> {
           _$SummaryOrderImpl value, $Res Function(_$SummaryOrderImpl) then) =
       __$$SummaryOrderImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SummaryOrderRequestModel data});
+  $Res call({String transactionId});
 }
 
 /// @nodoc
@@ -196,13 +196,13 @@ class __$$SummaryOrderImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? transactionId = null,
   }) {
     return _then(_$SummaryOrderImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as SummaryOrderRequestModel,
+      null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -210,14 +210,14 @@ class __$$SummaryOrderImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SummaryOrderImpl implements _SummaryOrder {
-  const _$SummaryOrderImpl(this.data);
+  const _$SummaryOrderImpl(this.transactionId);
 
   @override
-  final SummaryOrderRequestModel data;
+  final String transactionId;
 
   @override
   String toString() {
-    return 'SummaryOrderEvent.getSummaryOrder(data: $data)';
+    return 'SummaryOrderEvent.getSummaryOrder(transactionId: $transactionId)';
   }
 
   @override
@@ -225,11 +225,12 @@ class _$SummaryOrderImpl implements _SummaryOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SummaryOrderImpl &&
-            (identical(other.data, data) || other.data == data));
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(runtimeType, transactionId);
 
   @JsonKey(ignore: true)
   @override
@@ -241,29 +242,29 @@ class _$SummaryOrderImpl implements _SummaryOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SummaryOrderRequestModel data) getSummaryOrder,
+    required TResult Function(String transactionId) getSummaryOrder,
   }) {
-    return getSummaryOrder(data);
+    return getSummaryOrder(transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(SummaryOrderRequestModel data)? getSummaryOrder,
+    TResult? Function(String transactionId)? getSummaryOrder,
   }) {
-    return getSummaryOrder?.call(data);
+    return getSummaryOrder?.call(transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SummaryOrderRequestModel data)? getSummaryOrder,
+    TResult Function(String transactionId)? getSummaryOrder,
     required TResult orElse(),
   }) {
     if (getSummaryOrder != null) {
-      return getSummaryOrder(data);
+      return getSummaryOrder(transactionId);
     }
     return orElse();
   }
@@ -301,10 +302,9 @@ class _$SummaryOrderImpl implements _SummaryOrder {
 }
 
 abstract class _SummaryOrder implements SummaryOrderEvent {
-  const factory _SummaryOrder(final SummaryOrderRequestModel data) =
-      _$SummaryOrderImpl;
+  const factory _SummaryOrder(final String transactionId) = _$SummaryOrderImpl;
 
-  SummaryOrderRequestModel get data;
+  String get transactionId;
   @JsonKey(ignore: true)
   _$$SummaryOrderImplCopyWith<_$SummaryOrderImpl> get copyWith =>
       throw _privateConstructorUsedError;

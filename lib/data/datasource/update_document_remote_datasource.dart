@@ -15,7 +15,7 @@ class UpdateDocumentRemoteDatasource {
         'POST', Uri.parse('${Variables.baseUrl}/api/updateDocument'));
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.token}',
+      'Authorization': 'Bearer ${authData.data.token}',
       'Accept': 'application/json',
     };
     request.fields.addAll(updateDocumentRequestModel.toMap());

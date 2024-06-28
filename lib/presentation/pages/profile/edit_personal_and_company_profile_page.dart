@@ -567,6 +567,7 @@ class _EditPersonalAndCompanyProfilePageState
                                           companyNpwp: _companyNpwpController
                                               .text
                                               .toString(),
+                                          method: 'PUT',
                                         );
                                         context.read<UpdateUserDataBloc>().add(
                                               UpdateUserDataEvent

@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     AuthLocalDataSource().getAuthData().then((value) {
       setState(() {
-        user = value.data;
+        user = value.data.user;
       });
     });
     super.initState();

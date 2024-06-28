@@ -93,6 +93,20 @@ class _RegisterpageState extends State<Registerpage> {
 
   @override
   Widget build(BuildContext context) {
+    bool allFieldsAreEmpty() {
+      return picNameController.text.isEmpty ||
+          picPhoneController.text.isEmpty ||
+          picEmailController.text.isEmpty ||
+          passwordController.text.isEmpty ||
+          confirmPasswordController.text.isEmpty ||
+          companyNameController.text.isEmpty ||
+          companyNpwpController.text.isEmpty ||
+          companyAddressController.text.isEmpty ||
+          companyPhoneController.text.isEmpty ||
+          companyEmailController.text.isEmpty ||
+          selectedFile == null;
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -455,21 +469,32 @@ class _RegisterpageState extends State<Registerpage> {
                             padding: const EdgeInsets.all(30.0),
                             child: Button.filled(
                               onPressed: () {
-                                final dataRequest = RegisterRequestModel(
-                                  name: picNameController.text,
-                                  phone: picPhoneController.text,
-                                  email: picEmailController.text,
-                                  password: passwordController.text,
-                                  companyName: companyNameController.text,
-                                  companyAddress: companyAddressController.text,
-                                  companyPhone: companyPhoneController.text,
-                                  companyEmail: companyEmailController.text,
-                                  companyNpwp: companyNpwpController.text,
-                                  companyAktaUrl: selectedFile!,
-                                );
-                                context
-                                    .read<RegisterBloc>()
-                                    .add(RegisterEvent.register(dataRequest));
+                                if (allFieldsAreEmpty()) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Some fields are empty!'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                } else {
+                                  final dataRequest = RegisterRequestModel(
+                                    name: picNameController.text,
+                                    phone: picPhoneController.text,
+                                    email: picEmailController.text,
+                                    password: passwordController.text,
+                                    companyName: companyNameController.text,
+                                    companyAddress:
+                                        companyAddressController.text,
+                                    companyPhone: companyPhoneController.text,
+                                    companyEmail: companyEmailController.text,
+                                    companyNpwp: companyNpwpController.text,
+                                    companyAkta: selectedFile!,
+                                  );
+
+                                  context
+                                      .read<RegisterBloc>()
+                                      .add(RegisterEvent.register(dataRequest));
+                                }
                               },
                               label: 'Signup',
                             ),

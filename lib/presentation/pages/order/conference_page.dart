@@ -7,8 +7,7 @@ import 'package:pml_ship/data/models/request/add_conference_request_model.dart';
 import 'package:pml_ship/presentation/widgets/select_date_widget.dart';
 
 import '../../../core/core.dart';
-import '../../../data/models/request/summary_order_request_model.dart';
-import '../../bloc/addConference/add_conference_bloc.dart';
+import '../../bloc/order/addConference/add_conference_bloc.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
 
 enum ConferenceMethod { offline, online }
@@ -49,11 +48,9 @@ class ConferencePage extends StatefulWidget {
 class _ConferencePageState extends State<ConferencePage> {
   @override
   void initState() {
-    context
-        .read<SummaryOrderBloc>()
-        .add(SummaryOrderEvent.getSummaryOrder(SummaryOrderRequestModel(
-          transactionId: widget.transactionIdMessage,
-        )));
+    context.read<SummaryOrderBloc>().add(SummaryOrderEvent.getSummaryOrder(
+          widget.transactionIdMessage,
+        ));
     super.initState();
   }
 

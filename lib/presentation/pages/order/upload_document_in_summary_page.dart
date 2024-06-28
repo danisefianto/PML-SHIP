@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/models/request/summary_order_request_model.dart';
 import '../../../data/models/response/summary_order_response_model.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
 import '../main_page/main_page.dart';
 
 class UploadDocumentInOrderSummaryPage extends StatefulWidget {
+  // TODO: ADD TRANSACTION ID
   const UploadDocumentInOrderSummaryPage({
     super.key,
   });
@@ -23,8 +23,9 @@ class _UploadDocumentInOrderSummaryPageState
     extends State<UploadDocumentInOrderSummaryPage> {
   @override
   void initState() {
-    context.read<SummaryOrderBloc>().add(SummaryOrderEvent.getSummaryOrder(
-        SummaryOrderRequestModel(transactionId: 'TRX1716972853')));
+    context
+        .read<SummaryOrderBloc>()
+        .add(const SummaryOrderEvent.getSummaryOrder('TRX1716972853'));
     super.initState();
   }
 
@@ -104,7 +105,7 @@ class _UploadDocumentInOrderSummaryPageState
                           ),
                         ),
                         Text(
-                          'Max input ${summaryOrderResponseModel.data.negotiationApprovedAt.add(const Duration(days: 1)).toFormattedIndonesianLongDateAndTime()}',
+                          'Max input ${summaryOrderResponseModel.data.negotiationApprovedAt?.add(const Duration(days: 1)).toIso8601String()}',
                           style: primaryTextStyle.copyWith(
                             fontWeight: regular,
                             color: Colors.red,
@@ -149,7 +150,8 @@ class _UploadDocumentInOrderSummaryPageState
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(summaryOrderResponseModel.data.vesselName),
+                              Text(
+                                  'Vessel ID: ${summaryOrderResponseModel.data.vesselId}'),
 
                               Text(
                                 '${summaryOrderResponseModel.data.portOfLoadingName} - ${summaryOrderResponseModel.data.portOfDischargeName}',

@@ -3,15 +3,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/models/request/add_shipper_consignee_request_model.dart';
-import '../../bloc/addShipperConsignee/add_shipper_consignee_bloc.dart';
+import '../../../data/models/request/new_order_request_model.dart';
+import '../../bloc/order/newOrder/new_order_bloc.dart';
 
 class AddShipperConsigneeDataPage extends StatefulWidget {
-  final String transactionIdMessage;
+  final int portOfLoadingId;
+  final int portOfDischargeId;
+  final int vesselId;
+  final DateTime dateOfDischarge;
+  final DateTime dateOfLoading;
+  final String cargoDescription;
+  final String cargoWeight;
+  final int shippingCost;
+  final int handlingCost;
+  final int biayaParkirPelabuhan;
 
   const AddShipperConsigneeDataPage({
     super.key,
-    required this.transactionIdMessage,
+    required this.portOfLoadingId,
+    required this.portOfDischargeId,
+    required this.vesselId,
+    required this.dateOfLoading,
+    required this.dateOfDischarge,
+    required this.cargoDescription,
+    required this.cargoWeight,
+    required this.shippingCost,
+    required this.handlingCost,
+    required this.biayaParkirPelabuhan,
   });
 
   @override
@@ -204,7 +222,7 @@ class _AddShipperConsigneeDataPageState
                   ],
                 ),
               ),
-              BlocConsumer<AddShipperConsigneeBloc, AddShipperConsigneeState>(
+              BlocConsumer<NewOrderBloc, NewOrderState>(
                 listener: (context, state) {
                   state.maybeWhen(
                     orElse: () {},
@@ -236,16 +254,24 @@ class _AddShipperConsigneeDataPageState
                     padding: const EdgeInsets.all(30.0),
                     child: Button.filled(
                       onPressed: () {
-                        final dataRequest = AddShipperConsigneeRequestModel(
-                          transactionId: widget.transactionIdMessage,
+                        final dataRequest = NewOrderRequestModel(
+                          portOfLoadingId: widget.portOfLoadingId,
+                          portOfDischargeId: widget.portOfDischargeId,
+                          dateOfLoading: widget.dateOfLoading,
+                          cargoDescription: widget.cargoDescription,
+                          cargoWeight: widget.cargoWeight,
+                          vesselId: widget.vesselId,
+                          dateOfDischarge: widget.dateOfDischarge,
+                          shippingCost: widget.shippingCost,
+                          handlingCost: widget.handlingCost,
+                          biayaParkirPelabuhan: widget.biayaParkirPelabuhan,
                           shipperName: shipperName.text,
                           shipperAddress: shipperAddress.text,
                           consigneeName: consigneeName.text,
                           consigneeAddress: consigneeAddress.text,
                         );
-                        context.read<AddShipperConsigneeBloc>().add(
-                              AddShipperConsigneeEvent.addShipperConsignee(
-                                  dataRequest),
+                        context.read<NewOrderBloc>().add(
+                              NewOrderEvent.placeOrder(dataRequest),
                             );
                       },
                       label: 'Place order',

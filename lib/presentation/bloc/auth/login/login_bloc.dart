@@ -2,8 +2,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/datasource/auth_remote_datasource.dart';
-import '../../../data/models/response/auth_response_model.dart';
+import '../../../../data/datasource/auth_remote_datasource.dart';
+import '../../../../data/models/response/auth_response_model.dart';
 
 part 'login_bloc.freezed.dart';
 part 'login_event.dart';

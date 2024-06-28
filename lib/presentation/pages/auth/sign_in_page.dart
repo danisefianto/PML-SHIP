@@ -6,7 +6,7 @@ import '../../../core/core.dart';
 import '../../../core/styles.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
 import '../../../data/models/response/auth_response_model.dart';
-import '../../bloc/login/login_bloc.dart';
+import '../../bloc/auth/login/login_bloc.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -29,42 +29,38 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> checkUserStatus(AuthResponseModel authResponseModel) async {
-    if (authResponseModel.data.role == 'user' &&
-        authResponseModel.data.status == 'pending') {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Pending Approval'),
-          content: const Text(
-              'Your registration is still pending. Please wait for approval.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
+    if (authResponseModel.data.user.role == 'user' &&
+        authResponseModel.data.user.status == 'pending') {
+      buildShowDialog(
+        'Registration pending',
+        'Your registration is pending. Please wait for the admin to approve your registration.',
       );
-    } else if (authResponseModel.data.role == 'user' &&
-        authResponseModel.data.status == 'rejected') {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Registration rejected'),
-          content: const Text(
-              'Your registration is rejected. Please register again with the right data and new PIC email.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
+    } else if (authResponseModel.data.user.role == 'user' &&
+        authResponseModel.data.user.status == 'rejected') {
+      buildShowDialog(
+        'Registration rejected',
+        'Your registration is rejected. Please register again with the right data and new PIC email.',
       );
     } else {
       AuthLocalDataSource().saveAuthData(authResponseModel);
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     }
+  }
+
+  Future<dynamic> buildShowDialog(String title, String content) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -291,12 +287,12 @@ class _SignInPageState extends State<SignInPage> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                forgotPassword(),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     forgotPassword(),
+            //   ],
+            // ),
             BlocListener<LoginBloc, LoginState>(
               listener: (context, state) {
                 state.maybeWhen(

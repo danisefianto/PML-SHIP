@@ -25,5 +25,6 @@ class AppRoutes {
   static const String orderProcessWaiting = '/order-process-waiting';
   static const String quotationAndWeatherRiskMitigation =
       '/quotation-and-weather-risk-mitigation';
+  static const String addShipperConsigneeData = '/add-shipper-consignee-data';
   static const String addConference = '/add-conference';
 }

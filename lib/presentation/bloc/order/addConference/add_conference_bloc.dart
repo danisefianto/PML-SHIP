@@ -3,8 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pml_ship/data/models/response/add_conference_response_model.dart';
 
-import '../../../data/datasource/order_remote_datasource.dart';
-import '../../../data/models/request/add_conference_request_model.dart';
+import '../../../../data/datasource/order_remote_datasource.dart';
+import '../../../../data/models/request/add_conference_request_model.dart';
 
 part 'add_conference_bloc.freezed.dart';
 part 'add_conference_event.dart';

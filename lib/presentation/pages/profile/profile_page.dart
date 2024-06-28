@@ -6,8 +6,8 @@ import '../../../core/core.dart';
 import '../../../core/styles.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
 import '../../../data/models/response/user_response_model.dart';
+import '../../bloc/auth/logout/logout_bloc.dart';
 import '../../bloc/currency/currency_bloc.dart';
-import '../../bloc/logout/logout_bloc.dart';
 import '../../bloc/profile/profile_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -179,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                         Text(
-                          '1 USD = ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(double.parse(rates.rate))}',
+                          '1 USD = ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(double.parse(rates.data.rate))}',
                           style: primaryTextStyle.copyWith(
                               fontSize: 16.0, fontWeight: semiBold),
                         ),
