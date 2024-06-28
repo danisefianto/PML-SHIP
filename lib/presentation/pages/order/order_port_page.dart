@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/models/request/order_port_request_model.dart';
-import '../../bloc/orderPort/order_port_bloc.dart';
 import '../../widgets/select_date_widget.dart';
 import '../../widgets/select_port_dropdown_widget.dart';
 
-// TODO: improvement. Jangan kirim POST semua data ke server supaya nanti di history tidak muncul semua. Kirim POST port loading, port discharge, dan loading date. Nantinya baru diPOST semua di halaman add consignee
 class OrderPortPage extends StatefulWidget {
   const OrderPortPage({super.key});
 
@@ -21,7 +17,6 @@ class _OrderPortPageState extends State<OrderPortPage> {
   int? dischargePortId;
 
   final TextEditingController loadingDateController = TextEditingController();
-
   final TextEditingController cargoDescriptionController =
       TextEditingController();
   final TextEditingController cargoWeightController = TextEditingController();
@@ -29,7 +24,6 @@ class _OrderPortPageState extends State<OrderPortPage> {
   @override
   void dispose() {
     loadingDateController.dispose();
-
     cargoDescriptionController.dispose();
     cargoWeightController.dispose();
     super.dispose();
@@ -173,9 +167,10 @@ class _OrderPortPageState extends State<OrderPortPage> {
                         lastDate: DateTime.now().add(const Duration(days: 180)),
                       ),
                       Text(
-                        'Loading dates must be scheduled at least two week in advance.',
+                        'Loading dates must be scheduled at least two weeks in advance.',
                         style: primaryTextStyle.copyWith(
-                            color: Colors.red.shade900),
+                          color: Colors.red.shade900,
+                        ),
                       ),
                     ],
                   ),
@@ -209,85 +204,54 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 ),
                 cargoInput(
                   'Gross weight',
-                  'How many metric tonness of your cargo?',
+                  'How many metric tonnes of your cargo?',
                   cargoWeightController,
                 ),
-                BlocConsumer<OrderPortBloc, OrderPortState>(
-                  listener: (context, state) {
-                    state.maybeWhen(
-                      orElse: () {},
-                      success: (data) {
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Button.filled(
+                    onPressed: () {
+                      if (allFieldsAreEmpty()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Data ditambahkan'),
+                            content: Text('Some fields are empty!'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (loadingPortId == dischargePortId) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'Loading port and discharge port cannot be the same!'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Quotation berhasil dibuat!'),
                             backgroundColor: Colors.green,
                           ),
                         );
                         Navigator.pushNamed(
                           context,
                           AppRoutes.quotationAndWeatherRiskMitigation,
-                          arguments: data.data.transactionId,
+                          arguments: {
+                            'portOfLoadingId': loadingPortId!,
+                            'portOfDischargeId': dischargePortId!,
+                            'dateOfLoading':
+                                DateTime.parse(loadingDateController.text),
+                            'cargoDescription': cargoDescriptionController.text,
+                            'cargoWeight': cargoWeightController.text,
+                          },
                         );
-                      },
-                      error: (error) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(error),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () {
-                        return Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Button.filled(
-                            onPressed: () {
-                              if (allFieldsAreEmpty()) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Some fields are empty!'),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                );
-                              } else if (loadingPortId == dischargePortId) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        'Loading port and discharge port cannot be the same!'),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                );
-                              } else {
-                                final dataRequest = OrderPortRequestModel(
-                                  portOfLoadingId: loadingPortId!,
-                                  portOfDischargeId: dischargePortId!,
-                                  dateOfLoading: DateTime.parse(
-                                      loadingDateController.text),
-                                  cargoDescription:
-                                      cargoDescriptionController.text,
-                                  cargoWeight: cargoWeightController.text,
-                                );
-
-                                context
-                                    .read<OrderPortBloc>()
-                                    .add(OrderPortEvent.orderPort(dataRequest));
-                              }
-                            },
-                            label: 'Next',
-                          ),
-                        );
-                      },
-                      loading: () {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                    );
-                  },
+                      }
+                    },
+                    label: 'Next',
+                  ),
                 ),
               ],
             ),

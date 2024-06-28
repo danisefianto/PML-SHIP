@@ -10,7 +10,7 @@ class RegisterRequestModel {
   final String companyPhone;
   final String companyEmail;
   final String companyNpwp;
-  final File companyAktaUrl;
+  final File companyAkta;
 
   RegisterRequestModel({
     required this.name,
@@ -22,7 +22,7 @@ class RegisterRequestModel {
     required this.companyPhone,
     required this.companyEmail,
     required this.companyNpwp,
-    required this.companyAktaUrl,
+    required this.companyAkta,
   });
 
   Map<String, String> toMap() {

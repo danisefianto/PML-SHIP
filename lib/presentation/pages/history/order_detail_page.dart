@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
 import '../../../../core/styles.dart';
-import '../../../../data/models/request/summary_order_request_model.dart';
 import '../../../../data/models/response/summary_order_response_model.dart';
 import '../../../data/models/request/update_document_request_model.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
@@ -26,15 +25,18 @@ class OrderDetailPage extends StatefulWidget {
   State<OrderDetailPage> createState() => _OrderDetailPageState();
 }
 
+// TODO:  Bloclistener on tombol upload, circular loading, snackbar success, hilangkan file picker setelah upload
+// TODO: Fix _isUploadSuccessful
+
 class _OrderDetailPageState extends State<OrderDetailPage> {
+  bool _isUploadSuccessful = false;
+
   File? selectedFile; // Variable to store the selected file
   @override
   void initState() {
-    context
-        .read<SummaryOrderBloc>()
-        .add(SummaryOrderEvent.getSummaryOrder(SummaryOrderRequestModel(
-          transactionId: widget.transactionIdMessage,
-        )));
+    context.read<SummaryOrderBloc>().add(SummaryOrderEvent.getSummaryOrder(
+          widget.transactionIdMessage,
+        ));
     super.initState();
   }
 
@@ -47,8 +49,10 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     setState(() {
       if (pickedFile != null) {
         selectedFile = File(pickedFile.files.single.path!);
+        _isUploadSuccessful = true; // File successfully picked
       } else {
         selectedFile = null;
+        _isUploadSuccessful = false; // No file picked
       }
     });
   }
@@ -130,7 +134,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                               fontWeight: bold, fontSize: 16),
                         ),
                         Text(
-                          'Max input ${DateTime.parse(summaryOrderResponseModel.data.negotiationApprovedAt).add(const Duration(days: 2)).toFormattedIndonesianLongDateAndUTC7Time()}.',
+                          'Max input ${summaryOrderResponseModel.data.negotiationApprovedAt?.add(const Duration(days: 2)).toIso8601String()}.',
                           style: primaryTextStyle.copyWith(
                               fontWeight: regular, color: Colors.red),
                         ),
@@ -173,7 +177,11 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(summaryOrderResponseModel.data.vesselName),
+                              Text(
+                                'Vessel ID: ${summaryOrderResponseModel.data.vesselId}',
+                                style:
+                                    primaryTextStyle.copyWith(fontWeight: bold),
+                              ),
 
                               Text(
                                 '${summaryOrderResponseModel.data.portOfLoadingName} - ${summaryOrderResponseModel.data.portOfDischargeName}',
@@ -357,7 +365,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: selectFile(),
+                    child: _isUploadSuccessful ? Container() : selectFile(),
                   ),
                   if (selectedFile != null)
                     Text(

@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 class AuthResponseModel {
-  final User data;
-  final String token;
+  final String status;
+  final String message;
+  final Data data;
 
   AuthResponseModel({
+    required this.status,
+    required this.message,
     required this.data,
-    required this.token,
   });
 
   factory AuthResponseModel.fromJson(String str) =>
@@ -16,29 +18,55 @@ class AuthResponseModel {
 
   factory AuthResponseModel.fromMap(Map<String, dynamic> json) =>
       AuthResponseModel(
-        data: User.fromMap(json["data"]),
+        status: json["status"],
+        message: json["message"],
+        data: Data.fromMap(json["data"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "status": status,
+        "message": message,
+        "data": data.toMap(),
+      };
+}
+
+class Data {
+  final User user;
+  final String token;
+
+  Data({
+    required this.user,
+    required this.token,
+  });
+
+  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Data.fromMap(Map<String, dynamic> json) => Data(
+        user: User.fromMap(json["user"]),
         token: json["token"],
       );
 
   Map<String, dynamic> toMap() => {
-        "data": data.toMap(),
+        "user": user.toMap(),
         "token": token,
       };
 }
 
 class User {
   final int id;
-  final String role;
   final String name;
   final String email;
-  final String status; // Add status field
+  final String role;
+  final String status;
 
   User({
     required this.id,
-    required this.role,
     required this.name,
     required this.email,
-    required this.status, // Initialize status
+    required this.role,
+    required this.status,
   });
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -47,17 +75,17 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["id"],
-        role: json["role"],
         name: json["name"],
         email: json["email"],
-        status: json["status"], // Map status
+        role: json["role"],
+        status: json["status"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "role": role,
         "name": name,
         "email": email,
-        "status": status, // Convert status to map
+        "role": role,
+        "status": status,
       };
 }

@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import '../../bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/models/request/check_quotation_request_model.dart';
-import '../../../data/models/request/place_quotation_request_model.dart';
+
+import '../../../data/models/request/new_check_quotation_request_model.dart';
 import '../../../data/models/request/weather_request_model.dart';
 import '../../../data/models/weather_code.dart';
-import '../../bloc/checkQuotation/check_quotation_bloc.dart';
-import '../../bloc/placeQuotation/place_quotation_bloc.dart';
 import '../../bloc/weather/weather_bloc.dart';
-import 'add_shipper_consignee_data_page.dart';
 
+// TODO: Refactor supaya lebih mudah dibaca dan kode lebih bersih
 class QuotationAndWeatherRiskMitigationPage extends StatefulWidget {
-  final String transactionIdMessage;
+  final int portOfLoadingId;
+  final int portOfDischargeId;
+  final DateTime dateOfLoading;
+  final String cargoDescription;
+  final String cargoWeight;
 
   const QuotationAndWeatherRiskMitigationPage({
     super.key,
-    required this.transactionIdMessage,
+    required this.portOfLoadingId,
+    required this.portOfDischargeId,
+    required this.dateOfLoading,
+    required this.cargoDescription,
+    required this.cargoWeight,
   });
 
   @override
@@ -36,10 +43,15 @@ class _QuotationAndWeatherRiskMitigationPageState
   @override
   void initState() {
     super.initState();
-    context.read<CheckQuotationBloc>().add(
-          CheckQuotationEvent.checkQuotation(
-            CheckQuotationRequestModel(
-                transactionId: widget.transactionIdMessage),
+    context.read<NewCheckQuotationBloc>().add(
+          NewCheckQuotationEvent.checkQuotation(
+            NewCheckQuotationRequestModel(
+              portOfLoadingId: widget.portOfLoadingId,
+              portOfDischargeId: widget.portOfDischargeId,
+              dateOfLoading: widget.dateOfLoading,
+              cargoDescription: widget.cargoDescription,
+              cargoWeight: widget.cargoWeight,
+            ),
           ),
         );
   }
@@ -65,7 +77,7 @@ class _QuotationAndWeatherRiskMitigationPageState
               ),
             ];
           },
-          body: BlocBuilder<CheckQuotationBloc, CheckQuotationState>(
+          body: BlocBuilder<NewCheckQuotationBloc, NewCheckQuotationState>(
             builder: (context, state) {
               return state.maybeWhen(
                 error: (message) {
@@ -109,7 +121,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                           ],
                           timezone: 'Asia/Bangkok',
                           startDate: DateFormat("yyyy-MM-dd")
-                              .format(selectedRoute.dateOfLoading),
+                              .format(widget.dateOfLoading),
                           endDate: DateFormat("yyyy-MM-dd")
                               .format(selectedRoute.estimatedDateOfDischarge),
                         );
@@ -148,7 +160,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                               ),
                             ),
                             Text(
-                              'Estimasi perjalanan: ${routes.data[index].estimatedDay} hari',
+                              'Estimasi perjalanan: ${routes.data[index].dayEstimation} hari',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -221,29 +233,36 @@ class _QuotationAndWeatherRiskMitigationPageState
                                 ? weatherResponse.locations[1]
                                 : null;
 
-                        final firstDayIndex = firstLocation.daily.time
-                            .indexWhere((date) => date
-                                .toIso8601String()
-                                .startsWith(DateFormat("yyyy-MM-dd")
-                                    .format(selectedRoute.dateOfLoading)));
+                        final firstDayIndex =
+                            firstLocation.daily.time.indexWhere((date) {
+                          return date.toIso8601String().startsWith(
+                              DateFormat("yyyy-MM-dd")
+                                  .format(widget.dateOfLoading));
+                        });
                         final lastDayIndex = secondLocation != null
-                            ? secondLocation.daily.time.indexWhere((date) =>
-                                date.toIso8601String().startsWith(
+                            ? secondLocation.daily.time.indexWhere((date) {
+                                return date.toIso8601String().startsWith(
                                     DateFormat("yyyy-MM-dd").format(
                                         selectedRoute
-                                            .estimatedDateOfDischarge)))
+                                            .estimatedDateOfDischarge));
+                              })
                             : -1;
-                        weatherCodeObject(int code) => weatherCodes.firstWhere(
-                              (wc) => wc.code == code,
-                              orElse: () => WeatherCode(
-                                code: -1,
-                                indonesianDescription: 'Tidak diketahui',
-                                englishDescription: 'Unknown',
-                                icon: Assets.icon.iconImageNotFound.image(
-                                  width: 40,
-                                ), // Fallback image
-                              ),
-                            );
+                        weatherCodeObject(int code) {
+                          return weatherCodes.firstWhere(
+                            (wc) {
+                              return wc.code == code;
+                            },
+                            orElse: () => WeatherCode(
+                              code: -1,
+                              indonesianDescription: 'Tidak diketahui',
+                              englishDescription: 'Unknown',
+                              icon: Assets.icon.iconImageNotFound.image(
+                                width: 40,
+                              ), // Fallback image
+                            ),
+                          );
+                        }
+
                         // TODO: Change to BottomSheet
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -593,58 +612,34 @@ class _QuotationAndWeatherRiskMitigationPageState
                   },
                 ),
               const SizedBox(height: 16),
-              BlocConsumer<PlaceQuotationBloc, PlaceQuotationState>(
-                listener: (context, state) {
-                  state.maybeWhen(
-                    orElse: () {},
-                    success: (data) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Data ditambahkan'),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddShipperConsigneeDataPage(
-                            transactionIdMessage: widget.transactionIdMessage,
-                          ),
-                        ),
-                      );
+              Button.outlined(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Data ditambahkan'),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.addShipperConsigneeData,
+                    arguments: {
+                      'portOfLoadingId': widget.portOfLoadingId,
+                      'portOfDischargeId': widget.portOfDischargeId,
+                      'vesselId': selectedRoute.id as int,
+                      'dateOfLoading': widget.dateOfLoading,
+                      'dateOfDischarge': DateTime.parse(DateFormat("yyyy-MM-dd")
+                          .format(selectedRoute.estimatedDateOfDischarge)),
+                      'cargoDescription': widget.cargoDescription,
+                      'cargoWeight': widget.cargoWeight,
+                      'shippingCost': selectedRoute.shippingCost as int,
+                      'handlingCost': selectedRoute.handlingCost as int,
+                      'biayaParkirPelabuhan':
+                          selectedRoute.biayaParkirPelabuhan as int,
                     },
                   );
                 },
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    orElse: () {
-                      return Button.outlined(
-                        onPressed: () {
-                          final dataRequest = PlaceQuotationRequestModel(
-                            transactionId: widget.transactionIdMessage,
-                            vesselId: selectedRoute.vesselId,
-                            dateOfDischarge:
-                                selectedRoute.estimatedDateOfDischarge,
-                            shippingCost: selectedRoute.shippingCost.toString(),
-                            handlingCost: selectedRoute.handlingCost.toString(),
-                            biayaParkirPelabuhan:
-                                selectedRoute.biayaParkirPelabuhan.toString(),
-                          );
-
-                          context.read<PlaceQuotationBloc>().add(
-                              PlaceQuotationEvent.placeQuotation(dataRequest));
-                        },
-                        label: 'Next',
-                      );
-                    },
-                    loading: () {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  );
-                },
+                label: 'Next',
               ),
             ],
           ),

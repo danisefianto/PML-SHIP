@@ -1,10 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class UserResponseModel {
+  final String status;
+  final String message;
   final FullUserData data;
 
   UserResponseModel({
+    required this.status,
+    required this.message,
     required this.data,
   });
 
@@ -15,16 +18,21 @@ class UserResponseModel {
 
   factory UserResponseModel.fromMap(Map<String, dynamic> json) =>
       UserResponseModel(
+        status: json["status"],
+        message: json["message"],
         data: FullUserData.fromMap(json["data"]),
       );
 
   Map<String, dynamic> toMap() => {
+        "status": status,
+        "message": message,
         "data": data.toMap(),
       };
 }
 
 class FullUserData {
   final int id;
+  final String status;
   final String role;
   final String name;
   final String phone;
@@ -35,15 +43,17 @@ class FullUserData {
   final String companyPhone;
   final String companyEmail;
   final String companyNpwp;
-  final String companyAktaUrl;
+  final String companyAkta;
+  final String? reasonRejected;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final DateTime? rejectedAt;
+  final DateTime? approvedAt;
   final DateTime? deletedAt;
-  final DateTime? rejectedDate;
-  final DateTime? approvedDate;
 
   FullUserData({
     required this.id,
+    required this.status,
     required this.role,
     required this.name,
     required this.phone,
@@ -54,12 +64,13 @@ class FullUserData {
     required this.companyPhone,
     required this.companyEmail,
     required this.companyNpwp,
-    required this.companyAktaUrl,
+    required this.companyAkta,
+    this.reasonRejected,
     required this.createdAt,
     required this.updatedAt,
+    this.rejectedAt,
+    this.approvedAt,
     this.deletedAt,
-    this.rejectedDate,
-    this.approvedDate,
   });
 
   factory FullUserData.fromJson(String str) =>
@@ -69,6 +80,7 @@ class FullUserData {
 
   factory FullUserData.fromMap(Map<String, dynamic> json) => FullUserData(
         id: json["id"],
+        status: json["status"],
         role: json["role"],
         name: json["name"],
         phone: json["phone"],
@@ -81,37 +93,40 @@ class FullUserData {
         companyPhone: json["company_phone"],
         companyEmail: json["company_email"],
         companyNpwp: json["company_NPWP"],
-        companyAktaUrl: json["company_akta_url"],
+        companyAkta: json["company_akta"],
+        reasonRejected: json["reason_rejected"] as String?,
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        rejectedAt: json["rejected_at"] != null
+            ? DateTime.parse(json["rejected_at"])
+            : null,
+        approvedAt: json["approved_at"] != null
+            ? DateTime.parse(json["approved_at"])
+            : null,
         deletedAt: json["deleted_at"] != null
             ? DateTime.parse(json["deleted_at"])
-            : null,
-        rejectedDate: json["rejectedDate"] != null
-            ? DateTime.parse(json["rejectedDate"])
-            : null,
-        approvedDate: json["approvedDate"] != null
-            ? DateTime.parse(json["approvedDate"])
             : null,
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
+        "status": status,
         "role": role,
         "name": name,
         "phone": phone,
         "email": email,
-        "email_verified_at": emailVerifiedAt?.toIso8601String(),
+        "email_verified_at": emailVerifiedAt,
         "company_name": companyName,
         "company_address": companyAddress,
         "company_phone": companyPhone,
         "company_email": companyEmail,
         "company_NPWP": companyNpwp,
-        "company_akta_url": companyAktaUrl,
+        "company_akta": companyAkta,
+        "reason_rejected": reasonRejected,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
+        "rejected_at": rejectedAt?.toIso8601String(),
+        "approved_at": approvedAt?.toIso8601String(),
         "deleted_at": deletedAt?.toIso8601String(),
-        "rejectedDate": rejectedDate?.toIso8601String(),
-        "approvedDate": approvedDate?.toIso8601String(),
       };
 }

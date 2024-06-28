@@ -14,7 +14,7 @@ class UserRemoteDatasource {
     final url = Uri.parse('${Variables.baseUrl}/api/user');
     final authData = await AuthLocalDataSource().getAuthData();
     final response = await http.get(url, headers: {
-      'Authorization': 'Bearer ${authData.token}',
+      'Authorization': 'Bearer ${authData.data.token}',
       'Accept': 'application/json',
     });
 
@@ -31,21 +31,30 @@ class UserRemoteDatasource {
   Future<Either<String, UpdateUserDataResponseModel>> updateUserData(
       UpdateUserDataRequestModel updateUserDataRequestModel) async {
     final authData = await AuthLocalDataSource().getAuthData();
-    final response = await http.patch(
-      Uri.parse('${Variables.baseUrl}/api/user'),
-      headers: <String, String>{
-        'Authorization': 'Bearer ${authData.token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: updateUserDataRequestModel.toJson(),
-    );
+
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${Variables.baseUrl}/api/user'));
+
+    var headers = {
+      'Authorization': 'Bearer ${authData.data.token}',
+      'Accept': 'application/json',
+    };
+    request.fields
+        .addAll(Map<String, String>.from(updateUserDataRequestModel.toMap()));
+    // request.files.add(await http.MultipartFile.fromPath(
+    //     'company_akta', updateUserDataRequestModel.companyAkta.path));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    final String body = await response.stream.bytesToString();
+
     log("request: ${updateUserDataRequestModel.toJson()}");
     log("resposen: ${response.statusCode}");
-    log("resposen: ${response.body}");
+    log("resposen: $body");
 
     if (response.statusCode == 200) {
-      return Right(UpdateUserDataResponseModel.fromJson(response.body));
+      return Right(UpdateUserDataResponseModel.fromJson(body));
     } else {
       return const Left('Update data error.');
     }

@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pml_ship/data/models/request/order_port_request_model.dart';
 import 'package:pml_ship/data/models/response/order_port_response_model.dart';
 
-import '../../../data/datasource/order_remote_datasource.dart';
+import '../../../../data/datasource/order_remote_datasource.dart';
 
 part 'order_port_bloc.freezed.dart';
 part 'order_port_event.dart';

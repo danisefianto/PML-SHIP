@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/models/request/summary_order_request_model.dart';
 import '../../../data/models/response/summary_order_response_model.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
 
@@ -23,11 +22,9 @@ class OrderSummaryPage extends StatefulWidget {
 class _OrderSummaryPageState extends State<OrderSummaryPage> {
   @override
   void initState() {
-    context
-        .read<SummaryOrderBloc>()
-        .add(SummaryOrderEvent.getSummaryOrder(SummaryOrderRequestModel(
-          transactionId: widget.transactionIdMessage,
-        )));
+    context.read<SummaryOrderBloc>().add(SummaryOrderEvent.getSummaryOrder(
+          widget.transactionIdMessage,
+        ));
     super.initState();
   }
 
@@ -149,7 +146,11 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(summaryOrderResponseModel.data.vesselName),
+                              Text(
+                                'Vessel ID: ${summaryOrderResponseModel.data.vesselId}',
+                                style:
+                                    primaryTextStyle.copyWith(fontWeight: bold),
+                              ),
 
                               Text(
                                 '${summaryOrderResponseModel.data.portOfLoadingName} - ${summaryOrderResponseModel.data.portOfDischargeName}',

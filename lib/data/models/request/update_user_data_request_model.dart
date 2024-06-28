@@ -10,7 +10,7 @@ class UpdateUserDataRequestModel {
   final String companyNpwp;
   final String companyPhone;
   final String companyEmail;
-
+  final String method;
   UpdateUserDataRequestModel({
     required this.name,
     required this.phone,
@@ -21,6 +21,7 @@ class UpdateUserDataRequestModel {
     required this.companyNpwp,
     required this.companyPhone,
     required this.companyEmail,
+    required this.method,
   });
 
   factory UpdateUserDataRequestModel.fromJson(String str) =>
@@ -39,6 +40,7 @@ class UpdateUserDataRequestModel {
         companyNpwp: json["company_NPWP"],
         companyPhone: json["company_phone"],
         companyEmail: json["company_email"],
+        method: json['_method'],
       );
 
   Map<String, dynamic> toMap() => {
@@ -51,5 +53,6 @@ class UpdateUserDataRequestModel {
         "company_NPWP": companyNpwp,
         "company_phone": companyPhone,
         "company_email": companyEmail,
+        '_method': method,
       };
 }

@@ -31,7 +31,7 @@ class AuthRemoteDatasource {
         'POST', Uri.parse('${Variables.baseUrl}/api/register'));
     request.fields.addAll(registerRequestModel.toMap());
     request.files.add(await http.MultipartFile.fromPath(
-        'company_akta_url', registerRequestModel.companyAktaUrl.path));
+        'company_akta', registerRequestModel.companyAkta.path));
 
     // Add header here if necessary
 
@@ -81,7 +81,7 @@ class AuthRemoteDatasource {
       final response = await http.delete(
         url,
         headers: {
-          'Authorization': 'Bearer ${authData.token}',
+          'Authorization': 'Bearer ${authData.data.token}',
           'Accept': 'application/json',
         },
       );

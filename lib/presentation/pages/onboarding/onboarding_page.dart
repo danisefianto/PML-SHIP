@@ -52,55 +52,57 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: 400.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(Assets.image.onboarding.imageOrnament.path),
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              SkipButton(onPressed: navigate),
-              OnboardingContent(
-                pageController: pageController,
-                onPageChanged: (index) {
-                  currentPage = index;
-                  setState(() {});
-                },
-                contents: onboardingData,
-              ),
-              OnboardingIndicator(
-                length: onboardingData.length,
-                currentPage: currentPage,
-              ),
-              const SizedBox(height: 40),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Button.filled(
-                  onPressed: () {
-                    if (currentPage < onboardingData.length - 1) {
-                      pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.ease,
-                      );
-                      currentPage++;
-                      setState(() {});
-                    } else {
-                      navigate();
-                    }
-                  },
-                  label: 'Continue',
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              height: 400.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(Assets.image.onboarding.imageOrnament.path),
+                  fit: BoxFit.contain,
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+            Column(
+              children: [
+                SkipButton(onPressed: navigate),
+                OnboardingContent(
+                  pageController: pageController,
+                  onPageChanged: (index) {
+                    currentPage = index;
+                    setState(() {});
+                  },
+                  contents: onboardingData,
+                ),
+                OnboardingIndicator(
+                  length: onboardingData.length,
+                  currentPage: currentPage,
+                ),
+                const SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Button.filled(
+                    onPressed: () {
+                      if (currentPage < onboardingData.length - 1) {
+                        pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        );
+                        currentPage++;
+                        setState(() {});
+                      } else {
+                        navigate();
+                      }
+                    },
+                    label: 'Continue',
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
