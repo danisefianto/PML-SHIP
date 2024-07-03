@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'order_port_bloc.dart';
+part of 'upload_payment_proof_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,58 +15,63 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$OrderPortEvent {
+mixin _$UploadPaymentProofEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(OrderPortRequestModel data) orderPort,
+    required TResult Function(
+            UpdatePaymentRequestModel data, String transactionId)
+        uploadPaymentProof,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(OrderPortRequestModel data)? orderPort,
+    TResult? Function(UpdatePaymentRequestModel data, String transactionId)?
+        uploadPaymentProof,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(OrderPortRequestModel data)? orderPort,
+    TResult Function(UpdatePaymentRequestModel data, String transactionId)?
+        uploadPaymentProof,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_OrderPort value) orderPort,
+    required TResult Function(_UploadPaymentProof value) uploadPaymentProof,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_OrderPort value)? orderPort,
+    TResult? Function(_UploadPaymentProof value)? uploadPaymentProof,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_OrderPort value)? orderPort,
+    TResult Function(_UploadPaymentProof value)? uploadPaymentProof,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderPortEventCopyWith<$Res> {
-  factory $OrderPortEventCopyWith(
-          OrderPortEvent value, $Res Function(OrderPortEvent) then) =
-      _$OrderPortEventCopyWithImpl<$Res, OrderPortEvent>;
+abstract class $UploadPaymentProofEventCopyWith<$Res> {
+  factory $UploadPaymentProofEventCopyWith(UploadPaymentProofEvent value,
+          $Res Function(UploadPaymentProofEvent) then) =
+      _$UploadPaymentProofEventCopyWithImpl<$Res, UploadPaymentProofEvent>;
 }
 
 /// @nodoc
-class _$OrderPortEventCopyWithImpl<$Res, $Val extends OrderPortEvent>
-    implements $OrderPortEventCopyWith<$Res> {
-  _$OrderPortEventCopyWithImpl(this._value, this._then);
+class _$UploadPaymentProofEventCopyWithImpl<$Res,
+        $Val extends UploadPaymentProofEvent>
+    implements $UploadPaymentProofEventCopyWith<$Res> {
+  _$UploadPaymentProofEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +88,7 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$OrderPortEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$UploadPaymentProofEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -97,7 +102,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'OrderPortEvent.started()';
+    return 'UploadPaymentProofEvent.started()';
   }
 
   @override
@@ -113,7 +118,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(OrderPortRequestModel data) orderPort,
+    required TResult Function(
+            UpdatePaymentRequestModel data, String transactionId)
+        uploadPaymentProof,
   }) {
     return started();
   }
@@ -122,7 +129,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(OrderPortRequestModel data)? orderPort,
+    TResult? Function(UpdatePaymentRequestModel data, String transactionId)?
+        uploadPaymentProof,
   }) {
     return started?.call();
   }
@@ -131,7 +139,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(OrderPortRequestModel data)? orderPort,
+    TResult Function(UpdatePaymentRequestModel data, String transactionId)?
+        uploadPaymentProof,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +153,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_OrderPort value) orderPort,
+    required TResult Function(_UploadPaymentProof value) uploadPaymentProof,
   }) {
     return started(this);
   }
@@ -153,7 +162,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_OrderPort value)? orderPort,
+    TResult? Function(_UploadPaymentProof value)? uploadPaymentProof,
   }) {
     return started?.call(this);
   }
@@ -162,7 +171,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_OrderPort value)? orderPort,
+    TResult Function(_UploadPaymentProof value)? uploadPaymentProof,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,98 +181,113 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements OrderPortEvent {
+abstract class _Started implements UploadPaymentProofEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$OrderPortImplCopyWith<$Res> {
-  factory _$$OrderPortImplCopyWith(
-          _$OrderPortImpl value, $Res Function(_$OrderPortImpl) then) =
-      __$$OrderPortImplCopyWithImpl<$Res>;
+abstract class _$$UploadPaymentProofImplCopyWith<$Res> {
+  factory _$$UploadPaymentProofImplCopyWith(_$UploadPaymentProofImpl value,
+          $Res Function(_$UploadPaymentProofImpl) then) =
+      __$$UploadPaymentProofImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OrderPortRequestModel data});
+  $Res call({UpdatePaymentRequestModel data, String transactionId});
 }
 
 /// @nodoc
-class __$$OrderPortImplCopyWithImpl<$Res>
-    extends _$OrderPortEventCopyWithImpl<$Res, _$OrderPortImpl>
-    implements _$$OrderPortImplCopyWith<$Res> {
-  __$$OrderPortImplCopyWithImpl(
-      _$OrderPortImpl _value, $Res Function(_$OrderPortImpl) _then)
+class __$$UploadPaymentProofImplCopyWithImpl<$Res>
+    extends _$UploadPaymentProofEventCopyWithImpl<$Res,
+        _$UploadPaymentProofImpl>
+    implements _$$UploadPaymentProofImplCopyWith<$Res> {
+  __$$UploadPaymentProofImplCopyWithImpl(_$UploadPaymentProofImpl _value,
+      $Res Function(_$UploadPaymentProofImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = null,
+    Object? transactionId = null,
   }) {
-    return _then(_$OrderPortImpl(
+    return _then(_$UploadPaymentProofImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as OrderPortRequestModel,
+              as UpdatePaymentRequestModel,
+      null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$OrderPortImpl implements _OrderPort {
-  const _$OrderPortImpl(this.data);
+class _$UploadPaymentProofImpl implements _UploadPaymentProof {
+  const _$UploadPaymentProofImpl(this.data, this.transactionId);
 
   @override
-  final OrderPortRequestModel data;
+  final UpdatePaymentRequestModel data;
+  @override
+  final String transactionId;
 
   @override
   String toString() {
-    return 'OrderPortEvent.orderPort(data: $data)';
+    return 'UploadPaymentProofEvent.uploadPaymentProof(data: $data, transactionId: $transactionId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OrderPortImpl &&
-            (identical(other.data, data) || other.data == data));
+            other is _$UploadPaymentProofImpl &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(runtimeType, data, transactionId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrderPortImplCopyWith<_$OrderPortImpl> get copyWith =>
-      __$$OrderPortImplCopyWithImpl<_$OrderPortImpl>(this, _$identity);
+  _$$UploadPaymentProofImplCopyWith<_$UploadPaymentProofImpl> get copyWith =>
+      __$$UploadPaymentProofImplCopyWithImpl<_$UploadPaymentProofImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(OrderPortRequestModel data) orderPort,
+    required TResult Function(
+            UpdatePaymentRequestModel data, String transactionId)
+        uploadPaymentProof,
   }) {
-    return orderPort(data);
+    return uploadPaymentProof(data, transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(OrderPortRequestModel data)? orderPort,
+    TResult? Function(UpdatePaymentRequestModel data, String transactionId)?
+        uploadPaymentProof,
   }) {
-    return orderPort?.call(data);
+    return uploadPaymentProof?.call(data, transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(OrderPortRequestModel data)? orderPort,
+    TResult Function(UpdatePaymentRequestModel data, String transactionId)?
+        uploadPaymentProof,
     required TResult orElse(),
   }) {
-    if (orderPort != null) {
-      return orderPort(data);
+    if (uploadPaymentProof != null) {
+      return uploadPaymentProof(data, transactionId);
     }
     return orElse();
   }
@@ -272,51 +296,53 @@ class _$OrderPortImpl implements _OrderPort {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_OrderPort value) orderPort,
+    required TResult Function(_UploadPaymentProof value) uploadPaymentProof,
   }) {
-    return orderPort(this);
+    return uploadPaymentProof(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_OrderPort value)? orderPort,
+    TResult? Function(_UploadPaymentProof value)? uploadPaymentProof,
   }) {
-    return orderPort?.call(this);
+    return uploadPaymentProof?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_OrderPort value)? orderPort,
+    TResult Function(_UploadPaymentProof value)? uploadPaymentProof,
     required TResult orElse(),
   }) {
-    if (orderPort != null) {
-      return orderPort(this);
+    if (uploadPaymentProof != null) {
+      return uploadPaymentProof(this);
     }
     return orElse();
   }
 }
 
-abstract class _OrderPort implements OrderPortEvent {
-  const factory _OrderPort(final OrderPortRequestModel data) = _$OrderPortImpl;
+abstract class _UploadPaymentProof implements UploadPaymentProofEvent {
+  const factory _UploadPaymentProof(
+          final UpdatePaymentRequestModel data, final String transactionId) =
+      _$UploadPaymentProofImpl;
 
-  OrderPortRequestModel get data;
+  UpdatePaymentRequestModel get data;
+  String get transactionId;
   @JsonKey(ignore: true)
-  _$$OrderPortImplCopyWith<_$OrderPortImpl> get copyWith =>
+  _$$UploadPaymentProofImplCopyWith<_$UploadPaymentProofImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$OrderPortState {
+mixin _$UploadPaymentProofState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderPortResponseModel orderPortResponseModel)
-        success,
+    required TResult Function(UpdatePaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -324,7 +350,7 @@ mixin _$OrderPortState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult? Function(UpdatePaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -332,7 +358,7 @@ mixin _$OrderPortState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult Function(UpdatePaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -365,16 +391,17 @@ mixin _$OrderPortState {
 }
 
 /// @nodoc
-abstract class $OrderPortStateCopyWith<$Res> {
-  factory $OrderPortStateCopyWith(
-          OrderPortState value, $Res Function(OrderPortState) then) =
-      _$OrderPortStateCopyWithImpl<$Res, OrderPortState>;
+abstract class $UploadPaymentProofStateCopyWith<$Res> {
+  factory $UploadPaymentProofStateCopyWith(UploadPaymentProofState value,
+          $Res Function(UploadPaymentProofState) then) =
+      _$UploadPaymentProofStateCopyWithImpl<$Res, UploadPaymentProofState>;
 }
 
 /// @nodoc
-class _$OrderPortStateCopyWithImpl<$Res, $Val extends OrderPortState>
-    implements $OrderPortStateCopyWith<$Res> {
-  _$OrderPortStateCopyWithImpl(this._value, this._then);
+class _$UploadPaymentProofStateCopyWithImpl<$Res,
+        $Val extends UploadPaymentProofState>
+    implements $UploadPaymentProofStateCopyWith<$Res> {
+  _$UploadPaymentProofStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -391,7 +418,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$OrderPortStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$UploadPaymentProofStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -405,7 +432,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'OrderPortState.initial()';
+    return 'UploadPaymentProofState.initial()';
   }
 
   @override
@@ -422,8 +449,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderPortResponseModel orderPortResponseModel)
-        success,
+    required TResult Function(UpdatePaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -434,7 +460,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult? Function(UpdatePaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -445,7 +471,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult Function(UpdatePaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -493,7 +519,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements OrderPortState {
+abstract class _Initial implements UploadPaymentProofState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -506,7 +532,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$OrderPortStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$UploadPaymentProofStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -520,7 +546,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'OrderPortState.loading()';
+    return 'UploadPaymentProofState.loading()';
   }
 
   @override
@@ -537,8 +563,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderPortResponseModel orderPortResponseModel)
-        success,
+    required TResult Function(UpdatePaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -549,7 +574,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult? Function(UpdatePaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -560,7 +585,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult Function(UpdatePaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -608,7 +633,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements OrderPortState {
+abstract class _Loading implements UploadPaymentProofState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -618,12 +643,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OrderPortResponseModel orderPortResponseModel});
+  $Res call({UpdatePaymentResponseModel responseModel});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$OrderPortStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$UploadPaymentProofStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -632,13 +657,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orderPortResponseModel = null,
+    Object? responseModel = null,
   }) {
     return _then(_$SuccessImpl(
-      null == orderPortResponseModel
-          ? _value.orderPortResponseModel
-          : orderPortResponseModel // ignore: cast_nullable_to_non_nullable
-              as OrderPortResponseModel,
+      null == responseModel
+          ? _value.responseModel
+          : responseModel // ignore: cast_nullable_to_non_nullable
+              as UpdatePaymentResponseModel,
     ));
   }
 }
@@ -646,14 +671,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.orderPortResponseModel);
+  const _$SuccessImpl(this.responseModel);
 
   @override
-  final OrderPortResponseModel orderPortResponseModel;
+  final UpdatePaymentResponseModel responseModel;
 
   @override
   String toString() {
-    return 'OrderPortState.success(orderPortResponseModel: $orderPortResponseModel)';
+    return 'UploadPaymentProofState.success(responseModel: $responseModel)';
   }
 
   @override
@@ -661,12 +686,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.orderPortResponseModel, orderPortResponseModel) ||
-                other.orderPortResponseModel == orderPortResponseModel));
+            (identical(other.responseModel, responseModel) ||
+                other.responseModel == responseModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, orderPortResponseModel);
+  int get hashCode => Object.hash(runtimeType, responseModel);
 
   @JsonKey(ignore: true)
   @override
@@ -679,11 +704,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderPortResponseModel orderPortResponseModel)
-        success,
+    required TResult Function(UpdatePaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
-    return success(orderPortResponseModel);
+    return success(responseModel);
   }
 
   @override
@@ -691,10 +715,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult? Function(UpdatePaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(orderPortResponseModel);
+    return success?.call(responseModel);
   }
 
   @override
@@ -702,12 +726,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult Function(UpdatePaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(orderPortResponseModel);
+      return success(responseModel);
     }
     return orElse();
   }
@@ -750,11 +774,11 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements OrderPortState {
-  const factory _Success(final OrderPortResponseModel orderPortResponseModel) =
+abstract class _Success implements UploadPaymentProofState {
+  const factory _Success(final UpdatePaymentResponseModel responseModel) =
       _$SuccessImpl;
 
-  OrderPortResponseModel get orderPortResponseModel;
+  UpdatePaymentResponseModel get responseModel;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -771,7 +795,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$OrderPortStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$UploadPaymentProofStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -801,7 +825,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'OrderPortState.error(message: $message)';
+    return 'UploadPaymentProofState.error(message: $message)';
   }
 
   @override
@@ -826,8 +850,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderPortResponseModel orderPortResponseModel)
-        success,
+    required TResult Function(UpdatePaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -838,7 +861,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult? Function(UpdatePaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -849,7 +872,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderPortResponseModel orderPortResponseModel)? success,
+    TResult Function(UpdatePaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -897,7 +920,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements OrderPortState {
+abstract class _Error implements UploadPaymentProofState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;

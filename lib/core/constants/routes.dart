@@ -27,4 +27,5 @@ class AppRoutes {
       '/quotation-and-weather-risk-mitigation';
   static const String addShipperConsigneeData = '/add-shipper-consignee-data';
   static const String addConference = '/add-conference';
+  static const String choosePayment = '/choose-payment';
 }

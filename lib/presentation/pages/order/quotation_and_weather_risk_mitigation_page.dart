@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import '../../bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-
 import '../../../data/models/request/new_check_quotation_request_model.dart';
 import '../../../data/models/request/weather_request_model.dart';
 import '../../../data/models/weather_code.dart';
+import '../../bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
 import '../../bloc/weather/weather_bloc.dart';
 
 // TODO: Refactor supaya lebih mudah dibaca dan kode lebih bersih
@@ -105,12 +104,12 @@ class _QuotationAndWeatherRiskMitigationPageState
                         });
                         final weatherRequestPortOfLoading = WeatherRequestModel(
                           latitude: [
-                            selectedRoute.portOfLoadingLatitude,
-                            selectedRoute.portOfDischargeLatitude
+                            selectedRoute.portOfLoading.latitude,
+                            selectedRoute.portOfDischarge.latitude
                           ],
                           longitude: [
-                            selectedRoute.portOfLoadingLongitude,
-                            selectedRoute.portOfDischargeLongitude
+                            selectedRoute.portOfLoading.longitude,
+                            selectedRoute.portOfDischarge.longitude
                           ],
                           daily: [
                             'weather_code',
@@ -153,7 +152,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                               ),
                             ),
                             Text(
-                              '${routes.data[index].portOfLoadingName} - ${routes.data[index].portOfDischargeName}',
+                              '${routes.data[index].portOfLoading.name} - ${routes.data[index].portOfDischarge.name}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -167,21 +166,21 @@ class _QuotationAndWeatherRiskMitigationPageState
                               ),
                             ),
                             Text(
-                              'Estimasi biaya pengiriman: ${routes.data[index].shippingCost.currencyEYDFormatRp}',
+                              'Estimasi biaya pengiriman: ${routes.data[index].cost.shippingCost.currencyEYDFormatRp}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
-                              'Estimasi biaya penanganan: ${routes.data[index].handlingCost.currencyEYDFormatRp}',
+                              'Estimasi biaya penanganan: ${routes.data[index].cost.handlingCost.currencyEYDFormatRp}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
-                              'Estimasi biaya parkir pelabuhan: ${routes.data[index].biayaParkirPelabuhan.currencyEYDFormatRp}',
+                              'Estimasi biaya parkir pelabuhan: ${routes.data[index].cost.biayaParkirPelabuhan.currencyEYDFormatRp}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -285,7 +284,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                                       children: [
                                         Text(
                                           // Port of Loading:
-                                          '${selectedRoute.portOfLoadingName}',
+                                          '${selectedRoute.portOfLoading.name}',
                                           style: primaryTextStyle.copyWith(
                                             fontSize: 16,
                                             fontWeight: bold,
@@ -456,7 +455,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                                       children: [
                                         Text(
                                           // Port of Discharge:
-                                          '${selectedRoute.portOfDischargeName}',
+                                          '${selectedRoute.portOfDischarge.name}',
                                           style: primaryTextStyle.copyWith(
                                             fontSize: 16,
                                             fontWeight: bold,
@@ -626,16 +625,16 @@ class _QuotationAndWeatherRiskMitigationPageState
                     arguments: {
                       'portOfLoadingId': widget.portOfLoadingId,
                       'portOfDischargeId': widget.portOfDischargeId,
-                      'vesselId': selectedRoute.id as int,
+                      'vesselId': selectedRoute.vesselId,
                       'dateOfLoading': widget.dateOfLoading,
                       'dateOfDischarge': DateTime.parse(DateFormat("yyyy-MM-dd")
                           .format(selectedRoute.estimatedDateOfDischarge)),
                       'cargoDescription': widget.cargoDescription,
                       'cargoWeight': widget.cargoWeight,
-                      'shippingCost': selectedRoute.shippingCost as int,
-                      'handlingCost': selectedRoute.handlingCost as int,
+                      'shippingCost': selectedRoute.cost.shippingCost,
+                      'handlingCost': selectedRoute.cost.handlingCost,
                       'biayaParkirPelabuhan':
-                          selectedRoute.biayaParkirPelabuhan as int,
+                          selectedRoute.cost.biayaParkirPelabuhan,
                     },
                   );
                 },

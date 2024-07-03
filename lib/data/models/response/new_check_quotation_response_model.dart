@@ -31,34 +31,22 @@ class NewCheckQuotationResponseModel {
 }
 
 class Datum {
-  final int id;
+  final int vesselId;
   final String vesselName;
-  final String portOfLoadingName;
-  final String portOfLoadingLatitude;
-  final String portOfLoadingLongitude;
-  final String portOfDischargeName;
-  final String portOfDischargeLatitude;
-  final String portOfDischargeLongitude;
   final int dayEstimation;
-  final int shippingCost;
-  final int handlingCost;
-  final int biayaParkirPelabuhan;
   final DateTime estimatedDateOfDischarge;
+  final PortOf portOfLoading;
+  final PortOf portOfDischarge;
+  final Cost cost;
 
   Datum({
-    required this.id,
+    required this.vesselId,
     required this.vesselName,
-    required this.portOfLoadingName,
-    required this.portOfLoadingLatitude,
-    required this.portOfLoadingLongitude,
-    required this.portOfDischargeName,
-    required this.portOfDischargeLatitude,
-    required this.portOfDischargeLongitude,
     required this.dayEstimation,
-    required this.shippingCost,
-    required this.handlingCost,
-    required this.biayaParkirPelabuhan,
     required this.estimatedDateOfDischarge,
+    required this.portOfLoading,
+    required this.portOfDischarge,
+    required this.cost,
   });
 
   factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
@@ -66,36 +54,80 @@ class Datum {
   String toJson() => json.encode(toMap());
 
   factory Datum.fromMap(Map<String, dynamic> json) => Datum(
-        id: json["id"],
+        vesselId: json["vessel_id"],
         vesselName: json["vessel_name"],
-        portOfLoadingName: json["port_of_loading_name"],
-        portOfLoadingLatitude: json["port_of_loading_latitude"],
-        portOfLoadingLongitude: json["port_of_loading_longitude"],
-        portOfDischargeName: json["port_of_discharge_name"],
-        portOfDischargeLatitude: json["port_of_discharge_latitude"],
-        portOfDischargeLongitude: json["port_of_discharge_longitude"],
         dayEstimation: json["day_estimation"],
-        shippingCost: json["shipping_cost"],
-        handlingCost: json["handling_cost"],
-        biayaParkirPelabuhan: json["biaya_parkir_pelabuhan"],
         estimatedDateOfDischarge:
             DateTime.parse(json["estimated_date_of_discharge"]),
+        portOfLoading: PortOf.fromMap(json["port_of_loading"]),
+        portOfDischarge: PortOf.fromMap(json["port_of_discharge"]),
+        cost: Cost.fromMap(json["cost"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
+        "vessel_id": vesselId,
         "vessel_name": vesselName,
-        "port_of_loading_name": portOfLoadingName,
-        "port_of_loading_latitude": portOfLoadingLatitude,
-        "port_of_loading_longitude": portOfLoadingLongitude,
-        "port_of_discharge_name": portOfDischargeName,
-        "port_of_discharge_latitude": portOfDischargeLatitude,
-        "port_of_discharge_longitude": portOfDischargeLongitude,
         "day_estimation": dayEstimation,
+        "estimated_date_of_discharge":
+            "${estimatedDateOfDischarge.year.toString().padLeft(4, '0')}-${estimatedDateOfDischarge.month.toString().padLeft(2, '0')}-${estimatedDateOfDischarge.day.toString().padLeft(2, '0')}",
+        "port_of_loading": portOfLoading.toMap(),
+        "port_of_discharge": portOfDischarge.toMap(),
+        "cost": cost.toMap(),
+      };
+}
+
+class Cost {
+  final int shippingCost;
+  final int handlingCost;
+  final int biayaParkirPelabuhan;
+
+  Cost({
+    required this.shippingCost,
+    required this.handlingCost,
+    required this.biayaParkirPelabuhan,
+  });
+
+  factory Cost.fromJson(String str) => Cost.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Cost.fromMap(Map<String, dynamic> json) => Cost(
+        shippingCost: json["shipping_cost"],
+        handlingCost: json["handling_cost"],
+        biayaParkirPelabuhan: json["biaya_parkir_pelabuhan"],
+      );
+
+  Map<String, dynamic> toMap() => {
         "shipping_cost": shippingCost,
         "handling_cost": handlingCost,
         "biaya_parkir_pelabuhan": biayaParkirPelabuhan,
-        "estimated_date_of_discharge":
-            "${estimatedDateOfDischarge.year.toString().padLeft(4, '0')}-${estimatedDateOfDischarge.month.toString().padLeft(2, '0')}-${estimatedDateOfDischarge.day.toString().padLeft(2, '0')}",
+      };
+}
+
+class PortOf {
+  final String name;
+  final String latitude;
+  final String longitude;
+
+  PortOf({
+    required this.name,
+    required this.latitude,
+    required this.longitude,
+  });
+
+  factory PortOf.fromJson(String str) => PortOf.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory PortOf.fromMap(Map<String, dynamic> json) => PortOf(
+        name: json["name"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "latitude": latitude,
+        "longitude": longitude,
       };
 }

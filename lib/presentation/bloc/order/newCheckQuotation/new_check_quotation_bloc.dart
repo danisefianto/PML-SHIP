@@ -5,9 +5,9 @@ import '../../../../data/datasource/order_remote_datasource.dart';
 import '../../../../data/models/request/new_check_quotation_request_model.dart';
 import '../../../../data/models/response/new_check_quotation_response_model.dart';
 
+part 'new_check_quotation_bloc.freezed.dart';
 part 'new_check_quotation_event.dart';
 part 'new_check_quotation_state.dart';
-part 'new_check_quotation_bloc.freezed.dart';
 
 class NewCheckQuotationBloc
     extends Bloc<NewCheckQuotationEvent, NewCheckQuotationState> {

@@ -63,6 +63,9 @@ class $AssetsIconGen {
 class $AssetsImageGen {
   const $AssetsImageGen();
 
+  /// File path: assets/image/bca.png
+  AssetGenImage get bca => const AssetGenImage('assets/image/bca.png');
+
   /// File path: assets/image/image_app_logo_transparent_background.png
   AssetGenImage get imageAppLogoTransparentBackground => const AssetGenImage(
       'assets/image/image_app_logo_transparent_background.png');
@@ -92,6 +95,7 @@ class $AssetsImageGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        bca,
         imageAppLogoTransparentBackground,
         imagePatriaMaritimeLinesLogo,
         imageProfileExample

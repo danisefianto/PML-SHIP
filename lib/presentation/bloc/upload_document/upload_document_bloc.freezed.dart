@@ -19,38 +19,42 @@ mixin _$UploadDocumentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UpdateDocumentRequestModel data) upload,
+    required TResult Function(
+            UpdateDocumentRequestModel data, String transactionId)
+        uploadDocument,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UpdateDocumentRequestModel data)? upload,
+    TResult? Function(UpdateDocumentRequestModel data, String transactionId)?
+        uploadDocument,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UpdateDocumentRequestModel data)? upload,
+    TResult Function(UpdateDocumentRequestModel data, String transactionId)?
+        uploadDocument,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Upload value) upload,
+    required TResult Function(_UploadDocument value) uploadDocument,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_Upload value)? upload,
+    TResult? Function(_UploadDocument value)? uploadDocument,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Upload value)? upload,
+    TResult Function(_UploadDocument value)? uploadDocument,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +117,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UpdateDocumentRequestModel data) upload,
+    required TResult Function(
+            UpdateDocumentRequestModel data, String transactionId)
+        uploadDocument,
   }) {
     return started();
   }
@@ -122,7 +128,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UpdateDocumentRequestModel data)? upload,
+    TResult? Function(UpdateDocumentRequestModel data, String transactionId)?
+        uploadDocument,
   }) {
     return started?.call();
   }
@@ -131,7 +138,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UpdateDocumentRequestModel data)? upload,
+    TResult Function(UpdateDocumentRequestModel data, String transactionId)?
+        uploadDocument,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +152,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Upload value) upload,
+    required TResult Function(_UploadDocument value) uploadDocument,
   }) {
     return started(this);
   }
@@ -153,7 +161,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_Upload value)? upload,
+    TResult? Function(_UploadDocument value)? uploadDocument,
   }) {
     return started?.call(this);
   }
@@ -162,7 +170,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Upload value)? upload,
+    TResult Function(_UploadDocument value)? uploadDocument,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -177,93 +185,107 @@ abstract class _Started implements UploadDocumentEvent {
 }
 
 /// @nodoc
-abstract class _$$UploadImplCopyWith<$Res> {
-  factory _$$UploadImplCopyWith(
-          _$UploadImpl value, $Res Function(_$UploadImpl) then) =
-      __$$UploadImplCopyWithImpl<$Res>;
+abstract class _$$UploadDocumentImplCopyWith<$Res> {
+  factory _$$UploadDocumentImplCopyWith(_$UploadDocumentImpl value,
+          $Res Function(_$UploadDocumentImpl) then) =
+      __$$UploadDocumentImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UpdateDocumentRequestModel data});
+  $Res call({UpdateDocumentRequestModel data, String transactionId});
 }
 
 /// @nodoc
-class __$$UploadImplCopyWithImpl<$Res>
-    extends _$UploadDocumentEventCopyWithImpl<$Res, _$UploadImpl>
-    implements _$$UploadImplCopyWith<$Res> {
-  __$$UploadImplCopyWithImpl(
-      _$UploadImpl _value, $Res Function(_$UploadImpl) _then)
+class __$$UploadDocumentImplCopyWithImpl<$Res>
+    extends _$UploadDocumentEventCopyWithImpl<$Res, _$UploadDocumentImpl>
+    implements _$$UploadDocumentImplCopyWith<$Res> {
+  __$$UploadDocumentImplCopyWithImpl(
+      _$UploadDocumentImpl _value, $Res Function(_$UploadDocumentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = null,
+    Object? transactionId = null,
   }) {
-    return _then(_$UploadImpl(
+    return _then(_$UploadDocumentImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as UpdateDocumentRequestModel,
+      null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$UploadImpl implements _Upload {
-  const _$UploadImpl(this.data);
+class _$UploadDocumentImpl implements _UploadDocument {
+  const _$UploadDocumentImpl(this.data, this.transactionId);
 
   @override
   final UpdateDocumentRequestModel data;
+  @override
+  final String transactionId;
 
   @override
   String toString() {
-    return 'UploadDocumentEvent.upload(data: $data)';
+    return 'UploadDocumentEvent.uploadDocument(data: $data, transactionId: $transactionId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UploadImpl &&
-            (identical(other.data, data) || other.data == data));
+            other is _$UploadDocumentImpl &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(runtimeType, data, transactionId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UploadImplCopyWith<_$UploadImpl> get copyWith =>
-      __$$UploadImplCopyWithImpl<_$UploadImpl>(this, _$identity);
+  _$$UploadDocumentImplCopyWith<_$UploadDocumentImpl> get copyWith =>
+      __$$UploadDocumentImplCopyWithImpl<_$UploadDocumentImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UpdateDocumentRequestModel data) upload,
+    required TResult Function(
+            UpdateDocumentRequestModel data, String transactionId)
+        uploadDocument,
   }) {
-    return upload(data);
+    return uploadDocument(data, transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UpdateDocumentRequestModel data)? upload,
+    TResult? Function(UpdateDocumentRequestModel data, String transactionId)?
+        uploadDocument,
   }) {
-    return upload?.call(data);
+    return uploadDocument?.call(data, transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UpdateDocumentRequestModel data)? upload,
+    TResult Function(UpdateDocumentRequestModel data, String transactionId)?
+        uploadDocument,
     required TResult orElse(),
   }) {
-    if (upload != null) {
-      return upload(data);
+    if (uploadDocument != null) {
+      return uploadDocument(data, transactionId);
     }
     return orElse();
   }
@@ -272,40 +294,43 @@ class _$UploadImpl implements _Upload {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Upload value) upload,
+    required TResult Function(_UploadDocument value) uploadDocument,
   }) {
-    return upload(this);
+    return uploadDocument(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_Upload value)? upload,
+    TResult? Function(_UploadDocument value)? uploadDocument,
   }) {
-    return upload?.call(this);
+    return uploadDocument?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Upload value)? upload,
+    TResult Function(_UploadDocument value)? uploadDocument,
     required TResult orElse(),
   }) {
-    if (upload != null) {
-      return upload(this);
+    if (uploadDocument != null) {
+      return uploadDocument(this);
     }
     return orElse();
   }
 }
 
-abstract class _Upload implements UploadDocumentEvent {
-  const factory _Upload(final UpdateDocumentRequestModel data) = _$UploadImpl;
+abstract class _UploadDocument implements UploadDocumentEvent {
+  const factory _UploadDocument(
+          final UpdateDocumentRequestModel data, final String transactionId) =
+      _$UploadDocumentImpl;
 
   UpdateDocumentRequestModel get data;
+  String get transactionId;
   @JsonKey(ignore: true)
-  _$$UploadImplCopyWith<_$UploadImpl> get copyWith =>
+  _$$UploadDocumentImplCopyWith<_$UploadDocumentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -315,8 +340,7 @@ mixin _$UploadDocumentState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            UpdateDocumentResponseModel updateDocumentResponseModel)
+    required TResult Function(UpdateDocumentResponseModel responseModel)
         success,
     required TResult Function(String message) error,
   }) =>
@@ -325,8 +349,7 @@ mixin _$UploadDocumentState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult? Function(UpdateDocumentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -334,8 +357,7 @@ mixin _$UploadDocumentState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult Function(UpdateDocumentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -425,8 +447,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            UpdateDocumentResponseModel updateDocumentResponseModel)
+    required TResult Function(UpdateDocumentResponseModel responseModel)
         success,
     required TResult Function(String message) error,
   }) {
@@ -438,8 +459,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult? Function(UpdateDocumentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -450,8 +470,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult Function(UpdateDocumentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -543,8 +562,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            UpdateDocumentResponseModel updateDocumentResponseModel)
+    required TResult Function(UpdateDocumentResponseModel responseModel)
         success,
     required TResult Function(String message) error,
   }) {
@@ -556,8 +574,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult? Function(UpdateDocumentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -568,8 +585,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult Function(UpdateDocumentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -627,7 +643,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UpdateDocumentResponseModel updateDocumentResponseModel});
+  $Res call({UpdateDocumentResponseModel responseModel});
 }
 
 /// @nodoc
@@ -641,12 +657,12 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? updateDocumentResponseModel = null,
+    Object? responseModel = null,
   }) {
     return _then(_$SuccessImpl(
-      null == updateDocumentResponseModel
-          ? _value.updateDocumentResponseModel
-          : updateDocumentResponseModel // ignore: cast_nullable_to_non_nullable
+      null == responseModel
+          ? _value.responseModel
+          : responseModel // ignore: cast_nullable_to_non_nullable
               as UpdateDocumentResponseModel,
     ));
   }
@@ -655,14 +671,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.updateDocumentResponseModel);
+  const _$SuccessImpl(this.responseModel);
 
   @override
-  final UpdateDocumentResponseModel updateDocumentResponseModel;
+  final UpdateDocumentResponseModel responseModel;
 
   @override
   String toString() {
-    return 'UploadDocumentState.success(updateDocumentResponseModel: $updateDocumentResponseModel)';
+    return 'UploadDocumentState.success(responseModel: $responseModel)';
   }
 
   @override
@@ -670,14 +686,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.updateDocumentResponseModel,
-                    updateDocumentResponseModel) ||
-                other.updateDocumentResponseModel ==
-                    updateDocumentResponseModel));
+            (identical(other.responseModel, responseModel) ||
+                other.responseModel == responseModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, updateDocumentResponseModel);
+  int get hashCode => Object.hash(runtimeType, responseModel);
 
   @JsonKey(ignore: true)
   @override
@@ -690,12 +704,11 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            UpdateDocumentResponseModel updateDocumentResponseModel)
+    required TResult Function(UpdateDocumentResponseModel responseModel)
         success,
     required TResult Function(String message) error,
   }) {
-    return success(updateDocumentResponseModel);
+    return success(responseModel);
   }
 
   @override
@@ -703,11 +716,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult? Function(UpdateDocumentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(updateDocumentResponseModel);
+    return success?.call(responseModel);
   }
 
   @override
@@ -715,13 +727,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult Function(UpdateDocumentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(updateDocumentResponseModel);
+      return success(responseModel);
     }
     return orElse();
   }
@@ -765,11 +776,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements UploadDocumentState {
-  const factory _Success(
-          final UpdateDocumentResponseModel updateDocumentResponseModel) =
+  const factory _Success(final UpdateDocumentResponseModel responseModel) =
       _$SuccessImpl;
 
-  UpdateDocumentResponseModel get updateDocumentResponseModel;
+  UpdateDocumentResponseModel get responseModel;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -841,8 +851,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            UpdateDocumentResponseModel updateDocumentResponseModel)
+    required TResult Function(UpdateDocumentResponseModel responseModel)
         success,
     required TResult Function(String message) error,
   }) {
@@ -854,8 +863,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult? Function(UpdateDocumentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -866,8 +874,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UpdateDocumentResponseModel updateDocumentResponseModel)?
-        success,
+    TResult Function(UpdateDocumentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

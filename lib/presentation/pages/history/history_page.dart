@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-
+import '../../../data/models/response/history_response_model.dart';
 import '../../bloc/history/canceledOrdersData/canceled_orders_data_bloc.dart';
 import '../../bloc/history/completedOrdersData/completed_orders_data_bloc.dart';
 import '../../bloc/history/onShippingOrdersData/on_shipping_orders_data_bloc.dart';
@@ -11,7 +11,6 @@ import '../../bloc/history/paymentPendingOrdersData/payment_pending_orders_data_
 import '../../bloc/history/pendingOrdersData/pending_orders_data_bloc.dart';
 import '../../bloc/history/rejectedOrdersData/rejected_orders_data_bloc.dart';
 import 'order_detail_page.dart';
-import '../../../data/models/response/history_response_model.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -261,11 +260,11 @@ ListView buildOrderDataItem(HistoryResponseModel response) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(response.data[index].shipperName.toString()),
+                  Text(response.data[index].shipper.name.toString()),
                   Text(
-                      '${response.data[index].portOfLoadingName.toString()} - ${response.data[0].portOfDischargeName.toString()}'),
+                      '${response.data[index].loading.port.toString()} - ${response.data[0].discharge.port.toString()}'),
                   Text(
-                      '${response.data[index].cargoDescription.toString()} ${response.data[0].cargoWeight.toString()}')
+                      '${response.data[index].cargo.description.toString()} ${response.data[0].cargo.weight.toString()}')
                 ],
               ),
             ),
@@ -280,7 +279,9 @@ ListView buildOrderDataItem(HistoryResponseModel response) {
                     onPressed: () {
                       // TODO: Add better condition if negotiation is not approved
                       // Example: if negotiation is not approved, go to Detail Page but show that negotiation is not approved
-                      if (response.data[index].negotiationApprovedAt == null) {
+                      if (response.data[index].negotiationOrOrderApprovedAt ==
+                              null &&
+                          response.data[index].status == 'order_pending') {
                         // Show snackbar
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -302,15 +303,15 @@ ListView buildOrderDataItem(HistoryResponseModel response) {
                     },
                     label: 'Order Detail',
                   ),
-                  //  If historyResponse.data![index].status == 'on_shipping', show Track Vessel button
-                  // Visibility(
-                  //   visible: response.data[index].status == 'on_shipping',
-                  //   child: Button.filled(
-                  //     width: 150,
-                  //     onPressed: () {},
-                  //     label: 'Track Vessel',
-                  //   ),
-                  // )
+                  //  If response.data[index].status == 'on_shipping', show Track Vessel button
+                  Visibility(
+                    visible: response.data[index].status == 'on_shipping',
+                    child: Button.filled(
+                      width: 150,
+                      onPressed: () {},
+                      label: 'Track Vessel',
+                    ),
+                  )
                 ],
               ),
             ),

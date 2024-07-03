@@ -147,37 +147,37 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Vessel ID: ${summaryOrderResponseModel.data.vesselId}',
+                                'Transaction ID: ${summaryOrderResponseModel.data.transactionId}',
                                 style:
                                     primaryTextStyle.copyWith(fontWeight: bold),
                               ),
 
                               Text(
-                                '${summaryOrderResponseModel.data.portOfLoadingName} - ${summaryOrderResponseModel.data.portOfDischargeName}',
+                                '${summaryOrderResponseModel.data.loading.port} - ${summaryOrderResponseModel.data.discharge.port}',
                                 style:
                                     primaryTextStyle.copyWith(fontWeight: bold),
                               ),
 
                               // dari planning/quotation
                               Text(
-                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading.toFormattedIndonesianLongDate()}',
+                                'Date of Loading: ${summaryOrderResponseModel.data.loading.date.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
                               Text(
-                                'ETA: ${summaryOrderResponseModel.data.dateOfDischarge.toFormattedIndonesianLongDate()}',
+                                'Date of Discharge: ${summaryOrderResponseModel.data.discharge.date.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
                               const Divider(),
                               Text(
-                                  'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
+                                  'Cargo Description: ${summaryOrderResponseModel.data.cargo.description}'),
                               Text(
-                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
+                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargo.weight}'),
 
                               const Divider(),
                               Text(
-                                'Estimated Cost: ${summaryOrderResponseModel.data.shippingCost.currencyEYDFormatRp}',
+                                'Estimated Cost: ${summaryOrderResponseModel.data.payment.shippingCost.currencyEYDFormatRp}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: bold, fontSize: 16),
                               ),
@@ -211,14 +211,14 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
                             // 'PT BUma',
-                            summaryOrderResponseModel.data.shipperName,
+                            summaryOrderResponseModel.data.shipper.name,
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            summaryOrderResponseModel.data.shipperAddress,
+                            summaryOrderResponseModel.data.shipper.address,
                           ),
                         ),
                       ],
@@ -247,14 +247,14 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           padding: const EdgeInsets.only(
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
-                            summaryOrderResponseModel.data.consigneeName,
+                            summaryOrderResponseModel.data.consignee.name,
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            summaryOrderResponseModel.data.consigneeAddress,
+                            summaryOrderResponseModel.data.consignee.address,
                           ),
                         ),
                       ],

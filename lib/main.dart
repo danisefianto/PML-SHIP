@@ -2,6 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/data/datasource/payment_remote_datasource.dart';
+import 'presentation/bloc/addPayment/add_payment_bloc.dart';
+import 'presentation/bloc/documentData/document_data_bloc.dart';
 import 'presentation/bloc/order/newOrder/new_order_bloc.dart';
 
 // Data Source
@@ -12,7 +15,7 @@ import 'data/datasource/auth_remote_datasource.dart';
 import 'data/datasource/currency_remote_datasource.dart';
 import 'data/datasource/history_remote_datasource.dart';
 import 'data/datasource/order_remote_datasource.dart';
-import 'data/datasource/update_document_remote_datasource.dart';
+import 'data/datasource/document_remote_datasource.dart';
 import 'data/datasource/user_remote_datasource.dart';
 // Bloc
 import 'presentation/bloc/auth/login/login_bloc.dart';
@@ -25,16 +28,15 @@ import 'presentation/bloc/history/paymentPendingOrdersData/payment_pending_order
 import 'presentation/bloc/history/pendingOrdersData/pending_orders_data_bloc.dart';
 import 'presentation/bloc/history/rejectedOrdersData/rejected_orders_data_bloc.dart';
 import 'presentation/bloc/order/addConference/add_conference_bloc.dart';
-import 'presentation/bloc/order/addShipperConsignee/add_shipper_consignee_bloc.dart';
-import 'presentation/bloc/order/checkQuotation/check_quotation_bloc.dart';
 import 'presentation/bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
-import 'presentation/bloc/order/orderPort/order_port_bloc.dart';
-import 'presentation/bloc/order/placeQuotation/place_quotation_bloc.dart';
+
+import 'presentation/bloc/paymentOptions/payment_options_bloc.dart';
 import 'presentation/bloc/port/port_bloc.dart';
 import 'presentation/bloc/profile/profile_bloc.dart';
 import 'presentation/bloc/register/register_bloc.dart';
 import 'presentation/bloc/summaryOrder/summary_order_bloc.dart';
 import 'presentation/bloc/update_user_data/update_user_data_bloc.dart';
+import 'presentation/bloc/uploadPaymentProof/upload_payment_proof_bloc.dart';
 import 'presentation/bloc/upload_document/upload_document_bloc.dart';
 import 'presentation/bloc/weather/weather_bloc.dart';
 import 'presentation/pages/auth/new_password_set_page.dart';
@@ -52,7 +54,8 @@ import 'presentation/pages/general/how_to_pay_page.dart';
 import 'presentation/pages/main_page/main_page.dart';
 import 'presentation/pages/onboarding/onboarding_page.dart';
 import 'presentation/pages/order/add_shipper_consignee_data_page.dart';
-import 'presentation/pages/order/conference_page.dart';
+import 'presentation/pages/order/add_conference_page.dart';
+import 'presentation/pages/order/choose_payment_plan_page.dart';
 import 'presentation/pages/order/order_port_page.dart';
 import 'presentation/pages/order/order_process_waiting.dart';
 import 'presentation/pages/order/order_summary_page.dart';
@@ -97,19 +100,7 @@ class MainApp extends StatelessWidget {
           create: (context) => PortBloc(OrderRemoteDatasource()),
         ),
         BlocProvider(
-          create: (context) => OrderPortBloc(OrderRemoteDatasource()),
-        ),
-        BlocProvider(
-          create: (context) => CheckQuotationBloc(OrderRemoteDatasource()),
-        ),
-        BlocProvider(
-          create: (context) => PlaceQuotationBloc(OrderRemoteDatasource()),
-        ),
-        BlocProvider(
           create: (context) => WeatherBloc(OrderRemoteDatasource()),
-        ),
-        BlocProvider(
-          create: (context) => AddShipperConsigneeBloc(OrderRemoteDatasource()),
         ),
         BlocProvider(
           create: (context) => SummaryOrderBloc(OrderRemoteDatasource()),
@@ -118,8 +109,7 @@ class MainApp extends StatelessWidget {
           create: (context) => AddConferenceBloc(OrderRemoteDatasource()),
         ),
         BlocProvider(
-          create: (context) =>
-              UploadDocumentBloc(UpdateDocumentRemoteDatasource()),
+          create: (context) => UploadDocumentBloc(DocumentRemoteDatasource()),
         ),
         BlocProvider(
           create: (context) => PendingOrdersDataBloc(HistoryRemoteDatasource()),
@@ -149,6 +139,19 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => NewOrderBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => DocumentDataBloc(DocumentRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => PaymentOptionsBloc(PaymentRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => AddPaymentBloc(PaymentRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UploadPaymentProofBloc(PaymentRemoteDatasource()),
         ),
       ],
       child: MaterialApp(
@@ -312,7 +315,7 @@ class MainApp extends StatelessWidget {
           AppRoutes.addConference: (context) {
             String transactionId =
                 ModalRoute.of(context)!.settings.arguments as String;
-            return ConferencePage(
+            return AddConferencePage(
               transactionIdMessage: transactionId,
             );
           },
@@ -333,12 +336,23 @@ class MainApp extends StatelessWidget {
           AppRoutes.notificationSettings: (context) =>
               const NotificationSetting(),
           AppRoutes.contactUs: (context) => const ContactUsPage(),
-          AppRoutes.documentList: (context) => const DocumentListPage(),
+          AppRoutes.documentList: (context) {
+            final args = ModalRoute.of(context)!.settings.arguments;
+            return DocumentListPage(
+              transactionId: args as String,
+            );
+          },
           AppRoutes.trackVessel: (context) => TrackingOneScreen(),
           AppRoutes.registrationProcessWaiting: (context) =>
               const RegistrationProcessWaitingPage(),
           AppRoutes.orderProcessWaiting: (context) =>
               const OrderProcessWaitingPage(),
+          AppRoutes.choosePayment: (context) {
+            final args = ModalRoute.of(context)!.settings.arguments;
+            return ChoosePaymentPlanPage(
+              transactionId: args as String,
+            );
+          },
         },
       ),
     );

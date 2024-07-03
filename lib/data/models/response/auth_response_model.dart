@@ -55,14 +55,12 @@ class Data {
 }
 
 class User {
-  final int id;
   final String name;
   final String email;
   final String role;
   final String status;
 
   User({
-    required this.id,
     required this.name,
     required this.email,
     required this.role,
@@ -74,7 +72,6 @@ class User {
   String toJson() => json.encode(toMap());
 
   factory User.fromMap(Map<String, dynamic> json) => User(
-        id: json["id"],
         name: json["name"],
         email: json["email"],
         role: json["role"],
@@ -82,7 +79,6 @@ class User {
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
         "name": name,
         "email": email,
         "role": role,

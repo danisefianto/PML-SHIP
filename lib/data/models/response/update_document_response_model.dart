@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 class UpdateDocumentResponseModel {
+  final String status;
+  final String message;
   final Data data;
 
   UpdateDocumentResponseModel({
+    required this.status,
+    required this.message,
     required this.data,
   });
 
@@ -14,29 +18,25 @@ class UpdateDocumentResponseModel {
 
   factory UpdateDocumentResponseModel.fromMap(Map<String, dynamic> json) =>
       UpdateDocumentResponseModel(
+        status: json["status"],
+        message: json["message"],
         data: Data.fromMap(json["data"]),
       );
 
   Map<String, dynamic> toMap() => {
+        "status": status,
+        "message": message,
         "data": data.toMap(),
       };
 }
 
 class Data {
-  final String status;
-  final dynamic shippingInstructionDocumentUrl;
-  final dynamic billOfLadingDocumentUrl;
-  final dynamic cargoManifestDocumentUrl;
-  final dynamic timeSheetDocumentUrl;
-  final dynamic draughtSurveyDocumentUrl;
+  final String transactionId;
+  final Document document;
 
   Data({
-    required this.status,
-    required this.shippingInstructionDocumentUrl,
-    required this.billOfLadingDocumentUrl,
-    required this.cargoManifestDocumentUrl,
-    required this.timeSheetDocumentUrl,
-    required this.draughtSurveyDocumentUrl,
+    required this.transactionId,
+    required this.document,
   });
 
   factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
@@ -44,21 +44,56 @@ class Data {
   String toJson() => json.encode(toMap());
 
   factory Data.fromMap(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        shippingInstructionDocumentUrl:
-            json["shipping_instruction_document_url"],
-        billOfLadingDocumentUrl: json["bill_of_lading_document_url"],
-        cargoManifestDocumentUrl: json["cargo_manifest_document_url"],
-        timeSheetDocumentUrl: json["time_sheet_document_url"],
-        draughtSurveyDocumentUrl: json["draught_survey_document_url"],
+        transactionId: json["transaction_id"],
+        document: Document.fromMap(json["document"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "status": status,
-        "shipping_instruction_document_url": shippingInstructionDocumentUrl,
-        "bill_of_lading_document_url": billOfLadingDocumentUrl,
-        "cargo_manifest_document_url": cargoManifestDocumentUrl,
-        "time_sheet_document_url": timeSheetDocumentUrl,
-        "draught_survey_document_url": draughtSurveyDocumentUrl,
+        "transaction_id": transactionId,
+        "document": document.toMap(),
+      };
+}
+
+class Document {
+  final String documentName;
+  final String documentType;
+  final DateTime? maxInputAt;
+  final DateTime? uploadedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  Document({
+    required this.documentName,
+    required this.documentType,
+    this.maxInputAt,
+    this.uploadedAt,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Document.fromJson(String str) => Document.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Document.fromMap(Map<String, dynamic> json) => Document(
+        documentName: json["document_name"],
+        documentType: json["document_type"],
+        maxInputAt: json["max_input_at"] != null
+            ? DateTime.parse(json["max_input_at"])
+            : null,
+        uploadedAt: json["uploaded_at"] != null
+            ? DateTime.parse(json["uploaded_at"])
+            : null,
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "document_name": documentName,
+        "document_type": documentType,
+        "max_input_at": maxInputAt?.toIso8601String(),
+        "uploaded_at": uploadedAt?.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }

@@ -1,17 +1,14 @@
 import 'dart:io';
 
-class UpdateDocumentRequestModel {
-  final String documentType;
+class UpdatePaymentRequestModel {
   final String method;
   final File documentFile;
-  UpdateDocumentRequestModel({
-    required this.documentType,
+  UpdatePaymentRequestModel({
     required this.method,
     required this.documentFile,
   });
 
   Map<String, String> toMap() => {
-        "document_type": documentType,
         '_method': method,
       };
 }

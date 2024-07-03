@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
-// ignore: depend_on_referenced_packages
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,19 +24,15 @@ class OrderDetailPage extends StatefulWidget {
   State<OrderDetailPage> createState() => _OrderDetailPageState();
 }
 
-// TODO:  Bloclistener on tombol upload, circular loading, snackbar success, hilangkan file picker setelah upload
-// TODO: Fix _isUploadSuccessful
-
 class _OrderDetailPageState extends State<OrderDetailPage> {
-  bool _isUploadSuccessful = false;
+  File? selectedFile;
 
-  File? selectedFile; // Variable to store the selected file
   @override
   void initState() {
-    context.read<SummaryOrderBloc>().add(SummaryOrderEvent.getSummaryOrder(
-          widget.transactionIdMessage,
-        ));
     super.initState();
+    context
+        .read<SummaryOrderBloc>()
+        .add(SummaryOrderEvent.getSummaryOrder(widget.transactionIdMessage));
   }
 
   Future<void> _pickFile() async {
@@ -49,17 +44,15 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     setState(() {
       if (pickedFile != null) {
         selectedFile = File(pickedFile.files.single.path!);
-        _isUploadSuccessful = true; // File successfully picked
       } else {
         selectedFile = null;
-        _isUploadSuccessful = false; // No file picked
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget selectFile() {
+    Widget selectFile(String label) {
       return DottedBorder(
         strokeWidth: 3,
         dashPattern: const [6, 6],
@@ -68,33 +61,27 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
         radius: const Radius.circular(10),
         padding: const EdgeInsets.all(8),
         child: InkWell(
-          onTap: () => (_pickFile()
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   SnackBar(
-              //     content: Text('Kode dikirim ulang'),
-              //   ),
-              // ),
-              ),
+          onTap: _pickFile,
           child: Container(
             height: 80,
             decoration: BoxDecoration(
               color: const Color(0xFF1C3E66),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Row(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.folder_open_rounded,
                   color: Color(0xFFFFFFFF),
                   size: 32,
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Text(
-                  "Upload Shipping Instruction Document",
-                  style: TextStyle(color: Colors.white),
-                )
+                  label,
+                  style: const TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
@@ -103,328 +90,211 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     }
 
     Widget buildSummaryOrderUI(
-      SummaryOrderResponseModel summaryOrderResponseModel,
-      double biayaPajak,
-    ) {
+        SummaryOrderResponseModel summaryOrderResponseModel) {
       return SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(color: Color(0xFFB2DFDB)),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8.0),
-                    child: Icon(Icons.cloud_upload),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Upload dokumen Shipping Instruction',
-                          style: primaryTextStyle.copyWith(
-                              fontWeight: bold, fontSize: 16),
-                        ),
-                        Text(
-                          'Max input ${summaryOrderResponseModel.data.negotiationApprovedAt?.add(const Duration(days: 2)).toIso8601String()}.',
-                          style: primaryTextStyle.copyWith(
-                              fontWeight: regular, color: Colors.red),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            // If shipping instruction document is uploaded, show payment
+            Visibility(
+              visible:
+                  summaryOrderResponseModel.data.documents.first.documentName ==
+                      null,
+              child: buildUploadShipingInstructionDocumentHeader(
+                  summaryOrderResponseModel),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+
+            const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 10,
-              ),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(color: Colors.amber),
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            'Detail pesanan',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                  buildOrderInfoCard(summaryOrderResponseModel),
+                  const Divider(),
+                  buildShipperAndConsigneeInfo(
+                    'Shipper Info',
+                    summaryOrderResponseModel.data.shipper.name,
+                    summaryOrderResponseModel.data.shipper.address,
+                  ),
+                  const Divider(),
+                  buildShipperAndConsigneeInfo(
+                    'Consignee Info',
+                    summaryOrderResponseModel.data.consignee.name,
+                    summaryOrderResponseModel.data.consignee.address,
+                  ),
+                  const Divider(),
+                  buildPaymentSummary(summaryOrderResponseModel),
+                  const SizedBox(height: 30),
+                  Visibility(
+                      visible: summaryOrderResponseModel
+                              .data.documents.first.documentName ==
+                          null,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: selectFile(
+                                "Select Shipping Instruction Document"),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          if (selectedFile != null)
+                            Text(
+                              'Selected file: ${selectedFile!.path.split('/').last}',
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.black),
+                            ),
+                          const SizedBox(height: 30),
+                          BlocConsumer<UploadDocumentBloc, UploadDocumentState>(
+                            listener: (context, state) {
+                              state.maybeWhen(
+                                orElse: () {},
+                                error: (message) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Error: $message'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                },
+                                success: (state) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Upload document success'),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                  setState(() {
+                                    selectedFile =
+                                        null; // Clear the file picker after success
+                                  });
+                                },
+                              );
+                            },
+                            builder: (context, state) {
+                              return state.maybeWhen(
+                                loading: () => const Center(
+                                    child: CircularProgressIndicator()),
+                                orElse: () => Padding(
+                                  padding: const EdgeInsets.only(bottom: 30.0),
+                                  child: Button.filled(
+                                    label: 'Upload',
+                                    onPressed: () {
+                                      final dataRequest =
+                                          UpdateDocumentRequestModel(
+                                        documentType: 'shipping_instruction',
+                                        method: 'PUT',
+                                        documentFile: selectedFile!,
+                                      );
+
+                                      context.read<UploadDocumentBloc>().add(
+                                            UploadDocumentEvent.uploadDocument(
+                                              dataRequest,
+                                              summaryOrderResponseModel
+                                                  .data.transactionId,
+                                            ),
+                                          );
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      )),
+                  Visibility(
+                    visible: summaryOrderResponseModel
+                            .data.documents.first.documentName !=
+                        null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Shipping Instruction Document',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
                             children: [
+                              const Icon(Icons.picture_as_pdf),
+                              const SizedBox(width: 8),
                               Text(
-                                'Vessel ID: ${summaryOrderResponseModel.data.vesselId}',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-
-                              Text(
-                                '${summaryOrderResponseModel.data.portOfLoadingName} - ${summaryOrderResponseModel.data.portOfDischargeName}',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
-                              ),
-
-                              // dari planning/quotation
-                              Text(
-                                'ETD: ${summaryOrderResponseModel.data.dateOfLoading.toFormattedIndonesianLongDate()}',
+                                summaryOrderResponseModel
+                                        .data.documents.first.documentName ??
+                                    '',
                                 style: primaryTextStyle.copyWith(
-                                    fontWeight: light),
+                                  fontWeight: bold,
+                                ),
                               ),
-                              Text(
-                                'ETA: ${summaryOrderResponseModel.data.dateOfDischarge.toFormattedIndonesianLongDate()}',
-                                style: primaryTextStyle.copyWith(
-                                    fontWeight: light),
-                              ),
-                              const Divider(),
-                              Text(
-                                  'Cargo Description: ${summaryOrderResponseModel.data.cargoDescription}'),
-                              Text(
-                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargoWeight}'),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  const Divider(),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(color: Colors.amber),
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            'Shipper Info',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                  Visibility(
+                    visible: summaryOrderResponseModel
+                            .data.documents.first.documentName !=
+                        null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Payment Proof Document',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8.0, left: 8.0, right: 8.0),
-                          child: Text(
-                            // 'PT BUma',
-                            summaryOrderResponseModel.data.shipperName,
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              const Icon(Icons.picture_as_pdf),
+                              const SizedBox(width: 8),
+                              // Text(
+                              //   summaryOrderResponseModel.data.payment.payments
+                              //           .first.paymentProofDocument ??
+                              //       '',
+                              //   style: primaryTextStyle.copyWith(
+                              //     fontWeight: bold,
+                              //   ),
+                              // ),
+                            ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            summaryOrderResponseModel.data.shipperAddress,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                  const Divider(),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(color: Colors.amber),
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            'Consignee Info',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8.0, left: 8.0, right: 8.0),
-                          child: Text(
-                            summaryOrderResponseModel.data.consigneeName,
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            summaryOrderResponseModel.data.consigneeAddress,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // const Divider(),
-                  // Text(
-                  //   'Ringkasan Pembayaran',
-                  //   style: primaryTextStyle.copyWith(
-                  //     fontWeight: bold,
-                  //     fontSize: 16,
-                  //   ),
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text('Biaya Pengiriman'),
-                  //     Text(
-                  //       summaryOrderResponseModel
-                  //           .data.shippingCost.currencyEYDFormatRp,
-                  //       style: primaryTextStyle.copyWith(
-                  //         fontWeight: bold,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text('Biaya Penanganan'),
-                  //     Text(
-                  //       summaryOrderResponseModel
-                  //           .data.handlingCost.currencyEYDFormatRp,
-                  //       style: primaryTextStyle.copyWith(
-                  //         fontWeight: bold,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text('Biaya Parkir Pelabuhan'),
-                  //     Text(
-                  //       summaryOrderResponseModel
-                  //           .data.biayaParkirPelabuhan.currencyEYDFormatRp,
-                  //       style: primaryTextStyle.copyWith(
-                  //         fontWeight: bold,
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text('Biaya Pajak'),
-                  //     Text(
-                  //       biayaPajak.currencyEYDFormatRp,
-                  //       style: primaryTextStyle.copyWith(
-                  //         fontWeight: bold,
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text('Total Biaya'),
-                  //     Text(
-                  //       ((summaryOrderResponseModel.data.shippingCost +
-                  //               summaryOrderResponseModel.data.handlingCost +
-                  //               summaryOrderResponseModel
-                  //                   .data.biayaParkirPelabuhan +
-                  //               biayaPajak))
-                  //           .currencyEYDFormatRp,
-                  //       style: primaryTextStyle.copyWith(
-                  //         fontWeight: bold,
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _isUploadSuccessful ? Container() : selectFile(),
-                  ),
-                  if (selectedFile != null)
-                    Text(
-                      'Selected file: ${selectedFile!.path.split('/').last}',
-                      style: const TextStyle(fontSize: 16, color: Colors.black),
-                    ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  BlocConsumer<UploadDocumentBloc, UploadDocumentState>(
-                    listener: (context, state) {
-                      state.maybeWhen(
-                          orElse: () {},
-                          error: (message) {
-                            return ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Error: $message'),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                          },
-                          success: (state) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                    'Upload document sukses'), //menampilkan snackbar success
-                                backgroundColor: Colors.green,
-                              ),
-                            );
-                          });
-                    },
-                    builder: (context, state) {
-                      return state.maybeWhen(
-                        loading: () {
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                  Visibility(
+                      visible: summaryOrderResponseModel
+                              .data.documents.first.documentName !=
+                          null
+                      //      &&
+                      // summaryOrderResponseModel.data.payment.payments.any(
+                      //     (payment) =>
+                      //         payment.paymentProofDocument == null
+                      // )
+                      ,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.choosePayment,
+                            arguments: widget.transactionIdMessage,
                           );
                         },
-                        orElse: () {
-                          return Button.filled(
-                            label: 'Upload',
-                            onPressed: () {
-                              final data = UpdateDocumentRequestModel(
-                                  transactionId: widget.transactionIdMessage,
-                                  type: 'shipping_instruction',
-                                  method: 'PUT',
-                                  document: selectedFile!);
-                              context
-                                  .read<UploadDocumentBloc>()
-                                  .add(UploadDocumentEvent.upload(data));
-                            },
-                          );
-                        },
-                      );
-                    },
-                  ),
+                        child: const Text('Choose payment'),
+                      )),
                 ],
               ),
-            )
+            ),
           ],
         ),
       );
@@ -446,23 +316,203 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             return state.when(
               initial: () => const Center(child: CircularProgressIndicator()),
               loading: () => const Center(child: CircularProgressIndicator()),
-              success: (summaryOrderResponseModel) {
-                double biayaPajak = (summaryOrderResponseModel
-                            .data.shippingCost +
-                        summaryOrderResponseModel.data.handlingCost +
-                        summaryOrderResponseModel.data.biayaParkirPelabuhan) *
-                    0.1;
-
-                return buildSummaryOrderUI(
-                    summaryOrderResponseModel, biayaPajak);
-              },
-              error: (message) {
-                return Center(child: Text('Error: $message'));
-              },
+              success: (summaryOrderResponseModel) =>
+                  buildSummaryOrderUI(summaryOrderResponseModel),
+              error: (message) => Center(child: Text('Error: $message')),
             );
           },
         ),
       ),
+    );
+  }
+
+  Container buildShipperAndConsigneeInfo(
+      String title, String name, String address) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(3),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildCardHeader(title),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+            child: Text(
+              name,
+              style: primaryTextStyle.copyWith(
+                fontWeight: bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              address,
+              style: primaryTextStyle,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container buildCardHeader(String title) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(color: Colors.amber),
+      padding: const EdgeInsets.all(8),
+      child: Text(
+        title,
+        style: primaryTextStyle.copyWith(fontWeight: bold),
+      ),
+    );
+  }
+
+  Container buildUploadShipingInstructionDocumentHeader(
+      SummaryOrderResponseModel summaryOrderResponseModel) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(color: Color(0xFFB2DFDB)),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 16,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: Icon(Icons.cloud_upload),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Upload Shipping Instruction Document',
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  'Max input ${summaryOrderResponseModel.data.documents.first.maxInputDocumentAt?.toIso8601String()}.',
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: regular,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildOrderInfoCard(
+      SummaryOrderResponseModel summaryOrderResponseModel) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildCardHeader('Detail pesanan'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Transaction ID: ${summaryOrderResponseModel.data.transactionId}',
+                  style: primaryTextStyle.copyWith(fontWeight: bold),
+                ),
+                Text(
+                  '${summaryOrderResponseModel.data.loading.port} - ${summaryOrderResponseModel.data.discharge.port}',
+                  style: primaryTextStyle.copyWith(fontWeight: bold),
+                ),
+                Text(
+                  'Date of Loading: ${summaryOrderResponseModel.data.loading.date.toFormattedIndonesianLongDate()}',
+                  style: primaryTextStyle.copyWith(fontWeight: light),
+                ),
+                Text(
+                  'Date of Discharge: ${summaryOrderResponseModel.data.discharge.date.toFormattedIndonesianLongDate()}',
+                  style: primaryTextStyle.copyWith(fontWeight: light),
+                ),
+                const Divider(),
+                Text(
+                  'Cargo Description: ${summaryOrderResponseModel.data.cargo.description}',
+                  style: primaryTextStyle,
+                ),
+                Text(
+                  'Cargo Weight: ${summaryOrderResponseModel.data.cargo.weight}',
+                  style: primaryTextStyle,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPaymentSummary(
+      SummaryOrderResponseModel summaryOrderResponseModel) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Ringkasan Pembayaran',
+          style: primaryTextStyle.copyWith(
+            fontWeight: bold,
+            fontSize: 16,
+          ),
+        ),
+        paymentSubItem(
+          'Biaya Pengiriman',
+          summaryOrderResponseModel
+              .data.payment.shippingCost.currencyEYDFormatRp,
+        ),
+        paymentSubItem(
+          'Biaya Penanganan',
+          summaryOrderResponseModel
+              .data.payment.handlingCost.currencyEYDFormatRp,
+        ),
+        paymentSubItem(
+          'Biaya Parkir Pelabuhan',
+          summaryOrderResponseModel
+              .data.payment.biayaParkirPelabuhan.currencyEYDFormatRp,
+        ),
+        paymentSubItem(
+          'Biaya Pajak',
+          summaryOrderResponseModel.data.payment.tax.currencyEYDFormatRp,
+        ),
+        const Divider(),
+        paymentSubItem(
+          'Total Biaya',
+          summaryOrderResponseModel.data.payment.totalBill.currencyEYDFormatRp,
+        ),
+      ],
+    );
+  }
+
+  Row paymentSubItem(String label, String content) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(label),
+        Text(
+          content,
+          style: primaryTextStyle.copyWith(fontWeight: bold),
+        ),
+      ],
     );
   }
 }

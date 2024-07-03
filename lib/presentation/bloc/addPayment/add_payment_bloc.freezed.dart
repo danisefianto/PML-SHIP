@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_shipper_consignee_bloc.dart';
+part of 'add_payment_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,61 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AddShipperConsigneeEvent {
+mixin _$AddPaymentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(AddShipperConsigneeRequestModel data)
-        addShipperConsignee,
+    required TResult Function(AddPaymentRequestModel requestModel) addPayment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(AddShipperConsigneeRequestModel data)?
-        addShipperConsignee,
+    TResult? Function(AddPaymentRequestModel requestModel)? addPayment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AddShipperConsigneeRequestModel data)? addShipperConsignee,
+    TResult Function(AddPaymentRequestModel requestModel)? addPayment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_AddShipperConsignee value) addShipperConsignee,
+    required TResult Function(_AddPayment value) addPayment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_AddShipperConsignee value)? addShipperConsignee,
+    TResult? Function(_AddPayment value)? addPayment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_AddShipperConsignee value)? addShipperConsignee,
+    TResult Function(_AddPayment value)? addPayment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddShipperConsigneeEventCopyWith<$Res> {
-  factory $AddShipperConsigneeEventCopyWith(AddShipperConsigneeEvent value,
-          $Res Function(AddShipperConsigneeEvent) then) =
-      _$AddShipperConsigneeEventCopyWithImpl<$Res, AddShipperConsigneeEvent>;
+abstract class $AddPaymentEventCopyWith<$Res> {
+  factory $AddPaymentEventCopyWith(
+          AddPaymentEvent value, $Res Function(AddPaymentEvent) then) =
+      _$AddPaymentEventCopyWithImpl<$Res, AddPaymentEvent>;
 }
 
 /// @nodoc
-class _$AddShipperConsigneeEventCopyWithImpl<$Res,
-        $Val extends AddShipperConsigneeEvent>
-    implements $AddShipperConsigneeEventCopyWith<$Res> {
-  _$AddShipperConsigneeEventCopyWithImpl(this._value, this._then);
+class _$AddPaymentEventCopyWithImpl<$Res, $Val extends AddPaymentEvent>
+    implements $AddPaymentEventCopyWith<$Res> {
+  _$AddPaymentEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,7 +83,7 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$AddShipperConsigneeEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$AddPaymentEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -100,7 +97,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'AddShipperConsigneeEvent.started()';
+    return 'AddPaymentEvent.started()';
   }
 
   @override
@@ -116,8 +113,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(AddShipperConsigneeRequestModel data)
-        addShipperConsignee,
+    required TResult Function(AddPaymentRequestModel requestModel) addPayment,
   }) {
     return started();
   }
@@ -126,8 +122,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(AddShipperConsigneeRequestModel data)?
-        addShipperConsignee,
+    TResult? Function(AddPaymentRequestModel requestModel)? addPayment,
   }) {
     return started?.call();
   }
@@ -136,7 +131,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AddShipperConsigneeRequestModel data)? addShipperConsignee,
+    TResult Function(AddPaymentRequestModel requestModel)? addPayment,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -149,7 +144,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_AddShipperConsignee value) addShipperConsignee,
+    required TResult Function(_AddPayment value) addPayment,
   }) {
     return started(this);
   }
@@ -158,7 +153,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_AddShipperConsignee value)? addShipperConsignee,
+    TResult? Function(_AddPayment value)? addPayment,
   }) {
     return started?.call(this);
   }
@@ -167,7 +162,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_AddShipperConsignee value)? addShipperConsignee,
+    TResult Function(_AddPayment value)? addPayment,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -177,102 +172,99 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements AddShipperConsigneeEvent {
+abstract class _Started implements AddPaymentEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$AddShipperConsigneeImplCopyWith<$Res> {
-  factory _$$AddShipperConsigneeImplCopyWith(_$AddShipperConsigneeImpl value,
-          $Res Function(_$AddShipperConsigneeImpl) then) =
-      __$$AddShipperConsigneeImplCopyWithImpl<$Res>;
+abstract class _$$AddPaymentImplCopyWith<$Res> {
+  factory _$$AddPaymentImplCopyWith(
+          _$AddPaymentImpl value, $Res Function(_$AddPaymentImpl) then) =
+      __$$AddPaymentImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AddShipperConsigneeRequestModel data});
+  $Res call({AddPaymentRequestModel requestModel});
 }
 
 /// @nodoc
-class __$$AddShipperConsigneeImplCopyWithImpl<$Res>
-    extends _$AddShipperConsigneeEventCopyWithImpl<$Res,
-        _$AddShipperConsigneeImpl>
-    implements _$$AddShipperConsigneeImplCopyWith<$Res> {
-  __$$AddShipperConsigneeImplCopyWithImpl(_$AddShipperConsigneeImpl _value,
-      $Res Function(_$AddShipperConsigneeImpl) _then)
+class __$$AddPaymentImplCopyWithImpl<$Res>
+    extends _$AddPaymentEventCopyWithImpl<$Res, _$AddPaymentImpl>
+    implements _$$AddPaymentImplCopyWith<$Res> {
+  __$$AddPaymentImplCopyWithImpl(
+      _$AddPaymentImpl _value, $Res Function(_$AddPaymentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? requestModel = null,
   }) {
-    return _then(_$AddShipperConsigneeImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as AddShipperConsigneeRequestModel,
+    return _then(_$AddPaymentImpl(
+      null == requestModel
+          ? _value.requestModel
+          : requestModel // ignore: cast_nullable_to_non_nullable
+              as AddPaymentRequestModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AddShipperConsigneeImpl implements _AddShipperConsignee {
-  const _$AddShipperConsigneeImpl(this.data);
+class _$AddPaymentImpl implements _AddPayment {
+  const _$AddPaymentImpl(this.requestModel);
 
   @override
-  final AddShipperConsigneeRequestModel data;
+  final AddPaymentRequestModel requestModel;
 
   @override
   String toString() {
-    return 'AddShipperConsigneeEvent.addShipperConsignee(data: $data)';
+    return 'AddPaymentEvent.addPayment(requestModel: $requestModel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddShipperConsigneeImpl &&
-            (identical(other.data, data) || other.data == data));
+            other is _$AddPaymentImpl &&
+            (identical(other.requestModel, requestModel) ||
+                other.requestModel == requestModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(runtimeType, requestModel);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddShipperConsigneeImplCopyWith<_$AddShipperConsigneeImpl> get copyWith =>
-      __$$AddShipperConsigneeImplCopyWithImpl<_$AddShipperConsigneeImpl>(
-          this, _$identity);
+  _$$AddPaymentImplCopyWith<_$AddPaymentImpl> get copyWith =>
+      __$$AddPaymentImplCopyWithImpl<_$AddPaymentImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(AddShipperConsigneeRequestModel data)
-        addShipperConsignee,
+    required TResult Function(AddPaymentRequestModel requestModel) addPayment,
   }) {
-    return addShipperConsignee(data);
+    return addPayment(requestModel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(AddShipperConsigneeRequestModel data)?
-        addShipperConsignee,
+    TResult? Function(AddPaymentRequestModel requestModel)? addPayment,
   }) {
-    return addShipperConsignee?.call(data);
+    return addPayment?.call(requestModel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(AddShipperConsigneeRequestModel data)? addShipperConsignee,
+    TResult Function(AddPaymentRequestModel requestModel)? addPayment,
     required TResult orElse(),
   }) {
-    if (addShipperConsignee != null) {
-      return addShipperConsignee(data);
+    if (addPayment != null) {
+      return addPayment(requestModel);
     }
     return orElse();
   }
@@ -281,53 +273,51 @@ class _$AddShipperConsigneeImpl implements _AddShipperConsignee {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_AddShipperConsignee value) addShipperConsignee,
+    required TResult Function(_AddPayment value) addPayment,
   }) {
-    return addShipperConsignee(this);
+    return addPayment(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_AddShipperConsignee value)? addShipperConsignee,
+    TResult? Function(_AddPayment value)? addPayment,
   }) {
-    return addShipperConsignee?.call(this);
+    return addPayment?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_AddShipperConsignee value)? addShipperConsignee,
+    TResult Function(_AddPayment value)? addPayment,
     required TResult orElse(),
   }) {
-    if (addShipperConsignee != null) {
-      return addShipperConsignee(this);
+    if (addPayment != null) {
+      return addPayment(this);
     }
     return orElse();
   }
 }
 
-abstract class _AddShipperConsignee implements AddShipperConsigneeEvent {
-  const factory _AddShipperConsignee(
-      final AddShipperConsigneeRequestModel data) = _$AddShipperConsigneeImpl;
+abstract class _AddPayment implements AddPaymentEvent {
+  const factory _AddPayment(final AddPaymentRequestModel requestModel) =
+      _$AddPaymentImpl;
 
-  AddShipperConsigneeRequestModel get data;
+  AddPaymentRequestModel get requestModel;
   @JsonKey(ignore: true)
-  _$$AddShipperConsigneeImplCopyWith<_$AddShipperConsigneeImpl> get copyWith =>
+  _$$AddPaymentImplCopyWith<_$AddPaymentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$AddShipperConsigneeState {
+mixin _$AddPaymentState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)
-        success,
+    required TResult Function(AddPaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -335,9 +325,7 @@ mixin _$AddShipperConsigneeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult? Function(AddPaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -345,9 +333,7 @@ mixin _$AddShipperConsigneeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult Function(AddPaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -380,17 +366,16 @@ mixin _$AddShipperConsigneeState {
 }
 
 /// @nodoc
-abstract class $AddShipperConsigneeStateCopyWith<$Res> {
-  factory $AddShipperConsigneeStateCopyWith(AddShipperConsigneeState value,
-          $Res Function(AddShipperConsigneeState) then) =
-      _$AddShipperConsigneeStateCopyWithImpl<$Res, AddShipperConsigneeState>;
+abstract class $AddPaymentStateCopyWith<$Res> {
+  factory $AddPaymentStateCopyWith(
+          AddPaymentState value, $Res Function(AddPaymentState) then) =
+      _$AddPaymentStateCopyWithImpl<$Res, AddPaymentState>;
 }
 
 /// @nodoc
-class _$AddShipperConsigneeStateCopyWithImpl<$Res,
-        $Val extends AddShipperConsigneeState>
-    implements $AddShipperConsigneeStateCopyWith<$Res> {
-  _$AddShipperConsigneeStateCopyWithImpl(this._value, this._then);
+class _$AddPaymentStateCopyWithImpl<$Res, $Val extends AddPaymentState>
+    implements $AddPaymentStateCopyWith<$Res> {
+  _$AddPaymentStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -407,7 +392,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AddShipperConsigneeStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$AddPaymentStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -421,7 +406,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AddShipperConsigneeState.initial()';
+    return 'AddPaymentState.initial()';
   }
 
   @override
@@ -438,9 +423,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)
-        success,
+    required TResult Function(AddPaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -451,9 +434,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult? Function(AddPaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -464,9 +445,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult Function(AddPaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -514,7 +493,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AddShipperConsigneeState {
+abstract class _Initial implements AddPaymentState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -527,7 +506,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AddShipperConsigneeStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$AddPaymentStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -541,7 +520,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'AddShipperConsigneeState.loading()';
+    return 'AddPaymentState.loading()';
   }
 
   @override
@@ -558,9 +537,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)
-        success,
+    required TResult Function(AddPaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -571,9 +548,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult? Function(AddPaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -584,9 +559,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult Function(AddPaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -634,7 +607,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AddShipperConsigneeState {
+abstract class _Loading implements AddPaymentState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -644,13 +617,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {AddShipperConsigneeResponseModel addShipperConsigneeResponseModel});
+  $Res call({AddPaymentResponseModel responseModel});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$AddShipperConsigneeStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$AddPaymentStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -659,13 +631,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? addShipperConsigneeResponseModel = null,
+    Object? responseModel = null,
   }) {
     return _then(_$SuccessImpl(
-      null == addShipperConsigneeResponseModel
-          ? _value.addShipperConsigneeResponseModel
-          : addShipperConsigneeResponseModel // ignore: cast_nullable_to_non_nullable
-              as AddShipperConsigneeResponseModel,
+      null == responseModel
+          ? _value.responseModel
+          : responseModel // ignore: cast_nullable_to_non_nullable
+              as AddPaymentResponseModel,
     ));
   }
 }
@@ -673,14 +645,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.addShipperConsigneeResponseModel);
+  const _$SuccessImpl(this.responseModel);
 
   @override
-  final AddShipperConsigneeResponseModel addShipperConsigneeResponseModel;
+  final AddPaymentResponseModel responseModel;
 
   @override
   String toString() {
-    return 'AddShipperConsigneeState.success(addShipperConsigneeResponseModel: $addShipperConsigneeResponseModel)';
+    return 'AddPaymentState.success(responseModel: $responseModel)';
   }
 
   @override
@@ -688,15 +660,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.addShipperConsigneeResponseModel,
-                    addShipperConsigneeResponseModel) ||
-                other.addShipperConsigneeResponseModel ==
-                    addShipperConsigneeResponseModel));
+            (identical(other.responseModel, responseModel) ||
+                other.responseModel == responseModel));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, addShipperConsigneeResponseModel);
+  int get hashCode => Object.hash(runtimeType, responseModel);
 
   @JsonKey(ignore: true)
   @override
@@ -709,12 +678,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)
-        success,
+    required TResult Function(AddPaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
-    return success(addShipperConsigneeResponseModel);
+    return success(responseModel);
   }
 
   @override
@@ -722,12 +689,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult? Function(AddPaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(addShipperConsigneeResponseModel);
+    return success?.call(responseModel);
   }
 
   @override
@@ -735,14 +700,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult Function(AddPaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(addShipperConsigneeResponseModel);
+      return success(responseModel);
     }
     return orElse();
   }
@@ -785,12 +748,11 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements AddShipperConsigneeState {
-  const factory _Success(
-      final AddShipperConsigneeResponseModel
-          addShipperConsigneeResponseModel) = _$SuccessImpl;
+abstract class _Success implements AddPaymentState {
+  const factory _Success(final AddPaymentResponseModel responseModel) =
+      _$SuccessImpl;
 
-  AddShipperConsigneeResponseModel get addShipperConsigneeResponseModel;
+  AddPaymentResponseModel get responseModel;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -807,7 +769,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$AddShipperConsigneeStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$AddPaymentStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -837,7 +799,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'AddShipperConsigneeState.error(message: $message)';
+    return 'AddPaymentState.error(message: $message)';
   }
 
   @override
@@ -862,9 +824,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)
-        success,
+    required TResult Function(AddPaymentResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -875,9 +835,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult? Function(AddPaymentResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -888,9 +846,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            AddShipperConsigneeResponseModel addShipperConsigneeResponseModel)?
-        success,
+    TResult Function(AddPaymentResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -938,7 +894,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements AddShipperConsigneeState {
+abstract class _Error implements AddPaymentState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;

@@ -29,13 +29,13 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> checkUserStatus(AuthResponseModel authResponseModel) async {
-    if (authResponseModel.data.user.role == 'user' &&
+    if (authResponseModel.data.user.role == 'customer' &&
         authResponseModel.data.user.status == 'pending') {
       buildShowDialog(
         'Registration pending',
         'Your registration is pending. Please wait for the admin to approve your registration.',
       );
-    } else if (authResponseModel.data.user.role == 'user' &&
+    } else if (authResponseModel.data.user.role == 'customer' &&
         authResponseModel.data.user.status == 'rejected') {
       buildShowDialog(
         'Registration rejected',

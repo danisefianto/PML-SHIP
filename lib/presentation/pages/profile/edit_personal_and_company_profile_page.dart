@@ -102,23 +102,28 @@ class _EditPersonalAndCompanyProfilePageState
                 error: (message) => Center(child: Text('Error: $message')),
                 orElse: () => const Center(child: Text('No data')),
                 success: (profile) {
-                  _picNameController.text = profile.data.name;
-                  _picEmailController.text = profile.data.email;
-                  _picPhoneController.text = profile.data.phone;
-                  _companyNameController.text = profile.data.companyName;
-                  _companyAddressController.text = profile.data.companyAddress;
-                  _companyNpwpController.text = profile.data.companyNpwp;
-                  _companyPhoneController.text = profile.data.companyPhone;
-                  _companyEmailController.text = profile.data.companyEmail;
+                  _picNameController.text = profile.data.user.name;
+                  _picEmailController.text = profile.data.user.email;
+                  _picPhoneController.text = profile.data.user.phone;
+                  _companyNameController.text =
+                      profile.data.company.companyName;
+                  _companyAddressController.text =
+                      profile.data.company.companyAddress;
+                  _companyNpwpController.text =
+                      profile.data.company.companyNpwp;
+                  _companyPhoneController.text =
+                      profile.data.company.companyPhone;
+                  _companyEmailController.text =
+                      profile.data.company.companyEmail;
 
-                  _picOriginalName = profile.data.name;
-                  _picOriginalEmail = profile.data.email;
-                  _picOriginalPhone = profile.data.phone;
-                  _companyOriginalName = profile.data.companyName;
-                  _companyOriginalAddress = profile.data.companyAddress;
-                  _companyOriginalNpwp = profile.data.companyNpwp;
-                  _companyOriginalPhone = profile.data.companyPhone;
-                  _companyOriginalEmail = profile.data.companyEmail;
+                  _picOriginalName = profile.data.user.name;
+                  _picOriginalEmail = profile.data.user.email;
+                  _picOriginalPhone = profile.data.user.phone;
+                  _companyOriginalName = profile.data.company.companyName;
+                  _companyOriginalAddress = profile.data.company.companyAddress;
+                  _companyOriginalNpwp = profile.data.company.companyNpwp;
+                  _companyOriginalPhone = profile.data.company.companyPhone;
+                  _companyOriginalEmail = profile.data.company.companyEmail;
 
                   return SingleChildScrollView(
                     child: Padding(

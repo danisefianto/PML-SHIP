@@ -34,18 +34,18 @@ DateTime customerPaymentDate = DateFormat("yyyy-MM-dd").parse('2024-05-25');
 DateTime adminCheckCustomerPaymentDate =
     customerPaymentDate.add(const Duration(days: 1));
 
-class ConferencePage extends StatefulWidget {
+class AddConferencePage extends StatefulWidget {
   final String transactionIdMessage;
-  const ConferencePage({
+  const AddConferencePage({
     super.key,
     required this.transactionIdMessage,
   });
 
   @override
-  State<ConferencePage> createState() => _ConferencePageState();
+  State<AddConferencePage> createState() => _AddConferencePageState();
 }
 
-class _ConferencePageState extends State<ConferencePage> {
+class _AddConferencePageState extends State<AddConferencePage> {
   @override
   void initState() {
     context.read<SummaryOrderBloc>().add(SummaryOrderEvent.getSummaryOrder(

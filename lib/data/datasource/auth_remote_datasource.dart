@@ -28,12 +28,18 @@ class AuthRemoteDatasource {
     // }
 
     var request = http.MultipartRequest(
-        'POST', Uri.parse('${Variables.baseUrl}/api/register'));
+        'POST', Uri.parse('${Variables.baseUrl}/api/customer/register'));
     request.fields.addAll(registerRequestModel.toMap());
     request.files.add(await http.MultipartFile.fromPath(
         'company_akta', registerRequestModel.companyAkta.path));
 
     // Add header here if necessary
+
+// log
+// log url
+    log("request: ${request.url}");
+    log("request: ${request.fields}");
+    log("request: ${request.files}");
 
     http.StreamedResponse response = await request.send();
 

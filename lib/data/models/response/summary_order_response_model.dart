@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class SummaryOrderResponseModel {
@@ -31,72 +32,42 @@ class SummaryOrderResponseModel {
 }
 
 class Data {
-  final int id;
-  final String transactionId;
-  final int userId;
-  final String shipperName;
-  final String shipperAddress;
-  final String consigneeName;
-  final String consigneeAddress;
-  final int portOfLoadingId;
-  final int portOfDischargeId;
-  final int vesselId;
-  final DateTime dateOfLoading;
-  final DateTime dateOfDischarge;
   final String status;
-  final String cargoDescription;
-  final String cargoWeight;
-  final int shippingCost;
-  final int handlingCost;
-  final int biayaParkirPelabuhan;
-  final int tax;
-  final int totalBill;
-  final String? shippingInstructionDocumentUrl;
-  final String? billOfLadingDocumentUrl;
-  final String? cargoManifestDocumentUrl;
-  final String? timeSheetDocumentUrl;
-  final String? draughtSurveyDocumentUrl;
-  final String? ratingStar;
-  final String? review;
-  final DateTime? negotiationApprovedAt;
+  final String transactionId;
+  final String customerCompanyName;
+  final String vesselName;
+  final Discharge loading;
+  final Discharge discharge;
+  final Cargo cargo;
+  final Consignee shipper;
+  final Consignee consignee;
+  final List<Document> documents;
+  final DataPayment payment;
+  final Rating rating;
+  final DateTime? negotiationOrOrderApprovedAt;
+  final DateTime? orderRejectedAt;
+  final DateTime? orderCanceledAt;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final String portOfLoadingName;
-  final String portOfDischargeName;
 
   Data({
-    required this.id,
-    required this.transactionId,
-    required this.userId,
-    required this.shipperName,
-    required this.shipperAddress,
-    required this.consigneeName,
-    required this.consigneeAddress,
-    required this.portOfLoadingId,
-    required this.portOfDischargeId,
-    required this.vesselId,
-    required this.dateOfLoading,
-    required this.dateOfDischarge,
     required this.status,
-    required this.cargoDescription,
-    required this.cargoWeight,
-    required this.shippingCost,
-    required this.handlingCost,
-    required this.biayaParkirPelabuhan,
-    required this.tax,
-    required this.totalBill,
-    this.shippingInstructionDocumentUrl,
-    this.billOfLadingDocumentUrl,
-    this.cargoManifestDocumentUrl,
-    this.timeSheetDocumentUrl,
-    this.draughtSurveyDocumentUrl,
-    this.ratingStar,
-    this.review,
-    this.negotiationApprovedAt,
+    required this.transactionId,
+    required this.customerCompanyName,
+    required this.vesselName,
+    required this.loading,
+    required this.discharge,
+    required this.cargo,
+    required this.shipper,
+    required this.consignee,
+    required this.documents,
+    required this.payment,
+    required this.rating,
+    this.negotiationOrOrderApprovedAt,
+    this.orderRejectedAt,
+    this.orderCanceledAt,
     required this.createdAt,
     required this.updatedAt,
-    required this.portOfLoadingName,
-    required this.portOfDischargeName,
   });
 
   factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
@@ -104,77 +75,299 @@ class Data {
   String toJson() => json.encode(toMap());
 
   factory Data.fromMap(Map<String, dynamic> json) => Data(
-        id: json["id"],
-        transactionId: json["transaction_id"],
-        userId: json["user_id"],
-        shipperName: json["shipper_name"],
-        shipperAddress: json["shipper_address"],
-        consigneeName: json["consignee_name"],
-        consigneeAddress: json["consignee_address"],
-        portOfLoadingId: json["port_of_loading_id"],
-        portOfDischargeId: json["port_of_discharge_id"],
-        vesselId: json["vessel_id"],
-        dateOfLoading: DateTime.parse(json["date_of_loading"]),
-        dateOfDischarge: DateTime.parse(json["date_of_discharge"]),
         status: json["status"],
-        cargoDescription: json["cargo_description"],
-        cargoWeight: json["cargo_weight"],
+        transactionId: json["transaction_id"],
+        customerCompanyName: json["customer_company_name"],
+        vesselName: json["vessel_name"],
+        loading: Discharge.fromMap(json["loading"]),
+        discharge: Discharge.fromMap(json["discharge"]),
+        cargo: Cargo.fromMap(json["cargo"]),
+        shipper: Consignee.fromMap(json["shipper"]),
+        consignee: Consignee.fromMap(json["consignee"]),
+        documents: List<Document>.from(
+            json["documents"].map((x) => Document.fromMap(x))),
+        payment: DataPayment.fromMap(json["payment"]),
+        rating: Rating.fromMap(json["rating"]),
+        negotiationOrOrderApprovedAt:
+            json["negotiation_or_order_approved_at"] != null
+                ? DateTime.parse(json["negotiation_or_order_approved_at"])
+                : null,
+        orderRejectedAt: json["order_rejected_at"] != null
+            ? DateTime.parse(json["order_rejected_at"])
+            : null,
+        orderCanceledAt: json["order_canceled_at"] != null
+            ? DateTime.parse(json["order_canceled_at"])
+            : null,
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "status": status,
+        "transaction_id": transactionId,
+        "customer_company_name": customerCompanyName,
+        "vessel_name": vesselName,
+        "loading": loading.toMap(),
+        "discharge": discharge.toMap(),
+        "cargo": cargo.toMap(),
+        "shipper": shipper.toMap(),
+        "consignee": consignee.toMap(),
+        "documents": List<dynamic>.from(documents.map((x) => x.toMap())),
+        "payment": payment.toMap(),
+        "rating": rating.toMap(),
+        "negotiation_or_order_approved_at":
+            negotiationOrOrderApprovedAt?.toIso8601String(),
+        "order_rejected_at": orderRejectedAt?.toIso8601String(),
+        "order_canceled_at": orderCanceledAt?.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+      };
+}
+
+class Cargo {
+  final String description;
+  final String weight;
+
+  Cargo({
+    required this.description,
+    required this.weight,
+  });
+
+  factory Cargo.fromJson(String str) => Cargo.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Cargo.fromMap(Map<String, dynamic> json) => Cargo(
+        description: json["description"],
+        weight: json["weight"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "description": description,
+        "weight": weight,
+      };
+}
+
+class Consignee {
+  final String name;
+  final String address;
+
+  Consignee({
+    required this.name,
+    required this.address,
+  });
+
+  factory Consignee.fromJson(String str) => Consignee.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Consignee.fromMap(Map<String, dynamic> json) => Consignee(
+        name: json["name"],
+        address: json["address"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "address": address,
+      };
+}
+
+class Discharge {
+  final String port;
+  final DateTime date;
+
+  Discharge({
+    required this.port,
+    required this.date,
+  });
+
+  factory Discharge.fromJson(String str) => Discharge.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Discharge.fromMap(Map<String, dynamic> json) => Discharge(
+        port: json["port"],
+        date: DateTime.parse(json["date"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "port": port,
+        "date":
+            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+      };
+}
+
+class Document {
+  final String? documentName;
+  final String documentType;
+  final DateTime? maxInputDocumentAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  Document({
+    this.documentName,
+    required this.documentType,
+    this.maxInputDocumentAt,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Document.fromJson(String str) => Document.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Document.fromMap(Map<String, dynamic> json) => Document(
+        documentName: json["document_name"],
+        documentType: json["document_type"],
+        maxInputDocumentAt: json["max_input_document_at"] != null
+            ? DateTime.parse(json["max_input_document_at"])
+            : null,
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "document_name": documentName,
+        "document_type": documentType,
+        "max_input_document_at": maxInputDocumentAt?.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+      };
+}
+
+class DataPayment {
+  final int shippingCost;
+  final int handlingCost;
+  final int biayaParkirPelabuhan;
+  final int tax;
+  final int totalBill;
+  final int? cumulativePaid;
+  final List<PaymentElement> payments;
+
+  DataPayment({
+    required this.shippingCost,
+    required this.handlingCost,
+    required this.biayaParkirPelabuhan,
+    required this.tax,
+    required this.totalBill,
+    this.cumulativePaid,
+    required this.payments,
+  });
+
+  factory DataPayment.fromJson(String str) =>
+      DataPayment.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory DataPayment.fromMap(Map<String, dynamic> json) => DataPayment(
         shippingCost: json["shipping_cost"],
         handlingCost: json["handling_cost"],
         biayaParkirPelabuhan: json["biaya_parkir_pelabuhan"],
         tax: json["tax"],
         totalBill: json["total_bill"],
-        shippingInstructionDocumentUrl:
-            json["shipping_instruction_document_url"],
-        billOfLadingDocumentUrl: json["bill_of_lading_document_url"],
-        cargoManifestDocumentUrl: json["cargo_manifest_document_url"],
-        timeSheetDocumentUrl: json["time_sheet_document_url"],
-        draughtSurveyDocumentUrl: json["draught_survey_document_url"],
-        ratingStar: json["rating_star"],
-        review: json["review"],
-        negotiationApprovedAt: json["negotiation_approved_at"] != null
-            ? DateTime.parse(json["negotiation_approved_at"])
-            : null,
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        portOfLoadingName: json["port_of_loading_name"],
-        portOfDischargeName: json["port_of_discharge_name"],
+        cumulativePaid: json["cumulative_paid"],
+        payments: List<PaymentElement>.from(
+            json["payments"].map((x) => PaymentElement.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "transaction_id": transactionId,
-        "user_id": userId,
-        "shipper_name": shipperName,
-        "shipper_address": shipperAddress,
-        "consignee_name": consigneeName,
-        "consignee_address": consigneeAddress,
-        "port_of_loading_id": portOfLoadingId,
-        "port_of_discharge_id": portOfDischargeId,
-        "vessel_id": vesselId,
-        "date_of_loading":
-            "${dateOfLoading.year.toString().padLeft(4, '0')}-${dateOfLoading.month.toString().padLeft(2, '0')}-${dateOfLoading.day.toString().padLeft(2, '0')}",
-        "date_of_discharge":
-            "${dateOfDischarge.year.toString().padLeft(4, '0')}-${dateOfDischarge.month.toString().padLeft(2, '0')}-${dateOfDischarge.day.toString().padLeft(2, '0')}",
-        "status": status,
-        "cargo_description": cargoDescription,
-        "cargo_weight": cargoWeight,
         "shipping_cost": shippingCost,
         "handling_cost": handlingCost,
         "biaya_parkir_pelabuhan": biayaParkirPelabuhan,
         "tax": tax,
         "total_bill": totalBill,
-        "shipping_instruction_document_url": shippingInstructionDocumentUrl,
-        "bill_of_lading_document_url": billOfLadingDocumentUrl,
-        "cargo_manifest_document_url": cargoManifestDocumentUrl,
-        "time_sheet_document_url": timeSheetDocumentUrl,
-        "draught_survey_document_url": draughtSurveyDocumentUrl,
-        "rating_star": ratingStar,
-        "review": review,
-        "negotiation_approved_at": negotiationApprovedAt?.toIso8601String(),
+        "cumulative_paid": cumulativePaid,
+        "payments": List<dynamic>.from(payments.map((x) => x.toMap())),
+      };
+}
+
+class PaymentElement {
+  final DateTime? paymentDate;
+  final DateTime paymentDueDate;
+  final int paymentAmount;
+  final String? paymentProofDocument;
+  final int installmentNumber;
+  final int? totalInstallments;
+  final String paymentStatus;
+  final DateTime? approvedAt;
+  final DateTime? rejectedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  PaymentElement({
+    this.paymentDate,
+    required this.paymentDueDate,
+    required this.paymentAmount,
+    this.paymentProofDocument,
+    required this.installmentNumber,
+    this.totalInstallments,
+    required this.paymentStatus,
+    this.approvedAt,
+    this.rejectedAt,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory PaymentElement.fromJson(String str) =>
+      PaymentElement.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory PaymentElement.fromMap(Map<String, dynamic> json) => PaymentElement(
+        paymentDate: json["payment_date"] != null
+            ? DateTime.parse(json["payment_date"])
+            : null,
+        paymentDueDate: DateTime.parse(json["payment_due_date"]),
+        paymentAmount: json["payment_amount"],
+        paymentProofDocument: json["payment_proof_document"],
+        installmentNumber: json["installment_number"],
+        totalInstallments: json["total_installments"],
+        paymentStatus: json["payment_status"],
+        approvedAt: json["approved_at"] != null
+            ? DateTime.parse(json["approved_at"])
+            : null,
+        rejectedAt: json["rejected_at"] != null
+            ? DateTime.parse(json["rejected_at"])
+            : null,
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "payment_date": paymentDate,
+        "payment_due_date": paymentDueDate.toIso8601String(),
+        "payment_amount": paymentAmount,
+        "payment_proof_document": paymentProofDocument,
+        "installment_number": installmentNumber,
+        "total_installments": totalInstallments,
+        "payment_status": paymentStatus,
+        "approved_at": approvedAt,
+        "rejected_at": rejectedAt,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-        "port_of_loading_name": portOfLoadingName,
-        "port_of_discharge_name": portOfDischargeName,
+      };
+}
+
+class Rating {
+  final int? star;
+  final String? review;
+
+  Rating({
+    this.star,
+    this.review,
+  });
+
+  factory Rating.fromJson(String str) => Rating.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Rating.fromMap(Map<String, dynamic> json) => Rating(
+        star: json["star"],
+        review: json["review"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "star": star,
+        "review": review,
       };
 }
