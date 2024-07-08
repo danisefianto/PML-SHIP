@@ -13,7 +13,7 @@ class HistoryRemoteDatasource {
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_pending');
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     };
     final response = await http.get(
@@ -42,7 +42,7 @@ class HistoryRemoteDatasource {
         Uri.parse('${Variables.baseUrl}/api/orders?status=payment_pending');
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     };
     final response = await http.get(
@@ -69,7 +69,7 @@ class HistoryRemoteDatasource {
     final url = Uri.parse('${Variables.baseUrl}/api/orders?status=on_shipping');
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     };
     final response = await http.get(
@@ -97,7 +97,7 @@ class HistoryRemoteDatasource {
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_completed');
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     };
     final response = await http.get(
@@ -125,7 +125,7 @@ class HistoryRemoteDatasource {
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_canceled');
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     };
     final response = await http.get(
@@ -153,7 +153,7 @@ class HistoryRemoteDatasource {
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_rejected');
     final authData = await AuthLocalDataSource().getAuthData();
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     };
     final response = await http.get(

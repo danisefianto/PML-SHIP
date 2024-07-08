@@ -24,7 +24,7 @@ class DocumentRemoteDatasource {
     final url = Uri.parse('${Variables.baseUrl}/api/documents/$transactionId');
     final authData = await AuthLocalDataSource().getAuthData();
     final response = await http.get(url, headers: {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     });
     log("Request URL: $url");
@@ -46,7 +46,7 @@ class DocumentRemoteDatasource {
         'POST', Uri.parse('${Variables.baseUrl}/api/documents/$transactionId'));
 
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     };

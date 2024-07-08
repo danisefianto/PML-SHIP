@@ -22,7 +22,7 @@ class OrderRemoteDatasource {
     final response = await http.get(
       Uri.parse('${Variables.baseUrl}/api/ports'),
       headers: {
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
       },
     );
@@ -60,7 +60,7 @@ class OrderRemoteDatasource {
     final response = await http.post(
       Uri.parse('${Variables.baseUrl}/api/checkQuotation'),
       headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -83,7 +83,7 @@ class OrderRemoteDatasource {
     final response = await http.post(
       Uri.parse('${Variables.baseUrl}/api/order'),
       headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -105,7 +105,7 @@ class OrderRemoteDatasource {
     final response = await http.get(
       Uri.parse('${Variables.baseUrl}/api/orders/$transactionId'),
       headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -126,7 +126,7 @@ class OrderRemoteDatasource {
     final response = await http.post(
       Uri.parse('${Variables.baseUrl}/api/addConference'),
       headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       },

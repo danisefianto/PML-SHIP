@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 class UserResponseModel {
-  final String status;
-  final String message;
-  final FullUserData data;
+  final String? status;
+  final String? message;
+  final Data? data;
 
   UserResponseModel({
-    required this.status,
-    required this.message,
-    required this.data,
+    this.status,
+    this.message,
+    this.data,
   });
 
   factory UserResponseModel.fromJson(String str) =>
@@ -20,88 +20,90 @@ class UserResponseModel {
       UserResponseModel(
         status: json["status"],
         message: json["message"],
-        data: FullUserData.fromMap(json["data"]),
+        data: json["data"] == null ? null : Data.fromMap(json["data"]),
       );
 
   Map<String, dynamic> toMap() => {
         "status": status,
         "message": message,
-        "data": data.toMap(),
+        "data": data?.toMap(),
       };
 }
 
-class FullUserData {
-  final String status;
-  final String role;
-  final User user;
-  final Company company;
-  final String? reasonRejected;
-  final DateTime? rejectedAt;
+class Data {
+  final String? status;
+  final String? role;
+  final User? user;
+  final Company? company;
+  final dynamic reasonRejected;
+  final dynamic rejectedAt;
   final DateTime? approvedAt;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  FullUserData({
-    required this.status,
-    required this.role,
-    required this.user,
-    required this.company,
+  Data({
+    this.status,
+    this.role,
+    this.user,
+    this.company,
     this.reasonRejected,
     this.rejectedAt,
     this.approvedAt,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  factory FullUserData.fromJson(String str) =>
-      FullUserData.fromMap(json.decode(str));
+  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory FullUserData.fromMap(Map<String, dynamic> json) => FullUserData(
+  factory Data.fromMap(Map<String, dynamic> json) => Data(
         status: json["status"],
         role: json["role"],
-        user: User.fromMap(json["user"]),
-        company: Company.fromMap(json["company"]),
+        user: json["user"] == null ? null : User.fromMap(json["user"]),
+        company:
+            json["company"] == null ? null : Company.fromMap(json["company"]),
         reasonRejected: json["reason_rejected"],
-        rejectedAt: json["rejected_at"] != null
-            ? DateTime.parse(json["rejected_at"])
-            : null,
-        approvedAt: json["approved_at"] != null
-            ? DateTime.parse(json["approved_at"])
-            : null,
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        rejectedAt: json["rejected_at"],
+        approvedAt: json["approved_at"] == null
+            ? null
+            : DateTime.parse(json["approved_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toMap() => {
         "status": status,
         "role": role,
-        "user": user.toMap(),
-        "company": company.toMap(),
+        "user": user?.toMap(),
+        "company": company?.toMap(),
         "reason_rejected": reasonRejected,
-        "rejected_at": rejectedAt?.toIso8601String(),
+        "rejected_at": rejectedAt,
         "approved_at": approvedAt?.toIso8601String(),
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
       };
 }
 
 class Company {
-  final String companyName;
-  final String companyAddress;
-  final String companyPhone;
-  final String companyEmail;
-  final String companyNpwp;
-  final String companyAkta;
+  final String? companyName;
+  final String? companyAddress;
+  final String? companyPhone;
+  final String? companyEmail;
+  final String? companyNpwp;
+  final String? companyAkta;
 
   Company({
-    required this.companyName,
-    required this.companyAddress,
-    required this.companyPhone,
-    required this.companyEmail,
-    required this.companyNpwp,
-    required this.companyAkta,
+    this.companyName,
+    this.companyAddress,
+    this.companyPhone,
+    this.companyEmail,
+    this.companyNpwp,
+    this.companyAkta,
   });
 
   factory Company.fromJson(String str) => Company.fromMap(json.decode(str));
@@ -128,16 +130,16 @@ class Company {
 }
 
 class User {
-  final int id;
-  final String name;
-  final String phone;
-  final String email;
+  final int? id;
+  final String? name;
+  final String? phone;
+  final String? email;
 
   User({
-    required this.id,
-    required this.name,
-    required this.phone,
-    required this.email,
+    this.id,
+    this.name,
+    this.phone,
+    this.email,
   });
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));

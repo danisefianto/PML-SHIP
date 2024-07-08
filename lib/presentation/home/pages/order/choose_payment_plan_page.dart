@@ -1,0 +1,287 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/core/core.dart';
+import 'package:pml_ship/presentation/home/bloc/addPayment/add_payment_bloc.dart';
+
+import '../../../../core/styles.dart';
+import '../../../../data/models/request/add_payment_request_model.dart';
+import '../../bloc/paymentOptions/payment_options_bloc.dart';
+import 'upload_payment_proof_page.dart';
+
+class ChoosePaymentPlanPage extends StatefulWidget {
+  final String transactionId;
+
+  const ChoosePaymentPlanPage({
+    super.key,
+    required this.transactionId,
+  });
+
+  @override
+  State<ChoosePaymentPlanPage> createState() => _ChoosePaymentPlanPageState();
+}
+
+class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
+  int _selectedOption = 1;
+
+  @override
+  void initState() {
+    context
+        .read<PaymentOptionsBloc>()
+        .add(PaymentOptionsEvent.getPaymentOptions(widget.transactionId));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Choose how to pay'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: BlocListener<AddPaymentBloc, AddPaymentState>(
+          listener: (context, state) {
+            state.maybeWhen(
+                orElse: () {},
+                error: (message) {
+                  return ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Error: $message'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                },
+                success: (state) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('SUCCESS'), //menampilkan snackbar success
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                });
+          },
+          child: BlocBuilder<PaymentOptionsBloc, PaymentOptionsState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (message) {
+                  return Center(child: Text('Error: $message'));
+                },
+                orElse: () => const Center(child: Text('No data')),
+                success: (paymentOptions) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Pick a payment plan",
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Choose the best way to pay your order',
+                          style: primaryTextStyle,
+                        ),
+                        RadioListTile<int>(
+                          title: const Text('Pay All at Once'),
+                          subtitle: const Text('Pay all at once upfront'),
+                          value: 1,
+                          groupValue: _selectedOption,
+                          onChanged: (int? value) {
+                            setState(() {
+                              _selectedOption = value!;
+                            });
+                          },
+                        ),
+                        RadioListTile<int>(
+                          title: const Text('Pay in 2 Times'),
+                          subtitle:
+                              const Text('Pay twice at upfront and at the end'),
+                          value: 2,
+                          groupValue: _selectedOption,
+                          onChanged: (int? value) {
+                            setState(() {
+                              _selectedOption = value!;
+                            });
+                          },
+                        ),
+                        RadioListTile<int>(
+                          title: const Text('Pay in 3 Times'),
+                          subtitle: const Text(
+                              'Pay three times at upfront, middle, and end'),
+                          value: 3,
+                          groupValue: _selectedOption,
+                          onChanged: (int? value) {
+                            setState(() {
+                              _selectedOption = value!;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        if (_selectedOption == 1) ...[
+                          Text(
+                            'Payment all at once: ${paymentOptions.data.payAllAtOnce.firstPayment.currencyEYDFormatRp}',
+                            style: primaryTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('Total: '),
+                              Text(
+                                paymentOptions.data.payAllAtOnce.firstPayment
+                                    .currencyEYDFormatRp,
+                                style: primaryTextStyle.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Pay To: ',
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Assets.image.bca.image(height: 100),
+                              const Column(
+                                children: [
+                                  Text('Bank BCA'),
+                                  Text('1234567890'),
+                                  Text('a/n PT. Patria Maritime Lines')
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                        if (_selectedOption == 2) ...[
+                          Text(
+                            'Payment in 2 times:',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'First payment: ${paymentOptions.data.payIn2Times.firstPayment.currencyEYDFormatRp}',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'Second payment: ${paymentOptions.data.payIn2Times.secondPayment.currencyEYDFormatRp}',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'Pay To: ',
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Assets.image.bca.image(height: 100),
+                              const Column(
+                                children: [
+                                  Text('Bank BCA'),
+                                  Text('1234567890'),
+                                  Text('a/n PT. Patria Maritime Lines')
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                        if (_selectedOption == 3) ...[
+                          Text(
+                            'Payment in 3 times:',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'First payment: ${paymentOptions.data.payIn3Times.firstPayment.currencyEYDFormatRp}',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'Second payment: ${paymentOptions.data.payIn3Times.secondPayment.currencyEYDFormatRp}',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'Third payment: ${paymentOptions.data.payIn3Times.thirdPayment.currencyEYDFormatRp}',
+                            style: primaryTextStyle,
+                          ),
+                          Text(
+                            'Pay To: ',
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Assets.image.bca.image(height: 100),
+                              const Column(
+                                children: [
+                                  Text('Bank BCA'),
+                                  Text('1234567890'),
+                                  Text('a/n PT. Patria Maritime Lines')
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                        if (_selectedOption != 1 &&
+                            _selectedOption != 2 &&
+                            _selectedOption != 3)
+                          const Text('No data'),
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              final dataRequest = AddPaymentRequestModel(
+                                transactionId: widget.transactionId,
+                                paymentAmount: _selectedOption == 1
+                                    ? paymentOptions
+                                        .data.payAllAtOnce.firstPayment
+                                        .toDouble()
+                                    : _selectedOption == 2
+                                        ? paymentOptions
+                                            .data.payIn2Times.firstPayment
+                                            .toDouble()
+                                        : paymentOptions
+                                            .data.payIn3Times.firstPayment
+                                            .toDouble(),
+                                totalInstallments: _selectedOption.toInt(),
+                              );
+                              context.read<AddPaymentBloc>().add(
+                                    AddPaymentEvent.addPayment(dataRequest),
+                                  );
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          UploadPaymentProofPage(
+                                              transactionId:
+                                                  widget.transactionId)));
+                            },
+                            child: const Text('Pay Now'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -18,7 +18,7 @@ class PaymentRemoteDatasource {
         Uri.parse('${Variables.baseUrl}/api/payment-options/$transactionId');
     final authData = await AuthLocalDataSource().getAuthData();
     final response = await http.get(url, headers: {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
     });
     log("Request URL: $url");
@@ -38,7 +38,7 @@ class PaymentRemoteDatasource {
     final response = await http.post(
       Uri.parse('${Variables.baseUrl}/api/payments'),
       headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -64,7 +64,7 @@ class PaymentRemoteDatasource {
             '${Variables.baseUrl}/api/upload-payment-proof/$transactionId'));
 
     var headers = {
-      'Authorization': 'Bearer ${authData.data.token}',
+      'Authorization': 'Bearer ${authData.data!.token}',
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     };

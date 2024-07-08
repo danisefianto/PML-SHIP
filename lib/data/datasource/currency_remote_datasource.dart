@@ -13,7 +13,7 @@ class CurrencyRemoteDataSource {
       final url = Uri.parse('${Variables.baseUrl}/api/currencies');
       final authData = await AuthLocalDataSource().getAuthData();
       final response = await http.get(url, headers: {
-        'Authorization': 'Bearer ${authData.data.token}',
+        'Authorization': 'Bearer ${authData.data!.token}',
         'Accept': 'application/json',
       });
       log("response: ${response.statusCode}");
