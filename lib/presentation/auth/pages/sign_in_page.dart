@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
-
 import '../../../data/datasource/auth_local_datasource.dart';
 import '../../../data/models/response/auth_response_model.dart';
 import '../../home/pages/main_page.dart';
@@ -94,7 +93,6 @@ class _SignInPageState extends State<SignInPage> {
           );
         },
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30),
           padding: const EdgeInsets.only(top: 10),
           child: const Text(
             'I forget my password',
@@ -233,11 +231,10 @@ class _SignInPageState extends State<SignInPage> {
                                   TextSpan(
                                     text: 'Sign Up',
                                     style: const TextStyle(
-                                      color: AppColors.blue,
-                                    ),
+                                        color: AppColors.blue,
+                                        fontWeight: FontWeight.bold),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        // context.push(const RegisterPage());
                                         Navigator.pushNamed(
                                             context, AppRoutes.signUp);
                                       },

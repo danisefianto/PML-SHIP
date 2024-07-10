@@ -5,5 +5,5 @@ class Variables {
   static const String weatherApiUrl = 'https://api.open-meteo.com/';
   static const String weatherApiVersion = 'v1';
 
-  https://api.open-meteo.com/v1/forecast?latitude=-2.29361027,-4.84282235&longitude=114.87275817,119.50062795&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_direction_10m_dominant&timezone=Asia%2FBangkok&start_date=2024-05-25&end_date=2024-05-27
+  // https://api.open-meteo.com/v1/forecast?latitude=-2.29361027,-4.84282235&longitude=114.87275817,119.50062795&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_direction_10m_dominant&timezone=Asia%2FBangkok&start_date=2024-05-25&end_date=2024-05-27
 }

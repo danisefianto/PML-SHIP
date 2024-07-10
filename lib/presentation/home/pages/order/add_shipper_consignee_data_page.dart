@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/styles.dart';
 import '../../../../data/models/request/new_order_request_model.dart';
 import '../../bloc/order/newOrder/new_order_bloc.dart';
 
@@ -39,140 +38,24 @@ class AddShipperConsigneeDataPage extends StatefulWidget {
 
 class _AddShipperConsigneeDataPageState
     extends State<AddShipperConsigneeDataPage> {
-  final TextEditingController shipperName = TextEditingController();
-  final TextEditingController shipperAddress = TextEditingController();
-  final TextEditingController consigneeName = TextEditingController();
-  final TextEditingController consigneeAddress = TextEditingController();
+  final TextEditingController shipperNameController = TextEditingController();
+  final TextEditingController shipperAddressController =
+      TextEditingController();
+  final TextEditingController consigneeNameController = TextEditingController();
+  final TextEditingController consigneeAddressController =
+      TextEditingController();
 
   @override
   void dispose() {
-    shipperName.dispose();
-    shipperAddress.dispose();
-    consigneeName.dispose();
-    consigneeAddress.dispose();
+    shipperNameController.dispose();
+    shipperAddressController.dispose();
+    consigneeNameController.dispose();
+    consigneeAddressController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget actorInput(String actorName, TextEditingController controller) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$actorName Name',
-            style: primaryTextStyle.copyWith(
-              fontWeight: medium,
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(
-            height: 12.0,
-          ),
-          Container(
-            height: 50.0,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-            ),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(
-                5.0,
-              ),
-            ),
-            child: Center(
-              child: Row(
-                children: [
-                  if (actorName == 'Shipper')
-                    const Icon(
-                      Icons.sailing,
-                    )
-                  else
-                    Transform.scale(
-                      scaleX: -1,
-                      child: const Icon(
-                        Icons.sailing,
-                      ),
-                    ),
-                  const SizedBox(
-                    width: 16.0,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      style: primaryTextStyle,
-                      controller: controller,
-                      decoration: InputDecoration.collapsed(
-                        hintText: '$actorName\'s company name',
-                        hintStyle: subtitleTextStyle,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      );
-    }
-
-    Widget actorAddressInput(
-      String actorName,
-      TextEditingController controller,
-    ) {
-      return Container(
-        margin: const EdgeInsets.only(top: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '$actorName Address',
-              style: primaryTextStyle.copyWith(
-                fontWeight: medium,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(
-              height: 12.0,
-            ),
-            Container(
-              height: 50.0,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(
-                  5.0,
-                ),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.pin_drop,
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        style: primaryTextStyle,
-                        controller: controller,
-                        decoration: InputDecoration.collapsed(
-                          hintText: '$actorName\'s company address',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      );
-    }
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -184,6 +67,7 @@ class _AddShipperConsigneeDataPageState
           ),
           child: ListView(
             children: [
+              const SpaceHeight(30),
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15.0, horizontal: 8.0),
@@ -193,15 +77,29 @@ class _AddShipperConsigneeDataPageState
                 ),
                 child: Column(
                   children: [
-                    // Text(this.widget.transactionIdMessage),
-                    actorInput('Shipper', shipperName),
-                    actorAddressInput('Shipper', shipperAddress),
+                    CustomTextField(
+                      controller: shipperNameController,
+                      label: 'Shipper Name',
+                      hintText: 'Shipper\'s company name',
+                      textInputAction: TextInputAction.next,
+                      prefixIcon: const Icon(
+                        Icons.sailing,
+                      ),
+                    ),
+                    const SpaceHeight(30),
+                    CustomTextField(
+                      controller: shipperAddressController,
+                      label: 'Shipper Address',
+                      hintText: 'Shipper\'s company address',
+                      textInputAction: TextInputAction.next,
+                      prefixIcon: const Icon(
+                        Icons.pin_drop,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SpaceHeight(30),
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15.0, horizontal: 8.0),
@@ -211,11 +109,32 @@ class _AddShipperConsigneeDataPageState
                 ),
                 child: Column(
                   children: [
-                    actorInput('Consignee', consigneeName),
-                    actorAddressInput('Consignee', consigneeAddress),
+                    CustomTextField(
+                      controller: consigneeNameController,
+                      label: 'Consignee Name',
+                      hintText: 'Consignee\'s company name',
+                      textInputAction: TextInputAction.next,
+                      prefixIcon: Transform.scale(
+                        scaleX: -1,
+                        child: const Icon(
+                          Icons.sailing,
+                        ),
+                      ),
+                    ),
+                    const SpaceHeight(30),
+                    CustomTextField(
+                      controller: consigneeAddressController,
+                      label: 'Consignee Address',
+                      hintText: 'Consignee\'s company address',
+                      textInputAction: TextInputAction.next,
+                      prefixIcon: const Icon(
+                        Icons.pin_drop,
+                      ),
+                    ),
                   ],
                 ),
               ),
+              const SpaceHeight(30),
               BlocConsumer<NewOrderBloc, NewOrderState>(
                 listener: (context, state) {
                   state.maybeWhen(
@@ -244,32 +163,29 @@ class _AddShipperConsigneeDataPageState
                   );
                 },
                 builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Button.filled(
-                      onPressed: () {
-                        final dataRequest = NewOrderRequestModel(
-                          portOfLoadingId: widget.portOfLoadingId,
-                          portOfDischargeId: widget.portOfDischargeId,
-                          dateOfLoading: widget.dateOfLoading,
-                          cargoDescription: widget.cargoDescription,
-                          cargoWeight: widget.cargoWeight,
-                          vesselId: widget.vesselId,
-                          dateOfDischarge: widget.dateOfDischarge,
-                          shippingCost: widget.shippingCost,
-                          handlingCost: widget.handlingCost,
-                          biayaParkirPelabuhan: widget.biayaParkirPelabuhan,
-                          shipperName: shipperName.text,
-                          shipperAddress: shipperAddress.text,
-                          consigneeName: consigneeName.text,
-                          consigneeAddress: consigneeAddress.text,
-                        );
-                        context.read<NewOrderBloc>().add(
-                              NewOrderEvent.placeOrder(dataRequest),
-                            );
-                      },
-                      label: 'Place order',
-                    ),
+                  return Button.filled(
+                    onPressed: () {
+                      final dataRequest = NewOrderRequestModel(
+                        portOfLoadingId: widget.portOfLoadingId,
+                        portOfDischargeId: widget.portOfDischargeId,
+                        dateOfLoading: widget.dateOfLoading,
+                        cargoDescription: widget.cargoDescription,
+                        cargoWeight: widget.cargoWeight,
+                        vesselId: widget.vesselId,
+                        dateOfDischarge: widget.dateOfDischarge,
+                        shippingCost: widget.shippingCost,
+                        handlingCost: widget.handlingCost,
+                        biayaParkirPelabuhan: widget.biayaParkirPelabuhan,
+                        shipperName: shipperNameController.text,
+                        shipperAddress: shipperAddressController.text,
+                        consigneeName: consigneeNameController.text,
+                        consigneeAddress: consigneeAddressController.text,
+                      );
+                      context.read<NewOrderBloc>().add(
+                            NewOrderEvent.placeOrder(dataRequest),
+                          );
+                    },
+                    label: 'Place order',
                   );
                 },
               )

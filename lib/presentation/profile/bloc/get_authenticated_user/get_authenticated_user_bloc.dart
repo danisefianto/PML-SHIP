@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:pml_ship/data/models/response/user_response_model.dart';
+import '../../../../data/models/response/user_response_model.dart';
 import '../../../../data/datasource/auth_remote_datasource.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';

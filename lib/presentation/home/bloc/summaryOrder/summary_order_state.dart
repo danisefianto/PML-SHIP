@@ -5,6 +5,6 @@ class SummaryOrderState with _$SummaryOrderState {
   const factory SummaryOrderState.initial() = _Initial;
   const factory SummaryOrderState.loading() = _Loading;
   const factory SummaryOrderState.success(
-      SummaryOrderResponseModel summaryOrderResponseModel) = _Success;
+      OrderDetailResponseModel responseModel) = _Success;
   const factory SummaryOrderState.error(String message) = _Error;
 }

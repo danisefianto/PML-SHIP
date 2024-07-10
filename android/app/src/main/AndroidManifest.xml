@@ -1,12 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="xyz.fadhilprawira.pml_ship">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
+
     
     <application
         android:label="PML SHIP"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- TODO: Add your Google Maps API key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyC3s9ynOppXqr-ER_3k2olwovCtWurgdGc"/>
         <activity
+            android:requestLegacyExternalStorage="true"
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"

@@ -109,26 +109,30 @@ class _OrderPortPageState extends State<OrderPortPage> {
               const SizedBox(
                 height: 15,
               ),
-              SelectPortDropdownWidget(
-                customMargin: 30,
-                portType: 'loading',
-                onPortSelected: (name, id) {
-                  setState(() {
-                    loadingPortId = id;
-                  });
-                },
+              Center(
+                child: SelectPortDropdownWidget(
+                  customMargin: 30,
+                  portType: 'loading',
+                  onPortSelected: (name, id) {
+                    setState(() {
+                      loadingPortId = id;
+                    });
+                  },
+                ),
               ),
               const SizedBox(
                 height: 15,
               ),
-              SelectPortDropdownWidget(
-                customMargin: 30,
-                portType: 'discharge',
-                onPortSelected: (name, id) {
-                  setState(() {
-                    dischargePortId = id;
-                  });
-                },
+              Center(
+                child: SelectPortDropdownWidget(
+                  customMargin: 30,
+                  portType: 'discharge',
+                  onPortSelected: (name, id) {
+                    setState(() {
+                      dischargePortId = id;
+                    });
+                  },
+                ),
               ),
               const SizedBox(
                 height: 30,
@@ -192,17 +196,32 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 'Describe your cargo',
                 cargoDescriptionController,
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              // Container(
+              //   margin: const EdgeInsets.symmetric(horizontal: 30),
+              //   child: CustomTextField(
+              //     controller: cargoDescriptionController,
+              //     label: 'Cargo description',
+              //     hintText: 'Describe your cargo',
+              //     textInputAction: TextInputAction.next,
+              //   ),
+              // ),
+              const SpaceHeight(15),
+
               cargoInput(
                 'Gross weight',
                 'How many metric tonnes of your cargo?',
                 cargoWeightController,
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              // Container(
+              //   margin: const EdgeInsets.symmetric(horizontal: 30),
+              //   child: CustomTextField(
+              //     controller: cargoWeightController,
+              //     label: 'Gross weight',
+              //     hintText: 'How many metric tonnes of your cargo?',
+              //     textInputAction: TextInputAction.next,
+              //   ),
+              // ),
+              const SpaceHeight(30),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Button.filled(

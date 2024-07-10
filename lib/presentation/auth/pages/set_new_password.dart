@@ -60,11 +60,10 @@ class SetNewPasswordPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: defaultMargin,
+            margin: EdgeInsets.all(
+              defaultMargin,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,12 +82,8 @@ class SetNewPasswordPage extends StatelessWidget {
                   'Your new password must be different from the previous password you used.',
                   style: primaryTextStyle.copyWith(),
                 ),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 passwordInput('Password'),
                 passwordInput('Confirm password'),
-
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 30.0),
                   child: Button.filled(

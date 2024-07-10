@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pml_ship/data/models/response/summary_order_response_model.dart';
+import 'package:pml_ship/data/models/response/order_detail_response_model.dart';
 
 import '../../../../data/datasource/order_remote_datasource.dart';
 

@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../history/bloc/documentData/document_data_bloc.dart';
+
+import '../bloc/documentData/document_data_bloc.dart';
 
 class DocumentListPage extends StatefulWidget {
   final String transactionId;
@@ -26,21 +25,6 @@ class _DocumentListPageState extends State<DocumentListPage> {
     context.read<DocumentDataBloc>().add(
           DocumentDataEvent.getDocumentsData(widget.transactionId),
         );
-  }
-
-  Future<void> _pickFile() async {
-    final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
-
-    setState(() {
-      if (pickedFile != null) {
-        selectedFile = File(pickedFile.files.single.path!);
-      } else {
-        selectedFile = null;
-      }
-    });
   }
 
   @override
@@ -90,20 +74,8 @@ class _DocumentListPageState extends State<DocumentListPage> {
                                             documentData.uploadedAt == null,
                                         child: Column(
                                           children: [
-                                            ElevatedButton(
-                                                onPressed: () {
-                                                  // Navigator.pushNamed(context,
-                                                  //     AppRoutes.uploadDocument,
-                                                  //     arguments: {
-                                                  //       'transactionId': widget
-                                                  //           .transactionId,
-                                                  //       'documentType':
-                                                  //           documentData
-                                                  //               .documentType,
-                                                  //     });
-                                                },
-                                                child: const Text(
-                                                    'No data. Please select to upload document')),
+                                            Text(
+                                                '${documentData.documentType} not uploaded yet'),
                                           ],
                                         ),
                                       )
@@ -141,43 +113,6 @@ class _DocumentListPageState extends State<DocumentListPage> {
                 );
               });
             },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget selectFile(String label) {
-    return DottedBorder(
-      strokeWidth: 3,
-      dashPattern: const [6, 6],
-      strokeCap: StrokeCap.round,
-      borderType: BorderType.RRect,
-      radius: const Radius.circular(10),
-      padding: const EdgeInsets.all(8),
-      child: InkWell(
-        onTap: _pickFile,
-        child: Container(
-          height: 80,
-          decoration: BoxDecoration(
-            color: const Color(0xFF1C3E66),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.folder_open_rounded,
-                color: Color(0xFFFFFFFF),
-                size: 32,
-              ),
-              const SizedBox(width: 16),
-              Text(
-                label,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ],
           ),
         ),
       ),

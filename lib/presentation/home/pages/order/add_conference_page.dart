@@ -226,9 +226,9 @@ class _AddConferencePageState extends State<AddConferencePage> {
                           dateController: dateController,
                           // firstDate: conferenceDateStarted,
                           // lastDate: conferenceDateEnded,
-                          firstDate: summaryorder.data.createdAt
+                          firstDate: summaryorder.data!.createdAt!
                               .add(const Duration(days: 1)),
-                          lastDate: summaryorder.data.createdAt
+                          lastDate: summaryorder.data!.createdAt!
                               .add(const Duration(days: 3)),
                         ),
                       );

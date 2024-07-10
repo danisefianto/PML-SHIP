@@ -257,15 +257,13 @@ class _RegisterpageState extends State<Registerpage> {
                                           'Please select a file',
                                           style: TextStyle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.stroke,
                                           ),
                                         ),
                                 ],
                               ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const SpaceHeight(8)
                         ],
                       ),
                       const SpaceHeight(18.0),
@@ -361,16 +359,17 @@ class _RegisterpageState extends State<Registerpage> {
                       Center(
                         child: Text.rich(
                           TextSpan(
-                            text: 'Sudah memiliki akun? ',
+                            text: 'Already have an account? ',
                             style: const TextStyle(
                               fontSize: 16.0,
                               color: AppColors.gray3,
                             ),
                             children: [
                               TextSpan(
-                                text: 'Login',
+                                text: 'Sign In',
                                 style: const TextStyle(
                                   color: AppColors.blue,
+                                  fontWeight: FontWeight.bold,
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {

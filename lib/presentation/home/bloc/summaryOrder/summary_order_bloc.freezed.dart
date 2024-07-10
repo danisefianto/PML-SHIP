@@ -316,9 +316,7 @@ mixin _$SummaryOrderState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            SummaryOrderResponseModel summaryOrderResponseModel)
-        success,
+    required TResult Function(OrderDetailResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -326,8 +324,7 @@ mixin _$SummaryOrderState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult? Function(OrderDetailResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -335,8 +332,7 @@ mixin _$SummaryOrderState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult Function(OrderDetailResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -426,9 +422,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            SummaryOrderResponseModel summaryOrderResponseModel)
-        success,
+    required TResult Function(OrderDetailResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -439,8 +433,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult? Function(OrderDetailResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -451,8 +444,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult Function(OrderDetailResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -544,9 +536,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            SummaryOrderResponseModel summaryOrderResponseModel)
-        success,
+    required TResult Function(OrderDetailResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -557,8 +547,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult? Function(OrderDetailResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -569,8 +558,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult Function(OrderDetailResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -628,7 +616,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SummaryOrderResponseModel summaryOrderResponseModel});
+  $Res call({OrderDetailResponseModel responseModel});
 }
 
 /// @nodoc
@@ -642,13 +630,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? summaryOrderResponseModel = null,
+    Object? responseModel = null,
   }) {
     return _then(_$SuccessImpl(
-      null == summaryOrderResponseModel
-          ? _value.summaryOrderResponseModel
-          : summaryOrderResponseModel // ignore: cast_nullable_to_non_nullable
-              as SummaryOrderResponseModel,
+      null == responseModel
+          ? _value.responseModel
+          : responseModel // ignore: cast_nullable_to_non_nullable
+              as OrderDetailResponseModel,
     ));
   }
 }
@@ -656,14 +644,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.summaryOrderResponseModel);
+  const _$SuccessImpl(this.responseModel);
 
   @override
-  final SummaryOrderResponseModel summaryOrderResponseModel;
+  final OrderDetailResponseModel responseModel;
 
   @override
   String toString() {
-    return 'SummaryOrderState.success(summaryOrderResponseModel: $summaryOrderResponseModel)';
+    return 'SummaryOrderState.success(responseModel: $responseModel)';
   }
 
   @override
@@ -671,13 +659,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.summaryOrderResponseModel,
-                    summaryOrderResponseModel) ||
-                other.summaryOrderResponseModel == summaryOrderResponseModel));
+            (identical(other.responseModel, responseModel) ||
+                other.responseModel == responseModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, summaryOrderResponseModel);
+  int get hashCode => Object.hash(runtimeType, responseModel);
 
   @JsonKey(ignore: true)
   @override
@@ -690,12 +677,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            SummaryOrderResponseModel summaryOrderResponseModel)
-        success,
+    required TResult Function(OrderDetailResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
-    return success(summaryOrderResponseModel);
+    return success(responseModel);
   }
 
   @override
@@ -703,11 +688,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult? Function(OrderDetailResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(summaryOrderResponseModel);
+    return success?.call(responseModel);
   }
 
   @override
@@ -715,13 +699,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult Function(OrderDetailResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(summaryOrderResponseModel);
+      return success(responseModel);
     }
     return orElse();
   }
@@ -765,11 +748,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements SummaryOrderState {
-  const factory _Success(
-          final SummaryOrderResponseModel summaryOrderResponseModel) =
+  const factory _Success(final OrderDetailResponseModel responseModel) =
       _$SuccessImpl;
 
-  SummaryOrderResponseModel get summaryOrderResponseModel;
+  OrderDetailResponseModel get responseModel;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -841,9 +823,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            SummaryOrderResponseModel summaryOrderResponseModel)
-        success,
+    required TResult Function(OrderDetailResponseModel responseModel) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -854,8 +834,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult? Function(OrderDetailResponseModel responseModel)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -866,8 +845,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SummaryOrderResponseModel summaryOrderResponseModel)?
-        success,
+    TResult Function(OrderDetailResponseModel responseModel)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

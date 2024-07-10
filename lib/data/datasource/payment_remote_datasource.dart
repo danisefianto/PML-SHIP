@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:pml_ship/data/models/response/payment_options_response_model.dart';
+import '../models/response/payment_options_response_model.dart';
 
 import '../../core/constants/variables.dart';
 import '../models/request/add_payment_request_model.dart';

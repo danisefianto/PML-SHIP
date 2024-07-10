@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
-
 import '../../auth/bloc/logout/logout_bloc.dart';
 import '../bloc/currency/currency_bloc.dart';
 import '../bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
@@ -32,94 +31,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Widget header() {
-    //   return AppBar(
-    //     toolbarHeight: 124.0, //Didapat dari Figma
-    //     titleSpacing:
-    //         0, //Untuk menghilangkan padding dari leading (leading = biasanya berupa tombol back)
-    //     backgroundColor: backgroundColor1,
-    //     automaticallyImplyLeading: false,
-    //     elevation: 0,
-    //     title: Container(
-    //       padding: EdgeInsets.all(defaultMargin),
-    //       child: Row(
-    //         children: [
-    //           CircleAvatar(
-    //             backgroundImage:
-    //                 AssetImage(Assets.image.imageProfileExample.path),
-    //             radius: 30.0,
-    //           ),
-    //           const SizedBox(
-    //             width: 16,
-    //           ),
-    //           Expanded(
-    //             child: BlocBuilder<GetAuthenticatedUserBloc,
-    //                 GetAuthenticatedUserState>(
-    //               builder: (context, state) {
-    //                 return state.maybeWhen(
-    //                   orElse: () {
-    //                     return const Center(child: Text('Error'));
-    //                   },
-    //                   loading: () {
-    //                     return const Center(child: CircularProgressIndicator());
-    //                   },
-    //                   loaded: (profile) {
-    //                     return Column(
-    //                       crossAxisAlignment: CrossAxisAlignment.start,
-    //                       children: [
-    //                         Text(
-    //                           profile.data?.user!.name ?? '',
-    //                           style: primaryTextStyle.copyWith(
-    //                             fontWeight: semiBold,
-    //                             fontSize: 24,
-    //                           ),
-    //                           softWrap: true,
-    //                           overflow: TextOverflow.visible,
-    //                         ),
-    //                         Text(
-    //                           profile.data?.user!.email ?? '',
-    //                           style: subtitleTextStyle.copyWith(
-    //                             fontWeight: regular,
-    //                             fontSize: 16,
-    //                           ),
-    //                           softWrap: true,
-    //                           overflow: TextOverflow.visible,
-    //                         ),
-    //                         Text(
-    //                           profile.data?.company!.companyName ?? '',
-    //                           style: subtitleTextStyle.copyWith(
-    //                             fontWeight: regular,
-    //                             fontSize: 16,
-    //                           ),
-    //                           softWrap: true,
-    //                           overflow: TextOverflow.visible,
-    //                         ),
-    //                         Text(
-    //                           'NPWP: ${profile.data?.company!.companyNpwp}',
-    //                           style: subtitleTextStyle.copyWith(
-    //                             fontWeight: regular,
-    //                             fontSize: 16,
-    //                           ),
-    //                           softWrap: true,
-    //                           overflow: TextOverflow.visible,
-    //                         ),
-    //                       ],
-    //                     );
-    //                   },
-    //                 );
-    //               },
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   );
-    // }
-
-    // Widget content() {
-    //   return;
-    // }
-
     return BlocBuilder<GetAuthenticatedUserBloc, GetAuthenticatedUserState>(
       builder: (context, state) {
         return state.maybeWhen(

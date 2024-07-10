@@ -1,10 +1,9 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
 import '../../../../core/styles.dart';
-import '../../../../data/models/response/summary_order_response_model.dart';
+import '../../../../data/models/response/order_detail_response_model.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
 
 class OrderSummaryPage extends StatefulWidget {
@@ -30,51 +29,8 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget selectFile() {
-      return DottedBorder(
-        strokeWidth: 3,
-        dashPattern: const [6, 6],
-        strokeCap: StrokeCap.round,
-        borderType: BorderType.RRect,
-        radius: const Radius.circular(10),
-        padding: const EdgeInsets.all(8),
-        child: InkWell(
-          onTap: () => (
-            // ScaffoldMessenger.of(context).showSnackBar(
-            //   SnackBar(
-            //     content: Text('Kode dikirim ulang'),
-            //   ),
-            // ),
-          ),
-          child: Container(
-            height: 80,
-            decoration: BoxDecoration(
-              color: const Color(0xFF1C3E66),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.folder_open_rounded,
-                  color: Color(0xFFFFFFFF),
-                  size: 32,
-                ),
-                SizedBox(width: 16),
-                Text(
-                  "Upload Shipping Instruction Document",
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
     Widget buildSummaryOrderUI(
-        SummaryOrderResponseModel summaryOrderResponseModel) {
+        OrderDetailResponseModel summaryOrderResponseModel) {
       return SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,37 +103,37 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Transaction ID: ${summaryOrderResponseModel.data.transactionId}',
+                                'Transaction ID: ${summaryOrderResponseModel.data!.transactionId}',
                                 style:
                                     primaryTextStyle.copyWith(fontWeight: bold),
                               ),
 
                               Text(
-                                '${summaryOrderResponseModel.data.loading.port} - ${summaryOrderResponseModel.data.discharge.port}',
+                                '${summaryOrderResponseModel.data!.loading!.port} - ${summaryOrderResponseModel.data!.discharge!.port}',
                                 style:
                                     primaryTextStyle.copyWith(fontWeight: bold),
                               ),
 
                               // dari planning/quotation
                               Text(
-                                'Date of Loading: ${summaryOrderResponseModel.data.loading.date.toFormattedIndonesianLongDate()}',
+                                'Date of Loading: ${summaryOrderResponseModel.data!.loading!.date!.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
                               Text(
-                                'Date of Discharge: ${summaryOrderResponseModel.data.discharge.date.toFormattedIndonesianLongDate()}',
+                                'Date of Discharge: ${summaryOrderResponseModel.data!.discharge!.date!.toFormattedIndonesianLongDate()}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: light),
                               ),
                               const Divider(),
                               Text(
-                                  'Cargo Description: ${summaryOrderResponseModel.data.cargo.description}'),
+                                  'Cargo Description: ${summaryOrderResponseModel.data!.cargo!.description}'),
                               Text(
-                                  'Cargo Weight: ${summaryOrderResponseModel.data.cargo.weight}'),
+                                  'Cargo Weight: ${summaryOrderResponseModel.data!.cargo!.weight}'),
 
                               const Divider(),
                               Text(
-                                'Estimated Cost: ${summaryOrderResponseModel.data.payment.shippingCost.currencyEYDFormatRp}',
+                                'Estimated Cost: ${summaryOrderResponseModel.data!.payment!.shippingCost!.currencyEYDFormatRp}',
                                 style: primaryTextStyle.copyWith(
                                     fontWeight: bold, fontSize: 16),
                               ),
@@ -211,14 +167,14 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
                             // 'PT BUma',
-                            summaryOrderResponseModel.data.shipper.name,
+                            '${summaryOrderResponseModel.data!.shipper!.name}',
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            summaryOrderResponseModel.data.shipper.address,
+                            '${summaryOrderResponseModel.data!.shipper!.address}',
                           ),
                         ),
                       ],
@@ -247,14 +203,14 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           padding: const EdgeInsets.only(
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
-                            summaryOrderResponseModel.data.consignee.name,
+                            '${summaryOrderResponseModel.data!.consignee!.name}',
                             style: primaryTextStyle.copyWith(fontWeight: bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            summaryOrderResponseModel.data.consignee.address,
+                            '${summaryOrderResponseModel.data!.consignee!.address}',
                           ),
                         ),
                       ],
@@ -272,7 +228,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           context,
                           AppRoutes.addConference,
                           arguments:
-                              summaryOrderResponseModel.data.transactionId,
+                              summaryOrderResponseModel.data!.transactionId,
                         );
                       },
                       label: 'Lanjutkan Pesanan',
@@ -330,7 +286,9 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
               initial: () => const Center(child: CircularProgressIndicator()),
               loading: () => const Center(child: CircularProgressIndicator()),
               success: (summaryOrderResponseModel) {
-                return buildSummaryOrderUI(summaryOrderResponseModel);
+                return buildSummaryOrderUI(
+                  summaryOrderResponseModel,
+                );
               },
               error: (message) {
                 return Center(child: Text('Error: $message'));

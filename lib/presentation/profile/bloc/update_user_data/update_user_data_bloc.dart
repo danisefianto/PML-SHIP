@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../../../data/datasource/auth_remote_datasource.dart';
 
-import '../../../../data/datasource/user_remote_datasource.dart';
 import '../../../../data/models/request/update_user_data_request_model.dart';
 import '../../../../data/models/response/update_user_data_response_model.dart';
 
@@ -11,7 +11,7 @@ part 'update_user_data_state.dart';
 
 class UpdateUserDataBloc
     extends Bloc<UpdateUserDataEvent, UpdateUserDataState> {
-  final UserRemoteDatasource datasource;
+  final AuthRemoteDatasource datasource;
   UpdateUserDataBloc(
     this.datasource,
   ) : super(const _Initial()) {

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
@@ -40,34 +41,26 @@ class OtpInputPasswordResetPage extends StatelessWidget {
       );
     }
 
-    Widget textOTP(int code) {
-      return SizedBox(
-        height: 64.0,
-        width: 40.0,
-        child: TextField(
-            textAlign: TextAlign.center,
-            keyboardType: TextInputType.number,
-            // controller: this.code,
-            maxLength: 1,
-            cursorColor: Theme.of(context).primaryColor,
-            decoration: InputDecoration(
-                hintText: code.toString(),
-                counterText: '',
-                hintStyle:
-                    const TextStyle(color: Colors.black, fontSize: 20.0))),
-      );
-    }
+    // Widget textOTP(int code) {
+    //   return SizedBox(
+    //     height: 64.0,
+    //     width: 40.0,
+    //     child: TextField(
+    //         textAlign: TextAlign.center,
+    //         keyboardType: TextInputType.number,
+    //         // controller: this.code,
+    //         maxLength: 1,
+    //         cursorColor: Theme.of(context).primaryColor,
+    //         decoration: InputDecoration(
+    //             hintText: code.toString(),
+    //             counterText: '',
+    //             hintStyle:
+    //                 const TextStyle(color: Colors.black, fontSize: 20.0))),
+    //   );
+    // }
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //     icon: Icon(Icons.chevron_left),
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //   ),
-        // ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
@@ -94,23 +87,45 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                     style: primaryTextStyle,
                     textAlign: TextAlign.center,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 30.0,
-                      right: 30,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        textOTP(9),
-                        textOTP(3),
-                        textOTP(2),
-                        textOTP(4),
-                        textOTP(1),
-                        textOTP(8),
-                      ],
-                    ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(
+                  //     left: 30.0,
+                  //     right: 30,
+                  //     top: 20,
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       textOTP(9),
+                  //       textOTP(3),
+                  //       textOTP(2),
+                  //       textOTP(4),
+                  //       textOTP(1),
+                  //       textOTP(8),
+                  //     ],
+                  //   ),
+                  // ),
+                  OtpTextField(
+                    numberOfFields: 6,
+                    borderColor: const Color(0xFF512DA8),
+                    //set to true to show as box or false to show as dash
+                    showFieldAsBox: true,
+                    //runs when a code is typed in
+                    onCodeChanged: (String code) {
+                      //handle validation or checks here
+                    },
+                    //runs when every textfield is filled
+                    onSubmit: (String verificationCode) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("Verification Code"),
+                              content:
+                                  Text('Code entered is $verificationCode'),
+                            );
+                          });
+                    }, // end onSubmit
                   ),
                   const SizedBox(
                     height: 10,

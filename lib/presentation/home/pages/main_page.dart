@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/presentation/history/pages/history_page.dart';
-import 'package:pml_ship/presentation/profile/pages/profile_page.dart';
 
 import '../../../core/core.dart';
+import '../../history/pages/history_page.dart';
+import '../../profile/pages/profile_page.dart';
 import 'home_page.dart';
 
 class MainPage extends StatefulWidget {

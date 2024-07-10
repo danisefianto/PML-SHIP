@@ -10,26 +10,34 @@ import '../models/response/update_document_response_model.dart';
 import 'auth_local_datasource.dart';
 
 class DocumentRemoteDatasource {
-  //   if (response.statusCode == 200) {
-  //     return Right(UpdateDocumentResponseModel.fromJson(body));
-  //   } else if (response.statusCode == 400) {
-  //     return const Left('Dokumen sudah ada.');
-  //   } else if (response.statusCode == 404) {
-  //     return const Left('Transaksi tidak ditemukan.');
-  //   } else {
-  //     return const Left('Update document gagal. Cek kembali data Anda.');
-  //   }
   Future<Either<String, GetAllDocumentsResponseModel>> getDocumentsData(
       String transactionId) async {
-    final url = Uri.parse('${Variables.baseUrl}/api/documents/$transactionId');
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
-    final response = await http.get(url, headers: {
-      'Authorization': 'Bearer ${authData.data!.token}',
+
+    // Headers
+    final Map<String, String> headers = {
       'Accept': 'application/json',
-    });
-    log("Request URL: $url");
-    log("resposen: ${response.statusCode}");
-    log("resposen: ${response.body}");
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/documents/$transactionId');
+
+    // Send the request
+    final response = await http.get(
+      url,
+      headers: headers,
+    );
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(GetAllDocumentsResponseModel.fromJson(response.body));
@@ -40,33 +48,48 @@ class DocumentRemoteDatasource {
 
   Future<Either<String, UpdateDocumentResponseModel>> uploadDocument(
       UpdateDocumentRequestModel requestModel, String transactionId) async {
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('${Variables.baseUrl}/api/documents/$transactionId'));
-
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
+    // Headers
+    final Map<String, String> headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
     };
 
-    request.headers.addAll(headers);
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/documents/$transactionId');
 
-    request.fields.addAll(requestModel.toMap());
+    // Create a multipart request
+    var request = http.MultipartRequest('POST', url);
+
+    // Add the file to the request
     request.files.add(await http.MultipartFile.fromPath(
         'document_file', requestModel.documentFile.path));
 
+    // Add the fields to the request
+    request.fields.addAll(requestModel.toMap());
+
+    // Add headers to the request
+    request.headers.addAll(headers);
+
+    // Send the request
     http.StreamedResponse response = await request.send();
 
+    // Get the response body
     final String body = await response.stream.bytesToString();
 
-    log("request: ${request.url}");
-    log("request: ${request.fields}");
-    log("request: ${request.files}");
+    // Log the request
+    log('Request: ${request.fields}');
+    log('URL: $url');
 
-    log("resposen: ${response.statusCode}");
-    log("resposen: $body");
+    // Log file path
+    log('File path: ${requestModel.documentFile.path}');
+
+    // Log the response body
+    log('Response: $body');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(UpdateDocumentResponseModel.fromJson(body));

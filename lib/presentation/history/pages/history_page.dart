@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/order_data_card.dart';
 
-import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/models/response/history_response_model.dart';
 import '../bloc/canceledOrdersData/canceled_orders_data_bloc.dart';
 import '../bloc/completedOrdersData/completed_orders_data_bloc.dart';
 import '../bloc/onShippingOrdersData/on_shipping_orders_data_bloc.dart';
 import '../bloc/paymentPendingOrdersData/payment_pending_orders_data_bloc.dart';
 import '../bloc/pendingOrdersData/pending_orders_data_bloc.dart';
 import '../bloc/rejectedOrdersData/rejected_orders_data_bloc.dart';
-import 'order_detail_page.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -139,21 +137,6 @@ class _HistoryPageState extends State<HistoryPage>
               fontSize: 16.0,
               fontWeight: regular,
             ),
-            onTap: (index) {
-              if (index == 0) {
-                getAllPendingOrders();
-              } else if (index == 1) {
-                getAllPaymentPendingOrders();
-              } else if (index == 2) {
-                getAllOnShippingOrders();
-              } else if (index == 3) {
-                getAllCompletedOrders();
-              } else if (index == 4) {
-                getRejectedOrders();
-              } else {
-                getCanceledOrders();
-              }
-            },
             tabAlignment: TabAlignment.start,
             isScrollable: true,
             tabs: historyTabs,
@@ -167,12 +150,10 @@ class _HistoryPageState extends State<HistoryPage>
             buildOrderDataTab<PendingOrdersDataBloc, PendingOrdersDataState>(
               context.read<PendingOrdersDataBloc>(),
             ),
-
             buildOrderDataTab<PaymentPendingOrdersDataBloc,
                 PaymentPendingOrdersDataState>(
               context.read<PaymentPendingOrdersDataBloc>(),
             ),
-
             buildOrderDataTab<OnShippingOrdersDataBloc,
                 OnShippingOrdersDataState>(
               context.read<OnShippingOrdersDataBloc>(),
@@ -187,11 +168,6 @@ class _HistoryPageState extends State<HistoryPage>
             buildOrderDataTab<CanceledOrdersDataBloc, CanceledOrdersDataState>(
               context.read<CanceledOrdersDataBloc>(),
             ),
-            // Text('Payment Pending'),
-            // Text('On Shipping'),
-            // Text('Completed'),
-            // Text('Rejected'),
-            // Text('Canceled'),
           ],
         ),
       ),
@@ -218,105 +194,8 @@ Widget buildOrderDataTab<BlocType extends BlocBase<StateType>, StateType>(
           if (historyResponse.data.isEmpty) {
             return const Center(child: Text('No Data Available'));
           }
-          return buildOrderDataItem(historyResponse);
+          return OrderDataCard(response: historyResponse);
         },
-      );
-    },
-  );
-}
-
-ListView buildOrderDataItem(HistoryResponseModel response) {
-  return ListView.separated(
-    separatorBuilder: (context, index) => const SizedBox(height: 4),
-    itemCount: response.data.length,
-    itemBuilder: (context, index) {
-      return Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(5.0)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(response.data[index].createdAt.toIso8601String()),
-                  Text(response.data[index].transactionId.toString()),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              margin: const EdgeInsets.all(10),
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(response.data[index].shipper.name.toString()),
-                  Text(
-                      '${response.data[index].loading.port.toString()} - ${response.data[0].discharge.port.toString()}'),
-                  Text(
-                      '${response.data[index].cargo.description.toString()} ${response.data[0].cargo.weight.toString()}')
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Button.filled(
-                    fontSize: 12,
-                    width: 150,
-                    onPressed: () {
-                      // TODO: Add better condition if negotiation is not approved
-                      // Example: if negotiation is not approved, go to Detail Page but show that negotiation is not approved
-                      if (response.data[index].negotiationOrOrderApprovedAt ==
-                              null &&
-                          response.data[index].status == 'order_pending') {
-                        // Show snackbar
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Negotiation is not approved yet'),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderDetailPage(
-                              transactionIdMessage:
-                                  response.data[index].transactionId.toString(),
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    label: 'Order Detail',
-                  ),
-                  //  If response.data[index].status == 'on_shipping', show Track Vessel button
-                  Visibility(
-                    visible: response.data[index].status == 'on_shipping',
-                    child: Button.filled(
-                      width: 150,
-                      onPressed: () {},
-                      label: 'Track Vessel',
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
       );
     },
   );

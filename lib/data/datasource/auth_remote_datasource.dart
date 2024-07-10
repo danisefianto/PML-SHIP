@@ -162,13 +162,13 @@ class AuthRemoteDatasource {
       headers: headers,
     );
 
-    // // Log the request
-    // log('Request: $headers');
-    // log('URL: $url');
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
 
-    // // Log the response body
-    // log('Request: ${response.body}');
-    // log('Status code: ${response.statusCode}');
+    // Log the response body
+    log('Request: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(UserResponseModel.fromJson(response.body));
@@ -218,7 +218,7 @@ class AuthRemoteDatasource {
     // Get the response body
     final String body = await response.stream.bytesToString();
 
-// Log the request
+    // Log the request
     log('Request: ${request.fields}');
     log('URL: $url');
 

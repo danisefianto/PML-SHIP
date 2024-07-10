@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/core/core.dart';
-import 'package:pml_ship/presentation/home/bloc/addPayment/add_payment_bloc.dart';
+import '../../../core/core.dart';
+import '../../home/bloc/addPayment/add_payment_bloc.dart';
 
-import '../../../../core/styles.dart';
-import '../../../../data/models/request/add_payment_request_model.dart';
-import '../../bloc/paymentOptions/payment_options_bloc.dart';
-import 'upload_payment_proof_page.dart';
+import '../../../core/styles.dart';
+import '../../../data/models/request/add_payment_request_model.dart';
+import '../../home/bloc/paymentOptions/payment_options_bloc.dart';
+import '../../home/pages/order/upload_payment_proof_page.dart';
 
 class ChoosePaymentPlanPage extends StatefulWidget {
   final String transactionId;
@@ -37,12 +37,6 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Choose how to pay'),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
         ),
         body: BlocListener<AddPaymentBloc, AddPaymentState>(
           listener: (context, state) {

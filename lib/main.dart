@@ -3,44 +3,21 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pml_ship/data/datasource/payment_remote_datasource.dart';
-import 'package:pml_ship/data/models/response/user_response_model.dart';
-import 'presentation/home/bloc/addPayment/add_payment_bloc.dart';
-import 'presentation/home/bloc/documentData/document_data_bloc.dart';
-import 'presentation/home/bloc/order/newOrder/new_order_bloc.dart';
 
 // Data Source
-
 import 'core/core.dart';
 import 'data/datasource/auth_local_datasource.dart';
 import 'data/datasource/auth_remote_datasource.dart';
 import 'data/datasource/currency_remote_datasource.dart';
+import 'data/datasource/document_remote_datasource.dart';
 import 'data/datasource/history_remote_datasource.dart';
 import 'data/datasource/order_remote_datasource.dart';
-import 'data/datasource/document_remote_datasource.dart';
-import 'data/datasource/user_remote_datasource.dart';
+import 'data/datasource/payment_remote_datasource.dart';
+import 'data/models/response/user_response_model.dart';
 // Bloc
 import 'presentation/auth/bloc/login/login_bloc.dart';
 import 'presentation/auth/bloc/logout/logout_bloc.dart';
-import 'presentation/profile/bloc/currency/currency_bloc.dart';
-import 'presentation/history/bloc/canceledOrdersData/canceled_orders_data_bloc.dart';
-import 'presentation/history/bloc/completedOrdersData/completed_orders_data_bloc.dart';
-import 'presentation/history/bloc/onShippingOrdersData/on_shipping_orders_data_bloc.dart';
-import 'presentation/history/bloc/paymentPendingOrdersData/payment_pending_orders_data_bloc.dart';
-import 'presentation/history/bloc/pendingOrdersData/pending_orders_data_bloc.dart';
-import 'presentation/history/bloc/rejectedOrdersData/rejected_orders_data_bloc.dart';
-import 'presentation/home/bloc/order/addConference/add_conference_bloc.dart';
-import 'presentation/home/bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
-
-import 'presentation/home/bloc/paymentOptions/payment_options_bloc.dart';
-import 'presentation/home/bloc/port/port_bloc.dart';
-import 'presentation/profile/bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 import 'presentation/auth/bloc/register/register_bloc.dart';
-import 'presentation/home/bloc/summaryOrder/summary_order_bloc.dart';
-import 'presentation/profile/bloc/update_user_data/update_user_data_bloc.dart';
-import 'presentation/home/bloc/uploadPaymentProof/upload_payment_proof_bloc.dart';
-import 'presentation/home/bloc/upload_document/upload_document_bloc.dart';
-import 'presentation/home/bloc/weather/weather_bloc.dart';
 import 'presentation/auth/pages/new_password_set_page.dart';
 import 'presentation/auth/pages/otp_input_reset_password_page.dart';
 import 'presentation/auth/pages/recover_password_page.dart';
@@ -48,26 +25,45 @@ import 'presentation/auth/pages/register_page.dart';
 import 'presentation/auth/pages/registration_process_waiting.dart';
 import 'presentation/auth/pages/set_new_password.dart';
 import 'presentation/auth/pages/sign_in_page.dart';
-import 'presentation/home/pages/document_list_page.dart';
-import 'presentation/profile/pages/general/alamat_pelabuhan_screen.dart';
-import 'presentation/profile/pages/general/contact_us_page.dart';
-import 'presentation/profile/pages/general/frequently_asked_question_page.dart';
-import 'presentation/profile/pages/general/how_to_pay_page.dart';
+import 'presentation/history/bloc/canceledOrdersData/canceled_orders_data_bloc.dart';
+import 'presentation/history/bloc/completedOrdersData/completed_orders_data_bloc.dart';
+import 'presentation/history/bloc/onShippingOrdersData/on_shipping_orders_data_bloc.dart';
+import 'presentation/history/bloc/paymentPendingOrdersData/payment_pending_orders_data_bloc.dart';
+import 'presentation/history/bloc/pendingOrdersData/pending_orders_data_bloc.dart';
+import 'presentation/history/bloc/rejectedOrdersData/rejected_orders_data_bloc.dart';
+import 'presentation/history/pages/choose_payment_plan_page.dart';
+import 'presentation/home/bloc/addPayment/add_payment_bloc.dart';
+import 'presentation/history/bloc/documentData/document_data_bloc.dart';
+import 'presentation/home/bloc/order/addConference/add_conference_bloc.dart';
+import 'presentation/home/bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
+import 'presentation/home/bloc/order/newOrder/new_order_bloc.dart';
+import 'presentation/home/bloc/paymentOptions/payment_options_bloc.dart';
+import 'presentation/home/bloc/port/port_bloc.dart';
+import 'presentation/home/bloc/summaryOrder/summary_order_bloc.dart';
+import 'presentation/home/bloc/uploadPaymentProof/upload_payment_proof_bloc.dart';
+import 'presentation/home/bloc/upload_document/upload_document_bloc.dart';
+import 'presentation/home/bloc/weather/weather_bloc.dart';
 import 'presentation/home/pages/main_page.dart';
-import 'presentation/onboarding/pages/onboarding_page.dart';
-import 'presentation/home/pages/order/add_shipper_consignee_data_page.dart';
 import 'presentation/home/pages/order/add_conference_page.dart';
-import 'presentation/home/pages/order/choose_payment_plan_page.dart';
+import 'presentation/home/pages/order/add_shipper_consignee_data_page.dart';
 import 'presentation/home/pages/order/order_port_page.dart';
 import 'presentation/home/pages/order/order_process_waiting.dart';
 import 'presentation/home/pages/order/order_summary_page.dart';
 import 'presentation/home/pages/order/quotation_and_weather_risk_mitigation_page.dart';
-import 'presentation/profile/pages/edit_personal_and_company_profile_page.dart';
 import 'presentation/home/pages/risk_mitigation/risk_mitigation_page.dart';
+import 'presentation/home/pages/tracking_order_screen.dart';
+import 'presentation/onboarding/pages/onboarding_page.dart';
+import 'presentation/profile/bloc/currency/currency_bloc.dart';
+import 'presentation/profile/bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
+import 'presentation/profile/bloc/update_user_data/update_user_data_bloc.dart';
+import 'presentation/profile/pages/edit_personal_and_company_profile_page.dart';
+import 'presentation/profile/pages/general/alamat_pelabuhan_screen.dart';
+import 'presentation/profile/pages/general/contact_us_page.dart';
+import 'presentation/profile/pages/general/frequently_asked_question_page.dart';
+import 'presentation/profile/pages/general/how_to_pay_page.dart';
 import 'presentation/profile/pages/notification_settings_page.dart';
 import 'presentation/profile/pages/security_page.dart';
 import 'presentation/profile/pages/where_you_are_logged_in_page.dart';
-import 'presentation/home/pages/tracking_order_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -93,7 +89,7 @@ class MainApp extends StatelessWidget {
           create: (context) => GetAuthenticatedUserBloc(AuthRemoteDatasource()),
         ),
         BlocProvider(
-          create: (context) => UpdateUserDataBloc(UserRemoteDatasource()),
+          create: (context) => UpdateUserDataBloc(AuthRemoteDatasource()),
         ),
         BlocProvider(
           create: (context) => CurrencyBloc(CurrencyRemoteDataSource()),
@@ -362,12 +358,12 @@ class MainApp extends StatelessWidget {
           AppRoutes.notificationSettings: (context) =>
               const NotificationSetting(),
           AppRoutes.contactUs: (context) => const ContactUsPage(),
-          AppRoutes.documentList: (context) {
-            final args = ModalRoute.of(context)!.settings.arguments;
-            return DocumentListPage(
-              transactionId: args as String,
-            );
-          },
+          // AppRoutes.documentList: (context) {
+          //   final args = ModalRoute.of(context)!.settings.arguments;
+          //   return DocumentListPage(
+          //     transactionId: args as String,
+          //   );
+          // },
           AppRoutes.trackVessel: (context) => TrackingOneScreen(),
           AppRoutes.registrationProcessWaiting: (context) =>
               const RegistrationProcessWaitingPage(),

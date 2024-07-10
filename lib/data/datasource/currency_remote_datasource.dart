@@ -9,24 +9,38 @@ import 'auth_local_datasource.dart';
 
 class CurrencyRemoteDataSource {
   Future<Either<String, CurrencyResponseModel>> fetchLatestRates() async {
-    try {
-      final url = Uri.parse('${Variables.baseUrl}/api/currencies');
-      final authData = await AuthLocalDataSource().getAuthData();
-      final response = await http.get(url, headers: {
-        'Authorization': 'Bearer ${authData.data!.token}',
-        'Accept': 'application/json',
-      });
-      log("response: ${response.statusCode}");
-      log("response: ${response.body}");
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
 
-      if (response.statusCode == 200) {
-        final currencyResponse = CurrencyResponseModel.fromJson(response.body);
-        return Right(currencyResponse);
-      } else {
-        return const Left('Failed to fetch currency data.');
-      }
-    } catch (e) {
-      return Left('Error: $e');
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/currencies');
+
+    // Send the request
+    final response = await http.get(
+      url,
+      headers: headers,
+    );
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final currencyResponse = CurrencyResponseModel.fromJson(response.body);
+      return Right(currencyResponse);
+    } else {
+      return const Left('Failed to fetch currency data.');
     }
   }
 }

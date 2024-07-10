@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pml_ship/data/datasource/payment_remote_datasource.dart';
-import 'package:pml_ship/data/models/response/payment_options_response_model.dart';
 
+import '../../../../data/datasource/payment_remote_datasource.dart';
+import '../../../../data/models/response/payment_options_response_model.dart';
+
+part 'payment_options_bloc.freezed.dart';
 part 'payment_options_event.dart';
 part 'payment_options_state.dart';
-part 'payment_options_bloc.freezed.dart';
 
 class PaymentOptionsBloc
     extends Bloc<PaymentOptionsEvent, PaymentOptionsState> {

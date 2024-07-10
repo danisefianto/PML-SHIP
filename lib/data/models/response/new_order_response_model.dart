@@ -34,18 +34,18 @@ class Data {
   final String status;
   final String transactionId;
   final String customerCompanyName;
-  final String vesselName;
+  final Vessel vessel;
   final Discharge loading;
   final Discharge discharge;
   final Cargo cargo;
   final Consignee shipper;
   final Consignee consignee;
+  final List<Document> documents;
   final Payment payment;
   final Rating rating;
-  final DateTime? negotiationOrOrderApprovedAt;
-  final DateTime? maxInputDocumentAt;
-  final DateTime? orderRejectedAt;
-  final DateTime? orderCanceledAt;
+  final dynamic negotiationOrOrderApprovedAt;
+  final dynamic orderRejectedAt;
+  final dynamic orderCanceledAt;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -53,18 +53,18 @@ class Data {
     required this.status,
     required this.transactionId,
     required this.customerCompanyName,
-    required this.vesselName,
+    required this.vessel,
     required this.loading,
     required this.discharge,
     required this.cargo,
     required this.shipper,
     required this.consignee,
+    required this.documents,
     required this.payment,
     required this.rating,
-    this.negotiationOrOrderApprovedAt,
-    this.maxInputDocumentAt,
-    this.orderRejectedAt,
-    this.orderCanceledAt,
+    required this.negotiationOrOrderApprovedAt,
+    required this.orderRejectedAt,
+    required this.orderCanceledAt,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -77,27 +77,19 @@ class Data {
         status: json["status"],
         transactionId: json["transaction_id"],
         customerCompanyName: json["customer_company_name"],
-        vesselName: json["vessel_name"],
+        vessel: Vessel.fromMap(json["vessel"]),
         loading: Discharge.fromMap(json["loading"]),
         discharge: Discharge.fromMap(json["discharge"]),
         cargo: Cargo.fromMap(json["cargo"]),
         shipper: Consignee.fromMap(json["shipper"]),
         consignee: Consignee.fromMap(json["consignee"]),
+        documents: List<Document>.from(
+            json["documents"].map((x) => Document.fromMap(x))),
         payment: Payment.fromMap(json["payment"]),
         rating: Rating.fromMap(json["rating"]),
-        negotiationOrOrderApprovedAt:
-            json["negotiation_or_order_approved_at"] != null
-                ? DateTime.parse(json["negotiation_or_order_approved_at"])
-                : null,
-        maxInputDocumentAt: json["max_input_document_at"] != null
-            ? DateTime.parse(json["max_input_document_at"])
-            : null,
-        orderRejectedAt: json["order_rejected_at"] != null
-            ? DateTime.parse(json["order_rejected_at"])
-            : null,
-        orderCanceledAt: json["order_canceled_at"] != null
-            ? DateTime.parse(json["order_canceled_at"])
-            : null,
+        negotiationOrOrderApprovedAt: json["negotiation_or_order_approved_at"],
+        orderRejectedAt: json["order_rejected_at"],
+        orderCanceledAt: json["order_canceled_at"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -106,19 +98,18 @@ class Data {
         "status": status,
         "transaction_id": transactionId,
         "customer_company_name": customerCompanyName,
-        "vessel_name": vesselName,
+        "vessel": vessel.toMap(),
         "loading": loading.toMap(),
         "discharge": discharge.toMap(),
         "cargo": cargo.toMap(),
         "shipper": shipper.toMap(),
         "consignee": consignee.toMap(),
+        "documents": List<dynamic>.from(documents.map((x) => x.toMap())),
         "payment": payment.toMap(),
         "rating": rating.toMap(),
-        "negotiation_or_order_approved_at":
-            negotiationOrOrderApprovedAt?.toIso8601String(),
-        "max_input_document_at": maxInputDocumentAt?.toIso8601String(),
-        "order_rejected_at": orderRejectedAt?.toIso8601String(),
-        "order_canceled_at": orderCanceledAt?.toIso8601String(),
+        "negotiation_or_order_approved_at": negotiationOrOrderApprovedAt,
+        "order_rejected_at": orderRejectedAt,
+        "order_canceled_at": orderCanceledAt,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
@@ -197,13 +188,50 @@ class Discharge {
       };
 }
 
+class Document {
+  final dynamic documentName;
+  final String documentType;
+  final dynamic maxInputDocumentAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  Document({
+    required this.documentName,
+    required this.documentType,
+    required this.maxInputDocumentAt,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Document.fromJson(String str) => Document.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Document.fromMap(Map<String, dynamic> json) => Document(
+        documentName: json["document_name"],
+        documentType: json["document_type"],
+        maxInputDocumentAt: json["max_input_document_at"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "document_name": documentName,
+        "document_type": documentType,
+        "max_input_document_at": maxInputDocumentAt,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+      };
+}
+
 class Payment {
   final int shippingCost;
   final int handlingCost;
   final int biayaParkirPelabuhan;
   final int tax;
   final int totalBill;
-  final int? cumulativePaid;
+  final dynamic cumulativePaid;
+  final List<dynamic> payments;
 
   Payment({
     required this.shippingCost,
@@ -211,7 +239,8 @@ class Payment {
     required this.biayaParkirPelabuhan,
     required this.tax,
     required this.totalBill,
-    this.cumulativePaid,
+    required this.cumulativePaid,
+    required this.payments,
   });
 
   factory Payment.fromJson(String str) => Payment.fromMap(json.decode(str));
@@ -225,6 +254,7 @@ class Payment {
         tax: json["tax"],
         totalBill: json["total_bill"],
         cumulativePaid: json["cumulative_paid"],
+        payments: List<dynamic>.from(json["payments"].map((x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
@@ -234,16 +264,17 @@ class Payment {
         "tax": tax,
         "total_bill": totalBill,
         "cumulative_paid": cumulativePaid,
+        "payments": List<dynamic>.from(payments.map((x) => x)),
       };
 }
 
 class Rating {
-  final int? star;
-  final String? review;
+  final dynamic star;
+  final dynamic review;
 
   Rating({
-    this.star,
-    this.review,
+    required this.star,
+    required this.review,
   });
 
   factory Rating.fromJson(String str) => Rating.fromMap(json.decode(str));
@@ -258,5 +289,49 @@ class Rating {
   Map<String, dynamic> toMap() => {
         "star": star,
         "review": review,
+      };
+}
+
+class Vessel {
+  final String vesselName;
+  final double vesselLat;
+  final double vesselLon;
+  final String vesselVtsSpeedKnot;
+  final String vesselCalcSpeedKnot;
+  final String vesselHeadingDegree;
+  final DateTime pmlLastUpdatedAt;
+
+  Vessel({
+    required this.vesselName,
+    required this.vesselLat,
+    required this.vesselLon,
+    required this.vesselVtsSpeedKnot,
+    required this.vesselCalcSpeedKnot,
+    required this.vesselHeadingDegree,
+    required this.pmlLastUpdatedAt,
+  });
+
+  factory Vessel.fromJson(String str) => Vessel.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Vessel.fromMap(Map<String, dynamic> json) => Vessel(
+        vesselName: json["vessel_name"],
+        vesselLat: json["vessel_lat"]?.toDouble(),
+        vesselLon: json["vessel_lon"]?.toDouble(),
+        vesselVtsSpeedKnot: json["vessel_vts_speed_knot"],
+        vesselCalcSpeedKnot: json["vessel_calc_speed_knot"],
+        vesselHeadingDegree: json["vessel_heading_degree"],
+        pmlLastUpdatedAt: DateTime.parse(json["pml_last_updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "vessel_name": vesselName,
+        "vessel_lat": vesselLat,
+        "vessel_lon": vesselLon,
+        "vessel_vts_speed_knot": vesselVtsSpeedKnot,
+        "vessel_calc_speed_knot": vesselCalcSpeedKnot,
+        "vessel_heading_degree": vesselHeadingDegree,
+        "pml_last_updated_at": pmlLastUpdatedAt.toIso8601String(),
       };
 }

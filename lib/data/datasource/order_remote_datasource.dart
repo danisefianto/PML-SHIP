@@ -12,20 +12,39 @@ import '../models/response/add_conference_response_model.dart';
 import '../models/response/new_check_quotation_response_model.dart';
 import '../models/response/new_order_response_model.dart';
 import '../models/response/port_response_model.dart';
-import '../models/response/summary_order_response_model.dart';
+import '../models/response/order_detail_response_model.dart';
 import '../models/response/weather_response_model.dart';
 import 'auth_local_datasource.dart';
 
 class OrderRemoteDatasource {
   Future<Either<String, PortResponseModel>> getPorts() async {
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/ports');
+
+    // Send the request
     final response = await http.get(
-      Uri.parse('${Variables.baseUrl}/api/ports'),
-      headers: {
-        'Authorization': 'Bearer ${authData.data!.token}',
-        'Accept': 'application/json',
-      },
+      url,
+      headers: headers,
     );
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
+
     if (response.statusCode == 200) {
       return Right(PortResponseModel.fromJson(response.body));
     } else {
@@ -35,16 +54,30 @@ class OrderRemoteDatasource {
 
   Future<Either<String, WeatherResponseModel>> fetchWeatherData(
       WeatherRequestModel request) async {
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    // URL
     final url = Uri.parse(
             '${Variables.weatherApiUrl}${Variables.weatherApiVersion}/forecast')
         .replace(queryParameters: request.toQueryParameters());
 
-    log("Request URL: $url");
+    // Send the request
+    final response = await http.get(
+      url,
+      headers: headers,
+    );
 
-    final response = await http.get(url);
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
 
-    log("Response Status Code: ${response.statusCode}");
-    // log("Response Body: ${response.body}");
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       final weatherResponse = WeatherResponseModel.fromJson(response.body);
@@ -56,19 +89,33 @@ class OrderRemoteDatasource {
 
   Future<Either<String, NewCheckQuotationResponseModel>> newcheckQuotation(
       NewCheckQuotationRequestModel newCheckQuotationRequestModel) async {
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/checkQuotation');
+
+    // Send the request
     final response = await http.post(
-      Uri.parse('${Variables.baseUrl}/api/checkQuotation'),
-      headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data!.token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      url,
+      headers: headers,
       body: newCheckQuotationRequestModel.toJson(),
     );
-    log('request: ${newCheckQuotationRequestModel.toJson()}');
-    log("resposen: ${response.statusCode}");
-    // log("resposen: ${response.body}");
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(NewCheckQuotationResponseModel.fromJson(response.body));
@@ -79,18 +126,33 @@ class OrderRemoteDatasource {
 
   Future<Either<String, NewOrderResponseModel>> newOrder(
       NewOrderRequestModel newOrderRequestModel) async {
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/order');
+
+    // Send the request
     final response = await http.post(
-      Uri.parse('${Variables.baseUrl}/api/order'),
-      headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data!.token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      url,
+      headers: headers,
       body: newOrderRequestModel.toJson(),
     );
-    log("resposen: ${response.statusCode}");
-    log("resposen: ${response.body}");
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 201) {
       return Right(NewOrderResponseModel.fromJson(response.body));
@@ -99,22 +161,37 @@ class OrderRemoteDatasource {
     }
   }
 
-  Future<Either<String, SummaryOrderResponseModel>> getSummaryOrder(
+  Future<Either<String, OrderDetailResponseModel>> getSummaryOrder(
       String transactionId) async {
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/orders/$transactionId');
+
+    // Send the request
     final response = await http.get(
-      Uri.parse('${Variables.baseUrl}/api/orders/$transactionId'),
-      headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data!.token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      url,
+      headers: headers,
     );
 
-    log("resposen: ${response.statusCode}");
-    log("resposen: ${response.body}");
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
+
     if (response.statusCode == 200) {
-      return Right(SummaryOrderResponseModel.fromJson(response.body));
+      return Right(OrderDetailResponseModel.fromJson(response.body));
     } else {
       return const Left('Summary order error');
     }
@@ -122,18 +199,34 @@ class OrderRemoteDatasource {
 
   Future<Either<String, AddConferenceResponseModel>> addConference(
       AddConferenceRequestModel addConferenceRequestModel) async {
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/addConference');
+
+    // Send the request
     final response = await http.post(
-      Uri.parse('${Variables.baseUrl}/api/addConference'),
-      headers: <String, String>{
-        'Authorization': 'Bearer ${authData.data!.token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      url,
+      headers: headers,
       body: addConferenceRequestModel.toJson(),
     );
-    log("resposen: ${response.statusCode}");
-    log("resposen: ${response.body}");
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
+
     if (response.statusCode == 201) {
       return Right(AddConferenceResponseModel.fromJson(response.body));
     } else {

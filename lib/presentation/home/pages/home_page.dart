@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
-import '../../../data/datasource/auth_local_datasource.dart';
-import '../../../data/models/response/auth_response_model.dart';
+import '../../profile/bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,14 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  User? user;
   @override
   void initState() {
-    AuthLocalDataSource().getAuthData().then((value) {
-      setState(() {
-        user = value.data!.user;
-      });
-    });
+    context
+        .read<GetAuthenticatedUserBloc>()
+        .add(const GetAuthenticatedUserEvent.getAuthenticatedUser());
     super.initState();
   }
 
@@ -191,12 +188,24 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 16,
                         ),
                       ),
-                      Text(
-                        user?.name ?? '',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: bold,
-                          fontSize: 24,
-                        ),
+                      BlocBuilder<GetAuthenticatedUserBloc,
+                          GetAuthenticatedUserState>(
+                        builder: (context, state) {
+                          String? name = '';
+                          state.maybeWhen(
+                            orElse: () {},
+                            loaded: (user) {
+                              name = user.data?.user!.name!;
+                            },
+                          );
+                          return Text(
+                            '$name',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20.0,
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

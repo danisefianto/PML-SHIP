@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TrackVesselPage extends StatelessWidget {
-  const TrackVesselPage({super.key});
+class TrackVessel extends StatelessWidget {
+  const TrackVessel({super.key});
 
   @override
   Widget build(BuildContext context) {

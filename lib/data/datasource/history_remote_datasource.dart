@@ -9,23 +9,33 @@ import 'auth_local_datasource.dart';
 
 class HistoryRemoteDatasource {
   Future<Either<String, HistoryResponseModel>> getAllPendingOrders() async {
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
     final url =
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_pending');
-    final authData = await AuthLocalDataSource().getAuthData();
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
-      'Accept': 'application/json',
-    };
+
+    // Send the request
     final response = await http.get(
       url,
       headers: headers,
     );
-// Log the request
-    log("Request URL: $url");
-    log("Request Headers: ${headers.toString()}");
 
-    log("resposen: ${response.statusCode}");
-    log("resposen pendingOrders: ${response.body}");
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(HistoryResponseModel.fromJson(response.body));
@@ -38,13 +48,21 @@ class HistoryRemoteDatasource {
 
   Future<Either<String, HistoryResponseModel>>
       getAllPaymentPendingOrders() async {
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
     final url =
         Uri.parse('${Variables.baseUrl}/api/orders?status=payment_pending');
-    final authData = await AuthLocalDataSource().getAuthData();
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
-      'Accept': 'application/json',
-    };
+
+    // Send the request
     final response = await http.get(
       url,
       headers: headers,
@@ -66,22 +84,31 @@ class HistoryRemoteDatasource {
   }
 
   Future<Either<String, HistoryResponseModel>> getAllOnShippingOrders() async {
-    final url = Uri.parse('${Variables.baseUrl}/api/orders?status=on_shipping');
+    // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
+
+    // Headers
+    final Map<String, String> headers = {
       'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
     };
+
+    // URL
+    final url = Uri.parse('${Variables.baseUrl}/api/orders?status=on_shipping');
+
+    // Send the request
     final response = await http.get(
       url,
       headers: headers,
     );
-// Log the request
-    log("Request URL: $url");
-    log("Request Headers: ${headers.toString()}");
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
 
-    log("resposen: ${response.statusCode}");
-    log("resposen pendingOrders: ${response.body}");
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(HistoryResponseModel.fromJson(response.body));
@@ -93,23 +120,33 @@ class HistoryRemoteDatasource {
   }
 
   Future<Either<String, HistoryResponseModel>> getAllCompletedOrders() async {
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
     final url =
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_completed');
-    final authData = await AuthLocalDataSource().getAuthData();
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
-      'Accept': 'application/json',
-    };
+
+    // Send the request
     final response = await http.get(
       url,
       headers: headers,
     );
-// Log the request
-    log("Request URL: $url");
-    log("Request Headers: ${headers.toString()}");
 
-    log("resposen: ${response.statusCode}");
-    log("resposen pendingOrders: ${response.body}");
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(HistoryResponseModel.fromJson(response.body));
@@ -121,23 +158,33 @@ class HistoryRemoteDatasource {
   }
 
   Future<Either<String, HistoryResponseModel>> getAllCanceledOrders() async {
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
     final url =
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_canceled');
-    final authData = await AuthLocalDataSource().getAuthData();
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
-      'Accept': 'application/json',
-    };
+
+    // Send the request
     final response = await http.get(
       url,
       headers: headers,
     );
-// Log the request
-    log("Request URL: $url");
-    log("Request Headers: ${headers.toString()}");
 
-    log("resposen: ${response.statusCode}");
-    log("resposen pendingOrders: ${response.body}");
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(HistoryResponseModel.fromJson(response.body));
@@ -149,23 +196,32 @@ class HistoryRemoteDatasource {
   }
 
   Future<Either<String, HistoryResponseModel>> getAllRejectedOrders() async {
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
     final url =
         Uri.parse('${Variables.baseUrl}/api/orders?status=order_rejected');
-    final authData = await AuthLocalDataSource().getAuthData();
-    var headers = {
-      'Authorization': 'Bearer ${authData.data!.token}',
-      'Accept': 'application/json',
-    };
+
+    // Send the request
     final response = await http.get(
       url,
       headers: headers,
     );
-// Log the request
-    log("Request URL: $url");
-    log("Request Headers: ${headers.toString()}");
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
 
-    log("resposen: ${response.statusCode}");
-    log("resposen pendingOrders: ${response.body}");
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(HistoryResponseModel.fromJson(response.body));

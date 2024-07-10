@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/presentation/profile/bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 
 import '../../../../core/core.dart';
 import '../../../data/models/request/update_user_data_request_model.dart';
 import '../../../data/models/response/user_response_model.dart';
+import '../bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 import '../bloc/update_user_data/update_user_data_bloc.dart';
 
 class EditPersonalAndCompanyProfilePage extends StatefulWidget {

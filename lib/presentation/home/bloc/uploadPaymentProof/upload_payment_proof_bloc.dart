@@ -5,9 +5,9 @@ import '../../../../data/datasource/payment_remote_datasource.dart';
 import '../../../../data/models/request/update_payment_request_model.dart';
 import '../../../../data/models/response/update_payment_response_model.dart';
 
+part 'upload_payment_proof_bloc.freezed.dart';
 part 'upload_payment_proof_event.dart';
 part 'upload_payment_proof_state.dart';
-part 'upload_payment_proof_bloc.freezed.dart';
 
 class UploadPaymentProofBloc
     extends Bloc<UploadPaymentProofEvent, UploadPaymentProofState> {

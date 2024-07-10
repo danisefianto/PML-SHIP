@@ -4,8 +4,16 @@ import 'package:flutter/material.dart';
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
 
-class RecoverPasswordPage extends StatelessWidget {
+class RecoverPasswordPage extends StatefulWidget {
   const RecoverPasswordPage({super.key});
+
+  @override
+  State<RecoverPasswordPage> createState() => _RecoverPasswordPageState();
+}
+
+class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
+  final TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Widget emailInput() {
@@ -16,53 +24,21 @@ class RecoverPasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Enter your email',
-              style: primaryTextStyle.copyWith(
-                fontWeight: medium,
-                fontSize: 16,
+            const SpaceHeight(12),
+            CustomTextField(
+              controller: emailController,
+              label: 'Enter your email',
+              hintText: 'Your Email Address',
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              prefixIcon: const Icon(
+                Icons.email,
+                color: AppColors.black,
               ),
             ),
-            const SizedBox(
-              height: 12.0,
-            ),
-            Container(
-              height: 50.0,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(
-                  5.0,
-                ),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    const Icon(Icons.email),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        style: primaryTextStyle,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Email Address',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
+            const SpaceHeight(5),
+            const Text(
               'Example: user@pml.co.id',
-              style: primaryTextStyle,
             ),
           ],
         ),
@@ -130,10 +106,9 @@ class RecoverPasswordPage extends StatelessWidget {
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Sign in',
-                          style: primaryTextStyle.copyWith(
-                            color: Colors.blue,
-                            fontSize: 12.0,
-                            fontWeight: medium,
+                          style: const TextStyle(
+                            color: AppColors.blue,
+                            fontWeight: FontWeight.bold,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
@@ -145,7 +120,6 @@ class RecoverPasswordPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ],
