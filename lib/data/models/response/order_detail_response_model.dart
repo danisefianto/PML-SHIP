@@ -44,8 +44,8 @@ class Data {
   final DataPayment? payment;
   final Rating? rating;
   final DateTime? negotiationOrOrderApprovedAt;
-  final dynamic orderRejectedAt;
-  final dynamic orderCanceledAt;
+  final DateTime? orderRejectedAt;
+  final DateTime? orderCanceledAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -101,8 +101,12 @@ class Data {
             json["negotiation_or_order_approved_at"] == null
                 ? null
                 : DateTime.parse(json["negotiation_or_order_approved_at"]),
-        orderRejectedAt: json["order_rejected_at"],
-        orderCanceledAt: json["order_canceled_at"],
+        orderRejectedAt: json["order_rejected_at"] == null
+            ? null
+            : DateTime.parse(json["order_rejected_at"]),
+        orderCanceledAt: json["order_canceled_at"] == null
+            ? null
+            : DateTime.parse(json["order_canceled_at"]),
         createdAt: json["created_at"] == null
             ? null
             : DateTime.parse(json["created_at"]),
@@ -128,8 +132,8 @@ class Data {
         "rating": rating?.toMap(),
         "negotiation_or_order_approved_at":
             negotiationOrOrderApprovedAt?.toIso8601String(),
-        "order_rejected_at": orderRejectedAt,
-        "order_canceled_at": orderCanceledAt,
+        "order_rejected_at": orderRejectedAt?.toIso8601String(),
+        "order_canceled_at": orderCanceledAt?.toIso8601String(),
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
       };
@@ -211,7 +215,7 @@ class Discharge {
 class Document {
   final String? documentName;
   final String? documentType;
-  final dynamic maxInputDocumentAt;
+  final DateTime? maxInputDocumentAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -230,7 +234,9 @@ class Document {
   factory Document.fromMap(Map<String, dynamic> json) => Document(
         documentName: json["document_name"],
         documentType: json["document_type"],
-        maxInputDocumentAt: json["max_input_document_at"],
+        maxInputDocumentAt: json["max_input_document_at"] == null
+            ? null
+            : DateTime.parse(json["max_input_document_at"]),
         createdAt: json["created_at"] == null
             ? null
             : DateTime.parse(json["created_at"]),
@@ -242,7 +248,7 @@ class Document {
   Map<String, dynamic> toMap() => {
         "document_name": documentName,
         "document_type": documentType,
-        "max_input_document_at": maxInputDocumentAt,
+        "max_input_document_at": maxInputDocumentAt?.toIso8601String(),
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
       };
@@ -254,7 +260,7 @@ class DataPayment {
   final int? biayaParkirPelabuhan;
   final int? tax;
   final int? totalBill;
-  final dynamic cumulativePaid;
+  final int? cumulativePaid;
   final List<PaymentElement>? payments;
 
   DataPayment({
@@ -304,10 +310,10 @@ class PaymentElement {
   final int? paymentAmount;
   final String? paymentProofDocument;
   final int? installmentNumber;
-  final dynamic totalInstallments;
+  final int? totalInstallments;
   final String? paymentStatus;
   final DateTime? approvedAt;
-  final dynamic rejectedAt;
+  final DateTime? rejectedAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -345,7 +351,9 @@ class PaymentElement {
         approvedAt: json["approved_at"] == null
             ? null
             : DateTime.parse(json["approved_at"]),
-        rejectedAt: json["rejected_at"],
+        rejectedAt: json["rejected_at"] == null
+            ? null
+            : DateTime.parse(json["rejected_at"]),
         createdAt: json["created_at"] == null
             ? null
             : DateTime.parse(json["created_at"]),
@@ -364,15 +372,15 @@ class PaymentElement {
         "total_installments": totalInstallments,
         "payment_status": paymentStatus,
         "approved_at": approvedAt?.toIso8601String(),
-        "rejected_at": rejectedAt,
+        "rejected_at": rejectedAt?.toIso8601String(),
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
       };
 }
 
 class Rating {
-  final dynamic star;
-  final dynamic review;
+  final int? star;
+  final String? review;
 
   Rating({
     this.star,

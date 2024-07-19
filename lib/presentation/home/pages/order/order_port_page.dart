@@ -4,6 +4,7 @@ import '../../../../core/core.dart';
 import '../../../../core/styles.dart';
 import '../../widgets/select_date_widget.dart';
 import '../../widgets/select_port_dropdown_widget.dart';
+import 'quotation_and_weather_risk_mitigation_page.dart';
 
 class OrderPortPage extends StatefulWidget {
   const OrderPortPage({super.key});
@@ -248,17 +249,19 @@ class _OrderPortPageState extends State<OrderPortPage> {
                           backgroundColor: Colors.green,
                         ),
                       );
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        AppRoutes.quotationAndWeatherRiskMitigation,
-                        arguments: {
-                          'portOfLoadingId': loadingPortId!,
-                          'portOfDischargeId': dischargePortId!,
-                          'dateOfLoading':
-                              DateTime.parse(loadingDateController.text),
-                          'cargoDescription': cargoDescriptionController.text,
-                          'cargoWeight': cargoWeightController.text,
-                        },
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              QuotationAndWeatherRiskMitigationPage(
+                            portOfLoadingId: loadingPortId!,
+                            portOfDischargeId: dischargePortId!,
+                            dateOfLoading:
+                                DateTime.parse(loadingDateController.text),
+                            cargoDescription: cargoDescriptionController.text,
+                            cargoWeight: cargoWeightController.text,
+                          ),
+                        ),
                       );
                     }
                   },

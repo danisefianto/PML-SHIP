@@ -4,6 +4,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
+import 'recover_password_page.dart';
+import 'set_new_password.dart';
 
 class OtpInputPasswordResetPage extends StatelessWidget {
   const OtpInputPasswordResetPage({super.key});
@@ -28,9 +30,11 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.pushNamed(
+                    Navigator.push(
                       context,
-                      AppRoutes.recoverPassword,
+                      MaterialPageRoute(
+                        builder: (context) => const RecoverPasswordPage(),
+                      ),
                     );
                   },
               ),
@@ -172,9 +176,11 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 30.0, bottom: 30.0),
                     child: Button.filled(
                       onPressed: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.setNewPassword,
+                          MaterialPageRoute(
+                            builder: (context) => const SetNewPasswordPage(),
+                          ),
                         );
                       },
                       label: 'Continue',

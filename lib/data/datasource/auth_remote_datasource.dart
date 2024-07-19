@@ -85,16 +85,16 @@ class AuthRemoteDatasource {
       }),
     );
 
-    // Log the request
-    log('Request: ${jsonEncode({
-          'email': email,
-          'password': password,
-        })}');
-    log('URL: $url');
+    // // Log the request
+    // log('Request: ${jsonEncode({
+    //       'email': email,
+    //       'password': password,
+    //     })}');
+    // log('URL: $url');
 
-    // Log the response body
-    log('Response: ${response.body}');
-    log('Status code: ${response.statusCode}');
+    // // Log the response body
+    // log('Response: ${response.body}');
+    // log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(AuthResponseModel.fromJson(response.body));
@@ -162,13 +162,13 @@ class AuthRemoteDatasource {
       headers: headers,
     );
 
-    // Log the request
-    log('Request: $headers');
-    log('URL: $url');
+    // // Log the request
+    // log('Request: $headers');
+    // log('URL: $url');
 
-    // Log the response body
-    log('Request: ${response.body}');
-    log('Status code: ${response.statusCode}');
+    // // Log the response body
+    // log('Request: ${response.body}');
+    // log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(UserResponseModel.fromJson(response.body));

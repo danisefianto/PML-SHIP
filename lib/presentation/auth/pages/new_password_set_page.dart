@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
@@ -47,9 +48,11 @@ class NewPasswordSetPage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 30.0),
                   child: Button.filled(
                     onPressed: () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        AppRoutes.signIn,
+                        MaterialPageRoute(
+                          builder: (context) => const SignInPage(),
+                        ),
                       );
                     },
                     label: 'Go to Log In',

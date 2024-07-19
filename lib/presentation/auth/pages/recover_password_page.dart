@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
+import 'otp_input_reset_password_page.dart';
 
 class RecoverPasswordPage extends StatefulWidget {
   const RecoverPasswordPage({super.key});
@@ -87,9 +89,12 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                   margin: const EdgeInsets.only(top: 30.0, bottom: 30.0),
                   child: Button.filled(
                     onPressed: () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        AppRoutes.otpInputPasswordReset,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const OtpInputPasswordResetPage(),
+                        ),
                       );
                     },
                     label: 'Send',
@@ -112,9 +117,11 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushNamed(
+                              Navigator.push(
                                 context,
-                                AppRoutes.signIn,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignInPage(),
+                                ),
                               );
                             },
                         ),

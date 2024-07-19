@@ -31,14 +31,12 @@ class PaymentOptionsResponseModel {
 }
 
 class Data {
-  final PayAllAtOnce payAllAtOnce;
-  final PayIn2Times payIn2Times;
-  final PayIn3Times payIn3Times;
+  final int totalBill;
+  final PaymentOptions paymentOptions;
 
   Data({
-    required this.payAllAtOnce,
-    required this.payIn2Times,
-    required this.payIn3Times,
+    required this.totalBill,
+    required this.paymentOptions,
   });
 
   factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
@@ -46,6 +44,33 @@ class Data {
   String toJson() => json.encode(toMap());
 
   factory Data.fromMap(Map<String, dynamic> json) => Data(
+        totalBill: json["total_bill"],
+        paymentOptions: PaymentOptions.fromMap(json["payment_options"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "total_bill": totalBill,
+        "payment_options": paymentOptions.toMap(),
+      };
+}
+
+class PaymentOptions {
+  final PayAllAtOnce payAllAtOnce;
+  final PayIn2Times payIn2Times;
+  final PayIn3Times payIn3Times;
+
+  PaymentOptions({
+    required this.payAllAtOnce,
+    required this.payIn2Times,
+    required this.payIn3Times,
+  });
+
+  factory PaymentOptions.fromJson(String str) =>
+      PaymentOptions.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory PaymentOptions.fromMap(Map<String, dynamic> json) => PaymentOptions(
         payAllAtOnce: PayAllAtOnce.fromMap(json["payAllAtOnce"]),
         payIn2Times: PayIn2Times.fromMap(json["payIn2Times"]),
         payIn3Times: PayIn3Times.fromMap(json["payIn3Times"]),
@@ -59,7 +84,7 @@ class Data {
 }
 
 class PayAllAtOnce {
-  final num firstPayment;
+  final int firstPayment;
 
   PayAllAtOnce({
     required this.firstPayment,
@@ -71,9 +96,7 @@ class PayAllAtOnce {
   String toJson() => json.encode(toMap());
 
   factory PayAllAtOnce.fromMap(Map<String, dynamic> json) => PayAllAtOnce(
-        firstPayment: json["firstPayment"] is int
-            ? json["firstPayment"]
-            : (json["firstPayment"] as double).toInt(),
+        firstPayment: json["firstPayment"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -82,8 +105,8 @@ class PayAllAtOnce {
 }
 
 class PayIn2Times {
-  final num firstPayment;
-  final num secondPayment;
+  final int firstPayment;
+  final int secondPayment;
 
   PayIn2Times({
     required this.firstPayment,
@@ -96,12 +119,8 @@ class PayIn2Times {
   String toJson() => json.encode(toMap());
 
   factory PayIn2Times.fromMap(Map<String, dynamic> json) => PayIn2Times(
-        firstPayment: json["firstPayment"] is int
-            ? json["firstPayment"]
-            : (json["firstPayment"] as double).toInt(),
-        secondPayment: json["secondPayment"] is int
-            ? json["secondPayment"]
-            : (json["secondPayment"] as double).toInt(),
+        firstPayment: json["firstPayment"],
+        secondPayment: json["secondPayment"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -111,9 +130,9 @@ class PayIn2Times {
 }
 
 class PayIn3Times {
-  final num firstPayment;
-  final num secondPayment;
-  final num thirdPayment;
+  final double firstPayment;
+  final double secondPayment;
+  final double thirdPayment;
 
   PayIn3Times({
     required this.firstPayment,
@@ -127,15 +146,9 @@ class PayIn3Times {
   String toJson() => json.encode(toMap());
 
   factory PayIn3Times.fromMap(Map<String, dynamic> json) => PayIn3Times(
-        firstPayment: json["firstPayment"] is int
-            ? json["firstPayment"]
-            : (json["firstPayment"] as double).toInt(),
-        secondPayment: json["secondPayment"] is int
-            ? json["secondPayment"]
-            : (json["secondPayment"] as double).toInt(),
-        thirdPayment: json["thirdPayment"] is int
-            ? json["thirdPayment"]
-            : (json["thirdPayment"] as double).toInt(),
+        firstPayment: json["firstPayment"]?.toDouble(),
+        secondPayment: json["secondPayment"]?.toDouble(),
+        thirdPayment: json["thirdPayment"]?.toDouble(),
       );
 
   Map<String, dynamic> toMap() => {

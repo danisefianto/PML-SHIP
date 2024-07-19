@@ -67,7 +67,7 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                   return Center(child: Text('Error: $message'));
                 },
                 orElse: () => const Center(child: Text('No data')),
-                success: (paymentOptions) {
+                success: (response) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -122,7 +122,7 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                         const SizedBox(height: 20),
                         if (_selectedOption == 1) ...[
                           Text(
-                            'Payment all at once: ${paymentOptions.data.payAllAtOnce.firstPayment.currencyEYDFormatRp}',
+                            'Payment all at once: ${response.data.paymentOptions.payAllAtOnce.firstPayment.currencyEYDFormatRp}',
                             style: primaryTextStyle,
                           ),
                           Row(
@@ -130,8 +130,8 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                             children: [
                               const Text('Total: '),
                               Text(
-                                paymentOptions.data.payAllAtOnce.firstPayment
-                                    .currencyEYDFormatRp,
+                                response.data.paymentOptions.payAllAtOnce
+                                    .firstPayment.currencyEYDFormatRp,
                                 style: primaryTextStyle.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -165,11 +165,11 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                             style: primaryTextStyle,
                           ),
                           Text(
-                            'First payment: ${paymentOptions.data.payIn2Times.firstPayment.currencyEYDFormatRp}',
+                            'First payment: ${response.data.paymentOptions.payIn2Times.firstPayment.currencyEYDFormatRp}',
                             style: primaryTextStyle,
                           ),
                           Text(
-                            'Second payment: ${paymentOptions.data.payIn2Times.secondPayment.currencyEYDFormatRp}',
+                            'Second payment: ${response.data.paymentOptions.payIn2Times.secondPayment.currencyEYDFormatRp}',
                             style: primaryTextStyle,
                           ),
                           Text(
@@ -199,15 +199,15 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                             style: primaryTextStyle,
                           ),
                           Text(
-                            'First payment: ${paymentOptions.data.payIn3Times.firstPayment.currencyEYDFormatRp}',
+                            'First payment: ${response.data.paymentOptions.payIn3Times.firstPayment.currencyEYDFormatRp}',
                             style: primaryTextStyle,
                           ),
                           Text(
-                            'Second payment: ${paymentOptions.data.payIn3Times.secondPayment.currencyEYDFormatRp}',
+                            'Second payment: ${response.data.paymentOptions.payIn3Times.secondPayment.currencyEYDFormatRp}',
                             style: primaryTextStyle,
                           ),
                           Text(
-                            'Third payment: ${paymentOptions.data.payIn3Times.thirdPayment.currencyEYDFormatRp}',
+                            'Third payment: ${response.data.paymentOptions.payIn3Times.thirdPayment.currencyEYDFormatRp}',
                             style: primaryTextStyle,
                           ),
                           Text(
@@ -240,17 +240,7 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                             onPressed: () {
                               final dataRequest = AddPaymentRequestModel(
                                 transactionId: widget.transactionId,
-                                paymentAmount: _selectedOption == 1
-                                    ? paymentOptions
-                                        .data.payAllAtOnce.firstPayment
-                                        .toDouble()
-                                    : _selectedOption == 2
-                                        ? paymentOptions
-                                            .data.payIn2Times.firstPayment
-                                            .toDouble()
-                                        : paymentOptions
-                                            .data.payIn3Times.firstPayment
-                                            .toDouble(),
+                                totalBill: response.data.totalBill.toDouble(),
                                 totalInstallments: _selectedOption.toInt(),
                               );
                               context.read<AddPaymentBloc>().add(

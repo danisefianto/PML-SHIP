@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 class AddPaymentResponseModel {
-  final String status;
-  final String message;
-  final Data data;
+  final String? status;
+  final String? message;
+  final List<Datum>? data;
 
   AddPaymentResponseModel({
-    required this.status,
-    required this.message,
-    required this.data,
+    this.status,
+    this.message,
+    this.data,
   });
 
   factory AddPaymentResponseModel.fromJson(String str) =>
@@ -20,61 +20,73 @@ class AddPaymentResponseModel {
       AddPaymentResponseModel(
         status: json["status"],
         message: json["message"],
-        data: Data.fromMap(json["data"]),
+        data: json["data"] == null
+            ? []
+            : List<Datum>.from(json["data"]!.map((x) => Datum.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
         "status": status,
         "message": message,
-        "data": data.toMap(),
+        "data":
+            data == null ? [] : List<dynamic>.from(data!.map((x) => x.toMap())),
       };
 }
 
-class Data {
-  final String orderTransactionId;
-  final DateTime paymentDueDate;
-  final int paymentAmount;
-  final int installmentNumber;
-  final String paymentStatus;
-  final DateTime updatedAt;
-  final DateTime createdAt;
-  final int id;
+class Datum {
+  final String? orderTransactionId;
+  final DateTime? paymentDueDate;
+  final double? paymentAmount;
+  final int? installmentNumber;
+  final int? totalInstallments;
+  final String? paymentStatus;
+  final DateTime? updatedAt;
+  final DateTime? createdAt;
+  final int? id;
 
-  Data({
-    required this.orderTransactionId,
-    required this.paymentDueDate,
-    required this.paymentAmount,
-    required this.installmentNumber,
-    required this.paymentStatus,
-    required this.updatedAt,
-    required this.createdAt,
-    required this.id,
+  Datum({
+    this.orderTransactionId,
+    this.paymentDueDate,
+    this.paymentAmount,
+    this.installmentNumber,
+    this.totalInstallments,
+    this.paymentStatus,
+    this.updatedAt,
+    this.createdAt,
+    this.id,
   });
 
-  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+  factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Data.fromMap(Map<String, dynamic> json) => Data(
+  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
         orderTransactionId: json["order_transaction_id"],
-        paymentDueDate: DateTime.parse(json["payment_due_date"]),
-        paymentAmount: json["payment_amount"],
+        paymentDueDate: json["payment_due_date"] == null
+            ? null
+            : DateTime.parse(json["payment_due_date"]),
+        paymentAmount: json["payment_amount"]?.toDouble(),
         installmentNumber: json["installment_number"],
+        totalInstallments: json["total_installments"],
         paymentStatus: json["payment_status"],
-        updatedAt: DateTime.parse(json["updated_at"]),
-        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
         id: json["id"],
       );
 
   Map<String, dynamic> toMap() => {
         "order_transaction_id": orderTransactionId,
-        "payment_due_date":
-            "${paymentDueDate.year.toString().padLeft(4, '0')}-${paymentDueDate.month.toString().padLeft(2, '0')}-${paymentDueDate.day.toString().padLeft(2, '0')}",
+        "payment_due_date": paymentDueDate?.toIso8601String(),
         "payment_amount": paymentAmount,
         "installment_number": installmentNumber,
+        "total_installments": totalInstallments,
         "payment_status": paymentStatus,
-        "updated_at": updatedAt.toIso8601String(),
-        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
         "id": id,
       };
 }

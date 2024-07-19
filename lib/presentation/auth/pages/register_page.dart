@@ -10,15 +10,16 @@ import 'package:pml_ship/data/models/request/register_request_model.dart';
 import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
 
 import '../../../core/core.dart';
+import 'registration_process_waiting.dart';
 
-class Registerpage extends StatefulWidget {
-  const Registerpage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<Registerpage> createState() => _RegisterpageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterpageState extends State<Registerpage> {
+class _RegisterPageState extends State<RegisterPage> {
   bool showPassword = true; // Initialize the showPassword flag
   bool showConfirmPassword = true; // Initialize the showConfirmPassword flag
 
@@ -296,8 +297,13 @@ class _RegisterpageState extends State<Registerpage> {
                                   ),
                                 );
 
-                                Navigator.pushReplacementNamed(
-                                    context, AppRoutes.signIn);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegistrationProcessWaitingPage(),
+                                  ),
+                                );
                               },
                               error: (message) {
                                 ScaffoldMessenger.of(context).showSnackBar(

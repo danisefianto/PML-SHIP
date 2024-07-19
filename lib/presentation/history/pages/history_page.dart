@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/history_order/history_order_bloc.dart';
 import '../widgets/order_data_card.dart';
 
 import '../../../core/styles.dart';
-import '../bloc/canceledOrdersData/canceled_orders_data_bloc.dart';
-import '../bloc/completedOrdersData/completed_orders_data_bloc.dart';
-import '../bloc/onShippingOrdersData/on_shipping_orders_data_bloc.dart';
-import '../bloc/paymentPendingOrdersData/payment_pending_orders_data_bloc.dart';
-import '../bloc/pendingOrdersData/pending_orders_data_bloc.dart';
-import '../bloc/rejectedOrdersData/rejected_orders_data_bloc.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -42,38 +37,38 @@ class _HistoryPageState extends State<HistoryPage>
   late TabController _tabController;
 
   void getAllPendingOrders() {
-    context.read<PendingOrdersDataBloc>().add(
-          const PendingOrdersDataEvent.getAllPendingOrders(),
+    context.read<HistoryOrderBloc>().add(
+          const HistoryOrderEvent.getAllPendingOrders(),
         );
   }
 
   void getAllPaymentPendingOrders() {
-    context.read<PaymentPendingOrdersDataBloc>().add(
-          const PaymentPendingOrdersDataEvent.getAllPaymentPendingOrders(),
+    context.read<HistoryOrderBloc>().add(
+          const HistoryOrderEvent.getAllPaymentPendingOrders(),
         );
   }
 
   void getAllOnShippingOrders() {
-    context.read<OnShippingOrdersDataBloc>().add(
-          const OnShippingOrdersDataEvent.getAllOnShippingOrders(),
+    context.read<HistoryOrderBloc>().add(
+          const HistoryOrderEvent.getAllOnShippingOrders(),
         );
   }
 
   void getAllCompletedOrders() {
-    context.read<CompletedOrdersDataBloc>().add(
-          const CompletedOrdersDataEvent.getAllCompletedOrders(),
+    context.read<HistoryOrderBloc>().add(
+          const HistoryOrderEvent.getAllCompletedOrders(),
         );
   }
 
   void getRejectedOrders() {
-    context.read<RejectedOrdersDataBloc>().add(
-          const RejectedOrdersDataEvent.getAllRejectedOrders(),
+    context.read<HistoryOrderBloc>().add(
+          const HistoryOrderEvent.getAllRejectedOrders(),
         );
   }
 
   void getCanceledOrders() {
-    context.read<CanceledOrdersDataBloc>().add(
-          const CanceledOrdersDataEvent.getAllCanceledOrders(),
+    context.read<HistoryOrderBloc>().add(
+          const HistoryOrderEvent.getAllCanceledOrders(),
         );
   }
 
@@ -147,26 +142,23 @@ class _HistoryPageState extends State<HistoryPage>
         body: TabBarView(
           controller: _tabController,
           children: <Widget>[
-            buildOrderDataTab<PendingOrdersDataBloc, PendingOrdersDataState>(
-              context.read<PendingOrdersDataBloc>(),
+            buildOrderDataTab<HistoryOrderBloc, HistoryOrderState>(
+              context.read<HistoryOrderBloc>(),
             ),
-            buildOrderDataTab<PaymentPendingOrdersDataBloc,
-                PaymentPendingOrdersDataState>(
-              context.read<PaymentPendingOrdersDataBloc>(),
+            buildOrderDataTab<HistoryOrderBloc, HistoryOrderState>(
+              context.read<HistoryOrderBloc>(),
             ),
-            buildOrderDataTab<OnShippingOrdersDataBloc,
-                OnShippingOrdersDataState>(
-              context.read<OnShippingOrdersDataBloc>(),
+            buildOrderDataTab<HistoryOrderBloc, HistoryOrderState>(
+              context.read<HistoryOrderBloc>(),
             ),
-            buildOrderDataTab<CompletedOrdersDataBloc,
-                CompletedOrdersDataState>(
-              context.read<CompletedOrdersDataBloc>(),
+            buildOrderDataTab<HistoryOrderBloc, HistoryOrderState>(
+              context.read<HistoryOrderBloc>(),
             ),
-            buildOrderDataTab<RejectedOrdersDataBloc, RejectedOrdersDataState>(
-              context.read<RejectedOrdersDataBloc>(),
+            buildOrderDataTab<HistoryOrderBloc, HistoryOrderState>(
+              context.read<HistoryOrderBloc>(),
             ),
-            buildOrderDataTab<CanceledOrdersDataBloc, CanceledOrdersDataState>(
-              context.read<CanceledOrdersDataBloc>(),
+            buildOrderDataTab<HistoryOrderBloc, HistoryOrderState>(
+              context.read<HistoryOrderBloc>(),
             ),
           ],
         ),

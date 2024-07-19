@@ -5,17 +5,15 @@ import '../../../core/styles.dart';
 import '../widgets/search_bar.dart';
 import 'tracking_order_result_screen.dart';
 
-class BorderRadiusStyle {
-  static const BorderRadius roundedBorder5 =
-      BorderRadius.all(Radius.circular(5));
-  // Add more predefined border radius styles here if needed
+class TrackingOneScreen extends StatefulWidget {
+  const TrackingOneScreen({super.key});
+
+  @override
+  State<TrackingOneScreen> createState() => _TrackingOneScreenState();
 }
 
-// ignore: must_be_immutable
-class TrackingOneScreen extends StatelessWidget {
-  TrackingOneScreen({super.key});
-
-  TextEditingController searchController = TextEditingController();
+class _TrackingOneScreenState extends State<TrackingOneScreen> {
+  late final TextEditingController searchController;
 
   @override
   Widget build(BuildContext context) {
@@ -29,37 +27,10 @@ class TrackingOneScreen extends StatelessWidget {
           },
         ),
       ),
-      // appBar: AppBar(
-      //   title: Text('Track your Order'),
-      // actions: [
-      //   IconButton(
-      //     icon: Icon(Icons.search),
-      //     onPressed: () {
-      //       // Tambahkan logika ketika tombol pencarian ditekan di sini
-      //     },
-      //   ),
-      //   IconButton(
-      //     icon: Icon(Icons.notifications),
-      //     onPressed: () {
-      //       // Tambahkan logika ketika tombol notifikasi ditekan di sini
-      //     },
-      //   ),
-      // ],
-      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            //   child: Text(
-            //     "Tracking One",
-            //     style: TextStyle(
-            //       fontSize: 18,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
             _buildHeader(),
             _buildTrackingOne(context),
             const SizedBox(height: 100),
@@ -121,15 +92,6 @@ class TrackingOneScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-          // Text(
-          //   "Track your Order",
-          //   style: TextStyle(
-          //     fontSize: 14,
-          //     fontWeight: FontWeight.bold,
-          //     color: Colors.black,
-          //   ),
-          // ),
-          // SizedBox(height: 10),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(15),
@@ -148,21 +110,9 @@ class TrackingOneScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                // SizedBox(height: 10),
                 const SearchBarWidget(
                   customHintText: 'ID 2024.211.190278',
                 )
-                // Row(
-                //   children: [
-                //     // Expanded(
-                //     //   child: CustomSearchView(
-                //     //     controller: searchController,
-                //     //     hintText: "ID 2024.211.190278",
-                //     //     contentPadding: EdgeInsets.all(10),
-                //     //   ),
-                //     // ),
-                //   ],
-                // ),
               ],
             ),
           ),
@@ -170,19 +120,4 @@ class TrackingOneScreen extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildNext(BuildContext context) {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(bottom: 40),
-  //     child: Align(
-  //       alignment: Alignment.center,
-  //       child: ElevatedButton(
-  //         onPressed: () {
-
-  //         },
-  //         child: const Text('Next'),
-  //       ),
-  //     ),
-  //   );
-  // }
 }

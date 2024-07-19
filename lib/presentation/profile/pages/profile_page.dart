@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:pml_ship/presentation/profile/pages/general/contact_us_page.dart';
+import 'package:pml_ship/presentation/profile/pages/general/frequently_asked_question_page.dart';
+import 'package:pml_ship/presentation/profile/pages/security_page.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
 import '../../auth/bloc/logout/logout_bloc.dart';
+import '../../auth/pages/sign_in_page.dart';
 import '../bloc/currency/currency_bloc.dart';
 import '../bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_menu_item.dart';
+import 'edit_personal_and_company_profile_page.dart';
+import 'general/alamat_pelabuhan_screen.dart';
+import 'general/how_to_pay_page.dart';
+import 'notification_settings_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -93,10 +101,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'Edit Personal and Company Profile',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.editPersonalAndCompanyProfile,
-                          arguments: profile,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  EditPersonalAndCompanyProfilePage(
+                                    profile: profile,
+                                  )),
                         );
                       },
                     ),
@@ -111,9 +122,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'Security',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.security,
+                          MaterialPageRoute(
+                              builder: (context) => const SecurityPage()),
                         );
                       },
                     ),
@@ -121,9 +133,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'Notification Settings',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.notificationSettings,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const NotificationSetting()),
                         );
                       },
                     ),
@@ -140,9 +154,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'Alamat Pelabuhan',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.portLocation,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const AlamatPelabuhanScreen()),
                         );
                       },
                     ),
@@ -150,9 +166,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'How to Pay?',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.howToPay,
+                          MaterialPageRoute(
+                              builder: (context) => const HowToPayPage()),
                         );
                       },
                     ),
@@ -160,9 +177,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'Help',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.faq,
+                          MaterialPageRoute(
+                              builder: (context) => const FAQPage()),
                         );
                       },
                     ),
@@ -170,9 +188,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileMenuItem(
                       title: 'Contact Us',
                       onTap: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.contactUs,
+                          MaterialPageRoute(
+                              builder: (context) => const ContactUsPage()),
                         );
                       },
                     ),
@@ -197,10 +216,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 backgroundColor: Colors.green,
                               ),
                             );
-                            Navigator.pushNamedAndRemoveUntil(
+                            Navigator.push(
                               context,
-                              AppRoutes.signIn,
-                              (route) => false,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignInPage()),
                             );
                           },
                         );

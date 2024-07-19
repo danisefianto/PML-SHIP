@@ -2,12 +2,12 @@ import 'dart:convert';
 
 class AddPaymentRequestModel {
   final String transactionId;
-  final double paymentAmount;
+  final double totalBill;
   final int totalInstallments;
 
   AddPaymentRequestModel({
     required this.transactionId,
-    required this.paymentAmount,
+    required this.totalBill,
     required this.totalInstallments,
   });
 
@@ -19,13 +19,13 @@ class AddPaymentRequestModel {
   factory AddPaymentRequestModel.fromMap(Map<String, dynamic> json) =>
       AddPaymentRequestModel(
         transactionId: json["transaction_id"],
-        paymentAmount: json["payment_amount"],
+        totalBill: json["payment_amount"],
         totalInstallments: json["total_installments"],
       );
 
   Map<String, dynamic> toMap() => {
         "transaction_id": transactionId,
-        "payment_amount": paymentAmount,
+        "total_bill": totalBill,
         "total_installments": totalInstallments,
       };
 }

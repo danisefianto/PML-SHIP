@@ -1,12 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/presentation/auth/pages/register_page.dart';
 
 import '../../../core/core.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
 import '../../../data/models/response/auth_response_model.dart';
 import '../../home/pages/main_page.dart';
 import '../bloc/login/login_bloc.dart';
+import 'recover_password_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -87,9 +89,11 @@ class _SignInPageState extends State<SignInPage> {
     Widget forgotPassword() {
       return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(
+          Navigator.push(
             context,
-            AppRoutes.recoverPassword,
+            MaterialPageRoute(
+              builder: (context) => const RecoverPasswordPage(),
+            ),
           );
         },
         child: Container(
@@ -174,12 +178,12 @@ class _SignInPageState extends State<SignInPage> {
                               onPressed: toggleShowPassword,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              forgotPassword(),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.end,
+                          //   children: [
+                          //     forgotPassword(),
+                          //   ],
+                          // ),
                           const SpaceHeight(33.0),
                           BlocConsumer<LoginBloc, LoginState>(
                             listener: (context, state) {
@@ -235,8 +239,13 @@ class _SignInPageState extends State<SignInPage> {
                                         fontWeight: FontWeight.bold),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        Navigator.pushNamed(
-                                            context, AppRoutes.signUp);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const RegisterPage(),
+                                          ),
+                                        );
                                       },
                                   ),
                                 ],

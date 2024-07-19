@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/core.dart';
-import '../../../data/models/response/history_response_model.dart';
+import '../../../data/models/response/get_all_status_order_response_model.dart';
 import '../pages/order_detail_page.dart';
 import '../pages/track_vessel_page.dart';
 
 class OrderDataCard extends StatelessWidget {
-  final HistoryResponseModel response;
+  final GetAllStatusOrderResponseModel response;
   const OrderDataCard({
     super.key,
     required this.response,
@@ -16,7 +16,7 @@ class OrderDataCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       separatorBuilder: (context, index) => const SizedBox(height: 4),
-      itemCount: response.data.length,
+      itemCount: response.data!.length,
       itemBuilder: (context, index) {
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
@@ -32,9 +32,9 @@ class OrderDataCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(response.data[index].createdAt
+                    Text(response.data![index].createdAt!
                         .toFormattedIndonesianShortDateAndUTC7Time()),
-                    Text(response.data[index].transactionId.toString()),
+                    Text(response.data![index].transactionId.toString()),
                   ],
                 ),
               ),
@@ -49,11 +49,11 @@ class OrderDataCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(response.data[index].shipper.name.toString()),
+                    Text(response.data![index].shipper!.name.toString()),
                     Text(
-                        '${response.data[index].loading.port.toString()} - ${response.data[index].discharge.port.toString()}'),
+                        '${response.data![index].loading!.port.toString()} - ${response.data![index].discharge!.port.toString()}'),
                     Text(
-                        '${response.data[index].cargo.description.toString()} ${response.data[index].cargo.weight.toString()}')
+                        '${response.data![index].cargo!.description.toString()} ${response.data![index].cargo!.weight.toString()}')
                   ],
                 ),
               ),
@@ -68,9 +68,10 @@ class OrderDataCard extends StatelessWidget {
                       onPressed: () {
                         // TODO: Add better condition if negotiation is not approved
                         // Example: if negotiation is not approved, go to Detail Page but show that negotiation is not approved
-                        if (response.data[index].negotiationOrOrderApprovedAt ==
+                        if (response.data![index]
+                                    .negotiationOrOrderApprovedAt ==
                                 null &&
-                            response.data[index].status == 'order_pending') {
+                            response.data![index].status == 'order_pending') {
                           // Show snackbar
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -84,7 +85,7 @@ class OrderDataCard extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => OrderDetailPage(
                                 transactionId: response
-                                    .data[index].transactionId
+                                    .data![index].transactionId
                                     .toString(),
                               ),
                             ),
@@ -95,7 +96,7 @@ class OrderDataCard extends StatelessWidget {
                     ),
                     //  If response.data[index].status == 'on_shipping', show Track Vessel button
                     Visibility(
-                      visible: response.data[index].status == 'on_shipping',
+                      visible: response.data![index].status == 'on_shipping',
                       child: Button.filled(
                         width: 150,
                         onPressed: () {
@@ -104,7 +105,7 @@ class OrderDataCard extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => TrackVesselPage(
                                 transactionId: response
-                                    .data[index].transactionId
+                                    .data![index].transactionId
                                     .toString(),
                               ),
                             ),

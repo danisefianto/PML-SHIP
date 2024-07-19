@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
+import 'new_password_set_page.dart';
 
 class SetNewPasswordPage extends StatelessWidget {
   const SetNewPasswordPage({super.key});
@@ -88,9 +89,11 @@ class SetNewPasswordPage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 30.0),
                   child: Button.filled(
                     onPressed: () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        AppRoutes.newPasswordSet,
+                        MaterialPageRoute(
+                          builder: (context) => const NewPasswordSetPage(),
+                        ),
                       );
                     },
                     label: 'Set new password',

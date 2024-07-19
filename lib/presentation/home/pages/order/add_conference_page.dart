@@ -9,6 +9,7 @@ import 'package:pml_ship/presentation/home/widgets/select_date_widget.dart';
 import '../../../../core/core.dart';
 import '../../bloc/order/addConference/add_conference_bloc.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
+import 'order_process_waiting.dart';
 
 enum ConferenceMethod { offline, online }
 
@@ -282,10 +283,12 @@ class _AddConferencePageState extends State<AddConferencePage> {
                     ),
                   );
 
-                  Navigator.pushNamed(
-                    context,
-                    AppRoutes.orderProcessWaiting,
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OrderProcessWaitingPage(),
+                      ),
+                      (route) => false);
                 },
               );
             },

@@ -9,6 +9,7 @@ import '../../../../data/models/request/weather_request_model.dart';
 import '../../bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
 import '../../bloc/weather/weather_bloc.dart';
 import '../../models/weather_code.dart';
+import 'add_shipper_consignee_data_page.dart';
 
 // TODO: Refactor supaya lebih mudah dibaca dan kode lebih bersih
 class QuotationAndWeatherRiskMitigationPage extends StatefulWidget {
@@ -619,23 +620,24 @@ class _QuotationAndWeatherRiskMitigationPageState
                       backgroundColor: Colors.green,
                     ),
                   );
-                  Navigator.pushNamed(
+                  Navigator.push(
                     context,
-                    AppRoutes.addShipperConsigneeData,
-                    arguments: {
-                      'portOfLoadingId': widget.portOfLoadingId,
-                      'portOfDischargeId': widget.portOfDischargeId,
-                      'vesselId': selectedRoute.vesselId,
-                      'dateOfLoading': widget.dateOfLoading,
-                      'dateOfDischarge': DateTime.parse(DateFormat("yyyy-MM-dd")
-                          .format(selectedRoute.estimatedDateOfDischarge)),
-                      'cargoDescription': widget.cargoDescription,
-                      'cargoWeight': widget.cargoWeight,
-                      'shippingCost': selectedRoute.cost.shippingCost,
-                      'handlingCost': selectedRoute.cost.handlingCost,
-                      'biayaParkirPelabuhan':
-                          selectedRoute.cost.biayaParkirPelabuhan,
-                    },
+                    MaterialPageRoute(
+                      builder: (context) => AddShipperConsigneeDataPage(
+                        portOfLoadingId: widget.portOfLoadingId,
+                        portOfDischargeId: widget.portOfDischargeId,
+                        vesselId: selectedRoute.vesselId,
+                        dateOfLoading: widget.dateOfLoading,
+                        dateOfDischarge: DateTime.parse(DateFormat("yyyy-MM-dd")
+                            .format(selectedRoute.estimatedDateOfDischarge)),
+                        cargoDescription: widget.cargoDescription,
+                        cargoWeight: widget.cargoWeight,
+                        shippingCost: selectedRoute.cost.shippingCost,
+                        handlingCost: selectedRoute.cost.handlingCost,
+                        biayaParkirPelabuhan:
+                            selectedRoute.cost.biayaParkirPelabuhan,
+                      ),
+                    ),
                   );
                 },
                 label: 'Next',

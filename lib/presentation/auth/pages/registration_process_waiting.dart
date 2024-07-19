@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 
-import '../../../core/core.dart';
 import '../../../core/styles.dart';
 
 class RegistrationProcessWaitingPage extends StatelessWidget {
@@ -50,9 +50,11 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
                   height: 50.0,
                   child: FilledButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
+                      Navigator.pushReplacement(
                         context,
-                        AppRoutes.signIn,
+                        MaterialPageRoute(
+                          builder: (context) => const SignInPage(),
+                        ),
                       );
                     },
                     style: FilledButton.styleFrom(

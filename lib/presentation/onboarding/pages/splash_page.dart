@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
@@ -18,9 +19,11 @@ class _SplashPageState extends State<SplashPage> {
     Timer(
       const Duration(seconds: 5),
       () {
-        Navigator.pushNamed(
+        Navigator.push(
           context,
-          AppRoutes.signIn,
+          MaterialPageRoute(
+            builder: (context) => const SignInPage(),
+          ),
         );
       },
     );

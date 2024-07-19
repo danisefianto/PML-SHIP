@@ -5,6 +5,7 @@ import '../../../../core/core.dart';
 import '../../../../core/styles.dart';
 import '../../../../data/models/response/order_detail_response_model.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
+import 'add_conference_page.dart';
 
 class OrderSummaryPage extends StatefulWidget {
   final String transactionIdMessage;
@@ -219,16 +220,18 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  // selectFile(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Button.filled(
                       onPressed: () {
-                        Navigator.pushNamed(
+                        Navigator.push(
                           context,
-                          AppRoutes.addConference,
-                          arguments:
-                              summaryOrderResponseModel.data!.transactionId,
+                          MaterialPageRoute(
+                            builder: (context) => AddConferencePage(
+                                transactionIdMessage: summaryOrderResponseModel
+                                    .data!.transactionId
+                                    .toString()),
+                          ),
                         );
                       },
                       label: 'Lanjutkan Pesanan',
@@ -243,10 +246,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                       onPressed: () {
                         // TODO: Add cancel order function and AlertDialog
 
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutes.signIn,
-                        );
+                        // TODO: Bloc Cancel Order
                       },
                       label: 'Batalkan Pesanan',
                     ),

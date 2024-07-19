@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
 import '../../../core/styles.dart';
+import 'where_you_are_logged_in_page.dart';
 
 class SecurityPage extends StatelessWidget {
   const SecurityPage({super.key});
-
-  // bool isselectedSwitch = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +63,10 @@ class SecurityPage extends StatelessWidget {
                   Button.filled(
                     width: 150,
                     onPressed: () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        AppRoutes.whereYouAreLoggedIn,
+                        MaterialPageRoute(
+                            builder: (context) => const WhereYouAreLoggedIn()),
                       );
                     },
                     label: 'Riwayat Login',

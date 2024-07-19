@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
@@ -28,13 +26,13 @@ class CurrencyRemoteDataSource {
       headers: headers,
     );
 
-    // Log the request
-    log('Request: $headers');
-    log('URL: $url');
+    // // Log the request
+    // log('Request: $headers');
+    // log('URL: $url');
 
-    // Log the response body
-    log('Response: ${response.body}');
-    log('Status code: ${response.statusCode}');
+    // // Log the response body
+    // log('Response: ${response.body}');
+    // log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       final currencyResponse = CurrencyResponseModel.fromJson(response.body);

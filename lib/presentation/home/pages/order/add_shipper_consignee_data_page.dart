@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/core.dart';
 import '../../../../data/models/request/new_order_request_model.dart';
 import '../../bloc/order/newOrder/new_order_bloc.dart';
+import 'order_summary_page.dart';
 
 class AddShipperConsigneeDataPage extends StatefulWidget {
   final int portOfLoadingId;
@@ -154,10 +155,13 @@ class _AddShipperConsigneeDataPageState
                           backgroundColor: Colors.green,
                         ),
                       );
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        AppRoutes.orderSummary,
-                        arguments: data.data.transactionId,
+                        MaterialPageRoute(
+                          builder: (context) => OrderSummaryPage(
+                            transactionIdMessage: data.data.transactionId,
+                          ),
+                        ),
                       );
                     },
                   );

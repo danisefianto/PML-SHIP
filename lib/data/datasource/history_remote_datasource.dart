@@ -4,11 +4,12 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/constants/variables.dart';
-import '../models/response/history_response_model.dart';
+import '../models/response/get_all_status_order_response_model.dart';
 import 'auth_local_datasource.dart';
 
 class HistoryRemoteDatasource {
-  Future<Either<String, HistoryResponseModel>> getAllPendingOrders() async {
+  Future<Either<String, GetAllStatusOrderResponseModel>>
+      getAllPendingOrders() async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
@@ -38,15 +39,15 @@ class HistoryRemoteDatasource {
     log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else if (response.statusCode == 404) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to get all pending orders');
     }
   }
 
-  Future<Either<String, HistoryResponseModel>>
+  Future<Either<String, GetAllStatusOrderResponseModel>>
       getAllPaymentPendingOrders() async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
@@ -75,15 +76,16 @@ class HistoryRemoteDatasource {
     log("resposen pendingOrders: ${response.body}");
 
     if (response.statusCode == 200) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else if (response.statusCode == 404) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to get all payment pending orders');
     }
   }
 
-  Future<Either<String, HistoryResponseModel>> getAllOnShippingOrders() async {
+  Future<Either<String, GetAllStatusOrderResponseModel>>
+      getAllOnShippingOrders() async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
@@ -111,15 +113,16 @@ class HistoryRemoteDatasource {
     log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else if (response.statusCode == 404) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to get all on shipping orders');
     }
   }
 
-  Future<Either<String, HistoryResponseModel>> getAllCompletedOrders() async {
+  Future<Either<String, GetAllStatusOrderResponseModel>>
+      getAllCompletedOrders() async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
@@ -149,15 +152,16 @@ class HistoryRemoteDatasource {
     log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else if (response.statusCode == 404) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to get all completed orders');
     }
   }
 
-  Future<Either<String, HistoryResponseModel>> getAllCanceledOrders() async {
+  Future<Either<String, GetAllStatusOrderResponseModel>>
+      getAllCanceledOrders() async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
@@ -187,15 +191,16 @@ class HistoryRemoteDatasource {
     log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else if (response.statusCode == 404) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to get all canceled orders');
     }
   }
 
-  Future<Either<String, HistoryResponseModel>> getAllRejectedOrders() async {
+  Future<Either<String, GetAllStatusOrderResponseModel>>
+      getAllRejectedOrders() async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
@@ -224,9 +229,9 @@ class HistoryRemoteDatasource {
     log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else if (response.statusCode == 404) {
-      return Right(HistoryResponseModel.fromJson(response.body));
+      return Right(GetAllStatusOrderResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to get all rejected orders');
     }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/presentation/history/widgets/build_on_shipping_header.dart';
+import '../widgets/build_on_shipping_header.dart';
 
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
@@ -17,6 +17,7 @@ import '../widgets/build_payment_waiting_for_approval_header.dart';
 import '../widgets/build_shipper_and_consignee_info.dart';
 import '../widgets/build_upload_shipping_instruction_document_header.dart';
 import '../widgets/select_file_widget.dart';
+import 'choose_payment_plan_page.dart';
 import 'document_list_page.dart';
 
 class OrderDetailPage extends StatefulWidget {
@@ -70,6 +71,51 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               initial: () => const Center(child: CircularProgressIndicator()),
               loading: () => const Center(child: CircularProgressIndicator()),
               success: (responseModel) {
+                String firstPaymentProofDocument = '';
+                String secondPaymentProofDocument = '';
+                String thirdPaymentProofDocument = '';
+                bool isFirstPaymentProofDocumentUploaded = false;
+
+                // If first payment proof document is not uploaded, show choose payment plan button
+
+                // bool isSecondPaymentProofDocumentUploaded =
+                //     responseModel.data!.payment!.payments!.length > 1
+                //         ? responseModel.data!.payment!.payments![1]
+                //                 .paymentProofDocument !=
+                //             null
+                //         : false;
+
+                // bool isThirdPaymentProofDocumentUploaded =
+                //     responseModel.data!.payment!.payments!.length > 2
+                //         ? responseModel.data!.payment!.payments![2]
+                //                 .paymentProofDocument !=
+                //             null
+                //         : false;
+
+                if (responseModel.data!.payment!.payments!.isNotEmpty) {
+                  firstPaymentProofDocument = responseModel.data!.payment!
+                          .payments!.first.paymentProofDocument ??
+                      '';
+                  isFirstPaymentProofDocumentUploaded = responseModel.data!
+                          .payment!.payments!.first.paymentProofDocument !=
+                      null;
+                  if (responseModel.data!.payment!.payments!.length > 1) {
+                    secondPaymentProofDocument = responseModel
+                            .data!.payment!.payments![1].paymentProofDocument ??
+                        '';
+                  } else {
+                    secondPaymentProofDocument = ''; // Or some default value
+                  }
+
+                  if (responseModel.data!.payment!.payments!.length > 2) {
+                    thirdPaymentProofDocument = responseModel
+                            .data!.payment!.payments![2].paymentProofDocument ??
+                        '';
+                  } else {
+                    thirdPaymentProofDocument = ''; // Or some default value
+                  }
+                }
+
                 return SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: Column(
@@ -89,21 +135,14 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                         visible:
                             responseModel.data!.documents!.first.documentName !=
                                     null &&
-                                responseModel.data!.payment!.payments!.any(
-                                    (payment) =>
-                                        payment.paymentProofDocument == null),
+                                !isFirstPaymentProofDocumentUploaded,
                         child: BuildPaymentHeader(responseModel: responseModel),
                       ),
 
                       // If payment proof document is uploaded, show 'Please Wait for Admin Approval'
                       Visibility(
-                        visible:
-                            // responseModel.data!.documents!.first.documentName !=
-                            //         null &&
-                            responseModel.data!.payment!.payments!.any(
-                                    (payment) =>
-                                        payment.paymentProofDocument != null) &&
-                                responseModel.data!.status == 'payment_pending',
+                        visible: isFirstPaymentProofDocumentUploaded &&
+                            responseModel.data!.status == 'payment_pending',
                         child: BuildPaymentWaitingForApprovalHeader(
                             responseModel: responseModel),
                       ),
@@ -331,29 +370,30 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                           //   label: 'Download Document',
                                           // ),
                                           // TODO: Payment Bug
-                                          // Visibility(
-                                          //   visible: responseModel
-                                          //       .data!.payment!.payments!
-                                          //       .any((payment) =>
-                                          //           payment
-                                          //               .paymentProofDocument ==
-                                          //           null),
-                                          //   child:
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 30.0),
-                                            child: Button.filled(
-                                                onPressed: () {
-                                                  Navigator.pushNamed(
-                                                    context,
-                                                    AppRoutes.choosePayment,
-                                                    arguments:
-                                                        widget.transactionId,
-                                                  );
-                                                },
-                                                label: 'Choose payment plan'),
+
+                                          Visibility(
+                                            visible:
+                                                !isFirstPaymentProofDocumentUploaded,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 30.0),
+                                              child: Button.filled(
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ChoosePaymentPlanPage(
+                                                          transactionId: widget
+                                                              .transactionId,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  label: 'Choose payment plan'),
+                                            ),
                                           ),
-                                          // ),
                                           Visibility(
                                             visible: responseModel
                                                 .data!.payment!.payments!
@@ -380,19 +420,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                                         Icons.picture_as_pdf),
                                                     const SizedBox(width: 8),
                                                     // TODO: Payment Bug
-                                                    // Text(
-                                                    //   responseModel
-                                                    //           .data!
-                                                    //           .payment!
-                                                    //           .payments!
-                                                    //           .first
-                                                    //           .paymentProofDocument ??
-                                                    //       '',
-                                                    //   style: primaryTextStyle
-                                                    //       .copyWith(
-                                                    //     fontWeight: bold,
-                                                    //   ),
-                                                    // ),
+                                                    Text(
+                                                        firstPaymentProofDocument),
                                                   ],
                                                 ),
                                                 const SpaceHeight(30),

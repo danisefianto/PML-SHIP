@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/core.dart';
 import '../../../core/styles.dart';
 import '../../profile/bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
+import 'order/order_port_page.dart';
+import 'risk_mitigation/risk_mitigation_page.dart';
+import 'tracking_order_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,11 +38,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // Navigator.pushNamed(context, '/request-order');
-                    // INI
-                    Navigator.pushNamed(
+                    Navigator.push(
                       context,
-                      AppRoutes.orderPort,
+                      MaterialPageRoute(
+                        builder: (context) => const OrderPortPage(),
+                      ),
                     );
                   },
                   child: Column(
@@ -66,9 +69,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(
+                    Navigator.push(
                       context,
-                      AppRoutes.riskMitigation,
+                      MaterialPageRoute(
+                        builder: (context) => const RiskMitigationScreen(),
+                      ),
                     );
                   },
                   child: Column(
@@ -98,9 +103,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(
+                    Navigator.push(
                       context,
-                      AppRoutes.trackVessel,
+                      MaterialPageRoute(
+                        builder: (context) => const TrackingOneScreen(),
+                      ),
                     );
                   },
                   child: Column(
@@ -127,10 +134,10 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoutes.documentList,
-                    );
+                    // Navigator.pushNamed(
+                    //   context,
+                    //   AppRoutes.documentList,
+                    // );
                   },
                   child: Column(
                     children: [
