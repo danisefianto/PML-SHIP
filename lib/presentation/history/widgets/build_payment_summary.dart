@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/core.dart';
 
-import '../../../core/styles.dart';
+import '../../../core/core.dart';
 import '../../../data/models/response/order_detail_response_model.dart';
 
 class BuildPaymentSummary extends StatelessWidget {
@@ -20,7 +19,7 @@ class BuildPaymentSummary extends StatelessWidget {
           Text(label),
           Text(
             content,
-            style: primaryTextStyle.copyWith(fontWeight: bold),
+            style: const TextStyle(fontWeight: FontWeight.w700),
           ),
         ],
       );
@@ -29,10 +28,10 @@ class BuildPaymentSummary extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Ringkasan Pembayaran',
-          style: primaryTextStyle.copyWith(
-            fontWeight: bold,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
             fontSize: 16,
           ),
         ),

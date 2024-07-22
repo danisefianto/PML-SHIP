@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
+import '../../auth/pages/sign_in_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -46,33 +45,34 @@ class _SplashPageState extends State<SplashPage> {
                 begin: Alignment.bottomCenter, // Gradient starts from top
                 end: Alignment.topCenter, // Gradient ends at bottom
                 colors: <Color>[
-                  Colors.black.withAlpha(0),
+                  AppColors.black.withAlpha(0),
                   Colors.black12,
                   Colors.black45
                 ],
               ),
             ),
           ),
-          SafeArea(
+          const SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding: EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Column(
                   children: [
                     Text(
                       'PML SHIP',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: bold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
                         fontSize: 24.0,
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 17.0,
                     ), // Add some space between texts
                     Text(
                       'Approve pemesanan\nKirim muatan sekarang',
-                      style: secondaryTextStyle.copyWith(
-                        fontWeight: medium,
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.w500,
                         fontSize: 18.0,
                       ),
                       textAlign: TextAlign.center, // Center text horizontally

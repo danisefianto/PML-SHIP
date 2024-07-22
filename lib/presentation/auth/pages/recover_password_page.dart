@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 import 'otp_input_reset_password_page.dart';
+import 'sign_in_page.dart';
 
 class RecoverPasswordPage extends StatefulWidget {
   const RecoverPasswordPage({super.key});
@@ -52,8 +51,8 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
         appBar: AppBar(),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: defaultMargin,
+            margin: const EdgeInsets.symmetric(
+              horizontal: 30.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,17 +70,16 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                     ),
                   ),
                 ),
-                Text(
+                const Text(
                   'Recover Password',
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 20,
-                    fontWeight: bold,
+                    fontWeight: FontWeight.w700,
                   ),
                   textAlign: TextAlign.left,
                 ),
-                Text(
+                const Text(
                   'Enter the email address associated with your account and we\'ll send an email with instructions on how to recover your password.',
-                  style: primaryTextStyle,
                   textAlign: TextAlign.justify,
                 ),
                 emailInput(),
@@ -104,9 +102,9 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                   child: Text.rich(
                     TextSpan(
                       text: 'Already have an account? ',
-                      style: primaryTextStyle.copyWith(
+                      style: const TextStyle(
                         fontSize: 12.0,
-                        fontWeight: regular,
+                        fontWeight: FontWeight.w400,
                       ),
                       children: <TextSpan>[
                         TextSpan(

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-import 'package:pml_ship/presentation/profile/pages/general/contact_us_page.dart';
-import 'package:pml_ship/presentation/profile/pages/general/frequently_asked_question_page.dart';
-import 'package:pml_ship/presentation/profile/pages/security_page.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
 import '../../auth/bloc/logout/logout_bloc.dart';
 import '../../auth/pages/sign_in_page.dart';
@@ -16,8 +11,11 @@ import '../widgets/profile_header.dart';
 import '../widgets/profile_menu_item.dart';
 import 'edit_personal_and_company_profile_page.dart';
 import 'general/alamat_pelabuhan_screen.dart';
+import 'general/contact_us_page.dart';
+import 'general/frequently_asked_question_page.dart';
 import 'general/how_to_pay_page.dart';
 import 'notification_settings_page.dart';
+import 'security_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -52,8 +50,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(
                     horizontal: 30.0, vertical: 20.0),
-                decoration: BoxDecoration(
-                  color: primaryColor,
+                decoration: const BoxDecoration(
+                  color: AppColors.primaryColor,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,17 +70,19 @@ class _ProfilePageState extends State<ProfilePage> {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Currency Rate',
-                                  style: primaryTextStyle.copyWith(
-                                    fontWeight: semiBold,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
                                     fontSize: 16.0,
                                   ),
                                 ),
                                 Text(
-                                  '1 USD = ${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(double.parse(rates.data.rate))}',
-                                  style: primaryTextStyle.copyWith(
-                                      fontSize: 16.0, fontWeight: semiBold),
+                                  '1 USD = ${double.parse(rates.data.rate).currencyEYDFormatRp}',
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ],
                             );
@@ -91,10 +91,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                     const SpaceHeight(30),
-                    Text(
+                    const Text(
                       'Account',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semiBold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                         fontSize: 16.0,
                       ),
                     ),
@@ -112,10 +112,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                     const SpaceHeight(15),
-                    Text(
+                    const Text(
                       'Settings',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semiBold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                         fontSize: 16.0,
                       ),
                     ),
@@ -142,10 +142,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                     const SpaceHeight(15),
-                    Text(
+                    const Text(
                       'General',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semiBold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                         fontSize: 16.0,
                       ),
                     ),
@@ -213,7 +213,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Logout success'),
-                                backgroundColor: Colors.green,
+                                backgroundColor: AppColors.green,
                               ),
                             );
                             Navigator.push(

@@ -64,8 +64,8 @@ class _MainPageState extends State<MainPage> {
         ),
         child: Theme(
           data: ThemeData(
-            splashColor: Colors.white,
-            highlightColor: Colors.white,
+            splashColor: AppColors.primaryColor,
+            highlightColor: AppColors.primaryColor,
           ),
           child: BottomNavigationBar(
             backgroundColor: AppColors.primaryColor,

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/core.dart';
-import '../../../../core/styles.dart';
 import '../../../auth/pages/sign_in_page.dart';
-
-// Import halaman OTPPage2
 
 class RatingPage1 extends StatefulWidget {
   const RatingPage1({super.key});
@@ -21,9 +18,8 @@ class _RatingPage1State extends State<RatingPage1> {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.chevron_left),
-        title: Text(
+        title: const Text(
           'Rate Order',
-          style: primaryTextStyle,
         ),
         backgroundColor: const Color(0xFFDBEFEF), // Warna DBEFEF
       ),
@@ -33,7 +29,7 @@ class _RatingPage1State extends State<RatingPage1> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
+              const SpaceHeight(20),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
@@ -44,7 +40,7 @@ class _RatingPage1State extends State<RatingPage1> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SpaceHeight(20),
               // RatingBar.builder(
               //   initialRating: rating,
               //   minRating: 1,
@@ -77,19 +73,23 @@ class _RatingPage1State extends State<RatingPage1> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   'Apa yang menurutmu oke?',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SpaceHeight(10),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
                   maxLines: null, // Unlimited lines
                   minLines: 3,
-                  style: TextStyle(color: Colors.white), // Ubah warna teks
+                  style: TextStyle(
+                      color: AppColors.primaryColor), // Ubah warna teks
                   decoration: InputDecoration(
                     hintText: 'Tulis di sini...',
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: AppColors.primaryColor),
                     border: OutlineInputBorder(),
                     filled: true, // Mengaktifkan fill
                     fillColor: Color(0xFF4682B4), // Warna fill kolom
@@ -97,7 +97,7 @@ class _RatingPage1State extends State<RatingPage1> {
                   textAlign: TextAlign.center, // Posisi teks di tengah
                 ),
               ),
-              const SizedBox(height: 20), // Tambahkan jarak sekitar 20
+              const SpaceHeight(20), // Tambahkan jarak sekitar 20
 
               Padding(
                 padding: const EdgeInsets.all(30.0),

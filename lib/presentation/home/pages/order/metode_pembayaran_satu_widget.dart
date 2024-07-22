@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/styles.dart';
+import '../../../../core/core.dart';
 
 class MetodePembayaranSatuWidget extends StatefulWidget {
   final String paymentMethod;
@@ -49,17 +49,19 @@ class _MetodePembayaranSatuWidgetState
                     Text(
                       widget.paymentMethod,
                       style: const TextStyle(
-                        color: Colors.black,
+                        color: AppColors.black,
                         fontSize: 14,
                       ),
                     ),
-                    Text(widget.bankName,
-                        style: primaryTextStyle.copyWith(fontSize: 12.0)),
+                    Text(
+                      widget.bankName,
+                      style: const TextStyle(fontSize: 12.0),
+                    ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SpaceWidth(8),
             Container(
               height: 33,
               width: 36,
@@ -73,7 +75,7 @@ class _MetodePembayaranSatuWidgetState
                 child: isSelected
                     ? const Icon(
                         Icons.check,
-                        color: Colors.white,
+                        color: AppColors.primaryColor,
                         size: 20,
                       )
                     : const SizedBox(),

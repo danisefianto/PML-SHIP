@@ -152,7 +152,7 @@ class _AddShipperConsigneeDataPageState
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Data ditambahkan'),
-                          backgroundColor: Colors.green,
+                          backgroundColor: AppColors.green,
                         ),
                       );
                       Navigator.push(

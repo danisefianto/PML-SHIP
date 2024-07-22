@@ -10,7 +10,7 @@ import 'package:pml_ship/data/models/request/register_request_model.dart';
 import 'package:pml_ship/presentation/auth/bloc/register/register_bloc.dart';
 
 import '../../../core/core.dart';
-import 'registration_process_waiting.dart';
+import 'registration_process_waiting_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -250,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             'Selected file: ${selectedFile!.path.split('/').last}', // Use path for mobile
                                             style: const TextStyle(
                                               fontSize: 14,
-                                              color: Colors.black,
+                                              color: AppColors.black,
                                             ),
                                           ),
                                         )

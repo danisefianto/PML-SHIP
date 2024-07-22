@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
-
 class SelectVesselDropdownWidget extends StatefulWidget {
   final double customMargin;
 
@@ -209,9 +207,8 @@ class _SelectVesselDropdownWidgetState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Vessel recommendation',
-          style: primaryTextStyle,
         ),
         const SizedBox(
           height: 5.0,
@@ -221,7 +218,6 @@ class _SelectVesselDropdownWidgetState
           menuHeight: 350,
           width: width,
           hintText: 'Select vessel',
-          textStyle: primaryTextStyle,
           onSelected: (Vessel? value) {
             setState(() {
               selectedVessel = value;
@@ -232,9 +228,6 @@ class _SelectVesselDropdownWidgetState
                 (Vessel vessel) => DropdownMenuEntry<Vessel>(
                   value: vessel,
                   label: vessel.name,
-                  style: ButtonStyle(
-                    textStyle: WidgetStateProperty.all(primaryTextStyle),
-                  ),
                 ),
               )
               .toList(),

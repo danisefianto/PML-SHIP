@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
 import '../../../data/models/response/order_detail_response_model.dart';
 
 class BuildPaymentWaitingForApprovalHeader extends StatelessWidget {
@@ -19,10 +18,10 @@ class BuildPaymentWaitingForApprovalHeader extends StatelessWidget {
         horizontal: 8.0,
         vertical: 16,
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(right: 8.0),
             child: Icon(Icons.hourglass_bottom),
           ),
@@ -32,15 +31,15 @@ class BuildPaymentWaitingForApprovalHeader extends StatelessWidget {
               children: [
                 Text(
                   'Please Wait for Admin Approval',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: bold,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
                     fontSize: 16,
                   ),
                 ),
                 Text(
                   'Your payment proof has been uploaded. Please wait for admin approval.',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: regular,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],

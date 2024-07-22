@@ -35,8 +35,6 @@ class _EditPersonalAndCompanyProfilePageState
   final TextEditingController _companyEmailController = TextEditingController();
   final TextEditingController _companyPhoneController = TextEditingController();
 
-  // TextEditingController _confirmPasswordController = TextEditingController();
-
   File? selectedFile; // Variable to store the selected file
 
   @override
@@ -74,7 +72,7 @@ class _EditPersonalAndCompanyProfilePageState
               success: (response) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Profile updated successfully'),
-                  backgroundColor: Colors.green,
+                  backgroundColor: AppColors.green,
                 ));
               },
               error: (message) {
@@ -198,15 +196,7 @@ class _EditPersonalAndCompanyProfilePageState
                                   color: AppColors.black,
                                 ),
                               ),
-
-                              const SizedBox(height: 16),
-                              // TextFormField(
-                              //   onChanged: (value) {
-                              //     setState(() {
-                              //       password =
-                              //           value; // Update the password when input changes
-                              //     });
-                              //   },
+                              const SpaceHeight(16),
                               CustomTextField(
                                 controller: _passwordController,
                                 label: 'Password',
@@ -224,65 +214,8 @@ class _EditPersonalAndCompanyProfilePageState
                                 ),
                               ),
                               const SpaceHeight(33.0),
-                              const SizedBox(height: 16),
-                              // TextFormField(
-                              //   onChanged: (value) {
-                              //     setState(() {
-                              //       password =
-                              //           value; // Update the password when input changes
-                              //     });
-                              //   },
-                              //   obscureText: showConfirmPassword,
-                              //   controller: _confirmPasswordController,
-                              //   decoration: InputDecoration(
-                              //     suffixIcon: IconButton(
-                              //       icon: Icon(showConfirmPassword
-                              //           ? Icons.visibility_off
-                              //           : Icons.visibility),
-                              //       onPressed: () {
-                              //         toggleShowConfirmPassword();
-                              //       },
-                              //     ),
-                              //     enabledBorder: OutlineInputBorder(
-                              //       borderSide: const BorderSide(
-                              //           color: Color(0xFF4682B4)),
-                              //       borderRadius: BorderRadius.circular(25),
-                              //     ),
-                              //     focusedBorder: OutlineInputBorder(
-                              //       borderSide: const BorderSide(
-                              //           color: Color(0xFF4682B4)),
-                              //       borderRadius: BorderRadius.circular(25),
-                              //     ),
-                              //     labelText: 'Confirm Password',
-                              //     filled: true,
-                              //     fillColor: Colors.white,
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 16),
-                              // TextFormField(
-                              //   controller: aktaPerusahaanController,
-                              //   decoration: InputDecoration(
-                              //     enabledBorder: OutlineInputBorder(
-                              //       borderSide: const BorderSide(
-                              //           color: Color(0xFF4682B4)),
-                              //       borderRadius: BorderRadius.circular(25),
-                              //     ),
-                              //     focusedBorder: OutlineInputBorder(
-                              //       borderSide: const BorderSide(
-                              //           color: Color(0xFF4682B4)),
-                              //       borderRadius: BorderRadius.circular(25),
-                              //     ),
-                              //     labelText: 'Akta Perusahaan',
-                              //     hintText: 'b100_PML.Pdf',
-                              //     // helperText: 'format file: akta_perusahaan.Pdf',
-                              //     border: const OutlineInputBorder(),
-                              //     filled: true,
-                              //     fillColor: Colors.white,
-                              //     suffixIcon: const Icon(Icons.upload_file),
-                              //   ),
-
-                              // ),
-                              const SizedBox(height: 16),
+                              const SpaceHeight(16),
+                              const SpaceHeight(16),
                               Button.filled(
                                 onPressed: () {
                                   if (
@@ -376,7 +309,6 @@ class _EditPersonalAndCompanyProfilePageState
     _companyEmailController.dispose();
     _companyPhoneController.dispose();
 
-    // _confirmPasswordController.dispose();
     super.dispose();
   }
 }

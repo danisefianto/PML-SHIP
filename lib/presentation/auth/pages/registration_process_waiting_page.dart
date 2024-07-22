@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
-
-import '../../../core/styles.dart';
+import '../../../core/core.dart';
+import 'sign_in_page.dart';
 
 class RegistrationProcessWaitingPage extends StatelessWidget {
   const RegistrationProcessWaitingPage({super.key});
@@ -12,40 +11,36 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            margin: EdgeInsets.all(defaultMargin),
+            margin: const EdgeInsets.all(30.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  height: 150,
-                ),
+                const SpaceHeight(150),
                 const Icon(
                   Icons.schedule,
                   size: 100,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
+                const SpaceHeight(20),
+                const Text(
                   'Registrasi akan diproses',
-                  style:
-                      primaryTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-
-                Text(
+                const Text(
                   'Data Anda sedang diverifikasi oleh kami',
-                  style: primaryTextStyle,
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Text(
+                const SpaceHeight(30),
+                const Text(
                   'Anda akan mendapatkan notifikasi melalui email',
-                  style: primaryTextStyle.copyWith(fontSize: 14),
+                  style: TextStyle(
+                    fontSize: 14.0,
+                  ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 50), // Tambahkan jarak sekitar 50
+                const SpaceHeight(50),
                 SizedBox(
                   height: 50.0,
                   child: FilledButton(
@@ -58,17 +53,17 @@ class RegistrationProcessWaitingPage extends StatelessWidget {
                       );
                     },
                     style: FilledButton.styleFrom(
-                      backgroundColor: secondaryColor,
+                      backgroundColor: AppColors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Back to sign in',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semiBold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                         fontSize: 16.0,
-                        color: primaryColor,
+                        color: AppColors.primaryColor,
                       ),
                     ),
                   ),

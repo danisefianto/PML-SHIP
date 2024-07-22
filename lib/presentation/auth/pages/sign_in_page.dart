@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pml_ship/presentation/auth/pages/register_page.dart';
+import 'register_page.dart';
 
 import '../../../core/core.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
@@ -235,8 +235,9 @@ class _SignInPageState extends State<SignInPage> {
                                   TextSpan(
                                     text: 'Sign Up',
                                     style: const TextStyle(
-                                        color: AppColors.blue,
-                                        fontWeight: FontWeight.bold),
+                                      color: AppColors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.push(

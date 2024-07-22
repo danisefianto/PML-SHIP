@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/core.dart';
-import '../../../../core/styles.dart';
 import 'metode_pembayaran_satu_widget.dart';
 
 class MetodePembayaranSatuPage extends StatefulWidget {
@@ -35,12 +34,12 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                         "Metode Pembayaran",
                         style: theme.textTheme.bodyLarge,
                       ),
-                      const SizedBox(height: 4),
+                      const SpaceHeight(4),
                       const Divider(
                         color: Color(0xFF4682B4), // Warna garis
                         thickness: 2, // Ketebalan garis
                       ),
-                      const SizedBox(height: 35),
+                      const SpaceHeight(35),
                       Text(
                         "Pembayaran I",
                         style: theme.textTheme.bodyLarge,
@@ -48,11 +47,11 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SpaceHeight(15),
                 _buildWaktuPembayaran(context),
-                const SizedBox(height: 31),
+                const SpaceHeight(31),
                 _buildCaraPembayaran(context),
-                const SizedBox(height: 29),
+                const SpaceHeight(29),
                 Center(
                   child: Column(
                     children: [
@@ -60,7 +59,7 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                         "Upload Bukti Pembayaran",
                         style: theme.textTheme.bodySmall,
                       ),
-                      const SizedBox(height: 10),
+                      const SpaceHeight(10),
                       Container(
                         height: 124,
                         width: 275,
@@ -72,7 +71,7 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 31),
+                const SpaceHeight(31),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Button.filled(
@@ -90,10 +89,10 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text(
+      title: const Text(
         'PML SHIP',
-        style: primaryTextStyle.copyWith(
-          fontWeight: bold,
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
           fontSize: 14.0,
         ),
       ),
@@ -103,8 +102,8 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
 
   /// Section Widget
   Widget _buildWaktuPembayaran(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 7, right: 11),
+    return const Padding(
+      padding: EdgeInsets.only(left: 7, right: 11),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -112,21 +111,20 @@ class _MetodePembayaranSatuPageState extends State<MetodePembayaranSatuPage> {
             flex: 5, // Menambahkan flex untuk memberikan ruang lebih pada teks
             child: Text(
               "Waktu Pembayaran Selama",
-              style: primaryTextStyle,
+
               overflow: TextOverflow
                   .ellipsis, // Mengatasi overflow teks jika terlalu panjang
             ),
           ),
-          const SizedBox(
+          SizedBox(
               width: 10), // Memberikan jarak horizontal antara teks dan waktu
           Flexible(
             // Menggunakan Flexible untuk mengatasi overflow pada waktu
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 2),
+              padding: EdgeInsets.only(bottom: 2),
               child: Text(
                 "23 Hours: 59 Minutes",
-                style: primaryTextStyle,
               ),
             ),
           ),

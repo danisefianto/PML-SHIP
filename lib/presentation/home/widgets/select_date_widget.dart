@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../core/styles.dart';
+import '../../../core/core.dart';
 
 class SelectDateWidget extends StatefulWidget {
   final TextEditingController dateController;
@@ -33,7 +33,6 @@ class _SelectDateWidgetState extends State<SelectDateWidget> {
       children: [
         Text(
           widget.labelText,
-          style: primaryTextStyle,
         ),
         const SizedBox(
           height: 5.0,
@@ -46,7 +45,7 @@ class _SelectDateWidgetState extends State<SelectDateWidget> {
             prefixIcon: Icon(Icons.calendar_today),
             enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue),
+              borderSide: BorderSide(color: AppColors.blue),
             ),
           ),
           readOnly: true,

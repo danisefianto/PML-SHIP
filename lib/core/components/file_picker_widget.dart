@@ -4,8 +4,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
-import 'buttons.dart';
+import '../core.dart';
 
 class FilePickerWidget extends StatefulWidget {
   final String label;
@@ -53,7 +52,7 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 12.0),
+          const SpaceHeight(12),
         ],
         Container(
           padding: const EdgeInsets.all(6.0),

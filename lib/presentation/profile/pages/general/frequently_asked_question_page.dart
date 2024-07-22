@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/styles.dart';
+import '../../../../core/core.dart';
 
 class FAQPage extends StatefulWidget {
   const FAQPage({super.key});
@@ -30,7 +30,7 @@ class _FAQPageState extends State<FAQPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 18),
+                  const SpaceHeight(18),
                   Padding(
                     padding: const EdgeInsets.only(left: 22, right: 10),
                     child: _buildTulisanDenganGaris(
@@ -38,7 +38,7 @@ class _FAQPageState extends State<FAQPage> {
                       tulisan: "Bagaimana cara melakukan order?",
                     ),
                   ),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                   Padding(
                     padding: const EdgeInsets.only(left: 22, right: 10),
                     child: _buildTulisanDenganGaris(
@@ -46,7 +46,7 @@ class _FAQPageState extends State<FAQPage> {
                       tulisan: "Apa saja vessel yang tersedia?",
                     ),
                   ),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                   Padding(
                     padding: const EdgeInsets.only(left: 22, right: 10),
                     child: GestureDetector(
@@ -55,24 +55,23 @@ class _FAQPageState extends State<FAQPage> {
                           isTulisanTersediaVisible = !isTulisanTersediaVisible;
                         });
                       },
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 1),
+                              padding: EdgeInsets.only(top: 1),
                               child: Text(
                                 "Apa PML melayani order internasional?",
-                                style: primaryTextStyle.copyWith(),
                               ),
                             ),
                           ),
-                          const Icon(Icons.expand_more)
+                          Icon(Icons.expand_more)
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                   isTulisanTersediaVisible
                       ? _buildTulisanDenganGaris(
                           context,
@@ -80,7 +79,7 @@ class _FAQPageState extends State<FAQPage> {
                               "PML melayani order internasional melalui layanan pengiriman khusus dengan beberapa metode pengiriman yang tersedia.",
                         )
                       : const SizedBox(),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                   Padding(
                     padding: const EdgeInsets.only(left: 22, right: 10),
                     child: _buildTulisanDenganGaris(
@@ -88,7 +87,7 @@ class _FAQPageState extends State<FAQPage> {
                       tulisan: "Apa saja logistik yang bisa dikirim PML?",
                     ),
                   ),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                   Padding(
                     padding: const EdgeInsets.only(left: 22, right: 10),
                     child: _buildTulisanDenganGaris(
@@ -97,7 +96,7 @@ class _FAQPageState extends State<FAQPage> {
                           "Bagaimana cara menghubungi admin secara langsung?",
                     ),
                   ),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                   Padding(
                     padding: const EdgeInsets.only(left: 22, right: 10),
                     child: _buildTulisanDenganGaris(
@@ -105,7 +104,7 @@ class _FAQPageState extends State<FAQPage> {
                       tulisan: "Berapa maksimal seseorang melakukan order?",
                     ),
                   ),
-                  const SizedBox(height: 11),
+                  const SpaceHeight(11),
                 ],
               ),
             ),
@@ -127,7 +126,6 @@ class _FAQPageState extends State<FAQPage> {
                 padding: const EdgeInsets.only(top: 1),
                 child: Text(
                   tulisan,
-                  style: primaryTextStyle.copyWith(),
                 ),
               ),
             ),
@@ -136,9 +134,9 @@ class _FAQPageState extends State<FAQPage> {
         ),
         const Divider(
           height: 1,
-          color: Colors.black,
+          color: AppColors.black,
         ),
-        const SizedBox(height: 11),
+        const SpaceHeight(11),
       ],
     );
   }

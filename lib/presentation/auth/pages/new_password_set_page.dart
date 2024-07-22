@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pml_ship/presentation/auth/pages/sign_in_page.dart';
+import 'sign_in_page.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 
 class NewPasswordSetPage extends StatelessWidget {
   const NewPasswordSetPage({super.key});
@@ -13,32 +12,32 @@ class NewPasswordSetPage extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            margin: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Column(
               children: [
                 const SizedBox(
                   height: 200,
                 ),
-                Column(
+                const Column(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.task_alt,
                       size: 50,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                     Text(
                       'All done!',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: bold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         fontSize: 25,
                       ),
                     ),
                     Text(
                       'Your password has been reset. You can now proceed to login to your account',
                       textAlign: TextAlign.center,
-                      style: primaryTextStyle.copyWith(
+                      style: TextStyle(
                         fontSize: 16,
                       ),
                     )

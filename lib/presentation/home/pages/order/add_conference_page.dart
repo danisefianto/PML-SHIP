@@ -2,13 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:pml_ship/core/styles.dart';
-import 'package:pml_ship/data/models/request/add_conference_request_model.dart';
-import 'package:pml_ship/presentation/home/widgets/select_date_widget.dart';
 
 import '../../../../core/core.dart';
+import '../../../../data/models/request/add_conference_request_model.dart';
 import '../../bloc/order/addConference/add_conference_bloc.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
+import '../../widgets/select_date_widget.dart';
 import 'order_process_waiting.dart';
 
 enum ConferenceMethod { offline, online }
@@ -91,15 +90,15 @@ class _AddConferencePageState extends State<AddConferencePage> {
           body: ListView(
             children: [
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   top: 20.0,
-                  left: defaultMargin,
-                  right: defaultMargin,
+                  left: 30.0,
+                  right: 30.0,
                 ),
-                child: Text(
+                child: const Text(
                   'Conference method',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: bold,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -130,18 +129,18 @@ class _AddConferencePageState extends State<AddConferencePage> {
               Visibility(
                 visible: _conferenceMethodItem == ConferenceMethod.offline,
                 child: Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     top: 20.0,
-                    left: defaultMargin,
-                    right: defaultMargin,
+                    left: 30.0,
+                    right: 30.0,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Enter your preferred conference venue',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: medium,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
                       ),
@@ -154,13 +153,12 @@ class _AddConferencePageState extends State<AddConferencePage> {
                           horizontal: 16.0,
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(color: AppColors.black),
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Center(
                           child: TextFormField(
                             controller: offlineConferenceLocation,
-                            style: primaryTextStyle,
                             decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Meeting Room Gedung A',
@@ -175,10 +173,10 @@ class _AddConferencePageState extends State<AddConferencePage> {
               Visibility(
                 visible: _conferenceMethodItem == ConferenceMethod.online,
                 child: Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     top: 20.0,
-                    left: defaultMargin,
-                    right: defaultMargin,
+                    left: 30.0,
+                    right: 30.0,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,10 +214,10 @@ class _AddConferencePageState extends State<AddConferencePage> {
                     },
                     success: (summaryorder) {
                       return Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                           top: 20.0,
-                          left: defaultMargin,
-                          right: defaultMargin,
+                          left: 30.0,
+                          right: 30.0,
                         ),
                         // Assume today is 2024-05-17, it can choose between 2024-05-18 until 2024-05-20
                         child: SelectDateWidget(
@@ -238,10 +236,10 @@ class _AddConferencePageState extends State<AddConferencePage> {
                 },
               ),
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   top: 20.0,
-                  left: defaultMargin,
-                  right: defaultMargin,
+                  left: 30.0,
+                  right: 30.0,
                 ),
                 child: DropdownButton<String>(
                   isExpanded: true,
@@ -279,7 +277,7 @@ class _AddConferencePageState extends State<AddConferencePage> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Conference ditambahkan'),
-                      backgroundColor: Colors.green,
+                      backgroundColor: AppColors.green,
                     ),
                   );
 

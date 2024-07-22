@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pml_ship/data/models/response/user_response_model.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 
 class ProfileHeader extends StatefulWidget {
   final UserResponseModel profile;
@@ -23,11 +22,11 @@ class _ProfileHeaderState extends State<ProfileHeader> {
       toolbarHeight: 124.0, //Didapat dari Figma
       titleSpacing:
           0, //Untuk menghilangkan padding dari leading (leading = biasanya berupa tombol back)
-      backgroundColor: backgroundColor1,
+      backgroundColor: AppColors.gray4,
       automaticallyImplyLeading: false,
       elevation: 0,
       title: Container(
-        padding: EdgeInsets.all(defaultMargin),
+        padding: const EdgeInsets.all(30.0),
         child: Row(
           children: [
             CircleAvatar(
@@ -44,8 +43,9 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               children: [
                 Text(
                   widget.profile.data?.user!.name ?? '',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: semiBold,
+                  style: const TextStyle(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w600,
                     fontSize: 24,
                   ),
                   softWrap: true,
@@ -53,8 +53,9 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                 ),
                 Text(
                   widget.profile.data?.user!.email ?? '',
-                  style: subtitleTextStyle.copyWith(
-                    fontWeight: regular,
+                  style: const TextStyle(
+                    color: AppColors.gray3,
+                    fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),
                   softWrap: true,
@@ -62,8 +63,9 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                 ),
                 Text(
                   widget.profile.data?.company!.companyName ?? '',
-                  style: subtitleTextStyle.copyWith(
-                    fontWeight: regular,
+                  style: const TextStyle(
+                    color: AppColors.gray3,
+                    fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),
                   softWrap: true,
@@ -71,8 +73,9 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                 ),
                 Text(
                   'NPWP: ${widget.profile.data?.company!.companyNpwp}',
-                  style: subtitleTextStyle.copyWith(
-                    fontWeight: regular,
+                  style: const TextStyle(
+                    color: AppColors.gray3,
+                    fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),
                   softWrap: true,

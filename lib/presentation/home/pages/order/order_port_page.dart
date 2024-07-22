@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/styles.dart';
 import '../../widgets/select_date_widget.dart';
 import '../../widgets/select_port_dropdown_widget.dart';
 import 'quotation_and_weather_risk_mitigation_page.dart';
@@ -50,8 +49,8 @@ class _OrderPortPageState extends State<OrderPortPage> {
           children: [
             Text(
               customLabelText,
-              style: primaryTextStyle.copyWith(
-                fontWeight: medium,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
                 fontSize: 16,
               ),
             ),
@@ -64,7 +63,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
-                border: Border.all(color: secondaryColor),
+                border: Border.all(color: AppColors.blue),
                 borderRadius: BorderRadius.circular(
                   5.0,
                 ),
@@ -72,10 +71,11 @@ class _OrderPortPageState extends State<OrderPortPage> {
               child: Center(
                 child: TextFormField(
                   controller: cargoController,
-                  style: primaryTextStyle,
                   decoration: InputDecoration.collapsed(
                     hintText: customHintText,
-                    hintStyle: subtitleTextStyle,
+                    hintStyle: const TextStyle(
+                      color: Color(0xff504F5E),
+                    ),
                   ),
                 ),
               ),
@@ -96,14 +96,14 @@ class _OrderPortPageState extends State<OrderPortPage> {
             children: [
               Container(
                 width: double.infinity,
-                color: secondaryColor,
+                color: AppColors.blue,
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
-                child: Text(
+                child: const Text(
                   'Port',
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: primaryColor,
+                    color: AppColors.primaryColor,
                   ),
                 ),
               ),
@@ -140,14 +140,14 @@ class _OrderPortPageState extends State<OrderPortPage> {
               ),
               Container(
                 width: double.infinity,
-                color: secondaryColor,
+                color: AppColors.blue,
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
-                child: Text(
+                child: const Text(
                   'Date',
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: primaryColor,
+                    color: AppColors.primaryColor,
                   ),
                 ),
               ),
@@ -166,7 +166,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                     ),
                     Text(
                       'Loading dates must be scheduled at least two weeks in advance.',
-                      style: primaryTextStyle.copyWith(
+                      style: TextStyle(
                         color: Colors.red.shade900,
                       ),
                     ),
@@ -178,14 +178,14 @@ class _OrderPortPageState extends State<OrderPortPage> {
               ),
               Container(
                 width: double.infinity,
-                color: secondaryColor,
+                color: AppColors.blue,
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
-                child: Text(
+                child: const Text(
                   'Cargo',
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: primaryColor,
+                    color: AppColors.primaryColor,
                   ),
                 ),
               ),
@@ -246,7 +246,7 @@ class _OrderPortPageState extends State<OrderPortPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Quotation berhasil dibuat!'),
-                          backgroundColor: Colors.green,
+                          backgroundColor: AppColors.green,
                         ),
                       );
                       Navigator.push(

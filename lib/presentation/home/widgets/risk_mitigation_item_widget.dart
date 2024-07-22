@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 
 class RiskmitigationItemwidget extends StatelessWidget {
   const RiskmitigationItemwidget({super.key});
@@ -19,11 +18,10 @@ class RiskmitigationItemwidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
+          const Align(
             alignment: Alignment.centerRight,
             child: Text(
               "10 minutes ago",
-              style: primaryTextStyle,
             ),
           ),
           const SizedBox(
@@ -36,17 +34,15 @@ class RiskmitigationItemwidget extends StatelessWidget {
               const SizedBox(
                 width: 15,
               ),
-              Expanded(
+              const Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Potensi Hujan Lebat disertai petir berpeluang terjadi di:",
-                      style: primaryTextStyle,
                     ),
                     Text(
                       "\u2022 Perairan Riau\n\u2022 Perairan Kalimantan Barat\n\u2022 Teluk Bone\n\u2022 Perairan Agats Amamapare",
-                      style: primaryTextStyle,
                     ),
                   ],
                 ),

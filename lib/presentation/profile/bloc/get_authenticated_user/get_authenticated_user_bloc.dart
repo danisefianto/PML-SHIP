@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import '../../../../data/models/response/user_response_model.dart';
-import '../../../../data/datasource/auth_remote_datasource.dart';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../data/datasource/auth_remote_datasource.dart';
+import '../../../../data/models/response/user_response_model.dart';
+
+part 'get_authenticated_user_bloc.freezed.dart';
 part 'get_authenticated_user_event.dart';
 part 'get_authenticated_user_state.dart';
-part 'get_authenticated_user_bloc.freezed.dart';
 
 class GetAuthenticatedUserBloc
     extends Bloc<GetAuthenticatedUserEvent, GetAuthenticatedUserState> {

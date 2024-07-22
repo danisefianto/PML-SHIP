@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/core.dart';
 import '../../widgets/risk_mitigation_item_widget.dart';
 
 class RiskMitigationScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class RiskMitigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primaryColor,
         appBar: AppBar(
           title: const Text('Risk Mitigation'),
         ),
@@ -24,7 +25,7 @@ class RiskMitigationScreen extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) {
-                    return const SizedBox(height: 20);
+                    return const SpaceHeight(20);
                   },
                   itemCount: 3,
                   itemBuilder: (context, index) {

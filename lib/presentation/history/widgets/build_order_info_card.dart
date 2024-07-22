@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/core.dart';
-import '../../../core/styles.dart';
 
+import '../../../core/core.dart';
 import '../../../data/models/response/order_detail_response_model.dart';
 
 class BuildOrderInfoCard extends StatefulWidget {
@@ -31,9 +30,9 @@ class _BuildOrderInfoCardState extends State<BuildOrderInfoCard> {
             width: double.infinity,
             decoration: const BoxDecoration(color: Colors.amber),
             padding: const EdgeInsets.all(8),
-            child: Text(
+            child: const Text(
               'Detail pesanan',
-              style: primaryTextStyle.copyWith(fontWeight: bold),
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -43,28 +42,26 @@ class _BuildOrderInfoCardState extends State<BuildOrderInfoCard> {
               children: [
                 Text(
                   'Transaction ID: ${widget.summaryOrderResponseModel.data!.transactionId}',
-                  style: primaryTextStyle.copyWith(fontWeight: bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '${widget.summaryOrderResponseModel.data!.loading!.port} - ${widget.summaryOrderResponseModel.data!.discharge!.port}',
-                  style: primaryTextStyle.copyWith(fontWeight: bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   'Date of Loading: ${widget.summaryOrderResponseModel.data!.loading!.date!.toFormattedIndonesianLongDate()}',
-                  style: primaryTextStyle.copyWith(fontWeight: light),
+                  style: const TextStyle(fontWeight: FontWeight.w300),
                 ),
                 Text(
                   'Date of Discharge: ${widget.summaryOrderResponseModel.data!.discharge!.date!.toFormattedIndonesianLongDate()}',
-                  style: primaryTextStyle.copyWith(fontWeight: light),
+                  style: const TextStyle(fontWeight: FontWeight.w300),
                 ),
                 const Divider(),
                 Text(
                   'Cargo Description: ${widget.summaryOrderResponseModel.data!.cargo!.description}',
-                  style: primaryTextStyle,
                 ),
                 Text(
                   'Cargo Weight: ${widget.summaryOrderResponseModel.data!.cargo!.weight}',
-                  style: primaryTextStyle,
                 ),
               ],
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/styles.dart';
 
 class HowToPayPage extends StatefulWidget {
   const HowToPayPage({super.key});
@@ -34,60 +33,59 @@ class _HowToPayPageState extends State<HowToPayPage> {
                     ),
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'PML SHIP mendukung berbagai transfer Rekening Bank dan atau kartu kredit:',
-                      style: primaryTextStyle,
                     ),
-                    const SizedBox(height: 10),
+                    const SpaceHeight(10),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Assets.image.payment.imageVisaLogo.image(height: 50),
-                          const SizedBox(width: 20),
+                          const SpaceWidth(20),
                           Assets.image.payment.imageAmericanExpressLogo
                               .image(height: 50),
-                          const SizedBox(width: 20),
+                          const SpaceWidth(20),
                           Assets.image.payment.imageJcbLogo.image(height: 50),
-                          const SizedBox(width: 20),
+                          const SpaceWidth(20),
                           Assets.image.payment.imageMastercardLogo
                               .image(height: 50),
-                          const SizedBox(width: 20),
+                          const SpaceWidth(20),
                           Assets.image.payment.imageUnionpayLogo
                               .image(height: 50),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SpaceHeight(10),
                     const Text(
                       'Kartu Kredit/debit lokal atau luar negeri',
                       style: TextStyle(
                         fontSize: 10,
-                        color: Colors.black,
+                        color: AppColors.black,
                         fontFamily: 'Inter',
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SpaceHeight(10),
                     const Row(
                       children: [
-                        SizedBox(width: 10),
+                        SpaceWidth(10),
                         Text(
                           'Catatan: ',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.black,
+                            color: AppColors.black,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Inter',
                           ),
                         ),
-                        SizedBox(width: 16),
+                        SpaceWidth(16),
                         Flexible(
                           child: Text(
                             'Kartu Kredit/Debit yang didaftarkan harus sudah terverifikasi dengan 3d secure',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.black,
+                              color: AppColors.black,
                               fontFamily: 'Inter',
                             ),
                             textAlign: TextAlign.justify,
@@ -95,22 +93,21 @@ class _HowToPayPageState extends State<HowToPayPage> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    Text(
+                    const SpaceHeight(20),
+                    const Text(
                       'Alternatif lainnya, anda juga bisa membayar dengan metode transfer seperti metode transfer pada umumnya yang akan diverifikasi secara manual dan otomatis melalui lampiran bukti yang dikirim pengguna.',
-                      style: primaryTextStyle,
                       textAlign: TextAlign.justify,
                     ),
-                    const SizedBox(height: 20),
+                    const SpaceHeight(20),
                     const Text(
                       'Berikut adalah cara melakukan transfer:',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
+                        color: AppColors.black,
                         fontFamily: 'Inter',
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SpaceHeight(20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -118,11 +115,10 @@ class _HowToPayPageState extends State<HowToPayPage> {
                             .image(height: 400),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    Text(
+                    const SpaceHeight(20),
+                    const Text(
                       '*Menu Transfer di halaman Metode Pembayaran*\n'
                       'Pada menu *Beranda* > pilih *Order* > Melakukan pengisian *Request Order* dan *Planning Order* > pada  *Halaman Invoice*  klik Next > Kemudian pilih salah satu skema pembayaran  kemudian klik Bayar > Pilih salah satu akun rekening bank yang sesuai > lakukan transfer sesuai nominal > lampirkan bukti pada *Halaman Metode Pembayaran*',
-                      style: primaryTextStyle,
                       textAlign: TextAlign.justify,
                     ),
                   ],

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
-
 class BuildShipperAndConsigneeInfo extends StatelessWidget {
   final String title;
   final String name;
@@ -30,15 +28,15 @@ class BuildShipperAndConsigneeInfo extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: Text(
               title,
-              style: primaryTextStyle.copyWith(fontWeight: bold),
+              style: const TextStyle(fontWeight: FontWeight.w700),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
             child: Text(
               name,
-              style: primaryTextStyle.copyWith(
-                fontWeight: bold,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -46,7 +44,6 @@ class BuildShipperAndConsigneeInfo extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               address,
-              style: primaryTextStyle,
             ),
           ),
         ],

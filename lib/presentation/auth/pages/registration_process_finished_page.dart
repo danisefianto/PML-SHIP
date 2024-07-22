@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/core.dart';
 import 'sign_in_page.dart';
 
 class RegistrationProcessFinished extends StatelessWidget {
@@ -69,7 +70,7 @@ class RegistrationProcessFinished extends StatelessWidget {
                   fontSize: 15.0,
                 ),
               ),
-              const SizedBox(height: 50), // Tambahkan jarak sekitar 50
+              const SpaceHeight(50), // Tambahkan jarak sekitar 50
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -84,7 +85,7 @@ class RegistrationProcessFinished extends StatelessWidget {
                 ),
                 child: const Text(
                   "Close",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: AppColors.primaryColor),
                 ),
               ),
             ],

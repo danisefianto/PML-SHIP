@@ -3,13 +3,12 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/build_on_shipping_header.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 import '../../../data/models/request/update_document_request_model.dart';
 import '../../home/bloc/summaryOrder/summary_order_bloc.dart';
 import '../../home/bloc/upload_document/upload_document_bloc.dart';
+import '../widgets/build_on_shipping_header.dart';
 import '../widgets/build_order_info_card.dart';
 import '../widgets/build_payment_header.dart';
 import '../widgets/build_payment_summary.dart';
@@ -152,7 +151,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                         child:
                             BuildOnShippingHeader(responseModel: responseModel),
                       ),
-                      const SizedBox(height: 20),
+
+                      const SpaceHeight(20),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
@@ -229,9 +229,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                               'Selected file: ${selectedFile!.path.split('/').last}',
                                               style: const TextStyle(
                                                   fontSize: 16,
-                                                  color: Colors.black),
+                                                  color: AppColors.black),
                                             ),
-                                          const SizedBox(height: 30),
+                                          const SpaceHeight(30),
                                           BlocConsumer<UploadDocumentBloc,
                                               UploadDocumentState>(
                                             listener: (context, state) {
@@ -255,7 +255,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                                       content: Text(
                                                           'Upload document success'),
                                                       backgroundColor:
-                                                          Colors.green,
+                                                          AppColors.green,
                                                     ),
                                                   );
                                                   setState(() {
@@ -315,25 +315,25 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Shipping Instruction Document',
-                                            style: primaryTextStyle.copyWith(
-                                              fontWeight: bold,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w700,
                                               fontSize: 16,
                                             ),
                                           ),
-                                          const SizedBox(height: 8),
+
+                                          const SpaceHeight(8),
                                           Row(
                                             children: [
                                               const Icon(Icons.picture_as_pdf),
-                                              const SizedBox(width: 8),
+                                              const SpaceWidth(8),
                                               Text(
                                                 responseModel.data!.documents!
                                                         .first.documentName ??
                                                     '',
-                                                style:
-                                                    primaryTextStyle.copyWith(
-                                                  fontWeight: bold,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w700,
                                                 ),
                                               ),
                                             ],
@@ -361,7 +361,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                           //                   content: Text(
                                           //                       'Download completed!'),
                                           //                   backgroundColor:
-                                          //                       Colors.green,
+                                          //                       AppColors.green,
                                           //                 ),
                                           //               );
                                           //             },
@@ -405,20 +405,19 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Payment Proof',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
-                                                    fontWeight: bold,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
                                                     fontSize: 16,
                                                   ),
                                                 ),
-                                                const SizedBox(height: 8),
+                                                const SpaceHeight(8),
                                                 Row(
                                                   children: [
                                                     const Icon(
                                                         Icons.picture_as_pdf),
-                                                    const SizedBox(width: 8),
+                                                    const SpaceWidth(8),
                                                     // TODO: Payment Bug
                                                     Text(
                                                         firstPaymentProofDocument),

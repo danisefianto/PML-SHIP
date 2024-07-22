@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/styles.dart';
 import '../../../../data/models/response/order_detail_response_model.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
+import '../main_page.dart';
 import 'add_conference_page.dart';
 
 class OrderSummaryPage extends StatefulWidget {
@@ -41,11 +41,11 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
               decoration: const BoxDecoration(color: Color(0xFFB2DFDB)),
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(right: 8.0),
                     child: Icon(Icons.receipt),
                   ),
@@ -55,13 +55,15 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                       children: [
                         Text(
                           'Sedang diproses',
-                          style: primaryTextStyle.copyWith(
-                              fontWeight: bold, fontSize: 16),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                          ),
                         ),
                         Text(
                           'Pesanan kamu sedang diproses admin dalam 1 hari kerja.',
-                          style: primaryTextStyle.copyWith(
-                            fontWeight: regular,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
@@ -70,9 +72,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceHeight(20),
             Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 10,
@@ -93,9 +93,9 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           width: double.infinity,
                           decoration: const BoxDecoration(color: Colors.amber),
                           padding: const EdgeInsets.all(8),
-                          child: Text(
+                          child: const Text(
                             'Detail pesanan',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                            style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Padding(
@@ -105,26 +105,26 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                             children: [
                               Text(
                                 'Transaction ID: ${summaryOrderResponseModel.data!.transactionId}',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700),
                               ),
 
                               Text(
                                 '${summaryOrderResponseModel.data!.loading!.port} - ${summaryOrderResponseModel.data!.discharge!.port}',
-                                style:
-                                    primaryTextStyle.copyWith(fontWeight: bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700),
                               ),
 
                               // dari planning/quotation
                               Text(
                                 'Date of Loading: ${summaryOrderResponseModel.data!.loading!.date!.toFormattedIndonesianLongDate()}',
-                                style: primaryTextStyle.copyWith(
-                                    fontWeight: light),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w300),
                               ),
                               Text(
                                 'Date of Discharge: ${summaryOrderResponseModel.data!.discharge!.date!.toFormattedIndonesianLongDate()}',
-                                style: primaryTextStyle.copyWith(
-                                    fontWeight: light),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w300),
                               ),
                               const Divider(),
                               Text(
@@ -135,8 +135,10 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                               const Divider(),
                               Text(
                                 'Estimated Cost: ${summaryOrderResponseModel.data!.payment!.shippingCost!.currencyEYDFormatRp}',
-                                style: primaryTextStyle.copyWith(
-                                    fontWeight: bold, fontSize: 16),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16,
+                                ),
                               ),
                             ],
                           ),
@@ -158,18 +160,17 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           width: double.infinity,
                           decoration: const BoxDecoration(color: Colors.amber),
                           padding: const EdgeInsets.all(8),
-                          child: Text(
+                          child: const Text(
                             'Shipper Info',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                            style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
-                            // 'PT BUma',
                             '${summaryOrderResponseModel.data!.shipper!.name}',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                            style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Padding(
@@ -195,9 +196,9 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                           width: double.infinity,
                           decoration: const BoxDecoration(color: Colors.amber),
                           padding: const EdgeInsets.all(8),
-                          child: Text(
+                          child: const Text(
                             'Consignee Info',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                            style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Padding(
@@ -205,7 +206,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                               top: 8.0, left: 8.0, right: 8.0),
                           child: Text(
                             '${summaryOrderResponseModel.data!.consignee!.name}',
-                            style: primaryTextStyle.copyWith(fontWeight: bold),
+                            style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Padding(
@@ -217,9 +218,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SpaceHeight(30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Button.filled(
@@ -237,9 +236,7 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                       label: 'Lanjutkan Pesanan',
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SpaceHeight(30),
                   Padding(
                     padding: const EdgeInsets.all(30.0),
                     child: Button.outlined(
@@ -267,15 +264,10 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
             IconButton(
               icon: const Icon(Icons.home),
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  '/home',
-                  (route) => false,
-                );
-                // Navigator.pushAndRemoveUntil(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => const MainPage()),
-                //     (route) => false);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainPage()),
+                    (route) => false);
               },
             ),
           ],

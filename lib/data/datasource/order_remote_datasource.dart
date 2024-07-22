@@ -11,8 +11,8 @@ import '../models/request/weather_request_model.dart';
 import '../models/response/add_conference_response_model.dart';
 import '../models/response/new_check_quotation_response_model.dart';
 import '../models/response/new_order_response_model.dart';
-import '../models/response/port_response_model.dart';
 import '../models/response/order_detail_response_model.dart';
+import '../models/response/port_response_model.dart';
 import '../models/response/weather_response_model.dart';
 import 'auth_local_datasource.dart';
 
@@ -109,13 +109,13 @@ class OrderRemoteDatasource {
       body: newCheckQuotationRequestModel.toJson(),
     );
 
-    // // Log the request
-    // log('Request: $headers');
-    // log('URL: $url');
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
 
-    // // Log the response body
-    // log('Response: ${response.body}');
-    // log('Status code: ${response.statusCode}');
+    // Log the response body
+    log('Response: ${response.body}');
+    log('Status code: ${response.statusCode}');
 
     if (response.statusCode == 200) {
       return Right(NewCheckQuotationResponseModel.fromJson(response.body));

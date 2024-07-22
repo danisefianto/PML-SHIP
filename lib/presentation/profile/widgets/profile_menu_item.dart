@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
+import '../../../core/core.dart';
 
 class ProfileMenuItem extends StatelessWidget {
   final String title;
@@ -20,14 +20,14 @@ class ProfileMenuItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: primaryTextStyle.copyWith(
-              fontWeight: regular,
+            style: const TextStyle(
+              fontWeight: FontWeight.w400,
               fontSize: 13.0,
             ),
           ),
-          Icon(
+          const Icon(
             Icons.chevron_right,
-            color: secondaryColor,
+            color: AppColors.blue,
           )
         ],
       ),

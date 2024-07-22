@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/core.dart';
 import '../../../../data/models/request/update_payment_request_model.dart';
 import '../../bloc/uploadPaymentProof/upload_payment_proof_bloc.dart';
+import '../main_page.dart';
 
 class UploadPaymentProofPage extends StatefulWidget {
   // final String documentType;
@@ -68,15 +69,16 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SpaceHeight(8),
                   if (selectedFile != null)
                     Text(
                       'Selected file: ${selectedFile!.path.split('/').last}',
-                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                      style:
+                          const TextStyle(fontSize: 16, color: AppColors.black),
                     ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SpaceHeight(16),
               BlocConsumer<UploadPaymentProofBloc, UploadPaymentProofState>(
                 listener: (context, state) {
                   state.maybeWhen(
@@ -94,7 +96,7 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
                           const SnackBar(
                             content: Text(
                                 'Upload SUCCESS'), //menampilkan snackbar success
-                            backgroundColor: Colors.green,
+                            backgroundColor: AppColors.green,
                           ),
                         );
                       });
@@ -129,8 +131,12 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
                                   ),
                                 );
                             // Go back to home using removeuntil
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/home', (route) => false);
+
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MainPage()),
+                                (route) => false);
                           }
                         },
                       );
@@ -170,10 +176,10 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
                 color: Color(0xFFFFFFFF),
                 size: 32,
               ),
-              const SizedBox(width: 16),
+              const SpaceWidth(16),
               Text(
                 label,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppColors.primaryColor),
               ),
             ],
           ),

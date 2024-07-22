@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/styles.dart';
+import '../../../../core/core.dart';
 import '../main_page.dart';
 
 class OrderProcessWaitingPage extends StatelessWidget {
@@ -9,20 +9,10 @@ class OrderProcessWaitingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Center(child: Text('Registrasi sedang diproses')),
-      //   automaticallyImplyLeading: false,
-      //   // leading: IconButton(
-      //   //   icon: Icon(Icons.chevron_left),
-      //   //   onPressed: () {
-      //   //     Navigator.pop(context);
-      //   //   },
-      //   // ),
-      // ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            margin: EdgeInsets.all(defaultMargin),
+            margin: const EdgeInsets.all(30.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,25 +27,26 @@ class OrderProcessWaitingPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   'Order akan diproses',
-                  style:
-                      primaryTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
 
-                Text(
+                const Text(
                   'Pesanan Anda sedang diverifikasi oleh kami',
-                  style: primaryTextStyle,
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   'Anda akan mendapatkan notifikasi melalui email',
-                  style: primaryTextStyle.copyWith(fontSize: 14),
+                  style: TextStyle(fontSize: 14),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 50), // Tambahkan jarak sekitar 50
+                const SpaceHeight(50), // Tambahkan jarak sekitar 50
                 SizedBox(
                   height: 50.0,
                   child: FilledButton(
@@ -67,17 +58,17 @@ class OrderProcessWaitingPage extends StatelessWidget {
                       );
                     },
                     style: FilledButton.styleFrom(
-                      backgroundColor: secondaryColor,
+                      backgroundColor: AppColors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Back to home',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semiBold,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                         fontSize: 16.0,
-                        color: primaryColor,
+                        color: AppColors.primaryColor,
                       ),
                     ),
                   ),

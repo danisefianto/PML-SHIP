@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
-
 class SearchBarWidget extends StatefulWidget {
   final String customHintText;
   final double customPadding;
@@ -22,7 +20,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: defaultMargin,
+        top: 30.0,
         left: widget.customPadding,
         right: widget.customPadding,
       ),
@@ -45,7 +43,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 // Text field for user input
                 decoration: InputDecoration(
                   hintText: widget.getHintText,
-                  hintStyle: primaryTextStyle,
+
                   border: InputBorder.none, // Remove default border
                 ),
               ),

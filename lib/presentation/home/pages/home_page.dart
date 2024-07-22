@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 import '../../profile/bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 import 'order/order_port_page.dart';
 import 'risk_mitigation/risk_mitigation_page.dart';
-import 'tracking_order_screen.dart';
+import 'tracking_order_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Widget customDataCustomer() {
       return Container(
-        padding: EdgeInsets.only(top: defaultMargin),
+        padding: const EdgeInsets.only(top: 30.0),
         // Contain all of this part into one row
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -54,10 +53,10 @@ class _HomePageState extends State<HomePage> {
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.shopping_cart,
                           size: 30,
-                          color: primaryColor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                       const Text('Order'),
@@ -85,10 +84,10 @@ class _HomePageState extends State<HomePage> {
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.warning,
                           size: 30,
-                          color: primaryColor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                       const Text('Risk Mitigation'),
@@ -106,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const TrackingOneScreen(),
+                        builder: (context) => const TrackingOrderPage(),
                       ),
                     );
                   },
@@ -119,10 +118,10 @@ class _HomePageState extends State<HomePage> {
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.location_pin,
                           size: 30,
-                          color: primaryColor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                       const Text('Track Vessel'),
@@ -148,10 +147,10 @@ class _HomePageState extends State<HomePage> {
                           shape: BoxShape.circle,
                           color: Color(0xff9DB6D4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.description,
                           size: 30,
-                          color: primaryColor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                       const Text('Document List'),
@@ -169,10 +168,10 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
-              left: defaultMargin,
-              right: defaultMargin,
+            margin: const EdgeInsets.only(
+              top: 30.0,
+              left: 30.0,
+              right: 30.0,
             ),
             child: Row(
               children: [
@@ -188,10 +187,10 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Welcome',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: regular,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
                           fontSize: 16,
                         ),
                       ),

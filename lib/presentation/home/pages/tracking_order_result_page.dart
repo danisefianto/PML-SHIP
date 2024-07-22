@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
-import '../../../core/styles.dart';
 import '../widgets/search_bar.dart';
 
 class BorderRadiusStyle {
@@ -11,8 +10,8 @@ class BorderRadiusStyle {
 }
 
 // ignore: must_be_immutable
-class TrackingTwoScreen extends StatelessWidget {
-  TrackingTwoScreen({super.key});
+class TrackingOrderResultPage extends StatelessWidget {
+  TrackingOrderResultPage({super.key});
 
   TextEditingController searchController = TextEditingController();
   TextEditingController iDCounterController = TextEditingController();
@@ -35,27 +34,10 @@ class TrackingTwoScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // const Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            //   child: Text(
-            //     "Tracking One",
-            //     style: TextStyle(
-            //       fontSize: 18,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
             _buildHeader(),
             _buildTrackingOne(context),
-            const SizedBox(height: 32),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 9),
-            //   child: Text(
-            //     "Current Shipment:",
-            //     style: primaryTextStyle,
-            //   ),
-            // ),
-            // const SizedBox(height: 9),
+
+            const SpaceHeight(32),
 
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -135,7 +117,7 @@ class TrackingTwoScreen extends StatelessWidget {
             ),
             // _buildCargoShip(context),
 
-            const SizedBox(height: 25),
+            const SpaceHeight(25),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 15),
               child: Table(
@@ -289,7 +271,7 @@ class TrackingTwoScreen extends StatelessWidget {
                 "Your Location:",
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.black,
+                  color: AppColors.black,
                 ),
               ),
               Text(
@@ -297,7 +279,7 @@ class TrackingTwoScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: AppColors.black,
                 ),
               ),
             ],
@@ -313,13 +295,14 @@ class TrackingTwoScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          const SpaceHeight(20),
+
           // Text(
           //   "Track your Order",
           //   style: TextStyle(
           //     fontSize: 14,
           //     fontWeight: FontWeight.bold,
-          //     color: Colors.black,
+          //     color: AppColors.black,
           //   ),
           // ),
           // SizedBox(height: 10),
@@ -331,18 +314,18 @@ class TrackingTwoScreen extends StatelessWidget {
                   0xFF4682B4), // Mengubah warna menjadi 0xFF4682B4 (warna biru)
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Enter your tracking number",
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
+                    color: AppColors.primaryColor,
                   ),
                 ),
                 // SizedBox(height: 10),
-                const SearchBarWidget(
+                SearchBarWidget(
                   customHintText: 'ID 2024.211.190278',
                 )
                 // Row(
@@ -382,7 +365,7 @@ class TrackingTwoScreen extends StatelessWidget {
     //   text: "Next",
     //   color: const Color(0xFF4682B4),
     //   buttonTextStyle: const TextStyle(
-    //     color: Colors.white,
+    //     color: AppColors.primaryColor,
     //     fontSize: 12,
     //   ),
     //   onPressed: () {},

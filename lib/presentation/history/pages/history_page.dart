@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/history_order/history_order_bloc.dart';
 import '../widgets/order_data_card.dart';
 
-import '../../../core/styles.dart';
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
@@ -124,13 +122,13 @@ class _HistoryPageState extends State<HistoryPage>
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
-            labelStyle: primaryTextStyle.copyWith(
+            labelStyle: const TextStyle(
               fontSize: 16.0,
-              fontWeight: semiBold,
+              fontWeight: FontWeight.w600,
             ),
-            unselectedLabelStyle: subtitleTextStyle.copyWith(
+            unselectedLabelStyle: const TextStyle(
               fontSize: 16.0,
-              fontWeight: regular,
+              fontWeight: FontWeight.w400,
             ),
             tabAlignment: TabAlignment.start,
             isScrollable: true,

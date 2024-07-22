@@ -81,7 +81,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   length: onboardingData.length,
                   currentPage: currentPage,
                 ),
-                const SizedBox(height: 40),
+                const SpaceHeight(40),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Button.filled(

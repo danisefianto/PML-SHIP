@@ -15,14 +15,16 @@ class OrderDataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      separatorBuilder: (context, index) => const SizedBox(height: 4),
+      separatorBuilder: (context, index) {
+        return const SpaceHeight(4);
+      },
       itemCount: response.data!.length,
       itemBuilder: (context, index) {
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
           padding: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
+              border: Border.all(color: AppColors.black),
               borderRadius: BorderRadius.circular(5.0)),
           child: Column(
             mainAxisSize: MainAxisSize.min,

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
-import '../../../core/styles.dart';
 import '../widgets/search_bar.dart';
-import 'tracking_order_result_screen.dart';
+import 'tracking_order_result_page.dart';
 
-class TrackingOneScreen extends StatefulWidget {
-  const TrackingOneScreen({super.key});
+class TrackingOrderPage extends StatefulWidget {
+  const TrackingOrderPage({super.key});
 
   @override
-  State<TrackingOneScreen> createState() => _TrackingOneScreenState();
+  State<TrackingOrderPage> createState() => _TrackingOrderPageState();
 }
 
-class _TrackingOneScreenState extends State<TrackingOneScreen> {
+class _TrackingOrderPageState extends State<TrackingOrderPage> {
   late final TextEditingController searchController;
 
   @override
@@ -33,7 +32,7 @@ class _TrackingOneScreenState extends State<TrackingOneScreen> {
           children: [
             _buildHeader(),
             _buildTrackingOne(context),
-            const SizedBox(height: 100),
+            const SpaceHeight(100),
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: Button.filled(
@@ -41,13 +40,13 @@ class _TrackingOneScreenState extends State<TrackingOneScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TrackingTwoScreen()),
+                        builder: (context) => TrackingOrderResultPage()),
                   );
                 },
                 label: 'Next',
               ),
             ),
-            const SizedBox(height: 20), // Memindahkan _buildNext ke sini
+            const SpaceHeight(20), // Memindahkan _buildNext ke sini
           ],
         ),
       ),
@@ -67,7 +66,7 @@ class _TrackingOneScreenState extends State<TrackingOneScreen> {
                 "Your Location:",
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.black,
+                  color: AppColors.black,
                 ),
               ),
               Text(
@@ -75,7 +74,7 @@ class _TrackingOneScreenState extends State<TrackingOneScreen> {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: AppColors.black,
                 ),
               ),
             ],
@@ -91,7 +90,7 @@ class _TrackingOneScreenState extends State<TrackingOneScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          const SpaceHeight(20),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(15),
@@ -100,17 +99,17 @@ class _TrackingOneScreenState extends State<TrackingOneScreen> {
                   0xFF4682B4), // Mengubah warna menjadi 0xFF4682B4 (warna biru)
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Enter your tracking number",
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
+                    color: AppColors.primaryColor,
                   ),
                 ),
-                const SearchBarWidget(
+                SearchBarWidget(
                   customHintText: 'ID 2024.211.190278',
                 )
               ],

@@ -12,7 +12,7 @@ class AlamatPelabuhanItemWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: const Color(0xFF4682B4),
@@ -24,13 +24,13 @@ class AlamatPelabuhanItemWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(width: 10),
+                const SpaceWidth(10),
                 Assets.image.port.imagePort01.image(),
-                const SizedBox(width: 10),
+                const SpaceWidth(10),
                 Assets.image.port.imagePort02.image(),
               ],
             ),
-            const SizedBox(height: 9),
+            const SpaceHeight(9),
             _buildButtonRow(),
           ],
         ),
@@ -42,31 +42,10 @@ class AlamatPelabuhanItemWidget extends StatelessWidget {
     return const Row(
       children: [
         Text('Bongkar Muat, Gudang'),
-        // _buildButton(
-        //   ImageConstant.imgPrinterMaintenance,
-        //   "Bongkar Muat, Gudang",
-        //   Colors.grey[300]!,
-        //   fontSize: 8,
-        //   textColor: Colors.black,
-        // ),
-        SizedBox(width: 10.0),
+        SpaceWidth(10),
         Text('Rp 1000,000/Container, Rp. 50,000/hari'),
-        // _buildButton(
-        //   ImageConstant.imgTagWindow,
-        //   "Rp 1000,000/Container, Rp. 50,000/hari",
-        //   Colors.grey[400]!,
-        //   fontSize: 8,
-        //   textColor: Colors.black,
-        // ),
-        SizedBox(width: 10.0),
+        SpaceWidth(10),
         Text('Senin - Jumat: 08.00 - 17.00 WIB'),
-        // _buildButton(
-        //   ImageConstant.imgTimeMachine,
-        //   "Senin - Jumat: 08.00 - 17.00 WIB",
-        //   Colors.grey[500]!,
-        //   fontSize: 8,
-        //   textColor: Colors.black,
-        // ),
       ],
     );
   }

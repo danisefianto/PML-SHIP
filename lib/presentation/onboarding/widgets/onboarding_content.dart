@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/core.dart';
 import '../models/onboarding_model.dart';
 
 class OnboardingContent extends StatelessWidget {
@@ -32,7 +33,7 @@ class OnboardingContent extends StatelessWidget {
                     contents[index].image,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SpaceHeight(20),
                 Text(
                   contents[index].text,
                   style: const TextStyle(

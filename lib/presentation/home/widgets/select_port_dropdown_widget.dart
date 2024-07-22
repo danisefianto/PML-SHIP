@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/styles.dart';
 import '../bloc/port/port_bloc.dart';
 
 class SelectPortDropdownWidget extends StatefulWidget {
@@ -53,7 +52,6 @@ class _SelectPortDropdownWidgetState extends State<SelectPortDropdownWidget> {
       children: [
         Text(
           'Where is the ${widget.portType} port?',
-          style: primaryTextStyle,
         ),
         const SizedBox(
           height: 5.0,
@@ -75,7 +73,6 @@ class _SelectPortDropdownWidgetState extends State<SelectPortDropdownWidget> {
                 width: width,
                 menuHeight: 350,
                 hintText: 'Select ${widget.portType} port',
-                textStyle: primaryTextStyle,
                 onSelected: _onPortSelected,
                 dropdownMenuEntries: ports.data
                     .map(
@@ -84,9 +81,6 @@ class _SelectPortDropdownWidgetState extends State<SelectPortDropdownWidget> {
                             id: port.id,
                             name: port.name), // Convert PortData to Port
                         label: port.name,
-                        style: ButtonStyle(
-                          textStyle: WidgetStateProperty.all(primaryTextStyle),
-                        ),
                       ),
                     )
                     .toList(),

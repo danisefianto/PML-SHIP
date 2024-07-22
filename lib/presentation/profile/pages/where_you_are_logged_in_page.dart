@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
+import '../../../core/core.dart';
 
 class WhereYouAreLoggedIn extends StatelessWidget {
   const WhereYouAreLoggedIn({super.key});
@@ -24,15 +24,14 @@ class WhereYouAreLoggedIn extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 11),
+                  const SpaceHeight(20),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 11),
                     child: Text(
                       "Laporkan jika ada yang tidak dikenal",
-                      style: primaryTextStyle,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SpaceHeight(16),
                   Center(
                     child: Container(
                       width: 285,
@@ -55,14 +54,14 @@ class WhereYouAreLoggedIn extends StatelessWidget {
                             SizedBox(
                               width: 113,
                               child: RichText(
-                                text: TextSpan(
+                                text: const TextSpan(
                                   children: [
                                     TextSpan(
-                                        text: "Padang, Indonesia\n",
-                                        style: primaryTextStyle),
+                                      text: "Padang, Indonesia\n",
+                                    ),
                                     TextSpan(
-                                        text: "Aktif, Android, Samsung",
-                                        style: primaryTextStyle),
+                                      text: "Aktif, Android, Samsung",
+                                    ),
                                   ],
                                 ),
                               ),
@@ -72,7 +71,7 @@ class WhereYouAreLoggedIn extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 27),
+                  const SpaceHeight(27),
                   Center(
                     child: Container(
                       width: 285,
@@ -95,14 +94,14 @@ class WhereYouAreLoggedIn extends StatelessWidget {
                             SizedBox(
                               width: 113,
                               child: RichText(
-                                text: TextSpan(
+                                text: const TextSpan(
                                   children: [
                                     TextSpan(
-                                        text: "Padang, Indonesia\n",
-                                        style: primaryTextStyle),
+                                      text: "Padang, Indonesia\n",
+                                    ),
                                     TextSpan(
-                                        text: "Aktif, Android, Samsung",
-                                        style: primaryTextStyle),
+                                      text: "Aktif, Android, Samsung",
+                                    ),
                                   ],
                                 ),
                               ),

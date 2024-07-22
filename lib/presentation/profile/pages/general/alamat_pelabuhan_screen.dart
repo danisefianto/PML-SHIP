@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/core.dart';
 import 'alamat_pelabuhan_item_widget.dart';
 
 class AlamatPelabuhanScreen extends StatelessWidget {
@@ -7,8 +8,6 @@ class AlamatPelabuhanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -25,18 +24,18 @@ class AlamatPelabuhanScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
+                  const Align(
                     alignment: Alignment.center,
                     child: Text(
                       "Data Alamat Pelabuhan",
-                      style: theme.textTheme.bodyLarge?.copyWith(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20, // Sesuaikan jika diperlukan
-                        color: Colors.black, // Warna teks hitam
+                        color: AppColors.black, // Warna teks hitam
                       ),
                     ),
                   ),
-                  const SizedBox(height: 19),
+                  const SpaceHeight(19),
                   _buildAlamatPelabuhan(context),
                 ],
               ),

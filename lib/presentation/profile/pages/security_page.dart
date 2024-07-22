@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
-import '../../../core/styles.dart';
 import 'where_you_are_logged_in_page.dart';
 
 class SecurityPage extends StatelessWidget {
@@ -18,15 +17,17 @@ class SecurityPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(30.0),
+              const Padding(
+                padding: EdgeInsets.all(30.0),
                 child: Text(
                   "Kelola dengan mudah akunmu disini",
-                  style: primaryTextStyle.copyWith(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              const SizedBox(height: 33),
+              const SpaceHeight(33),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Row(
@@ -39,7 +40,7 @@ class SecurityPage extends StatelessWidget {
                         Text(
                           "Verifikasi dua langkah",
                         ),
-                        SizedBox(height: 2),
+                        SpaceHeight(2),
                         Text(
                           "Masuk ke akunmu dengan kemanan tambahan",
                         ),
@@ -56,9 +57,8 @@ class SecurityPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "Riwayat Masuk",
-                    style: primaryTextStyle,
                   ),
                   Button.filled(
                     width: 150,

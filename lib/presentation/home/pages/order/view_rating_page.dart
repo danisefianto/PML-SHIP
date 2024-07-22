@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/styles.dart';
 
 class ViewRatingPage extends StatelessWidget {
   const ViewRatingPage({super.key});
@@ -10,7 +9,7 @@ class ViewRatingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     PreferredSizeWidget header() {
       return AppBar(
-        backgroundColor: backgroundColor1,
+        backgroundColor: AppColors.gray4,
         leading: IconButton(
           icon: const Icon(Icons.chevron_left),
           onPressed: () {
@@ -18,11 +17,13 @@ class ViewRatingPage extends StatelessWidget {
           },
         ),
         title: Container(
-          padding: EdgeInsets.all(defaultMargin),
-          child: Text(
+          padding: const EdgeInsets.all(30.0),
+          child: const Text(
             'Customer Payment Data',
-            style:
-                primaryTextStyle.copyWith(fontWeight: semiBold, fontSize: 18),
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            ),
           ),
         ),
       );
@@ -30,7 +31,7 @@ class ViewRatingPage extends StatelessWidget {
 
     Widget shipIdentity() {
       return Container(
-        padding: EdgeInsets.symmetric(vertical: defaultMargin),
+        padding: const EdgeInsets.symmetric(vertical: 30.0),
         height: 150,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -89,14 +90,14 @@ class ViewRatingPage extends StatelessWidget {
 
     Widget giveReview() {
       return Padding(
-        padding: EdgeInsets.all(defaultMargin),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Berikan ulasan untuk pesanan ini',
-              style: primaryTextStyle.copyWith(
-                fontWeight: medium,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
                 fontSize: 16,
               ),
             ),
@@ -109,7 +110,7 @@ class ViewRatingPage extends StatelessWidget {
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                border: Border.all(color: AppColors.black),
                 borderRadius: BorderRadius.circular(
                   5.0,
                 ),
@@ -117,15 +118,13 @@ class ViewRatingPage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // SizedBox(
-                  //   width: 16.0,
-                  // ),
                   Expanded(
                     child: TextFormField(
-                      style: primaryTextStyle,
-                      decoration: InputDecoration.collapsed(
+                      decoration: const InputDecoration.collapsed(
                         hintText: 'Tulis deskripsi Anda untuk pesanan ini',
-                        hintStyle: subtitleTextStyle,
+                        hintStyle: TextStyle(
+                          color: Color(0xff504F5E),
+                        ),
                       ),
                     ),
                   ),
@@ -143,40 +142,16 @@ class ViewRatingPage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
-            child: TextButton(
-              onPressed: () {
-                // Navigator.pushNamed(context, '/home');
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: const Color(0xffff0000),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-              ),
-              child: Text(
-                'Batal',
-                style: primaryTextStyle.copyWith(
-                    fontWeight: medium, fontSize: 16.0, color: primaryColor),
-              ),
+            child: Button.filled(
+              onPressed: () {},
+              label: 'Batal',
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
-            child: TextButton(
-              onPressed: () {
-                //navigator
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: verifyCheck,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-              ),
-              child: Text(
-                'Kirim',
-                style: primaryTextStyle.copyWith(
-                    fontWeight: medium, fontSize: 16.0, color: primaryColor),
-              ),
+            child: Button.filled(
+              label: 'Kirim',
+              onPressed: () {},
             ),
           ),
         ],

@@ -1,6 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/core.dart';
+
 class SelectFileWidget extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
@@ -41,10 +43,10 @@ class _SelectFileWidgetState extends State<SelectFileWidget> {
                 color: Color(0xFFFFFFFF),
                 size: 32,
               ),
-              const SizedBox(width: 16),
+              const SpaceWidth(16),
               Text(
                 widget.label,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppColors.primaryColor),
               ),
             ],
           ),

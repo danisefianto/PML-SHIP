@@ -106,7 +106,7 @@ class MainApp extends StatelessWidget {
         title: 'PML SHIP',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: AppColors.primaryColor,
           dividerTheme: const DividerThemeData(color: AppColors.divider),
           textTheme: GoogleFonts.interTextTheme(
             Theme.of(context).textTheme,
@@ -115,11 +115,11 @@ class MainApp extends StatelessWidget {
             color: AppColors.blue,
             elevation: 0,
             titleTextStyle: GoogleFonts.inter(
-              color: Colors.white,
+              color: AppColors.primaryColor,
               fontSize: 16.0,
               fontWeight: FontWeight.w500,
             ),
-            iconTheme: const IconThemeData(color: Colors.white),
+            iconTheme: const IconThemeData(color: AppColors.primaryColor),
           ),
         ),
         home: FutureBuilder<bool>(
@@ -149,183 +149,6 @@ class MainApp extends StatelessWidget {
             );
           },
         ),
-        routes: {
-          // '/splash': (context) => const SplashPage(),
-          // AppRoutes.signIn: (context) => const SignInPage(),
-          // AppRoutes.signUp: (context) => const Registerpage(),
-          '/home': (context) => const MainPage(),
-          // AppRoutes.orderPort: (context) => const OrderPortPage(),
-          // AppRoutes.orderSummary: (context) {
-          //   String transactionId =
-          //       ModalRoute.of(context)!.settings.arguments as String;
-          //   return OrderSummaryPage(
-          //     transactionIdMessage: transactionId,
-          //   );
-          // },
-
-          // AppRoutes.quotationAndWeatherRiskMitigation: (context) {
-          //   final args = ModalRoute.of(context)?.settings.arguments
-          //       as Map<String, dynamic>?;
-
-          //   if (args != null &&
-          //       args.containsKey('portOfLoadingId') &&
-          //       args.containsKey('portOfDischargeId') &&
-          //       args.containsKey('dateOfLoading') &&
-          //       args.containsKey('cargoDescription') &&
-          //       args.containsKey('cargoWeight') &&
-          //       args['portOfLoadingId'] != null &&
-          //       args['portOfDischargeId'] != null &&
-          //       args['dateOfLoading'] != null &&
-          //       args['cargoDescription'] != null &&
-          //       args['cargoWeight'] != null) {
-          //     final portOfLoadingId = args['portOfLoadingId'] as int;
-          //     final portOfDischargeId = args['portOfDischargeId'] as int;
-          //     final dateOfLoading = args['dateOfLoading'] as DateTime;
-          //     final cargoDescription = args['cargoDescription'] as String;
-          //     final cargoWeight = args['cargoWeight'] as String;
-
-          //     return QuotationAndWeatherRiskMitigationPage(
-          //       portOfLoadingId: portOfLoadingId,
-          //       portOfDischargeId: portOfDischargeId,
-          //       dateOfLoading: dateOfLoading,
-          //       cargoDescription: cargoDescription,
-          //       cargoWeight: cargoWeight,
-          //     );
-          //   }
-
-          //   return Scaffold(
-          //     body: Center(
-          //       child: Column(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           const Text('Invalid arguments'),
-          //           Button.filled(
-          //             width: 220,
-          //             onPressed: () {
-          //               Navigator.pop(context);
-          //             },
-          //             label: 'Back to previous page',
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   );
-          // },
-
-          // AppRoutes.addShipperConsigneeData: (context) {
-          //   final args = ModalRoute.of(context)?.settings.arguments
-          //       as Map<String, dynamic>?;
-
-          //   if (args != null &&
-          //       args.containsKey('portOfLoadingId') &&
-          //       args.containsKey('portOfDischargeId') &&
-          //       args.containsKey('vesselId') &&
-          //       args.containsKey('dateOfLoading') &&
-          //       args.containsKey('dateOfDischarge') &&
-          //       args.containsKey('cargoDescription') &&
-          //       args.containsKey('cargoWeight') &&
-          //       args.containsKey('shippingCost') &&
-          //       args.containsKey('handlingCost') &&
-          //       args.containsKey('biayaParkirPelabuhan') &&
-          //       args['portOfLoadingId'] != null &&
-          //       args['portOfDischargeId'] != null &&
-          //       args['vesselId'] != null &&
-          //       args['dateOfLoading'] != null &&
-          //       args['dateOfDischarge'] != null &&
-          //       args['cargoDescription'] != null &&
-          //       args['cargoWeight'] != null &&
-          //       args['shippingCost'] != null &&
-          //       args['handlingCost'] != null &&
-          //       args['biayaParkirPelabuhan'] != null) {
-          //     final portOfLoadingId = args['portOfLoadingId'] as int;
-          //     final portOfDischargeId = args['portOfDischargeId'] as int;
-          //     final vesselId = args['vesselId'] as int;
-          //     final dateOfLoading = args['dateOfLoading'] as DateTime;
-          //     final dateOfDischarge = args['dateOfDischarge'] as DateTime;
-          //     final cargoDescription = args['cargoDescription'] as String;
-          //     final cargoWeight = args['cargoWeight'] as String;
-          //     final shippingCost = args['shippingCost'] as int;
-          //     final handlingCost = args['handlingCost'] as int;
-          //     final biayaParkirPelabuhan = args['biayaParkirPelabuhan'] as int;
-
-          //     return AddShipperConsigneeDataPage(
-          //       portOfLoadingId: portOfLoadingId,
-          //       portOfDischargeId: portOfDischargeId,
-          //       dateOfLoading: dateOfLoading,
-          //       cargoDescription: cargoDescription,
-          //       cargoWeight: cargoWeight,
-          //       vesselId: vesselId,
-          //       dateOfDischarge: dateOfDischarge,
-          //       shippingCost: shippingCost,
-          //       handlingCost: handlingCost,
-          //       biayaParkirPelabuhan: biayaParkirPelabuhan,
-          //     );
-          //   }
-          //   return Scaffold(
-          //     body: Center(
-          //       child: Column(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           const Text('Invalid arguments'),
-          //           Button.filled(
-          //             width: 220,
-          //             onPressed: () {
-          //               Navigator.pop(context);
-          //             },
-          //             label: 'Back to previous page',
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   );
-          // },
-          // AppRoutes.addConference: (context) {
-          //   String transactionId =
-          //       ModalRoute.of(context)!.settings.arguments as String;
-          //   return AddConferencePage(
-          //     transactionIdMessage: transactionId,
-          //   );
-          // },
-          // AppRoutes.editPersonalAndCompanyProfile: (context) {
-          //   final user =
-          //       ModalRoute.of(context)!.settings.arguments as UserResponseModel;
-          //   return EditPersonalAndCompanyProfilePage(
-          //     profile: user,
-          //   );
-          // },
-          // AppRoutes.howToPay: (context) => const HowToPayPage(),
-          // AppRoutes.security: (context) => const SecurityPage(),
-          // AppRoutes.faq: (context) => const FAQPage(),
-          // AppRoutes.portLocation: (context) => const AlamatPelabuhanScreen(),
-          // AppRoutes.recoverPassword: (context) => const RecoverPasswordPage(),
-          // AppRoutes.otpInputPasswordReset: (context) =>
-          //     const OtpInputPasswordResetPage(),
-          // AppRoutes.setNewPassword: (context) => const SetNewPasswordPage(),
-          // AppRoutes.newPasswordSet: (context) => const NewPasswordSetPage(),
-          // AppRoutes.whereYouAreLoggedIn: (context) =>
-          //     const WhereYouAreLoggedIn(),
-          // AppRoutes.riskMitigation: (context) => const RiskMitigationScreen(),
-          // AppRoutes.notificationSettings: (context) =>
-          //     const NotificationSetting(),
-          // AppRoutes.contactUs: (context) => const ContactUsPage(),
-          // AppRoutes.documentList: (context) {
-          //   final args = ModalRoute.of(context)!.settings.arguments;
-          //   return DocumentListPage(
-          //     transactionId: args as String,
-          //   );
-          // },
-          // AppRoutes.trackVessel: (context) => TrackingOneScreen(),
-          // AppRoutes.registrationProcessWaiting: (context) =>
-          //     const RegistrationProcessWaitingPage(),
-          // AppRoutes.orderProcessWaiting: (context) =>
-          //     const OrderProcessWaitingPage(),
-          // AppRoutes.choosePayment: (context) {
-          //   final args = ModalRoute.of(context)!.settings.arguments;
-          //   return ChoosePaymentPlanPage(
-          //     transactionId: args as String,
-          //   );
-          // },
-        },
       ),
     );
   }

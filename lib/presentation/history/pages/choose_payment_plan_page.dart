@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/core.dart';
 import '../../home/bloc/addPayment/add_payment_bloc.dart';
 
-import '../../../core/styles.dart';
 import '../../../data/models/request/add_payment_request_model.dart';
 import '../../home/bloc/paymentOptions/payment_options_bloc.dart';
 import '../../home/pages/order/upload_payment_proof_page.dart';
@@ -54,7 +53,7 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('SUCCESS'), //menampilkan snackbar success
-                      backgroundColor: Colors.green,
+                      backgroundColor: AppColors.green,
                     ),
                   );
                 });
@@ -73,16 +72,15 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Pick a payment plan",
-                          style: primaryTextStyle.copyWith(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Choose the best way to pay your order',
-                          style: primaryTextStyle,
                         ),
                         RadioListTile<int>(
                           title: const Text('Pay All at Once'),
@@ -119,11 +117,10 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                             });
                           },
                         ),
-                        const SizedBox(height: 20),
+                        const SpaceHeight(20),
                         if (_selectedOption == 1) ...[
                           Text(
                             'Payment all at once: ${response.data.paymentOptions.payAllAtOnce.firstPayment.currencyEYDFormatRp}',
-                            style: primaryTextStyle,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,15 +129,15 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                               Text(
                                 response.data.paymentOptions.payAllAtOnce
                                     .firstPayment.currencyEYDFormatRp,
-                                style: primaryTextStyle.copyWith(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
                           ),
-                          Text(
+                          const Text(
                             'Pay To: ',
-                            style: primaryTextStyle.copyWith(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -160,21 +157,18 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                           )
                         ],
                         if (_selectedOption == 2) ...[
-                          Text(
+                          const Text(
                             'Payment in 2 times:',
-                            style: primaryTextStyle,
                           ),
                           Text(
                             'First payment: ${response.data.paymentOptions.payIn2Times.firstPayment.currencyEYDFormatRp}',
-                            style: primaryTextStyle,
                           ),
                           Text(
                             'Second payment: ${response.data.paymentOptions.payIn2Times.secondPayment.currencyEYDFormatRp}',
-                            style: primaryTextStyle,
                           ),
-                          Text(
+                          const Text(
                             'Pay To: ',
-                            style: primaryTextStyle.copyWith(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -194,25 +188,21 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                           )
                         ],
                         if (_selectedOption == 3) ...[
-                          Text(
+                          const Text(
                             'Payment in 3 times:',
-                            style: primaryTextStyle,
                           ),
                           Text(
                             'First payment: ${response.data.paymentOptions.payIn3Times.firstPayment.currencyEYDFormatRp}',
-                            style: primaryTextStyle,
                           ),
                           Text(
                             'Second payment: ${response.data.paymentOptions.payIn3Times.secondPayment.currencyEYDFormatRp}',
-                            style: primaryTextStyle,
                           ),
                           Text(
                             'Third payment: ${response.data.paymentOptions.payIn3Times.thirdPayment.currencyEYDFormatRp}',
-                            style: primaryTextStyle,
                           ),
-                          Text(
+                          const Text(
                             'Pay To: ',
-                            style: primaryTextStyle.copyWith(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),

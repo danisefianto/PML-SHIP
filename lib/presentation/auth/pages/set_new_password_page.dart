@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 import 'new_password_set_page.dart';
 
 class SetNewPasswordPage extends StatelessWidget {
@@ -16,8 +15,8 @@ class SetNewPasswordPage extends StatelessWidget {
           children: [
             Text(
               customLabelText,
-              style: primaryTextStyle.copyWith(
-                fontWeight: medium,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
                 fontSize: 16,
               ),
             ),
@@ -30,7 +29,7 @@ class SetNewPasswordPage extends StatelessWidget {
                 horizontal: 16.0,
               ),
               decoration: BoxDecoration(
-                  color: primaryColor,
+                  color: AppColors.primaryColor,
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(5)),
               child: Center(
@@ -42,11 +41,12 @@ class SetNewPasswordPage extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextFormField(
-                        style: primaryTextStyle,
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: customLabelText,
-                          hintStyle: subtitleTextStyle,
+                          hintStyle: const TextStyle(
+                            color: Color(0xff504F5E),
+                          ),
                         ),
                       ),
                     ),
@@ -63,25 +63,24 @@ class SetNewPasswordPage extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.all(
-              defaultMargin,
+            margin: const EdgeInsets.all(
+              30.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Set a new password',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: bold,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
                     fontSize: 24,
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'Your new password must be different from the previous password you used.',
-                  style: primaryTextStyle.copyWith(),
                 ),
                 passwordInput('Password'),
                 passwordInput('Confirm password'),

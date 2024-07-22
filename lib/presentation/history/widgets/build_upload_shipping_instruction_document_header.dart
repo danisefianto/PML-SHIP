@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
 import '../../../data/models/response/order_detail_response_model.dart';
 
 class BuildUploadShippingInstructionDocumentHeader extends StatelessWidget {
@@ -30,17 +29,17 @@ class BuildUploadShippingInstructionDocumentHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Upload Shipping Instruction Document',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: bold,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
                     fontSize: 16,
                   ),
                 ),
                 Text(
                   'Max input ${responseModel.data!.documents!.first.maxInputDocumentAt}.',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: regular,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
                     color: Colors.red,
                   ),
                 ),

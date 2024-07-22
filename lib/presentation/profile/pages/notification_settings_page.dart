@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/styles.dart';
+import '../../../core/core.dart';
 
 class NotificationSetting extends StatefulWidget {
   const NotificationSetting({super.key});
@@ -28,51 +28,50 @@ class _NotificationSettingState extends State<NotificationSetting> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 33),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 33),
                     child: Text(
                       "Update Penting",
-                      style: primaryTextStyle.copyWith(
+                      style: TextStyle(
                         fontSize: 16,
-                        fontWeight: bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 9),
+                  const SpaceHeight(9),
                   Container(
                     width: 230,
                     margin: const EdgeInsets.only(left: 33),
-                    child: Text(
-                        "Berisi update perihal pesanan, trip dan info akun. \nJadi harus diaktifin",
-                        maxLines: 5,
-                        overflow: TextOverflow.ellipsis,
-                        style: primaryTextStyle),
+                    child: const Text(
+                      "Berisi update perihal pesanan, trip dan info akun. \nJadi harus diaktifin",
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  const SizedBox(height: 10),
+                  const SpaceHeight(10),
                   const Divider(),
-                  const SizedBox(height: 15),
+                  const SpaceHeight(15),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 33),
+                          padding: EdgeInsets.only(left: 33),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "Promo dan lainnya",
-                                style: primaryTextStyle.copyWith(
+                                style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: bold,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              const SizedBox(height: 8),
+                              SpaceHeight(8),
                               Text(
                                 "Nonaktifkan notifikasi perihal promo dan rekomendasi.",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: primaryTextStyle,
                               )
                             ],
                           ),

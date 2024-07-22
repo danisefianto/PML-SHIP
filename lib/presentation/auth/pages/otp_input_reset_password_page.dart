@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import '../../../core/core.dart';
-import '../../../core/styles.dart';
 import 'recover_password_page.dart';
-import 'set_new_password.dart';
+import 'set_new_password_page.dart';
 
 class OtpInputPasswordResetPage extends StatelessWidget {
   const OtpInputPasswordResetPage({super.key});
@@ -16,17 +15,17 @@ class OtpInputPasswordResetPage extends StatelessWidget {
         child: Text.rich(
           TextSpan(
             text: 'Did not receive the email? Check your spam folder or ',
-            style: primaryTextStyle.copyWith(
+            style: const TextStyle(
               fontSize: 12.0,
-              fontWeight: regular,
+              fontWeight: FontWeight.normal,
             ),
             children: <TextSpan>[
               TextSpan(
                 text: 'Try another email address',
-                style: primaryTextStyle.copyWith(
-                  color: Colors.blue,
+                style: const TextStyle(
+                  color: AppColors.blue,
                   fontSize: 12.0,
-                  fontWeight: medium,
+                  fontWeight: FontWeight.w500,
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
@@ -45,30 +44,12 @@ class OtpInputPasswordResetPage extends StatelessWidget {
       );
     }
 
-    // Widget textOTP(int code) {
-    //   return SizedBox(
-    //     height: 64.0,
-    //     width: 40.0,
-    //     child: TextField(
-    //         textAlign: TextAlign.center,
-    //         keyboardType: TextInputType.number,
-    //         // controller: this.code,
-    //         maxLength: 1,
-    //         cursorColor: Theme.of(context).primaryColor,
-    //         decoration: InputDecoration(
-    //             hintText: code.toString(),
-    //             counterText: '',
-    //             hintStyle:
-    //                 const TextStyle(color: Colors.black, fontSize: 20.0))),
-    //   );
-    // }
-
     return SafeArea(
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              margin: EdgeInsets.all(defaultMargin),
+              margin: const EdgeInsets.all(30.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -76,39 +57,20 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                     Icons.drafts,
                     size: 50,
                   ),
-                  Text(
+                  const Text(
                     'Password recovery code',
-                    style: primaryTextStyle.copyWith(
+                    style: TextStyle(
                       fontSize: 20,
-                      fontWeight: bold,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
+
+                  const SpaceHeight(5),
+                  const Text(
                     'We sent a 6-digit password recovery code to your email. Enter the code to procees',
-                    style: primaryTextStyle,
                     textAlign: TextAlign.center,
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(
-                  //     left: 30.0,
-                  //     right: 30,
-                  //     top: 20,
-                  //   ),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       textOTP(9),
-                  //       textOTP(3),
-                  //       textOTP(2),
-                  //       textOTP(4),
-                  //       textOTP(1),
-                  //       textOTP(8),
-                  //     ],
-                  //   ),
-                  // ),
+
                   OtpTextField(
                     numberOfFields: 6,
                     borderColor: const Color(0xFF512DA8),
@@ -138,17 +100,17 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                     child: Text.rich(
                       TextSpan(
                         text: 'If you didn\'t receive the code, click ',
-                        style: primaryTextStyle.copyWith(
+                        style: const TextStyle(
                           fontSize: 12.0,
-                          fontWeight: regular,
+                          fontWeight: FontWeight.w400,
                         ),
                         children: <TextSpan>[
                           TextSpan(
                             text: 'Resend code',
-                            style: primaryTextStyle.copyWith(
-                              color: Colors.blue,
+                            style: const TextStyle(
+                              color: AppColors.blue,
                               fontSize: 12.0,
-                              fontWeight: medium,
+                              fontWeight: FontWeight.w500,
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
@@ -159,11 +121,11 @@ class OtpInputPasswordResetPage extends StatelessWidget {
                                 );
                               },
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: ' in 35 second',
-                            style: primaryTextStyle.copyWith(
+                            style: TextStyle(
                               fontSize: 12.0,
-                              fontWeight: regular,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],

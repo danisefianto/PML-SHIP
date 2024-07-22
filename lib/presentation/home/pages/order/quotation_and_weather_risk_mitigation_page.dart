@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/styles.dart';
 import '../../../../data/models/request/new_check_quotation_request_model.dart';
 import '../../../../data/models/request/weather_request_model.dart';
 import '../../bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
@@ -65,12 +64,6 @@ class _QuotationAndWeatherRiskMitigationPageState
             return <Widget>[
               SliverAppBar(
                 title: const Text('Quotation'),
-                leading: IconButton(
-                  icon: const Icon(Icons.chevron_left),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
                 pinned: true,
                 floating: true,
                 forceElevated: innerBoxIsScrolled,
@@ -93,8 +86,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                   return ListView.separated(
                     padding: const EdgeInsets.symmetric(
                         vertical: 50.0, horizontal: 24.0),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 16),
+                    separatorBuilder: (context, index) => const SpaceHeight(16),
                     itemCount: routes.data.length,
                     itemBuilder: (context, index) => GestureDetector(
                       // Inside the GestureDetector onTap handler in QuotationAndWeatherRiskMitigationPage
@@ -135,7 +127,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                       child: Container(
                         padding: const EdgeInsets.all(16.0),
                         decoration: ShapeDecoration(
-                          color: Colors.white,
+                          color: AppColors.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                             side:
@@ -286,9 +278,9 @@ class _QuotationAndWeatherRiskMitigationPageState
                                         Text(
                                           // Port of Loading:
                                           '${selectedRoute.portOfLoading.name}',
-                                          style: primaryTextStyle.copyWith(
+                                          style: const TextStyle(
                                             fontSize: 16,
-                                            fontWeight: bold,
+                                            fontWeight: FontWeight.w700,
                                           ),
                                         ),
                                         Text(firstLocation.daily.time.first
@@ -325,10 +317,9 @@ class _QuotationAndWeatherRiskMitigationPageState
                                               children: [
                                                 Text(
                                                   '${firstLocation.daily.temperature2MMin.first} °C/${firstLocation.daily.temperature2MMax.first} °C',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
+                                                  style: const TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight: bold,
+                                                    fontWeight: FontWeight.w700,
                                                   ),
                                                 ),
                                                 Text(
@@ -338,10 +329,9 @@ class _QuotationAndWeatherRiskMitigationPageState
                                                               .weatherCode
                                                               .first)
                                                       .englishDescription,
-                                                  style:
-                                                      primaryTextStyle.copyWith(
+                                                  style: const TextStyle(
                                                     fontSize: 10,
-                                                    fontWeight: semiBold,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                               ],
@@ -370,16 +360,14 @@ class _QuotationAndWeatherRiskMitigationPageState
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text('Wind',
-                                                    style: primaryTextStyle
-                                                        .copyWith(
+                                                const Text('Wind',
+                                                    style: TextStyle(
                                                       fontSize: 10,
                                                     )),
                                                 Text(
                                                   '${firstLocation.daily.windSpeed10MMax.first} km/h',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
-                                                    fontWeight: semiBold,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
                                                     fontSize: 12,
                                                   ),
                                                 ),
@@ -411,18 +399,16 @@ class _QuotationAndWeatherRiskMitigationPageState
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Wind from',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
+                                                  style: TextStyle(
                                                     fontSize: 10,
                                                   ),
                                                 ),
                                                 Text(
                                                   '${firstLocation.daily.windDirection10MDominant.first} degree',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
-                                                    fontWeight: semiBold,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
                                                     fontSize: 12,
                                                   ),
                                                 ),
@@ -457,9 +443,9 @@ class _QuotationAndWeatherRiskMitigationPageState
                                         Text(
                                           // Port of Discharge:
                                           '${selectedRoute.portOfDischarge.name}',
-                                          style: primaryTextStyle.copyWith(
+                                          style: const TextStyle(
                                             fontSize: 16,
-                                            fontWeight: bold,
+                                            fontWeight: FontWeight.w700,
                                           ),
                                         ),
                                         Text(firstLocation.daily.time.last
@@ -496,10 +482,9 @@ class _QuotationAndWeatherRiskMitigationPageState
                                               children: [
                                                 Text(
                                                   '${firstLocation.daily.temperature2MMin.last} °C/${firstLocation.daily.temperature2MMax.last} °C',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
+                                                  style: const TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight: bold,
+                                                    fontWeight: FontWeight.w700,
                                                   ),
                                                 ),
                                                 Text(
@@ -507,9 +492,8 @@ class _QuotationAndWeatherRiskMitigationPageState
                                                           firstLocation.daily
                                                               .weatherCode.last)
                                                       .englishDescription,
-                                                  style:
-                                                      primaryTextStyle.copyWith(
-                                                    fontWeight: semiBold,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
                                                     fontSize: 10,
                                                   ),
                                                 ),
@@ -539,16 +523,14 @@ class _QuotationAndWeatherRiskMitigationPageState
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text('Wind',
-                                                    style: primaryTextStyle
-                                                        .copyWith(
+                                                const Text('Wind',
+                                                    style: TextStyle(
                                                       fontSize: 10,
                                                     )),
                                                 Text(
                                                   '${firstLocation.daily.windSpeed10MMax.last} km/h',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
-                                                    fontWeight: semiBold,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
                                                     fontSize: 12,
                                                   ),
                                                 ),
@@ -557,9 +539,7 @@ class _QuotationAndWeatherRiskMitigationPageState
                                           ],
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
+                                      const SpaceHeight(10),
                                       Container(
                                         height: 100,
                                         padding: const EdgeInsets.all(8.0),
@@ -580,18 +560,16 @@ class _QuotationAndWeatherRiskMitigationPageState
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   'Wind from',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
+                                                  style: TextStyle(
                                                     fontSize: 10,
                                                   ),
                                                 ),
                                                 Text(
                                                   '${firstLocation.daily.windDirection10MDominant.last} degree',
-                                                  style:
-                                                      primaryTextStyle.copyWith(
-                                                    fontWeight: semiBold,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
                                                     fontSize: 12,
                                                   ),
                                                 ),
@@ -611,13 +589,13 @@ class _QuotationAndWeatherRiskMitigationPageState
                     );
                   },
                 ),
-              const SizedBox(height: 16),
+              const SpaceHeight(16),
               Button.outlined(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Data ditambahkan'),
-                      backgroundColor: Colors.green,
+                      backgroundColor: AppColors.green,
                     ),
                   );
                   Navigator.push(
