@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../../core/core.dart';
 import '../../widgets/risk_mitigation_item_widget.dart';
 
-class RiskMitigationScreen extends StatelessWidget {
-  const RiskMitigationScreen({super.key});
+class RiskMitigationPage extends StatelessWidget {
+  const RiskMitigationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.primaryColor,
         appBar: AppBar(
           title: const Text('Risk Mitigation'),
         ),

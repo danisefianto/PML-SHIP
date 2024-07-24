@@ -74,6 +74,9 @@ class _EditPersonalAndCompanyProfilePageState
                   content: Text('Profile updated successfully'),
                   backgroundColor: AppColors.green,
                 ));
+                Navigator.pop(context);
+                context.read<GetAuthenticatedUserBloc>().add(
+                    const GetAuthenticatedUserEvent.getAuthenticatedUser());
               },
               error: (message) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -266,18 +269,6 @@ class _EditPersonalAndCompanyProfilePageState
                                           UpdateUserDataEvent.updateUserData(
                                               dataRequest),
                                         );
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content:
-                                            Text('Data changed successfully'),
-                                        backgroundColor: AppColors.green,
-                                      ),
-                                    );
-                                    context
-                                        .read<GetAuthenticatedUserBloc>()
-                                        .add(const GetAuthenticatedUserEvent
-                                            .getAuthenticatedUser());
-                                    Navigator.pop(context);
                                   }
                                 },
                                 label: 'Update User Data',

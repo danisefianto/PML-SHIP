@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../data/datasource/order_remote_datasource.dart';
-import '../../../../../data/models/request/new_check_quotation_request_model.dart';
+import '../../../../../data/models/request/check_quotation_request_model.dart';
 import '../../../../../data/models/response/new_check_quotation_response_model.dart';
 
 part 'new_check_quotation_bloc.freezed.dart';

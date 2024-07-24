@@ -163,7 +163,7 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
         child: Container(
           height: 80,
           decoration: BoxDecoration(
-            color: const Color(0xFF1C3E66),
+            color: AppColors.darkBlue,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
@@ -172,7 +172,7 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
             children: [
               const Icon(
                 Icons.folder_open_rounded,
-                color: Color(0xFFFFFFFF),
+                color: AppColors.primaryColor,
                 size: 32,
               ),
               const SpaceWidth(16),

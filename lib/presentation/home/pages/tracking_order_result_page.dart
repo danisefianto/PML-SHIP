@@ -23,12 +23,6 @@ class TrackingOrderResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Track your order'),
-        leading: IconButton(
-          icon: const Icon(Icons.chevron_left),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(

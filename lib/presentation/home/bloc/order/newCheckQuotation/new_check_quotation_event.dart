@@ -4,6 +4,6 @@ part of 'new_check_quotation_bloc.dart';
 class NewCheckQuotationEvent with _$NewCheckQuotationEvent {
   const factory NewCheckQuotationEvent.started() = _Started;
   const factory NewCheckQuotationEvent.checkQuotation(
-    NewCheckQuotationRequestModel data,
+    CheckQuotationRequestModel data,
   ) = _CheckQuotation;
 }

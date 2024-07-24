@@ -6,7 +6,7 @@ import 'package:pml_ship/data/models/request/cancel_order_request_model.dart';
 
 import '../../core/constants/variables.dart';
 import '../models/request/add_conference_request_model.dart';
-import '../models/request/new_check_quotation_request_model.dart';
+import '../models/request/check_quotation_request_model.dart';
 import '../models/request/new_order_request_model.dart';
 import '../models/request/weather_request_model.dart';
 import '../models/response/add_conference_response_model.dart';
@@ -90,7 +90,7 @@ class OrderRemoteDatasource {
   }
 
   Future<Either<String, NewCheckQuotationResponseModel>> newcheckQuotation(
-      NewCheckQuotationRequestModel newCheckQuotationRequestModel) async {
+      CheckQuotationRequestModel requestModel) async {
     // Get the token from the local storage
     final authData = await AuthLocalDataSource().getAuthData();
 
@@ -108,7 +108,7 @@ class OrderRemoteDatasource {
     final response = await http.post(
       url,
       headers: headers,
-      body: newCheckQuotationRequestModel.toJson(),
+      body: requestModel.toJson(),
     );
 
     // Log the request

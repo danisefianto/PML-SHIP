@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 import '../../../../../core/core.dart';
 import '../../../auth/pages/sign_in_page.dart';
 
-class RatingPage1 extends StatefulWidget {
-  const RatingPage1({super.key});
+class RatingPage extends StatefulWidget {
+  const RatingPage({super.key});
 
   @override
-  State<RatingPage1> createState() => _RatingPage1State();
+  State<RatingPage> createState() => _RatingPageState();
 }
 
-class _RatingPage1State extends State<RatingPage1> {
+class _RatingPageState extends State<RatingPage> {
   double rating = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.chevron_left),
         title: const Text(
           'Rate Order',
         ),

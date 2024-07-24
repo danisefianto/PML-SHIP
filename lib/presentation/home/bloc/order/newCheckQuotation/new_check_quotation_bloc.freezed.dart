@@ -19,20 +19,19 @@ mixin _$NewCheckQuotationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(NewCheckQuotationRequestModel data)
-        checkQuotation,
+    required TResult Function(CheckQuotationRequestModel data) checkQuotation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(NewCheckQuotationRequestModel data)? checkQuotation,
+    TResult? Function(CheckQuotationRequestModel data)? checkQuotation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(NewCheckQuotationRequestModel data)? checkQuotation,
+    TResult Function(CheckQuotationRequestModel data)? checkQuotation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,8 +114,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(NewCheckQuotationRequestModel data)
-        checkQuotation,
+    required TResult Function(CheckQuotationRequestModel data) checkQuotation,
   }) {
     return started();
   }
@@ -125,7 +123,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(NewCheckQuotationRequestModel data)? checkQuotation,
+    TResult? Function(CheckQuotationRequestModel data)? checkQuotation,
   }) {
     return started?.call();
   }
@@ -134,7 +132,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(NewCheckQuotationRequestModel data)? checkQuotation,
+    TResult Function(CheckQuotationRequestModel data)? checkQuotation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -185,7 +183,7 @@ abstract class _$$CheckQuotationImplCopyWith<$Res> {
           $Res Function(_$CheckQuotationImpl) then) =
       __$$CheckQuotationImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({NewCheckQuotationRequestModel data});
+  $Res call({CheckQuotationRequestModel data});
 }
 
 /// @nodoc
@@ -205,7 +203,7 @@ class __$$CheckQuotationImplCopyWithImpl<$Res>
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as NewCheckQuotationRequestModel,
+              as CheckQuotationRequestModel,
     ));
   }
 }
@@ -216,7 +214,7 @@ class _$CheckQuotationImpl implements _CheckQuotation {
   const _$CheckQuotationImpl(this.data);
 
   @override
-  final NewCheckQuotationRequestModel data;
+  final CheckQuotationRequestModel data;
 
   @override
   String toString() {
@@ -245,8 +243,7 @@ class _$CheckQuotationImpl implements _CheckQuotation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(NewCheckQuotationRequestModel data)
-        checkQuotation,
+    required TResult Function(CheckQuotationRequestModel data) checkQuotation,
   }) {
     return checkQuotation(data);
   }
@@ -255,7 +252,7 @@ class _$CheckQuotationImpl implements _CheckQuotation {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(NewCheckQuotationRequestModel data)? checkQuotation,
+    TResult? Function(CheckQuotationRequestModel data)? checkQuotation,
   }) {
     return checkQuotation?.call(data);
   }
@@ -264,7 +261,7 @@ class _$CheckQuotationImpl implements _CheckQuotation {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(NewCheckQuotationRequestModel data)? checkQuotation,
+    TResult Function(CheckQuotationRequestModel data)? checkQuotation,
     required TResult orElse(),
   }) {
     if (checkQuotation != null) {
@@ -306,10 +303,10 @@ class _$CheckQuotationImpl implements _CheckQuotation {
 }
 
 abstract class _CheckQuotation implements NewCheckQuotationEvent {
-  const factory _CheckQuotation(final NewCheckQuotationRequestModel data) =
+  const factory _CheckQuotation(final CheckQuotationRequestModel data) =
       _$CheckQuotationImpl;
 
-  NewCheckQuotationRequestModel get data;
+  CheckQuotationRequestModel get data;
   @JsonKey(ignore: true)
   _$$CheckQuotationImplCopyWith<_$CheckQuotationImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/core.dart';
-import '../../../../data/models/request/new_check_quotation_request_model.dart';
+import '../../../../data/models/request/check_quotation_request_model.dart';
 import '../../../../data/models/request/weather_request_model.dart';
 import '../../bloc/order/newCheckQuotation/new_check_quotation_bloc.dart';
 import '../../bloc/weather/weather_bloc.dart';
@@ -44,7 +44,7 @@ class _QuotationAndWeatherRiskMitigationPageState
     super.initState();
     context.read<NewCheckQuotationBloc>().add(
           NewCheckQuotationEvent.checkQuotation(
-            NewCheckQuotationRequestModel(
+            CheckQuotationRequestModel(
               portOfLoadingId: widget.portOfLoadingId,
               portOfDischargeId: widget.portOfDischargeId,
               dateOfLoading: widget.dateOfLoading,
