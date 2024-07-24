@@ -34,7 +34,7 @@ class Data {
   final int id;
   final String baseCurrency;
   final String currencies;
-  final String rate;
+  final double rate;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -55,7 +55,7 @@ class Data {
         id: json["id"],
         baseCurrency: json["base_currency"],
         currencies: json["currencies"],
-        rate: json["rate"],
+        rate: json["rate"]?.toDouble(),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );

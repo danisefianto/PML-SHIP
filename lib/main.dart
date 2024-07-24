@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pml_ship/presentation/home/bloc/order/cancel_order/cancel_order_bloc.dart';
 
 // Data Source
 import 'core/core.dart';
@@ -87,6 +88,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => NewOrderBloc(OrderRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => CancelOrderBloc(OrderRemoteDatasource()),
         ),
         BlocProvider(
           create: (context) => DocumentDataBloc(DocumentRemoteDatasource()),

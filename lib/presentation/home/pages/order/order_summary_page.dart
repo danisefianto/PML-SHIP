@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
+import '../../../../data/models/request/cancel_order_request_model.dart';
 import '../../../../data/models/response/order_detail_response_model.dart';
+import '../../bloc/order/cancel_order/cancel_order_bloc.dart';
 import '../../bloc/summaryOrder/summary_order_bloc.dart';
 import '../main_page.dart';
 import 'add_conference_page.dart';
@@ -239,13 +241,47 @@ class _OrderSummaryPageState extends State<OrderSummaryPage> {
                   const SpaceHeight(30),
                   Padding(
                     padding: const EdgeInsets.all(30.0),
-                    child: Button.outlined(
-                      onPressed: () {
-                        // TODO: Add cancel order function and AlertDialog
-
-                        // TODO: Bloc Cancel Order
+                    child: BlocListener<CancelOrderBloc, CancelOrderState>(
+                      listener: (context, state) {
+                        state.maybeMap(
+                          orElse: () {},
+                          error: (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(e.message),
+                                backgroundColor: AppColors.red,
+                              ),
+                            );
+                          },
+                          success: (value) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Order canceled successfully'),
+                                backgroundColor: AppColors.green,
+                              ),
+                            );
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MainPage()),
+                                (route) => false);
+                          },
+                        );
                       },
-                      label: 'Batalkan Pesanan',
+                      child: Button.outlined(
+                        onPressed: () {
+                          final dataRequest = CancelOrderRequestModel(
+                            canceledAt: DateTime.now(),
+                          );
+                          context.read<CancelOrderBloc>().add(
+                                CancelOrderEvent.cancelOrder(
+                                  dataRequest,
+                                  widget.transactionIdMessage,
+                                ),
+                              );
+                        },
+                        label: 'Batalkan Pesanan',
+                      ),
                     ),
                   ),
                 ],

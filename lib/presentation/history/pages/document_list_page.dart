@@ -1,9 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
+import '../../../data/datasource/download_file.dart';
 import '../bloc/documentData/document_data_bloc.dart';
 
 class DocumentListPage extends StatefulWidget {
@@ -95,14 +97,27 @@ class _DocumentListPageState extends State<DocumentListPage> {
                                       ),
                                 Visibility(
                                   visible: documentData.documentName != null,
-                                  child: Text(
-                                    documentData.documentName ?? '',
-                                    style: const TextStyle(
-                                      fontSize: 14,
+                                  child: Button.filled(
+                                    onPressed: () {
+                                      final String urlname =
+                                          '${Variables.documentURL}${documentData.documentName}';
+                                      log(urlname);
+                                      FileStorage.downloadAndSaveFile(urlname);
+                                    },
+                                    icon: const Icon(
+                                      Icons.download,
                                       color: AppColors.primaryColor,
-                                      fontWeight: FontWeight.bold,
                                     ),
+                                    label: '${documentData.documentName}',
                                   ),
+                                  // Text(
+                                  //   documentData.documentName ?? '',
+                                  //   style: const TextStyle(
+                                  //     fontSize: 14,
+                                  //     color: AppColors.primaryColor,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
                                 ),
                               ],
                             ),

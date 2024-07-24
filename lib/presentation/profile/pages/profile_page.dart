@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pml_ship/presentation/history/pages/history_page.dart';
 
 import '../../../core/core.dart';
 import '../../../data/datasource/auth_local_datasource.dart';
@@ -10,7 +11,7 @@ import '../bloc/get_authenticated_user/get_authenticated_user_bloc.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_menu_item.dart';
 import 'edit_personal_and_company_profile_page.dart';
-import 'general/alamat_pelabuhan_screen.dart';
+import 'general/alamat_pelabuhan_page.dart';
 import 'general/contact_us_page.dart';
 import 'general/frequently_asked_question_page.dart';
 import 'general/how_to_pay_page.dart';
@@ -78,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 Text(
-                                  '1 USD = ${double.parse(rates.data.rate).currencyEYDFormatRp}',
+                                  '1 USD = ${rates.data.rate.currencyEYDFormatRp}',
                                   style: const TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
@@ -149,7 +150,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontSize: 16.0,
                       ),
                     ),
-                    const ProfileMenuItem(title: 'Your Orders'),
+                    ProfileMenuItem(
+                      title: 'Your Orders',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HistoryPage()),
+                        );
+                      },
+                    ),
                     const SpaceHeight(15),
                     ProfileMenuItem(
                       title: 'Alamat Pelabuhan',
@@ -158,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const AlamatPelabuhanScreen()),
+                                  const AlamatPelabuhanPage()),
                         );
                       },
                     ),

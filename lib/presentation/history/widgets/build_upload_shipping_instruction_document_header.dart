@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pml_ship/core/core.dart';
 
 import '../../../data/models/response/order_detail_response_model.dart';
 
@@ -37,7 +38,7 @@ class BuildUploadShippingInstructionDocumentHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Max input ${responseModel.data!.documents!.first.maxInputDocumentAt}.',
+                  'Max input ${responseModel.data!.documents!.first.maxInputDocumentAt!.toFormattedIndonesianShortDateAndUTC7Time()}.',
                   style: const TextStyle(
                     fontWeight: FontWeight.w400,
                     color: Colors.red,

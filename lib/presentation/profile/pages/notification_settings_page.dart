@@ -10,7 +10,7 @@ class NotificationSetting extends StatefulWidget {
 }
 
 class _NotificationSettingState extends State<NotificationSetting> {
-  bool isSelectedSwitch = false;
+  bool light = true;
 
   @override
   Widget build(BuildContext context) {
@@ -77,34 +77,16 @@ class _NotificationSettingState extends State<NotificationSetting> {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 37,
-                        width: 54,
-                        margin: const EdgeInsets.only(left: 15, bottom: 2),
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xFF9DB6D4),
-                              ),
-                              padding: const EdgeInsets.all(8),
-                              child: Transform.scale(
-                                  scale: 0.7, child: const Text('Switch')
-                                  // CustomSwitch(
-                                  //   alignment: Alignment.center,
-                                  //   value: isSelectedSwitch,
-                                  //   onChange: (value) {
-                                  //     setState(() {
-                                  //       isSelectedSwitch = value;
-                                  //     });
-                                  //   },
-                                  // ),
-                                  ),
-                            ),
-                          ],
-                        ),
+                      Switch(
+                        // This bool value toggles the switch.
+                        value: light,
+                        activeColor: Colors.red,
+                        onChanged: (bool value) {
+                          // This is called when the user toggles the switch.
+                          setState(() {
+                            light = value;
+                          });
+                        },
                       ),
                     ],
                   ),

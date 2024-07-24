@@ -11,11 +11,9 @@ import '../../bloc/uploadPaymentProof/upload_payment_proof_bloc.dart';
 import '../main_page.dart';
 
 class UploadPaymentProofPage extends StatefulWidget {
-  // final String documentType;
   final String transactionId;
   const UploadPaymentProofPage({
     super.key,
-    // required this.documentType,
     required this.transactionId,
   });
 
@@ -82,24 +80,32 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
               BlocConsumer<UploadPaymentProofBloc, UploadPaymentProofState>(
                 listener: (context, state) {
                   state.maybeWhen(
-                      orElse: () {},
-                      error: (message) {
-                        return ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Error: $message'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      },
-                      success: (state) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'Upload SUCCESS'), //menampilkan snackbar success
-                            backgroundColor: AppColors.green,
-                          ),
-                        );
-                      });
+                    orElse: () {},
+                    error: (message) {
+                      return ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Error: $message'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    },
+                    success: (state) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'Upload SUCCESS'), //menampilkan snackbar success
+                          backgroundColor: AppColors.green,
+                        ),
+                      );
+                      // Go back to home using removeuntil
+
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainPage()),
+                          (route) => false);
+                    },
+                  );
                 },
                 builder: (context, state) {
                   return state.maybeWhen(
@@ -130,13 +136,6 @@ class _UploadPaymentProofPageState extends State<UploadPaymentProofPage> {
                                     widget.transactionId,
                                   ),
                                 );
-                            // Go back to home using removeuntil
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const MainPage()),
-                                (route) => false);
                           }
                         },
                       );

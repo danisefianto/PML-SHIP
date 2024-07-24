@@ -5,6 +5,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,7 +24,7 @@ class FileStorage {
 
     Directory directory = Directory("dir");
     if (Platform.isAndroid) {
-      directory = Directory("/storage/emulated/0/Download/PML SHIP Admin");
+      directory = Directory("/storage/emulated/0/Download/PML SHIP");
     } else {
       directory = await getApplicationDocumentsDirectory();
     }
@@ -47,13 +48,17 @@ class FileStorage {
     // Generate a timestamp for the filename
     String timestamp = DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
 
-    // String fileName = '${timestamp}_.pdf'.replaceAll(':', '-');
+    String originalFileName = uriURL.pathSegments.last;
+// Extract the filename without the extension
+    String fileNameWithoutExtension = originalFileName.split('.').first;
 
-    String originalFileName = timestamp + uriURL.pathSegments.last;
+// Extract the file extension
+    String fileExtension = originalFileName.split('.').last;
+    // Construct the new filename with the timestamp
+    String newFileName =
+        '${fileNameWithoutExtension}_$timestamp.$fileExtension';
 
-    // Sanitize the filename (implementation not shown here)
-
-    String filePath = join(await _localPath, originalFileName);
+    String filePath = join(await _localPath, newFileName);
     File file = File(filePath);
 
     try {

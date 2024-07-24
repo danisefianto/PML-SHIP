@@ -52,7 +52,8 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                 success: (state) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('SUCCESS'), //menampilkan snackbar success
+                      content: Text(
+                          'Choose payment plan SUCCESS'), //menampilkan snackbar success
                       backgroundColor: AppColors.green,
                     ),
                   );
@@ -226,7 +227,7 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                             _selectedOption != 3)
                           const Text('No data'),
                         Center(
-                          child: ElevatedButton(
+                          child: Button.filled(
                             onPressed: () {
                               final dataRequest = AddPaymentRequestModel(
                                 transactionId: widget.transactionId,
@@ -237,14 +238,14 @@ class _ChoosePaymentPlanPageState extends State<ChoosePaymentPlanPage> {
                                     AddPaymentEvent.addPayment(dataRequest),
                                   );
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          UploadPaymentProofPage(
-                                              transactionId:
-                                                  widget.transactionId)));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => UploadPaymentProofPage(
+                                      transactionId: widget.transactionId),
+                                ),
+                              );
                             },
-                            child: const Text('Pay Now'),
+                            label: ('Pay Now'),
                           ),
                         ),
                       ],

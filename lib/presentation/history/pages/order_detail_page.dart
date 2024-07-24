@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
+import '../../../data/datasource/download_file.dart';
 import '../../../data/models/request/update_document_request_model.dart';
 import '../../home/bloc/summaryOrder/summary_order_bloc.dart';
 import '../../home/bloc/upload_document/upload_document_bloc.dart';
@@ -74,6 +76,12 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 String secondPaymentProofDocument = '';
                 String thirdPaymentProofDocument = '';
                 bool isFirstPaymentProofDocumentUploaded = false;
+                bool isStatusCanceled =
+                    responseModel.data!.status != 'order_canceled';
+
+                bool isShippingInstructionUploaded =
+                    responseModel.data!.documents!.first.documentName == null &&
+                        isStatusCanceled;
 
                 // If first payment proof document is not uploaded, show choose payment plan button
 
@@ -96,8 +104,10 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                           .payments!.first.paymentProofDocument ??
                       '';
                   isFirstPaymentProofDocumentUploaded = responseModel.data!
-                          .payment!.payments!.first.paymentProofDocument !=
-                      null;
+                              .payment!.payments!.first.paymentProofDocument !=
+                          null &&
+                      responseModel.data!.payment!.payments!.first
+                          .paymentProofDocument!.isNotEmpty;
                   if (responseModel.data!.payment!.payments!.length > 1) {
                     secondPaymentProofDocument = responseModel
                             .data!.payment!.payments![1].paymentProofDocument ??
@@ -122,9 +132,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                     children: [
                       // If shipping instruction document is not uploaded, show Max input date
                       Visibility(
-                        visible:
-                            responseModel.data!.documents!.first.documentName ==
-                                null,
+                        visible: isShippingInstructionUploaded,
                         child: BuildUploadShippingInstructionDocumentHeader(
                             responseModel: responseModel),
                       ),
@@ -134,7 +142,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                         visible:
                             responseModel.data!.documents!.first.documentName !=
                                     null &&
-                                !isFirstPaymentProofDocumentUploaded,
+                                !isFirstPaymentProofDocumentUploaded &&
+                                isStatusCanceled,
                         child: BuildPaymentHeader(responseModel: responseModel),
                       ),
 
@@ -211,9 +220,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                               child: Column(
                                 children: [
                                   Visibility(
-                                      visible: responseModel.data!.documents!
-                                              .first.documentName ==
-                                          null,
+                                      visible: isShippingInstructionUploaded,
                                       child: Column(
                                         children: [
                                           Padding(
@@ -262,6 +269,11 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                                     selectedFile =
                                                         null; // Clear the file picker after success
                                                   });
+                                                  context
+                                                      .read<SummaryOrderBloc>()
+                                                      .add(SummaryOrderEvent
+                                                          .getSummaryOrder(widget
+                                                              .transactionId));
                                                 },
                                               );
                                             },
@@ -324,52 +336,36 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                           ),
 
                                           const SpaceHeight(8),
-                                          Row(
-                                            children: [
-                                              const Icon(Icons.picture_as_pdf),
-                                              const SpaceWidth(8),
-                                              Text(
-                                                responseModel.data!.documents!
-                                                        .first.documentName ??
-                                                    '',
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                            ],
+                                          Button.filled(
+                                            onPressed: () {
+                                              final String urlname =
+                                                  '${Variables.documentURL}${responseModel.data!.documents!.first.documentName}';
+                                              log(urlname);
+                                              FileStorage.downloadAndSaveFile(
+                                                  urlname);
+                                            },
+                                            icon: const Icon(
+                                              Icons.download,
+                                              color: AppColors.primaryColor,
+                                            ),
+                                            label:
+                                                '${responseModel.data!.documents!.first.documentName}',
                                           ),
-                                          const SpaceHeight(15),
-                                          // https://www.youtube.com/watch?v=LdRdc7JWo3M
-                                          // Button.filled(
-                                          //   onPressed: () {
-                                          //     log('${Variables.imageUrl}/documents/${responseModel.data!.documents!.first.documentName}');
-                                          //     _progress != null
-                                          //         ? const CircularProgressIndicator()
-                                          //         : FileDownloader.downloadFile(
-                                          //             url:
-                                          //                 '${Variables.imageUrl}/documents/${responseModel.data!.documents!.first.documentName}',
-                                          //             onProgress: (name, progress) {
-                                          //               setState(() {
-                                          //                 _progress = progress;
-                                          //               });
-                                          //             },
-                                          //             onDownloadCompleted: (value) {
-                                          //               // SnackBar
-                                          //               ScaffoldMessenger.of(context)
-                                          //                   .showSnackBar(
-                                          //                 const SnackBar(
-                                          //                   content: Text(
-                                          //                       'Download completed!'),
-                                          //                   backgroundColor:
-                                          //                       AppColors.green,
-                                          //                 ),
-                                          //               );
-                                          //             },
-                                          //           );
-                                          //   },
-                                          //   label: 'Download Document',
+                                          // Row(
+                                          //   children: [
+                                          //     const Icon(Icons.picture_as_pdf),
+                                          //     const SpaceWidth(8),
+                                          //     Text(
+                                          //       responseModel.data!.documents!
+                                          //               .first.documentName ??
+                                          //           '',
+                                          //       style: const TextStyle(
+                                          //         fontWeight: FontWeight.w700,
+                                          //       ),
+                                          //     ),
+                                          //   ],
                                           // ),
-                                          // TODO: Payment Bug
+                                          const SpaceHeight(15),
 
                                           Visibility(
                                             visible:
@@ -379,28 +375,25 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                                   const EdgeInsets.symmetric(
                                                       vertical: 30.0),
                                               child: Button.filled(
-                                                  onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ChoosePaymentPlanPage(
-                                                          transactionId: widget
-                                                              .transactionId,
-                                                        ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ChoosePaymentPlanPage(
+                                                        transactionId: widget
+                                                            .transactionId,
                                                       ),
-                                                    );
-                                                  },
-                                                  label: 'Choose payment plan'),
+                                                    ),
+                                                  );
+                                                },
+                                                label: 'Choose payment plan',
+                                              ),
                                             ),
                                           ),
                                           Visibility(
-                                            visible: responseModel
-                                                .data!.payment!.payments!
-                                                .any((payment) =>
-                                                    payment
-                                                        .paymentProofDocument !=
-                                                    null),
+                                            visible:
+                                                isFirstPaymentProofDocumentUploaded,
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -413,15 +406,22 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                                   ),
                                                 ),
                                                 const SpaceHeight(8),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                        Icons.picture_as_pdf),
-                                                    const SpaceWidth(8),
-                                                    // TODO: Payment Bug
-                                                    Text(
-                                                        firstPaymentProofDocument),
-                                                  ],
+                                                Button.filled(
+                                                  onPressed: () {
+                                                    final String urlname =
+                                                        '${Variables.documentURL}$firstPaymentProofDocument';
+                                                    log(urlname);
+                                                    FileStorage
+                                                        .downloadAndSaveFile(
+                                                            urlname);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.download,
+                                                    color:
+                                                        AppColors.primaryColor,
+                                                  ),
+                                                  label:
+                                                      firstPaymentProofDocument,
                                                 ),
                                                 const SpaceHeight(30),
                                               ],

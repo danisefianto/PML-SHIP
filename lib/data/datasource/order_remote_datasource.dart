@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:pml_ship/data/models/request/cancel_order_request_model.dart';
 
 import '../../core/constants/variables.dart';
 import '../models/request/add_conference_request_model.dart';
@@ -13,6 +14,7 @@ import '../models/response/new_check_quotation_response_model.dart';
 import '../models/response/new_order_response_model.dart';
 import '../models/response/order_detail_response_model.dart';
 import '../models/response/port_response_model.dart';
+import '../models/response/update_order_status_response_model.dart';
 import '../models/response/weather_response_model.dart';
 import 'auth_local_datasource.dart';
 
@@ -232,6 +234,44 @@ class OrderRemoteDatasource {
     } else {
       return const Left(
           'Failed to add conference data. Check your data again.');
+    }
+  }
+
+  Future<Either<String, UpdateOrderStatusResponseModel>> cancelOrder(
+      CancelOrderRequestModel requestModel, String transactionId) async {
+    // Get the token from the local storage
+    final authData = await AuthLocalDataSource().getAuthData();
+
+    // Headers
+    final Map<String, String> headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${authData.data!.token}',
+    };
+
+    // URL
+    final url =
+        Uri.parse('${Variables.baseUrl}/api/orders/$transactionId/cancel');
+
+    // Send the request
+    final response = await http.patch(
+      url,
+      headers: headers,
+      body: requestModel.toJson(),
+    );
+
+    // Log the request
+    log('Request: $headers');
+    log('URL: $url');
+
+    // Log the response body
+    log('Request: ${response.body}');
+    log('Status code: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      return Right(UpdateOrderStatusResponseModel.fromJson(response.body));
+    } else {
+      return const Left('Cancel order error.');
     }
   }
 }

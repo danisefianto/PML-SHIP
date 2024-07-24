@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../core/core.dart';
 import 'where_you_are_logged_in_page.dart';
 
-class SecurityPage extends StatelessWidget {
+class SecurityPage extends StatefulWidget {
   const SecurityPage({super.key});
 
+  @override
+  State<SecurityPage> createState() => _SecurityPageState();
+}
+
+class _SecurityPageState extends State<SecurityPage> {
+  bool light = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,66 +19,56 @@ class SecurityPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Account Security'),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        body: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: ListView(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(30.0),
-                child: Text(
-                  "Kelola dengan mudah akunmu disini",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+              const Text(
+                "Kelola dengan mudah akunmu disini",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SpaceHeight(33),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Verifikasi dua langkah",
-                        ),
-                        SpaceHeight(2),
-                        Text(
-                          "Masuk ke akunmu dengan kemanan tambahan",
-                        ),
-                      ],
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Custom Switch'),
-                    ),
-                  ],
+              const Text(
+                "Verifikasi dua langkah",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const Divider(),
+              const SpaceHeight(2),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text(
-                    "Riwayat Masuk",
+                  const Flexible(
+                    child: Text(
+                      "Masuk ke akunmu dengan kemanan tambahan",
+                    ),
                   ),
-                  Button.filled(
-                    width: 150,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const WhereYouAreLoggedIn()),
-                      );
+                  Switch(
+                    // This bool value toggles the switch.
+                    value: light,
+                    activeColor: Colors.red,
+                    onChanged: (bool value) {
+                      // This is called when the user toggles the switch.
+                      setState(() {
+                        light = value;
+                      });
                     },
-                    label: 'Riwayat Login',
                   ),
                 ],
-              )
+              ),
+              const SpaceHeight(20),
+              Button.filled(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WhereYouAreLoggedIn()),
+                  );
+                },
+                label: 'Riwayat Login',
+              ),
             ],
           ),
         ),
